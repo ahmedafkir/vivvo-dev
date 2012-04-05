@@ -1,0 +1,39 @@
+#image_gallery_list { 
+	background: #fff url(../../plugins/image_gallery/admin/img/options_right_bg.gif) right repeat-y;
+	width: 100%;
+	overflow: hidden;
+}
+
+/*** Right side options ***/
+#image_gallery_list div#image_properties{
+	float:right;
+	width:270px; 
+	padding-top: 12px;
+}
+
+#image_properties input.text {width:150px;}
+
+#image_properties div.form_line label { width: 95px; font-weight: normal;}
+
+#image_gallery_list div#image_properties textarea { width: 150px; height: 60px;}
+
+/*** Left side props ***/
+#image_gallery_list div#image_gallery_holder {margin-right: 270px;}
+
+#image_holder { float: left; padding: 6px;}
+
+span.image_sortable {
+	float: left;
+	padding: 3px; 
+	margin: 0px 6px 6px 0px; 
+	border: 1px solid #989DA5; 
+	cursor: move;
+	text-align: center;
+	background-color: #FFFFFF;
+}
+
+span.image_sortable img {vertical-align: middle;}
+
+.image_sortable span.image_delete {position:absolute; right:0; top:0; cursor:pointer; line-height: normal;}
+
+#image_gallery_holder span.selected {background-color:#ffffc0; border:1px solid #3366CC;}

@@ -1,0 +1,15 @@
+<vte:box module="box_article_list" params="{comments_articles_params}">
+	<vte:template>
+		<vte:template>
+			<vte:if test="{article_list}">
+				<ul id="article_list">
+					<vte:foreach item = "article" from = "{article_list}">
+						<li>
+							<span class="action_button" onclick="adminList.goTo('search_article_id', '{article.id}');"><vte:value select="{article.title}" /></span>
+						</li>
+					</vte:foreach>
+				</ul>	
+			</vte:if>
+		</vte:template>
+	</vte:template>
+</vte:box>

@@ -1,0 +1,23 @@
+<vte:template>
+	<vte:header type="script" href="{VIVVO_URL}js/control_modal.js" />
+	<vte:header type="css" href="{VIVVO_URL}{VIVVO_FS_ADMIN_DIR}css/modal.css" />
+	
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/layouts/category_file_list.xml" list_id="theme_list" list_title="Themes" list_dir="themes/"  list_default="{VIVVO_DEFAULT_THEME}" list_ext="dirext" list_url="" />
+	
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/layouts/file_list.xml" list_id="template_set_list" list_title="Template sets" list_dir="templates/"  list_default="{VIVVO_DEFAULT_TEMPLATE_DIR}" list_ext="dirext" list_url="" />
+	
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/layouts/file_list.xml" list_id="homepage_layouts" list_title="Homepage layouts" list_dir="{VIVVO_TEMPLATE_DIR}homepage/"  list_default="{VIVVO_HOMEPAGE_LAYOUT}" list_ext="tpl" list_url="" />
+	
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/layouts/category_file_list.xml" list_id="category_layouts" list_title="Category layouts" list_dir="{VIVVO_TEMPLATE_DIR}category/" list_default="{VIVVO_CATEGORY_LAYOUT}" list_ext="tpl" list_url="" />
+	
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/layouts/category_file_list.xml" list_id="article_layouts" list_title="Article layouts" list_dir="{VIVVO_TEMPLATE_DIR}article/" list_default="{VIVVO_ARTICLE_LAYOUT}" list_ext="tpl" list_url=" " />
+	
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/layouts/topic_file_list.xml" list_id="topic_layouts" list_title="Topic layouts" list_dir="{VIVVO_TEMPLATE_DIR}topic/" list_default="" list_ext="tpl" />
+	
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/layouts/topic_file_list.xml" list_id="tag_layouts" list_title="Tag layouts" list_dir="{VIVVO_TEMPLATE_DIR}label/" list_default="" list_ext="tpl" />
+	
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/layouts/file_list.xml" list_id="archive_layouts" list_title="Archive layouts" list_dir="{VIVVO_TEMPLATE_DIR}archive/" list_default="{VIVVO_ARCHIVE_LAYOUT}" list_ext="tpl" />
+	
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/layouts/file_list.xml" list_id="search_result_layouts" list_title="Search result layouts" list_dir="{VIVVO_TEMPLATE_DIR}search_results/" list_default="{VIVVO_SEARCH_RESULT_LAYOUT}" list_ext="tpl" />
+	
+</vte:template>

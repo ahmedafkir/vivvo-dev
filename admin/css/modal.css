@@ -1,0 +1,19 @@
+#modal_container {  
+	overflow:hidden;  
+	font-size:12px;  
+	color:#333;  
+	text-align:left;  
+	background:#ececec; 
+	border:5px solid #fff;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	-webkit-box-shadow:0 1px 8px #666;
+	-moz-box-shadow:0 1px 8px 0 rgba(0,0,0,0.5);
+	box-shadow:0 1px 8px 0 rgba(0,0,0,0.5); 
+	padding:20px 6px 6px 6px; 
+	font-family:Arial, Helvetica, sans-serif;
+} 
+#modal_overlay {background-color:#000;}
+img#modal_close {position:absolute; top:7px; right:12px; cursor:pointer;}
+img#modal_help {position:absolute; top:5px; right:27px; cursor:pointer;}

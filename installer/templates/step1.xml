@@ -1,0 +1,24 @@
+<vte:template>
+	<div class="content_body">
+		<h3><vte:value select="{LNG_INSTALLER_STEP_1}" /></h3>
+		<form action="index.php?step=2" method="post">
+			<div id="installer_steps_form" class="content_items">
+				<div class="info"><vte:value select="{LNG_INSTALLER_INFO_STEP_1}" /></div>
+				<div class="form_line"> 
+					<div class="formElement lang">
+						<select class="options" name="installer_lang" size="15">
+							<vte:foreach item="file" from="{file_list}">
+								<option value="{file|strtolower}"><vte:value select="{file|ucfirst}" /></option>
+							</vte:foreach>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="content_body_footer">
+				<div class="form_submit_button">
+					<input type="submit" class="button" name="login" value="{LNG_INSTALLER_BUTTON_NEXT_STEP}" />
+				</div>
+			</div>
+		</form>
+	</div>
+</vte:template>

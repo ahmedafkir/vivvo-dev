@@ -1,0 +1,32 @@
+<vte:template>
+	<div id="comments_modules" style="display:none;">
+		<div class="form_box">
+			<div class="form_box_header">
+				<h3><vte:value select="{LNG_ADMIN_SUMMARY_MOST_COMMENTED_AND_LATEST_COMMENTS}" />:</h3>
+				<div class="corner_white_top_left"><div class="corner_white_top_right"><!-- --></div></div>
+				<div class="form_box_info">
+					<vte:value select="{LNG_ADMIN_SUMMARY_MOST_COMMENTED_AND_LATEST_COMMENTS_INFO_BOX}" />
+				</div>
+				<span class="expand"><vte:value select="{LNG_ADMIN_SHOW_FORM}" /></span>
+			</div>
+			<div class="form_box_body" style="display:none;">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_SHOW_LATEST_COMMENTS_BOX}" name="VIVVO_MODULES_LAST_COMMENTED" value="{VIVVO_MODULES_LAST_COMMENTED}" />
+			</div>
+			<div class="corner_white_bottom_left"><div class="corner_white_bottom_right"><!-- --></div></div>
+		</div>
+		<div class="form_box">
+			<div class="form_box_header">
+				<h3><vte:value select="{LNG_ADMIN_SUMMARY_MOST_COMMENTED}" />:</h3>
+				<div class="corner_white_top_left"><div class="corner_white_top_right"><!-- --></div></div>
+				<div class="form_box_info">
+					<vte:value select="{LNG_ADMIN_SUMMARY_MOST_COMMENTED_INFO_BOX}" />
+				</div>
+				<span class="expand"><vte:value select="{LNG_ADMIN_SHOW_FORM}" /></span>
+			</div>
+			<div class="form_box_body" style="display:none;">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_SHOW_COMMENTED_BOX}" name="VIVVO_MODULES_MOST_COMMENTED" value="{VIVVO_MODULES_MOST_COMMENTED}" />
+			</div>
+			<div class="corner_white_bottom_left"><div class="corner_white_bottom_right"><!-- --></div></div>
+		</div>
+	</div>
+</vte:template>

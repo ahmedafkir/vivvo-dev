@@ -1,0 +1,38 @@
+<vte:box module="box_comments" params="{comments_params}">
+	<vte:template>
+		<img id="modal_close" onclick="Control.Modal.close()" src="{VIVVO_FS_ADMIN_DIR}/img/delete_gray.gif" />
+		<div>
+			<div class="frontend_opt_title"><vte:value select="{LNG_ADMIN_MODERATE_COMMENT}" /></div>
+			<div class="frontend_comment_list">
+				<form id="comments_list_options_form" name="comments_list_options_form" onsubmit="return false;">
+					<vte:if test="{comment_list}">
+						<vte:foreach item = "comment" from = "{comment_list}" key="index">
+							<div id="comment_list_{comment.get_id}" class="item row_{index|mod:'2'}">
+								<div class="item_actions">
+									<img src="{VIVVO_FS_ADMIN_DIR}img/icon_edit.gif" alt="{LNG_ADMIN_EDIT}" title="{LNG_ADMIN_EDIT}" onclick="$('comment_edit_form_{comment.get_id}').toggle();" />
+									<img src="{VIVVO_FS_ADMIN_DIR}img/icon_delete.gif" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}"  onclick="vivvoAdminMenu.commentDelete({comment.id});" />
+								</div>
+								<div class="item_data">
+									<div class="item_line1">
+										<vte:value select="{comment.get_summary}" />
+									</div>
+									<div class="item_line2">
+										<vte:value select="{comment.get_author_name}" />
+										(<vte:value select="{comment.get_www}" />)
+									</div>
+								</div>
+								<div id="comment_edit_form_{comment.get_id}" class="edit_form" style="display:none;">
+									<textarea id="COMMENT_description_{comment.id}" name="COMMENT_description_{comment.id}" style="width:99%; height: 100px;"><vte:value select="{comment.description}" /></textarea>
+									<input type="submit" value="{LNG_ADMIN_SAVE}" onclick="vivvoAdminMenu.commentEdit({comment.id});" />
+								</div>
+							</div>
+						</vte:foreach>
+						<vte:else>
+							<div class="info_message"><vte:value select="{LNG_ADMIN_NO_ITEMS_MATCHING_SELECTED_CRITERIA}" /></div> 
+						</vte:else>
+					</vte:if>
+				</form>
+			</div>
+		</div>
+	</vte:template>
+</vte:box>

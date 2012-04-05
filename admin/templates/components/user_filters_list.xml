@@ -1,0 +1,31 @@
+<vte:box module="box_user_filters">
+	<vte:params>
+		<vte:param name="search_section" value="{user_filters_section}" />
+	</vte:params>
+	<vte:template>
+		<vte:if test="{user_filters_list}">
+			<ul>
+				<vte:foreach item = "filter" from = "{user_filters_list}">
+					<vte:if test="{filter.name} != ''">
+						<li id="user_filter_{filter.id}">
+							<span class="actions_small">
+								<img onclick="vivvo.admin.utils.deleteItemFromList('user_filter_{filter.id}', 'UserFilter', 'FILTER_id', '{filter.get_id}');" src="img/delete_gray.gif" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" /> 
+							</span>
+							<span onclick="adminList.goTo('search_options', '{filter.get_query}');"><vte:value select="{filter.get_name}" /></span>
+						</li>
+					</vte:if>
+				</vte:foreach>
+			</ul>
+		</vte:if>
+		<vte:if test="{list_output}">
+			<script type="text/javascript">
+				<vte:foreach item = "message" from = "{DUMP_MESSAGES}">
+					adminList.addDump('<vte:value select="{message.get_message|htmlspecialchars}" />','<vte:value select="{message.type}" />');
+				</vte:foreach>
+			</script>
+		</vte:if>
+        <script type="text/javascript">
+            vivvo.admin.quickNav.filterTogglePin();
+        </script>
+	</vte:template>
+</vte:box>

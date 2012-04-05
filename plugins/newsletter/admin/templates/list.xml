@@ -1,0 +1,138 @@
+<vte:box module="box_maillist" params="{maillist_params}">
+	<vte:template>
+		<div class="content_list">
+			<div class="content_list_header">
+				<span class="context_view">
+					<vte:value select="{LNG_ADMIN_VIEW}" />: <vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_SUBSCRIBERS}" />
+				</span>
+				<span class="context_help">
+					<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />				</span>
+			</div>
+			<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+			<div class="content_list_body">
+				<div class="content_list_body_header">
+					<div class="content_list_body_header_line1">
+						<vte:value select="{LNG_ADMIN_SELECT}" />: <span class="action_button" onclick="adminList.selectAll();"><vte:value select="{LNG_ADMIN_ALL}" /></span> <span class="action_button" onclick="adminList.invertSelection();"><vte:value select="{LNG_ADMIN_INVERT}" /></span>
+						<select name="search_confirm" onchange="adminList.setField(this.value);">
+							<option value="0" selected="selected"><vte:value select="{LNG_ADMIN_SELECT_ACTION}" /></option>
+							<option value="confirm.1"><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_CONFIRM}" /></option>
+							<option value="subscriberDelete"><vte:value select="{LNG_ADMIN_DELETE}" /></option>
+						</select>
+					</div>
+					<div class="content_list_body_header_line2">
+						<form id="maillist_list_options_form" name="maillist_list_options_form">
+							<input type="hidden" name="maillist" value="1" />
+							<span class="box_pagination">
+								<vte:if test="{maillist_list}">
+									<vte:load module="box_pagination" list="{maillist_list_object}" template="{VIVVO_FS_ADMIN_DIR}templates/components/pagination.xml" max_page="5" />
+								</vte:if>
+							</span>
+							<vte:value select="{LNG_ADMIN_SORT_BY}" />:
+							<select name="search_sort_by" onchange="adminList.addOrderParams();">
+								<option value="id.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'id.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_LATEST_FIRST}" />
+								</option>
+								<option value="id.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'id.ascending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_OLDEST_FIRST}" />
+								</option>
+								<option value="email.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'email.ascending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_EMAIL_ASC}" />
+								</option>
+								<option value="email.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'email.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_EMAIL_DESC}" />
+								</option>
+							</select>
+							<vte:value select="{LNG_ADMIN_ITEMS_PER_PAGE}" />:
+							<select name="search_limit" onchange="adminList.addOrderParams();">
+								<option value="10">10</option>
+									<option value="20">
+										<vte:attribute name="selected">
+											<vte:if test="{search_limit} = 20">selected</vte:if>
+										</vte:attribute>
+										20
+									</option>
+									<option value="30">
+										<vte:attribute name="selected">
+											<vte:if test="{search_limit} = 30">selected</vte:if>
+										</vte:attribute>
+										30
+									</option>
+									<option value="50">
+										<vte:attribute name="selected">
+											<vte:if test="{search_limit} = 50">selected</vte:if>
+										</vte:attribute>
+										50
+									</option>
+							</select>
+						</form>
+					</div>
+				</div>
+				<div id="maillist_list" class="content_list_items">
+					<vte:if test="{maillist_list}">
+						<vte:foreach item = "subscriber" from = "{maillist_list}" key="index">
+							<div id="maillist_list_{subscriber.get_id}" class="item row_{index|mod:'2'}">
+								<div class="item_status">
+									<vte:if test="{subscriber.confirm} = 0">
+										<img src="img/icon_status_pending.gif" alt="{LNG_ADMIN_INACTIVE}" title="{LNG_ADMIN_INACTIVE}" />
+									</vte:if>
+									<vte:if test="{subscriber.confirm} = 1">
+										<img src="img/icon_status_active.gif" alt="{LNG_ADMIN_ACTIVE}" title="{LNG_ADMIN_ACTIVE}" />
+									</vte:if>
+								</div>
+								<div class="item_actions">
+									<img src="img/icon_delete.gif" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" onclick="adminList.deleteSubscriber({subscriber.get_id});" />
+								</div>
+								<div class="item_data">
+									<div class="item_select"><input type="checkbox" value="{subscriber.get_id}" onclick="adminList.chekBoxChange('maillist_list_{subscriber.get_id}');" /></div>
+									<div class="item_line1">
+										<vte:value select="{subscriber.email}" />
+									</div>
+									<div class="item_line1">&#160;</div>
+								</div>
+							</div>
+						</vte:foreach>
+						<vte:else>
+							<div class="info_message"><vte:value select="{LNG_ADMIN_NO_ITEMS_MATCHING_SELECTED_CRITERIA}" /></div>
+						</vte:else>
+					</vte:if>
+				</div>
+				<div class="content_list_body_footer">
+					<vte:value select="{LNG_ADMIN_SELECT}" />: <span class="action_button" onclick="adminList.selectAll();"><vte:value select="{LNG_ADMIN_ALL}" /></span> <span class="action_button" onclick="adminList.invertSelection();"><vte:value select="{LNG_ADMIN_INVERT}" /></span>
+					<vte:if test="{user_list}">
+						<span class="action_button" onclick="adminList.selectAllMatching('{LNG_ADMIN_SELECTED}: {user_list_object.get_total_count} {LNG_ADMIN_USERS}');">
+							<vte:value select="{LNG_ADMIN_ALL_USERS}" />(<vte:value select="{user_list_object.get_total_count}" />)
+						</span>
+					</vte:if>
+					<select onchange="adminList.setField(this.value);">
+						<option value="0" selected="selected"><vte:value select="{LNG_ADMIN_SELECT_ACTION}" /></option>
+						<option value="confirm.1"><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_CONFIRM}" /></option>
+						<option value="subscriberDelete"><vte:value select="{LNG_ADMIN_DELETE}" /></option>
+					</select>
+					<span class="box_pagination">
+						<vte:if test="{maillist_list}">
+							<vte:load module="box_pagination" list="{maillist_list_object}" template="{VIVVO_FS_ADMIN_DIR}templates/components/pagination.xml" max_page="5" />
+						</vte:if>
+					</span>
+				</div>
+			</div>
+			<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+			<script type="text/javascript">
+				<vte:foreach item = "message" from = "{DUMP_MESSAGES}">
+					adminList.addDump('<vte:value select="{message.get_message|htmlspecialchars}" />','<vte:value select="{message.type}" />');
+				</vte:foreach>
+			</script>
+		</div>
+	</vte:template>
+</vte:box>

@@ -1,0 +1,83 @@
+<vte:template>
+	<div class="preferences_nav">
+		<div class="corner_top_right"><!-- --></div>
+		<div id="tab_holders">
+			<div class="tab_holders_box_header"><img src="img/icon_pref_settings.gif" alt="Preferences" /> <vte:value select="{LNG_ADMIN_PREFERENCES}" /></div>
+			<ul id="preferences_tab_list" class="preferences_tabs">
+				<li>
+					<a href="preferences.php">
+						<vte:attribute name="class">
+							<vte:if test="{section_title} = 'general'">selected</vte:if>
+						</vte:attribute>
+						<vte:value select="{LNG_ADMIN_GENERAL}" />
+					</a>
+				</li>
+				<li>
+					<a href="preferences.php?layout">
+						<vte:attribute name="class">
+							<vte:if test="{section_title} = 'layout'">selected</vte:if>
+						</vte:attribute>
+						<vte:value select="{LNG_ADMIN_MODULES}" />
+					</a>
+				</li>
+				<li>
+					<a href="preferences.php?caching">
+						<vte:attribute name="class">
+							<vte:if test="{section_title} = 'caching'">selected</vte:if>
+						</vte:attribute>
+						<vte:value select="{LNG_ADMIN_PAGE_CACHE}" />
+					</a>
+				</li>
+				<li>
+					<a href="preferences.php?categories">
+						<vte:attribute name="class">
+							<vte:if test="{section_title} = 'categories'">selected</vte:if>
+						</vte:attribute>
+						<vte:value select="{LNG_ADMIN_CATEGORIES}" />
+					</a>
+				</li>
+				<li>
+					<a href="preferences.php?articles">
+						<vte:attribute name="class">
+							<vte:if test="{section_title} = 'articles'">selected</vte:if>
+						</vte:attribute>
+						<vte:value select="{LNG_ADMIN_ARTICLES}" />
+					</a>
+				</li>
+				<li>
+					<a href="preferences.php?comments">
+						<vte:attribute name="class">
+							<vte:if test="{section_title} = 'comments'">selected</vte:if>
+						</vte:attribute>
+						<vte:value select="{LNG_ADMIN_COMMENTS}" />
+					</a>
+				</li>
+				<li>
+					<a href="preferences.php?users">
+						<vte:attribute name="class">
+							<vte:if test="{section_title} = 'users'">selected</vte:if>
+						</vte:attribute>
+						<vte:value select="{LNG_ADMIN_USERS}" />
+					</a>
+				</li>
+				<li>
+					<a href="preferences.php?email">
+						<vte:attribute name="class">
+							<vte:if test="{section_title} = 'email'">selected</vte:if>
+						</vte:attribute>
+						<vte:value select="{LNG_ADMIN_EMAIL}" />
+					</a>
+				</li>
+				<li>
+					<a href="preferences.php?analytics">
+						<vte:attribute name="class">
+							<vte:if test="{section_title} = 'analytics'">selected</vte:if>
+						</vte:attribute>
+						<vte:value select="{LNG_ADMIN_ANALYTICS}" />
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="corner_bottom_right"><!-- --></div>
+	</div>
+</vte:template>

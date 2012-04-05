@@ -1,0 +1,156 @@
+<vte:box module="box_tags" params="{tag_list_params}">
+	<vte:template>
+		<div class="content_list">
+			<div class="content_list_header">
+				<span class="context_view">
+					<vte:value select="{LNG_ADMIN_VIEW}" />:
+					<vte:if test="{topic}">
+						<vte:value select="{topic.get_name}" /> <vte:value select="{LNG_ADMIN_TOPICS_TAGS}" /> <span class="content_id">(id: <vte:value select="{topic.get_id}" />)</span>
+						<vte:else>
+							search results
+						</vte:else>
+					</vte:if>
+				</span>
+				<span class="context_help">
+					<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />				</span>
+			</div>
+			<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+			<div class="content_list_body">
+				<div class="content_list_body_header">
+					<div class="content_list_body_header_line1">
+						<span class="button_add_new">
+							<img src="img/button_add_plus.gif" alt="{LNG_ADMIN_ADD_TAGS}" title="{LNG_ADMIN_ADD_TAGS}" /> <a href="#new_tags" onclick="tagList.addTags(); return false;"><vte:value select="{LNG_ADMIN_ADD_TAGS}" /></a>
+						</span>
+						<vte:value select="{LNG_ADMIN_SELECT}" />:
+						<span class="action_button" onclick="tagList.selectAll();"><vte:value select="{LNG_ADMIN_ALL}" /></span>
+						<span class="action_button" onclick="tagList.invertSelection();"><vte:value select="{LNG_ADMIN_INVERT}" /></span>
+						<span class="action_button" onclick="tagList.selectAllMatching('{LNG_ADMIN_SELECTED}: {tags.get_total_count} {LNG_ADMIN_TOPICS_TAGS}');"><vte:value select="{LNG_ADMIN_ALL_TAGS}" /> (<vte:value select="{tags.get_total_count}" />)</span>
+						<select class="action-select none_selected" disabled="disabled" onchange="tagList.onAction(this.value, null, this);">
+							<option value="0" selected="selected"><vte:value select="{LNG_ADMIN_SELECT_ACTION}" /></option>
+							<option value="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></option>
+						</select>
+					</div>
+					<div class="content_list_body_header_line2">
+						<form id="tag_list_options_form" name="tag_list_options_form">
+							<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/categories/pagination.xml" list="{tags}" max_page="5" onclick="tagList.gotoPage($pg, {topic.get_id|json_encode_attr})" />
+							<vte:value select="{LNG_ADMIN_SORT_BY}" />:
+							<select name="search_sort_by" onChange="tagList.addOrderParams(this.value);">
+								<option value="id.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'id.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_DEFAULT_ORDER}" />
+								</option>
+								<option value="name.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'name.ascending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_NAME}" /> <vte:value select="{LNG_ADMIN_ASC}" />
+								</option>
+								<option value="name.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'name.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_NAME}" /> <vte:value select="{LNG_ADMIN_DESC}" />
+								</option>
+							</select>
+							<vte:value select="{LNG_ADMIN_ITEMS_PER_PAGE}" />:
+							<select name="search_limit" onChange="tagList.addLimitParams(this.value);">
+								<option value="10">10</option>
+								<option value="20">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 20">selected</vte:if>
+									</vte:attribute>
+									20
+								</option>
+								<option value="30">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 30">selected</vte:if>
+									</vte:attribute>
+									30
+								</option>
+								<option value="50">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 50">selected</vte:if>
+									</vte:attribute>
+									50
+								</option>
+							</select>
+						</form>
+					</div>
+				</div>
+				<div id="tag_list" class="content_list_items">
+					<vte:foreach from="{tags_list}" item="tag" key="index">
+						<div id="tag_item_{tag.get_id}" class="item row_{index|mod:'2'}">
+							<div class="item_actions">
+								<vte:if test="{tag.get_id} &gt; 100">
+									<a href="#delete" onclick="tagList.deleteItem({tag.get_id}); return false;"><img src="img/icon_delete.gif" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" /></a>
+								</vte:if>
+							</div>
+							<div class="item_data">
+								<div class="item_select">
+									<vte:if test="{tag.get_id} &gt; 3">
+										<input type="checkbox" value="{tag.get_id}" onclick="tagList.chekBoxChange('tag_item_{tag.get_id}');" style="cursor:default;" />
+									</vte:if>
+								</div>
+								<div class="item_line1">
+									<vte:value select="{tag.get_name}" />
+								</div>
+								<div class="item_line2">
+									<vte:value select="{LNG_ADMIN_LABEL_ON}" />
+									<vte:if test="{topic}">
+										<vte:variable name="num_articles" value="{tag.get_num_articles|topic.get_id}" />
+										<vte:else>
+											<vte:variable name="num_articles" value="{tag.get_num_articles}" />
+										</vte:else>
+									</vte:if>
+									<vte:if test="{num_articles}">
+										<a href="articles.php?search_topic_id={topic.get_id}&amp;search_tag_id={tag.get_id}"><vte:value select="{num_articles}" /> <vte:value select="{LNG_ADMIN_LABEL_ARTICLES}" /></a>
+										<vte:else>
+											<vte:value select="{num_articles}" /> <vte:value select="{LNG_ADMIN_LABEL_ARTICLES}" />
+										</vte:else>
+									</vte:if>
+									<vte:if test="!{topic}">
+										<vte:if test="{tag.get_groups}">
+											In:
+											<vte:foreach from="{tag.get_groups}" item="tag_topic">
+												<a href="#{tag_topic.get_name|make_sefriendly}" onclick="adminTopics.loadTopicTags({tag_topic.get_id}); return false;"><vte:value select="{tag_topic.get_name}" /></a>
+											</vte:foreach>
+										</vte:if>
+									</vte:if>
+									(id: <vte:value select="{tag.get_id}" />)
+								</div>
+							</div>
+						</div>
+						<vte:else>
+							<div class="info_message"><vte:value select="{LNG_ADMIN_NO_ITEMS_MATCHING_SELECTED_CRITERIA}" /></div>
+						</vte:else>
+					</vte:foreach>
+				</div>
+				<div class="content_list_body_footer">
+					<vte:value select="{LNG_ADMIN_SELECT}" />:
+					<span class="action_button" onclick="tagList.selectAll();"><vte:value select="{LNG_ADMIN_ALL}" /></span>
+					<span class="action_button" onclick="tagList.invertSelection();"><vte:value select="{LNG_ADMIN_INVERT}" /></span>
+					<span class="action_button" onclick="tagList.selectAllMatching('{LNG_ADMIN_SELECTED}: {tags.get_total_count} {LNG_ADMIN_TOPICS_TAGS}');"><vte:value select="{LNG_ADMIN_ALL_TAGS}" /> (<vte:value select="{tags.get_total_count}" />)</span>
+					<select class="action-select none_selected" disabled="disabled" onchange="tagList.onAction(this.value, null, this);">
+						<option value="0" selected="selected"><vte:value select="{LNG_ADMIN_SELECT_ACTION}" /></option>
+						<option value="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></option>
+					</select>
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/categories/pagination.xml" list="{tags}" max_page="5" onclick="tagList.gotoPage($pg, {topic.get_id|json_encode_attr})" />
+				</div>
+			</div>
+			<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+		</div>
+		<div id="add_tags_modal" style="display:none">
+			<div class="add_tags_modal_contents">
+				<img id="modal_close" onclick="Control.Modal.close()" src="img/delete_gray.gif" alt="{LNG_ADMIN_CLOSE}" title="{LNG_ADMIN_CLOSE}" />
+				<label><vte:value select="{LNG_ADMIN_TOOLTIP_ADD_TAGS}" />:</label>
+				<textarea name="TAG_GROUP_new_tags"> </textarea>
+				<div class="add_tags_button">
+					<button class="primary" type="button" onclick="tagList.onAddTags($(this).up().up().down('textarea'));"><vte:value select="{LNG_ADMIN_ADD}" /></button>
+				</div>
+			</div>
+		</div>
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/ajax_dump.xml" />
+	</vte:template>
+</vte:box>

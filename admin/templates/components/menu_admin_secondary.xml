@@ -1,0 +1,35 @@
+<vte:template>
+	<div id="menu_secondary" class="menu_holder_secondary">
+		<vte:attribute name="style">
+			<vte:if test="{PERSONAL_SETTINGS[adminMenuHide]}">
+				position:relative;display:none;
+				<vte:else>
+					position:relative;display:block;
+				</vte:else>
+			</vte:if>
+		</vte:attribute>
+		<span class="menu_corners_left"> </span>	
+		<span id="firstMessage" style="position:relative;">
+			<vte:attribute name="style">
+                <vte:if test="{PERSONAL_SETTINGS[adminMenu]}">
+					display:none;
+					<vte:else>
+						display:inline;
+					</vte:else>
+				</vte:if>
+			</vte:attribute>
+			<span id="menu_first_message"><vte:value select="{LNG_ADMIN_QUICK_ACCESS_MESSAGE}" /></span> 
+		</span>
+		<span id="menu_holder_secondary">
+			<vte:if test="{PERSONAL_SETTINGS[adminMenu]}">
+				<vte:foreach from="{PERSONAL_SETTINGS[adminMenu]}" item="menu_item" key="index">
+					<span id="menu_{menu_item[id]}">
+						<vte:if test="{index} != 1"><span class="pipe"> | </span></vte:if>
+						<a href="{menu_item[href]}"><vte:value select="{menu_item[title]}" /></a>
+					</span>
+				</vte:foreach>
+			</vte:if>
+		</span>
+        <span class="menu_corners_right"><img src="img/delete_white.gif" onclick="vivvo.admin.quickNav.emptyAndHide();" alt="{LNG_ADMIN_DISMISS_MYQUICKNAV}" title="{LNG_ADMIN_DISMISS_MYQUICKNAV}" /></span>
+	</div>
+</vte:template>

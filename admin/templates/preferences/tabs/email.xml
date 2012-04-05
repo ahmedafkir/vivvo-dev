@@ -1,0 +1,10 @@
+<vte:template>
+	<span class="context_help">
+		<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />	</span>
+	<ul id="preferences_horizontal_tab_list" class="tabs">
+		<li><a href="#email_options"><span><vte:value select="{LNG_ADMIN_EMAIL_OPTIONS}" /></span></a></li>
+		<li><a href="#register_template"><span><vte:value select="{LNG_ADMIN_EMAIL_TEMPLATE_REGISTER}" /></span></a></li>
+		<li><a href="#email_to_a_friend_template"><span><vte:value select="{LNG_ADMIN_EMAIL_TEMPLATE_FRIEND}" /></span></a></li>
+		<li><a href="#forgot_your_password_template"><span><vte:value select="{LNG_ADMIN_EMAIL_TEMPLATE_FORGOT_PASSWORD}" /></span></a></li>
+	</ul>
+</vte:template>

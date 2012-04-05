@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<link rel="stylesheet" type="text/css" href="css/maintenance.css" media="screen" />
+		<title>DB Maintenance</title>
+	</head>
+	<body>
+		<vte:foreach from="{messages}" item="item">
+			<div class="{item[type]} {item[result]}">
+				<vte:value select="{item[message]}" />
+			</div>
+		</vte:foreach>
+		<vte:foreach from="{scripts}" item="script">
+			<vte:value select="{script}" />
+		</vte:foreach>
+	</body>
+</html>

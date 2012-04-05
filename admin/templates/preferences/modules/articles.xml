@@ -1,0 +1,163 @@
+<vte:template>
+	<div id="articles_modules" style="display:none;">
+		<div class="form_box">
+			<div class="form_box_header">
+				<h3><vte:value select="{LNG_ADMIN_ARTICLE_LIST_LATEST_NEWS}" /></h3>
+				<div class="corner_white_top_left"><div class="corner_white_top_right"><!-- --></div></div>
+				<div class="form_box_info">
+					<vte:value select="{LNG_ADMIN_ARTICLE_LIST_LATEST_NEWS_INFO_BOX}" />
+				</div>
+				<span class="expand"><vte:value select="{LNG_ADMIN_SHOW_FORM}" /></span>
+			</div>
+			<div class="form_box_body" style="display:none;">
+			
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_NUMBER_OF_NEWS}" name="VIVVO_HOMEPAGE_ARTICLE_LIST_NUMBER" value="{VIVVO_HOMEPAGE_ARTICLE_LIST_NUMBER}" />
+				
+				<vte:variable name="number_of_columns" json="1">{"options":[{"label":"1","value":"1"},{"label":"2","value":"2"},{"label":"3","value":"3"}]}</vte:variable>
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_select.xml" label="{LNG_ADMIN_NUMBER_OF_COLUMNS}" name="VIVVO_HOMEPAGE_ARTICLE_LIST_COLUMNS" value="{VIVVO_HOMEPAGE_ARTICLE_LIST_COLUMNS}" id="vivvo_homepage_articles_columns" options="{number_of_columns[options]}" />
+				
+				<div class="form_line"> 
+					<label><vte:value select="{LNG_ADMIN_DISPLAY_ORDER}" />:</label>
+					<div class="formElement">
+						<select class="options" name="VIVVO_HOMEPAGE_ARTICLE_LIST_ORDER">
+							<option value="order_num">
+								<vte:attribute name="selected"> 
+									<vte:if test="{VIVVO_HOMEPAGE_ARTICLE_LIST_ORDER} = 'order_num'">selected</vte:if>
+								</vte:attribute>
+								<vte:value select="{LNG_ADMIN_DEFAULT}" />
+							</option>
+							<option value="created">
+								<vte:attribute name="selected"> 
+									<vte:if test="{VIVVO_HOMEPAGE_ARTICLE_LIST_ORDER} = 'created'">selected</vte:if>
+								</vte:attribute>
+								<vte:value select="{LNG_ADMIN_CREATED}" />
+							</option>
+						</select>
+					</div>
+				</div>
+				
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_multiple_select_category.xml" label="{LNG_ADMIN_SELECT_CATEGORIES_FOR_HOMEPAGE}" name="VIVVO_HOMEPAGE_ARTICLE_LIST_CATEGORIES[]" value="{VIVVO_HOMEPAGE_ARTICLE_LIST_CATEGORIES}" id="search_cid_latest_news" size="13" show_all="1" />
+			</div>
+			<div class="corner_white_bottom_left"><div class="corner_white_bottom_right"><!-- --></div></div>
+		</div>
+		<div class="form_box">
+			<div class="form_box_header">
+				<h3><vte:value select="{LNG_ADMIN_ARTICLE_LIST_HEADLINES}" />:</h3>
+				<div class="corner_white_top_left"><div class="corner_white_top_right"><!-- --></div></div>
+				<div class="form_box_info">
+					<vte:value select="{LNG_ADMIN_ARTICLE_LIST_HEADLINES_INFO_BOX}" />
+				</div>
+				<span class="expand"><vte:value select="{LNG_ADMIN_SHOW_FORM}" /></span>
+			</div>
+			<div class="form_box_body" style="display:none;">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_USE_ROTATION_HEADLINES_BOX}" name="VIVVO_MODULES_HEADLINES_DISPLAY" value="{VIVVO_MODULES_HEADLINES_DISPLAY}" />
+				
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_ROTATION_TIME}" name="VIVVO_MODULES_HEADLINES_ROTATION_TIME" value="{VIVVO_MODULES_HEADLINES_ROTATION_TIME}" />
+			</div>
+			<div class="corner_white_bottom_left"><div class="corner_white_bottom_right"><!-- --></div></div>
+		</div>
+		<div class="form_box">
+			<div class="form_box_header">
+				<h3><vte:value select="{LNG_ADMIN_NEWS_TICKER}" />:</h3>
+				<div class="corner_white_top_left"><div class="corner_white_top_right"><!-- --></div></div>
+				<div class="form_box_info">
+					<vte:value select="{LNG_ADMIN_NEWS_TICKER_INFO_BOX}" />
+				</div>
+				<span class="expand"><vte:value select="{LNG_ADMIN_SHOW_FORM}" /></span>
+			</div>
+			<div class="form_box_body" style="display:none;">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_DISPLAY_NEWS_TICKER}" name="VIVVO_MODULES_TICKER" value="{VIVVO_MODULES_TICKER}" />
+
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_NUMBER_OF_NEWS}" name="VIVVO_MODULES_TICKER_NUMBER" value="{VIVVO_MODULES_TICKER_NUMBER}" />
+				
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_multiple_select_category.xml" label="{LNG_ADMIN_CHOOSE_FROM_CATEGORIES}" name="VIVVO_MODULES_TICKER_CATEGORIES[]" value="{VIVVO_MODULES_TICKER_CATEGORIES}" id="search_cid_ticker" size="13" show_all="1" />
+				
+				<div class="form_line"> 
+					<label><vte:value select="{LNG_ADMIN_DISPLAY_ORDER}" />:</label>
+					<div class="formElement">
+						<select class="options" name="VIVVO_MODULES_TICKER_ORDER">
+							<option value="order_num">
+								<vte:attribute name="selected"> 
+									<vte:if test="{VIVVO_MODULES_TICKER_ORDER} = 'order_num'">selected</vte:if>
+								</vte:attribute>
+								<vte:value select="{LNG_ADMIN_DEFAULT}" />
+							</option>
+							<option value="created">
+								<vte:attribute name="selected"> 
+									<vte:if test="{VIVVO_MODULES_TICKER_ORDER} = 'created'">selected</vte:if>
+								</vte:attribute>
+								<vte:value select="{LNG_ADMIN_CREATED}" />
+							</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="corner_white_bottom_left"><div class="corner_white_bottom_right"><!-- --></div></div>
+		</div>
+		<div class="form_box">
+			<div class="form_box_header">
+				<h3><vte:value select="{LNG_ADMIN_SUMMARY_MOST_POPULAR}" />:</h3>
+				<div class="corner_white_top_left"><div class="corner_white_top_right"><!-- --></div></div>
+				<div class="form_box_info">
+					<vte:value select="{LNG_ADMIN_SUMMARY_MOST_POPULAR_INFO_BOX}" />
+				</div>
+				<span class="expand"><vte:value select="{LNG_ADMIN_SHOW_FORM}" /></span>
+			</div>
+			<div class="form_box_body" style="display:none;">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_SHOW_MOST_POPULAR_BOX}" name="VIVVO_MODULES_MOST_POPULAR" value="{VIVVO_MODULES_MOST_POPULAR}" />
+			
+				<div class="form_line"> 
+					<label><vte:value select="{LNG_ADMIN_MOST_POPULAR_BOX_COUNTER}" />:</label>
+					<div class="formElement">
+						<label>
+							<input type="radio" name="VIVVO_MODULES_MOST_POPULAR_COUNTER" value="1">
+								<vte:attribute name="checked"> 
+									<vte:if test="{VIVVO_MODULES_MOST_POPULAR_COUNTER}">checked</vte:if>
+								</vte:attribute>
+							</input>
+							<vte:value select="{LNG_ADMIN_OVERALL}" />
+						</label>
+						<label>
+							<input type="radio" name="VIVVO_MODULES_MOST_POPULAR_COUNTER" value="0">
+								<vte:attribute name="checked"> 
+									<vte:if test="!{VIVVO_MODULES_MOST_POPULAR_COUNTER}">checked</vte:if>
+								</vte:attribute>
+							</input>
+							<vte:value select="{LNG_ADMIN_TODAY}" />
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="corner_white_bottom_left"><div class="corner_white_bottom_right"><!-- --></div></div>
+		</div>
+		<div class="form_box">
+			<div class="form_box_header">
+				<h3><vte:value select="{LNG_ADMIN_SUMMARY_MOST_EMAILED}" />:</h3>
+				<div class="corner_white_top_left"><div class="corner_white_top_right"><!-- --></div></div>
+				<div class="form_box_info">
+					<vte:value select="{LNG_ADMIN_SUMMARY_MOST_EMAILED_INFO_BOX}" />
+				</div>
+				<span class="expand"><vte:value select="{LNG_ADMIN_SHOW_FORM}" /></span>
+			</div>
+			<div class="form_box_body" style="display:none;">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_SHOW_MOST_EMAILED_BOX}" name="VIVVO_MODULES_MOST_EMAILED" value="{VIVVO_MODULES_MOST_EMAILED}" />
+			</div>
+			<div class="corner_white_bottom_left"><div class="corner_white_bottom_right"><!-- --></div></div>
+		</div>
+		
+		<div class="form_box">
+			<div class="form_box_header">
+				<h3><vte:value select="{LNG_ADMIN_SUMMARY_TOP_RATED}" />:</h3>
+				<div class="corner_white_top_left"><div class="corner_white_top_right"><!-- --></div></div>
+				<div class="form_box_info">
+					<vte:value select="{LNG_ADMIN_SUMMARY_TOP_RATED_INFO_BOX}" />
+				</div>
+				<span class="expand"><vte:value select="{LNG_ADMIN_SHOW_FORM}" /></span>
+			</div>
+			<div class="form_box_body" style="display:none;">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_SHOW_TOP_RATED_BOX}" name="VIVVO_MODULES_TOP_RATED" value="{VIVVO_MODULES_TOP_RATED}" />
+			</div>
+			<div class="corner_white_bottom_left"><div class="corner_white_bottom_right"><!-- --></div></div>
+		</div>
+	</div>
+</vte:template>

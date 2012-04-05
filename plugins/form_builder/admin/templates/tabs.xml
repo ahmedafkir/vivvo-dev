@@ -1,0 +1,20 @@
+<vte:template>
+	<script type="text/javascript">
+	</script>
+	<ul id="form_builder_tab_list" class="tabs">
+		<li><a href="#form_builder_forms"><span><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_FORMS}" /></span></a></li>
+		<li><a href="#form_builder_properties"><span><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_TOOLBOX}" /></span></a></li>
+		<li><a href="#form_builder_preferences"><span><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_FORM_PROPERTIES}" /></span></a></li>
+	</ul>
+	<div class="corner_top_right"><!-- --></div>
+	<div id="tab_holders">
+		<div id="form_builder_forms">
+			<vte:include file="{PLUGIN_ROOT}admin/templates/form_list.xml" />
+		</div>
+		<vte:include file="{PLUGIN_ROOT}admin/templates/form_properties.xml" />
+		<div id="form_builder_preferences" style="display:none;">
+			<vte:include file="{PLUGIN_ROOT}admin/templates/preferences.xml" />
+		</div>
+	</div>
+	<div class="corner_bottom_right"><!-- --></div>
+</vte:template>

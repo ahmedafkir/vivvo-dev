@@ -1,0 +1,44 @@
+<form action="" method="post">
+	<input type="hidden" name="SECURITY_TOKEN" value="{VIVVO_SECURITY_TOKEN}" />
+	<input type="hidden" name="action" value="vivvoCore" />
+	<input type="hidden" name="cmd" value="preferences" />
+	<div id="analytics_preferences">
+		<div class="form_box_first">
+			<div class="form_box_info">
+				<vte:value select="{LNG_ADMIN_ANALYTICS_INFO}" />
+			</div>
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_ANALYTICS_ENABLE}" name="VIVVO_GA_ENABLED" value="{VIVVO_GA_ENABLED}" />
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_ANALYTICS_EMAIL}" name="VIVVO_GA_EMAIL" value="{VIVVO_GA_EMAIL}" />
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_ANALYTICS_PASSWORD}" name="VIVVO_GA_PASSWORD" value="{VIVVO_GA_PASSWORD}" type="password" />
+			<vte:if test="{VIVVO_GA_EMAIL}">
+				<vte:if test="{VIVVO_GA_PASSWORD}">
+					<div class="form_line">
+						<label><vte:value select="{LNG_ADMIN_ANALYTICS_PROFILE}" />:</label>
+						<div class="formElement">
+							<select class="options" name="VIVVO_GA_PROFILEID">
+								<option value="">
+									<vte:attribute name="selected">
+										<vte:if test="!{VIVVO_GA_PROFILEID}">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_ANALYTICS_SELECT_PROFILE}" />
+								</option>
+								<vte:foreach from="{profiles_list}" item="profile">
+									<option value="{profile[tableId]}">
+										<vte:attribute name="selected">
+											<vte:if test="{VIVVO_GA_PROFILEID} = {profile[tableId]}">selected</vte:if>
+										</vte:attribute>
+										<vte:value select="{profile[title]}" />
+									</option>
+								</vte:foreach>
+							</select>
+						</div>
+					</div>
+				</vte:if>
+			</vte:if>
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_ANALYTICS_GOOGLE_CODE}" name="VIVVO_GA_CODE" value="{VIVVO_GA_CODE|preg_replace:'`^UA-`',''}" prefix="UA- " style="width:277px;" />
+		</div>
+	</div>
+	<div class="content_list_body_footer">
+		<div class="form_submit_button"><button class="primary" type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button></div>
+	</div>
+</form>

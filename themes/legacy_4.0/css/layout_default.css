@@ -1,0 +1,151 @@
+body {
+	margin: 12px 0px;
+	padding: 0;
+	border: 0;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+#container {
+	width: 990px;
+	margin: 0px auto;
+	text-align: left;
+}
+
+#header {}
+
+#content { width: 990px; }
+
+#dynamic_box_left {
+	margin: 0;
+	float: left;
+}
+
+#dynamic_box_center {
+	float: left;
+}
+
+#dynamic_box_right {
+	margin: 0;
+	float: right;
+}
+
+#content_footer {clear: both;}
+
+#footer {clear: both;}
+
+/*********deafault layout**********/
+#layout_default div#dynamic_box_right        {width: 260px;}
+#layout_default div#dynamic_box_left         {width: 160px;}
+#layout_default div#dynamic_box_center       {width: 570px;}
+
+/********** two column *************/
+#layout_two_column div#dynamic_box_right     {width: 320px;}
+#layout_two_column div#dynamic_box_left      {display:none;}
+#layout_two_column div#dynamic_box_center    {width: 670px;}
+
+/************ three columns ***************/
+#layout_three_columns div#dynamic_box_right  {width: 190px;}
+#layout_three_columns div#dynamic_box_left   {width: 190px;}
+#layout_three_columns div#dynamic_box_center {width: 610px;}
+
+/************ equal ***************/
+#layout_equal div#dynamic_box_right   {width: 330px;}
+#layout_equal div#dynamic_box_left    {width: 330px;}
+#layout_equal div#dynamic_box_center  {width: 330px;}
+
+/************ equal rights ***************/
+#layout_equal_rights div#dynamic_box_right   {width: 260px;}
+#layout_equal_rights div#dynamic_box_left    {width: 470px;}
+#layout_equal_rights div#dynamic_box_center  {width: 260px;}
+
+/************ non equal ***************/
+#layout_non_equal div#dynamic_box_right      {width: 320px;}
+#layout_non_equal div#dynamic_box_left       {width: 420px;}
+#layout_non_equal div#dynamic_box_center     {width: 250px;}
+
+
+/************* CONTENT FEATURES *****************/
+#content_features_left { float: left;}
+
+#content_features_right { float: left;}
+
+.features_equal_default { width: 100%; overflow: hidden;}
+
+/*********** equal_default *********************/
+.features_equal_default #content_features_left       {width: 342px;}
+.features_equal_default #content_features_right      {width: 228px;}
+
+/*********** equal *********************/
+.features_equal #content_features_left       {width: 495px;}
+.features_equal #content_features_right      {width: 495px;}
+
+/*********** left *********************/
+.features_left #content_features_left        {width: 680px;}
+.features_left #content_features_right       {width: 310px;}
+
+/*********** right *********************/
+.features_right #content_features_left       {width: 310px;}
+.features_right #content_features_right      {width: 680px;}
+
+/*********** equal_three *********************/
+.features_inside .content_features_col       {width: 223px; float: left;}
+
+/*********** inside *********************/
+.features_inside                              {width: 670px; overflow: hidden;}
+.features_inside #content_features_left       {width: 335px;}
+.features_inside #content_features_right      {width: 335px;}
+
+
+
+/******************** LAYOUT BOXES********************/
+
+#main_news_box {float: left;}
+
+.main_news_box_row {width: 100%; overflow: hidden;}
+
+.main_news_category { 
+	float:left; 
+	display: inline;
+	width:273px; 
+	margin: 6px; /****styles****/
+}
+
+.category_news_category { 
+	float:left; 
+	display: inline;
+	width:261px; 
+	margin: 6px; /****styles****/
+}
+
+
+/******************** TOOLTIPS ********************/
+.tooltip {
+	position: absolute!important;
+	overflow:hidden;
+	font-size: 12px;
+	z-index: 10000!important;
+}
+
+.tooltip .xtop, .tooltip .xbottom { display: block; background: transparent; font-size: 1px; }
+.tooltip .xb1, .tooltip .xb2, .tooltip .xb3, .tooltip .xb4 { display: block; overflow: hidden; }
+.tooltip .xb1, .tooltip .xb2, .tooltip .xb3 { height: 1px; }
+.tooltip .xb2, .tooltip .xb3, .tooltip .xb4 { background: #666; border-left: 1px solid #333; border-right: 1px solid #333; }
+.tooltip .xbottom .xb2, .tooltip .xbottom .xb3, .tooltip .xbottom .xb4 { background: #666; }
+.tooltip .xb1 { margin: 0 5px; background: #333; }
+.tooltip .xb2 { margin: 0 3px; border-width: 0 2px; }
+.tooltip .xb3 { margin: 0 2px; }
+.tooltip .xb4 { height: 2px; margin: 0 1px; }
+
+.tooltip .xboxcontent {
+	padding: 0 .5em;
+	margin: 0;
+	color: #000;
+	text-shadow: 2px 2px 0px #CCC;
+	word-wrap:break-word;
+	border: 1px solid #333;
+	border-width: 0px 1px 0 1px;
+	background-color: #666;
+	text-align: left;
+}

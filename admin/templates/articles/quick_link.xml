@@ -1,0 +1,26 @@
+<vte:template>
+	<div id="articles_quick_link" style="display:none">
+		<a href="article_edit.php" class="action_button_link">+ <vte:value select="{LNG_ADMIN_ADD_NEW_ARTICLE}" /></a>
+		<div class="separator_gray"><!-- --></div>
+		<ul class="quick_launch">
+			<li id="article_filter_all"><span onclick="adminList.goTo('search_status', '');"><vte:value select="{LNG_ADMIN_ALL}" /></span></li>
+			<li id="article_filter_pending"><span onclick="adminList.goTo('search_status', 0);"><vte:value select="{LNG_ADMIN_PENDING}" /></span></li>
+			<li id="article_filter_archive"><span onclick="adminList.goTo('search_status', -1);"><vte:value select="{LNG_ADMIN_ARCHIVE}" /></span></li>
+			<vte:if test="{current_user.can|'MANAGE_TRASHBIN'}">
+			<li id="article_filter_trashbin">
+				<div class="actions_small_left">
+					<img onclick="adminList.purgeTrashbin();" src="img/icon_small_trashbin.gif" alt="{LNG_ADMIN_PURGE_TRASHBIN}" title="{LNG_ADMIN_PURGE_TRASHBIN}" />
+				</div>
+				<span onclick="adminList.goTo('search_status', -2);"><vte:value select="{LNG_ADMIN_TRASHBIN}" /></span>
+			</li>
+			</vte:if>
+		</ul>
+		<div class="separator_gray"><!-- --></div>
+		<div class="search_filters">
+			<div class="tab_holders_box_header"><img src="img/icon_search.gif" alt="Search filters" /> <vte:value select="{LNG_ADMIN_SEARCH_FILTERS}" /></div>
+			<div id="user_filters_list_holder">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/user_filters_list.xml" />
+			</div>
+		</div>
+	</div>
+</vte:template>

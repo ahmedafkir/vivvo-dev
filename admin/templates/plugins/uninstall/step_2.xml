@@ -1,0 +1,22 @@
+<vte:template>
+	<div class="content_list">
+		<div class="content_list_header">
+			<span class="context_view">
+				<vte:value select="{LNG_PLUGIN_ADMIN_UNINSTALL_PLUG_IN}" />	<vte:value select="{PLUG_IN_NAME}" />
+			</span>
+			<span class="context_help">
+				<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />			</span>
+		</div>
+		<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+		<div class="content_list_body">			
+			<div class="content_list_body_header">
+				<vte:include file="{PLUGIN_ROOT}description.html" parse="off"/>
+			</div>
+			<div class="content_list_items plugin_installer">
+				<div class="installer_info info_status"><img src="img/icon_info.gif" alt="Info" /><vte:value select="{LNG_PLUGIN_ADMIN_THE_PLUGIN_WAS_SUCCESSFULLY_UNINSTALLED}" /></div>
+				<a href="plugins.php" class="button primary"><vte:value select="{LNG_PLUGIN_ADMIN_CLICK_HERE_TO_RETURN_TO_PLUG_IN_HOME_PAGE}" /></a>
+			</div>
+		</div>
+		<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+	</div>
+</vte:template>

@@ -1,0 +1,31 @@
+.quote_right { 
+	color: #C90404; 
+	float: right; 
+	margin: 6px; 
+	display: inline; 
+	width: 200px; 
+	height: auto;
+	background: #f9f9f9;
+	border: 1px solid #cccccc;
+	padding: 6px;
+}
+
+.quote_right img { margin: 4px;}
+
+.quote_left {  
+	color: #C90404; 
+	float: left; 
+	margin: 6px; 
+	display: inline; 
+	width: 200px; 
+	height: auto;
+	background: #f9f9f9;
+	border: 1px solid #cccccc;
+	padding: 6px;
+}
+
+.quote_left img { margin: 4px;}
+
+.right_image { float: right; margin: 6px; display: inline;}
+
+.left_image { float: left; margin: 6px; display: inline;}

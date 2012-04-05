@@ -1,0 +1,83 @@
+#multiple_attachments_list { 
+	background: #fff url(../../plugins/multiple_attachments/admin/img/options_right_bg.gif) right repeat-y;
+	width: 100%;
+	overflow: hidden;
+}
+
+/*** Right side options ***/
+#multiple_attachments_list div.item { position:static;} /** Opera dupicate relative positioning **/
+
+#multiple_attachments_list div#attachment_properties{
+	float:right;
+	width:270px;
+	padding-top: 12px;
+}
+
+.content_list_items #multiple_attachments_list div.item_line1 {
+	width:98%; 
+	overflow:hidden; 
+	margin-right:auto;
+}
+
+#attachment_properties input.text {width:150px;}
+
+#attachment_properties div.form_line label { width: 95px; font-weight: normal;}
+
+#multiple_attachments_list div#attachment_properties textarea { width: 150px; height: 60px;}
+
+/*** Left side props ***/
+#multiple_attachments_holder {margin-right:270px;}
+
+/* Hides from IE5-mac \*/
+* html #multiple_attachments_holder {height:1%; float:left; margin-right:0;}
+/* End hide from IE5-mac */
+
+div.attachment_sortable {
+	cursor: move;
+}
+
+div.selected {background-color: #ECECEC;}
+
+#multiple_attachments_holder div.item { 
+	background-image:  url(../img/icon_file.gif);
+	background-position:12px 8px;
+	background-repeat: no-repeat;
+}
+
+#multiple_attachments_holder div.mime_tpl {background-image:  url(../img/mime_tpl.gif);}
+#multiple_attachments_holder div.mime_txt {background-image:  url(../img/mime_txt.gif);}
+#multiple_attachments_holder div.mime_sql {background-image:  url(../img/mime_sql.gif);}
+#multiple_attachments_holder div.mime_log {background-image:  url(../img/mime_log.gif);}
+
+/*** Video ***/
+#multiple_attachments_holder div.mime_wmv {background-image:  url(../img/mime_wmv.gif);}
+#multiple_attachments_holder div.mime_flv {background-image:  url(../img/mime_flv.gif);}
+#multiple_attachments_holder div.mime_swf {background-image:  url(../img/mime_swf.gif);}
+#multiple_attachments_holder div.mime_mov {background-image:  url(../img/mime_mov.gif);}
+#multiple_attachments_holder div.mime_mp4 {background-image:  url(../img/mime_mp4.gif);}
+
+/*** Audio ***/
+#multiple_attachments_holder div.mime_mp3 {background-image:  url(../img/mime_mp3.gif);}
+#multiple_attachments_holder div.mime_aac {background-image:  url(../img/mime_aac.gif);}
+#multiple_attachments_holder div.mime_wma {background-image:  url(../img/mime_wma.gif);}
+
+/*** Images ***/
+#multiple_attachments_holder div.mime_bmp {background-image:  url(../img/mime_bmp.gif);}
+#multiple_attachments_holder div.mime_jpg {background-image:  url(../img/mime_jpg.gif);}
+#multiple_attachments_holder div.mime_jpeg {background-image:  url(../img/mime_jpg.gif);}
+#multiple_attachments_holder div.mime_gif {background-image:  url(../img/mime_gif.gif);}
+#multiple_attachments_holder div.mime_png {background-image:  url(../img/mime_png.gif);}
+
+/*** Documents ***/
+#multiple_attachments_holder div.mime_doc {background-image:  url(../img/mime_doc.gif);}
+#multiple_attachments_holder div.mime_xls {background-image:  url(../img/mime_xls.gif);}
+#multiple_attachments_holder div.mime_ppt {background-image:  url(../img/mime_ppt.gif);}
+#multiple_attachments_holder div.mime_rtf {background-image:  url(../img/mime_rtf.gif);}
+#multiple_attachments_holder div.mime_pdf {background-image:  url(../img/mime_pdf.gif);}
+
+/*** Archives ***/
+#multiple_attachments_holder div.mime_zip {background-image:  url(../img/mime_zip.gif);}
+#multiple_attachments_holder div.mime_rar {background-image:  url(../img/mime_rar.gif);}
+#multiple_attachments_holder div.mime_tar {background-image:  url(../img/mime_tar.gif);}
+#multiple_attachments_holder div.mime_tgz {background-image:  url(../img/mime_tgz.gif);}
+#multiple_attachments_holder div.mime_gz {background-image:  url(../img/mime_gz.gif);}

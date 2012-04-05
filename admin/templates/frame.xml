@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title><vte:value select="{VIVVO_WEBSITE_TITLE}" /> <vte:value select="{LNG_ADMIN_CONTROL_PANEL}" /></title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="{VIVVO_VERSION}" />
+		{$css__}
+		{$scripts__}
+		<script type="text/javascript" src="js/lang.php"> </script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="header">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/header.xml" />
+				<div id="menu_container">
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/menu.xml" />
+				</div>
+			</div>
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/dump.xml" />
+			<vte:if test="{current_user.is_admin}">
+				<vte:if test="{SUHOSIN_SESSION_ENCRYPT_ENABLED}">
+					<div class="dump"><span class="warning"><vte:value select="{LNG_ADMIN_SUHOSIN_SESSION_ENCRYPTION_ENABLED}" /></span></div>
+				</vte:if>
+				<vte:if test="{CACHE_FOLDER_NOT_WRITABLE}">
+					<div class="dump"><span class="warning"><vte:value select="{LNG_ADMIN_CACHE_FOLDER_NOT_WRITABLE}" /></span></div>
+				</vte:if>
+				<vte:if test="{INSTALLER_DIR_PRESENT}">
+					<div class="dump"><span class="warning"><vte:value select="{LNG_ADMIN_INSTALLER_WARNING}" /></span></div>
+				</vte:if>
+			</vte:if>
+			<div id="main">
+				<vte:if test="{left}">
+					<div id="navigation">
+						<vte:value select="{left}" />
+					</div>
+				</vte:if>
+				<div id="content">
+					<vte:value select="{content}" />
+				</div>
+			</div>
+			<div id="footer">
+				<vte:value select="{LNG_ADMIN_VIVVO_FOOTER}" />
+			</div>
+		</div>
+	</body>
+</html>

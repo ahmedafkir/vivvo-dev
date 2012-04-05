@@ -1,0 +1,27 @@
+<vte:template>
+	<div id="file_upload">
+		<div id="file_upload_selector">
+			<span id="file_upload_destination"><vte:value select="{LNG_ADMIN_UPLOAD_DESTINATION}" />: </span>
+			<select id="file_upload_location" >
+				<option value="{dir_tree_root}/"><vte:value select="{dir_tree_root}" /></option>
+				<vte:box module="box_files">
+					<vte:params>
+						<vte:param name="dir" value="{dir_tree_root}" />
+						<vte:param name="ext" value="dirext" />
+					</vte:params>
+					<vte:template>
+						<vte:foreach item="file" from="{file_list}">
+							<option value="{dir}{file.filename}/"><vte:value select="{dir}" /><vte:value select="{file.filename}" /></option>
+							<vte:load module="box_files" template_string="{template_string}" dir="{dir}{file.filename}/" ext="dirext" />
+						</vte:foreach>
+					</vte:template>
+				</vte:box>
+			</select>
+		</div>
+		<div id="file_upload_progress"> </div>
+		<div id="file_upload_actions">
+			<button id="file_upload_choose" type="button"><vte:value select="{LNG_ADMIN_UPLOAD_FILE}" /></button>
+			<button class="secondary" id="file_upload_cancel" type="button" disabled="disabled"><vte:value select="{LNG_ADMIN_CANCEL_ALL_UPLOADS}" /></button>
+		</div>
+	</div>
+</vte:template>

@@ -1,0 +1,37 @@
+<vte:template>
+	<form action="#" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+		<input type="hidden" name="action" value="vivvoCore" />
+		<input type="hidden" name="cmd" value="preferences" />
+		<div id="categories_preferences">
+			<div class="form_box_first">
+				<vte:if test="{display_modules}">
+					<div class="form_box_heder">
+						<div class="form_box_info">
+							<vte:value select="{LNG_ADMIN_PREFERENCES_CATEGORIES_INFO_BOX}" />
+						</div>
+					</div>
+				</vte:if>
+				<div class="form_box_body">
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_SHOW_ARTICLES_FROM_SUBCATEGORIES_ON_MAIN_CATEGORY_PAGE}" name="VIVVO_CATEGORIES_SHOW_SUBCATEGORIES" value="{VIVVO_CATEGORIES_SHOW_SUBCATEGORIES}" />
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_multiple_select_category.xml" label="{LNG_ADMIN_INCLUDE_TO_FEED}" name="VIVVO_MODULES_CATEGORY_INCLUDE_FEED[]" value="{VIVVO_MODULES_CATEGORY_INCLUDE_FEED}" id="search_cid_include_feed" size="13" show_all="1" />
+				</div>
+			</div>
+			<vte:if test="!{display_modules}">
+				<div class="form_line"> 
+					<label> </label>
+					<div class="formElement">
+						<button type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+					</div>
+				</div>
+			</vte:if>
+		</div>
+		<vte:if test="{display_modules}">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/preferences/modules/categories.xml" />
+			<div class="content_list_body_footer">
+				<div id="category_save_button" class="form_submit_button"><button class="primary" type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button></div>
+			</div>
+		</vte:if>
+	</form>
+</vte:template>

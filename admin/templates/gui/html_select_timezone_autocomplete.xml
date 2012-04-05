@@ -1,0 +1,14 @@
+<div class="form_line" style="overflow:visible;">
+	<label><vte:value select="{label}" />:</label>
+	<div class="formElement" style="float:none;">
+		<input type="hidden" value="{value}" id="{id}" name="{name}" />
+		<input class="text" type="text" id="{id}_autocomplete" value="{name_value}" />
+		<div id="{id}_autocomplete_choices" class="autocomplete"> </div>
+		<vte:if test="{tooltip}">
+			<img class="info_help" src="img/icon_pref_help.gif" title="{tooltip}" />
+		</vte:if>
+	</div>
+	<script type="text/javascript">
+		new vivvo.admin.utils.timezoneAutocompleter("<vte:value select="{id}" />");
+	</script>
+</div>

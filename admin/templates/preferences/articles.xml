@@ -1,0 +1,60 @@
+<vte:template>
+	<form action="#" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+		<input type="hidden" name="action" value="vivvoCore" />
+		<input type="hidden" name="cmd" value="preferences" />
+		<div id="articles_preferences">
+			<div class="form_box_first">
+				<vte:if test="{display_modules}">
+					<div class="form_box_header">
+						<div class="form_box_info">
+							<vte:value select="{LNG_ADMIN_PREFERENCES_ARTICLES_INFO_BOX}" />
+						</div>
+					</div>
+				</vte:if>
+				<div class="form_box_body">
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_SHOW_RATINGS_RATE_THE_ARTICLE}" name="VIVVO_ARTICLE_SHOW_RATING" value="{VIVVO_ARTICLE_SHOW_RATING}" />
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_SHOW_DATE}" name="VIVVO_ARTICLE_SHOW_DATE" value="{VIVVO_ARTICLE_SHOW_DATE}" />
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_SHOW_AUTHOR}" name="VIVVO_ARTICLE_SHOW_AUTHOR" value="{VIVVO_ARTICLE_SHOW_AUTHOR}" />
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_SHOW_AUTHOR_INFO}" name="VIVVO_ARTICLE_SHOW_AUTHOR_INFO" value="{VIVVO_ARTICLE_SHOW_AUTHOR_INFO}" />
+				</div>
+			</div>
+			<vte:if test="!{display_modules}">
+				<div class="form_line"> 
+					<label> </label>
+					<div class="formElement">
+						<button type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+					</div>
+				</div>
+			</vte:if>
+		</div>
+		<vte:if test="{display_modules}">
+			<div id="articles_revisions">
+				<div class="form_box_first">
+					<div class="form_box_header">
+						<div class="form_box_info">
+							<vte:value select="{LNG_ADMIN_PREFERENCES_REVISIONS_INFO_BOX}" />
+						</div>
+					</div>
+					<div class="form_box_body">
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_KEEP_REVISIONS}" name="VIVVO_REVISIONS_KEEP_COPIES" value="{VIVVO_REVISIONS_KEEP_COPIES}" />
+						
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_NUMBER_OF_REVISIONS}" name="VIVVO_REVISIONS_KEEP" value="{VIVVO_REVISIONS_KEEP}"/>
+						
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_REVISIONS_AUTODRAFT}" sufix="{LNG_ADMIN_SUFIX_MINUTES}" name="VIVVO_REVISIONS_AUTODRAFT_TIME" value="{VIVVO_REVISIONS_AUTODRAFT_TIME}"/>
+					</div>
+				</div>
+			</div>
+		</vte:if>
+		
+		<vte:if test="{display_modules}">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/preferences/modules/articles.xml" />
+			<div class="content_list_body_footer">
+				<div class="form_submit_button"><button class="primary" type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button></div>
+			</div>
+		</vte:if>
+	</form>
+</vte:template>

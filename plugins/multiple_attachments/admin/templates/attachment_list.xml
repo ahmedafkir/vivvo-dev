@@ -1,0 +1,24 @@
+<div id="attachment_holder">
+	<vte:box module="box_article_attachments">
+		<vte:params>
+			<vte:param name="search_id" value="{search_id}" />
+		</vte:params>
+		<vte:template>
+			<vte:foreach item="attachment" from="{attachment_list}" key="index">
+				<div id="article_multiple_attachments_{attachment.id}" title="{attachment.description}" class="attachment_sortable item row_{index|mod:'2'} mime_{attachment.get_extension}">
+					<div class="item_actions">
+						<span class="image_delete"><img src="img/icon_delete.gif" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" /></span>
+					</div>
+					<div class="item_data" title="{attachment.title}">
+						<div class="item_line1">
+							<vte:value select="{attachment.real_path}" />
+						</div>
+						<div class="item_line2">
+							<vte:value select="{LNG_INFO_PLUGIN_MULTIPLE_ATTACHMENTS_TITLE}" />: <span class="title_holder"><vte:value select="{attachment.title}" /></span>
+						</div>
+					</div>
+				</div>
+			</vte:foreach>
+		</vte:template>
+	</vte:box>
+</div>

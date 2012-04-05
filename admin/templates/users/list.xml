@@ -1,0 +1,209 @@
+<vte:box module="box_users" params="{users_params}">
+	<vte:template>
+		<div class="content_list">
+			<div class="content_list_header">
+				<span class="context_view">
+                    <vte:if test="{current_search_group}">
+                        <vte:value select="{LNG_ADMIN_VIEW}" />: <vte:value select="{LNG_ADMIN_USERS}" />: <vte:value select="{current_search_group.name}" /> <span class="content_id">(id: <vte:value select="{current_search_group.id}" />)</span>
+                        <vte:else>
+                            <vte:value select="{LNG_ADMIN_VIEW}" />: <vte:value select="{LNG_ADMIN_USERS}" />
+                        </vte:else>
+                    </vte:if>
+				</span>
+				<span class="context_help">
+					<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />				</span>
+			</div>
+			<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+			<div class="content_list_body">
+				<div class="content_list_body_header">
+					<vte:if test="{VIVVO_USER_SOURCE} = 'vivvo@localhost'">
+						<div class="content_list_body_header_line1">
+							<div class="button_add_new">
+								<ul>
+									<li>
+										<a href="#" class="add_plus"><vte:value select="{LNG_ADMIN_ADD_NEW}" /></a><img class="add_plus_arrow" src="img/button_add_arrow.gif" alt="{LNG_ADMIN_ADD_NEW}" title="{LNG_ADMIN_ADD_NEW}" />
+										<ul class="tools_submenu">
+											<li><a href="user_edit.php"><vte:value select="{LNG_ADMIN_ADD_NEW_USER}" /></a></li>
+											<li><a href="javascript:;" onclick="adminList.loadGroupEdit(0);" class="last"><vte:value select="{LNG_ADMIN_ADD_NEW_GROUP}" /></a></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+							<vte:value select="{LNG_ADMIN_SELECT}" />: <span class="action_button" onclick="adminList.selectAll();"><vte:value select="{LNG_ADMIN_ALL}" /></span> <span class="action_button" onclick="adminList.invertSelection();"><vte:value select="{LNG_ADMIN_INVERT}" /></span>
+							<select class="action-select none_selected" disabled="disabled" onchange="adminList.setField(this.value);">
+								<option value="0" selected="selected"><vte:value select="{LNG_ADMIN_SELECT_ACTION}" /></option>
+								<optgroup label="{LNG_ADMIN_SET_STATUS}">
+									<option value="activated.0"><vte:value select="{LNG_ADMIN_PENDING}" /></option>
+									<option value="activated.1"><vte:value select="{LNG_ADMIN_ACTIVE}" /></option>
+									<option value="activated.-1"><vte:value select="{LNG_ADMIN_SOFT_DELETE}" /></option>
+								</optgroup>
+								<option value="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></option>
+								<optgroup label="{LNG_ADMIN_ADD_TO_GROUP}">
+									<vte:foreach from="{group_list}" item="group">
+										<option value="addToGroup.{group.id}"><vte:value select="{group.name}" /></option>
+									</vte:foreach>
+								</optgroup>
+								<optgroup label="{LNG_ADMIN_REMOVE_FROM_GROUP}">
+									<vte:foreach from="{group_list}" item="group">
+										<option value="removeFromGroup.{group.id}"><vte:value select="{group.name}" /></option>
+									</vte:foreach>
+								</optgroup>
+							</select>
+						</div>
+					</vte:if>
+					<div class="content_list_body_header_line2">
+						<form id="user_list_options_form" name="user_list_options_form">
+							<vte:if test="{user_list_object}">
+								<span class="box_pagination">
+									<vte:load module="box_pagination" list="{user_list_object}" template="{VIVVO_FS_ADMIN_DIR}templates/components/pagination.xml" max_page="5" />
+								</span>
+							</vte:if>
+							<vte:value select="{LNG_ADMIN_SORT_BY}" />:
+							<select name="search_sort_by" onchange="adminList.addOrderParams();">
+								<option value="id.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'order_num.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_DEFAULT_ORDER}" />
+								</option>
+								<option value="username.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'username.ascending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_USERNAME}" /> <vte:value select="{LNG_ADMIN_ASC}" />
+								</option>
+								<option value="username.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'username.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_USERNAME}" /> <vte:value select="{LNG_ADMIN_DESC}" />
+								</option>
+								<option value="name.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'name.ascending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_FULLNAME}" /> <vte:value select="{LNG_ADMIN_ASC}" />
+								</option>
+								<option value="name.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'name.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_FULLNAME}" /> <vte:value select="{LNG_ADMIN_DESC}" />
+								</option>
+							</select>
+							<vte:value select="{LNG_ADMIN_ITEMS_PER_PAGE}" />:
+							<select name="search_limit" onchange="adminList.addOrderParams();">
+								<option value="10">10</option>
+								<option value="20">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 20">selected</vte:if>
+									</vte:attribute>
+									20
+								</option>
+								<option value="30">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 30">selected</vte:if>
+									</vte:attribute>
+									30
+								</option>
+								<option value="50">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 50">selected</vte:if>
+									</vte:attribute>
+									50
+								</option>
+							</select>
+						</form>
+					</div>
+				</div>
+				<div id="user_list" class="content_list_items">
+					<vte:if test="{user_list}">
+						<vte:foreach item = "user" from = "{user_list}" key="index">
+							<div id="user_list_{user.get_id}" class="item row_{index|mod:'2'}">
+								<div class="item_status">
+									<vte:if test="{user.get_activated} = -1">
+										<img src="img/icon_status_soft_delete.gif" alt="{LNG_ADMIN_SOFT_DELETE}" title="{LNG_ADMIN_SOFT_DELETE}" />
+									</vte:if>
+									<vte:if test="{user.get_activated} = 0">
+										<img src="img/icon_status_pending.gif" alt="{LNG_ADMIN_INACTIVE}" title="{LNG_ADMIN_PENDING}" />
+									</vte:if>
+									<vte:if test="{user.get_activated} = 1">
+										<img src="img/icon_status_active.gif" alt="{LNG_ADMIN_ACTIVE}" title="{LNG_ADMIN_ACTIVE}" />
+									</vte:if>
+									<vte:if test="{user.get_activated} = 2">
+										<img src="img/icon_status_unconfirmed.gif" alt="{LNG_ADMIN_UNCONFIRMED}" title="{LNG_ADMIN_UNCONFIRMED}" />
+									</vte:if>
+								</div>
+								<vte:if test="{VIVVO_USER_SOURCE} = 'vivvo@localhost'">
+									<div class="item_actions">
+										<a href="articles.php?search_user_id={user.get_id}"><img src="img/icon_browse_articles.gif" alt="{LNG_ADMIN_BROWSE_ARTICLES}" title="{LNG_ADMIN_BROWSE_ARTICLES}" /></a>
+										<a href="user_edit.php?search_id={user.get_id}"><img src="img/icon_edit.gif" alt="{LNG_ADMIN_EDIT}" title="{LNG_ADMIN_EDIT}" /></a>
+										<img src="img/icon_delete.gif" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" onclick="adminList.deleteItem('USER_id',{user.get_id});" />
+									</div>
+								</vte:if>
+								<div class="item_data">
+									<vte:if test="{VIVVO_USER_SOURCE} = 'vivvo@localhost'">
+										<div class="item_select"><input type="checkbox" value="{user.get_id}" onclick="adminList.chekBoxChange('user_list_{user.get_id}');" /></div>
+									</vte:if>
+									<div class="item_line1">
+										<vte:value select="{user.username}" />
+										(<vte:value select="{user.get_name}" />)
+									</div>
+									<div class="item_line2">
+										<vte:foreach from="{group_list}" item="group">
+											<vte:if test="{user.in_group|group.id}">
+												<span>&lt;<vte:value select="{group.name}" />&gt; </span>
+											</vte:if>
+										</vte:foreach>&#160;
+									</div>
+								</div>
+							</div>
+						</vte:foreach>
+						<vte:else>
+							<div class="info_message"><vte:value select="{LNG_ADMIN_NO_ITEMS_MATCHING_SELECTED_CRITERIA}" /></div>
+						</vte:else>
+					</vte:if>
+				</div>
+				<div class="content_list_body_footer">
+					<vte:if test="{VIVVO_USER_SOURCE} = 'vivvo@localhost'">
+						<vte:value select="{LNG_ADMIN_SELECT}" />: <span class="action_button" onclick="adminList.selectAll();"><vte:value select="{LNG_ADMIN_ALL}" /></span> <span class="action_button" onclick="adminList.invertSelection();"><vte:value select="{LNG_ADMIN_INVERT}" /></span>
+						<select class="action-select none_selected" disabled="disabled" onchange="adminList.setField(this.value);">
+							<option value="0" selected="selected"><vte:value select="{LNG_ADMIN_SELECT_ACTION}" /></option>
+							<optgroup label="{LNG_ADMIN_SET_STATUS}">
+								<option value="activated.0"><vte:value select="{LNG_ADMIN_PENDING}" /></option>
+								<option value="activated.1"><vte:value select="{LNG_ADMIN_ACTIVE}" /></option>
+								<option value="activated.-1"><vte:value select="{LNG_ADMIN_SOFT_DELETE}" /></option>
+							</optgroup>
+							<option value="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></option>
+							<optgroup label="{LNG_ADMIN_ADD_TO_GROUP}">
+								<vte:foreach from="{group_list}" item="group">
+									<option value="addToGroup.{group.id}"><vte:value select="{group.name}" /></option>
+								</vte:foreach>
+							</optgroup>
+							<optgroup label="{LNG_ADMIN_REMOVE_FROM_GROUP}">
+								<vte:foreach from="{group_list}" item="group">
+									<option value="removeFromGroup.{group.id}"><vte:value select="{group.name}" /></option>
+								</vte:foreach>
+							</optgroup>
+						</select>
+						<vte:else>
+							&#160;
+						</vte:else>
+					</vte:if>
+					<vte:if test="{user_list_object}">
+						<span class="box_pagination">
+							<vte:load module="box_pagination" list="{user_list_object}" template="{VIVVO_FS_ADMIN_DIR}templates/components/pagination.xml" max_page="5" />
+						</span>
+					</vte:if>
+				</div>
+			</div>
+			<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+		</div>
+		<vte:if test="{list_output}">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/ajax_dump.xml" />
+		</vte:if>
+		<script type="text/javascript">
+			<vte:if isset="search_activated">adminListOptions.push({search_activated: <vte:value select="{search_activated|json_encode}" />});</vte:if>
+		</script>
+	</vte:template>
+</vte:box>

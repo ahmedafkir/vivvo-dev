@@ -1,0 +1,318 @@
+form {padding:0px; margin:0px;}
+
+*:focus {outline:none;}
+
+/***** Form elements (inputs, buttons, textareas...) *****/
+/********************************************************/
+.button, button {
+	font-family:Arial, Helvetica, sans-serif;
+	background:#fff url(../img/button_blend.png) repeat-x;
+	padding:3px 4px;
+	margin:0;
+	color:#444;
+	font-weight:normal;
+	border:1px solid #bfbfbf;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	text-shadow:0 1px 1px rgba(255, 255, 255, 0.8);
+	-webkit-box-shadow:0 1px 0 #fff;
+	-moz-box-shadow:0 1px 1px 0 rgba(255,255,255,1);
+	box-shadow:0 1px 1px 0 rgba(255,255,255,1);
+	overflow:visible;
+	font-size:12px;
+}
+
+.button:hover, button:hover {background-color:#eee; color:#3366cc;} 
+
+.primary {padding:4px 6px; font-size:13px; font-weight:bold;}
+
+.secondary {
+	background:none;
+	border:none;
+	font-size:12px;
+	font-weight:bold;
+	cursor:pointer;
+	padding-left:6px;
+	text-shadow:0 1px 1px rgba(255, 255, 255, 0.8);
+	-webkit-box-shadow:none;
+	-moz-box-shadow:none;
+	box-shadow:none;
+}
+
+.secondary:hover {background:none;}
+
+input.text,
+input.text_small,
+input.article_title,
+textarea,
+textarea.textarea {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	background:#fff;
+	border:1px solid #a7acb2;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	padding:3px;
+	color:#333;
+	-webkit-box-shadow:0 1px 0 #fff;
+	-moz-box-shadow:0 1px 0 0 rgba(255,255,255,1);
+	box-shadow:0 1px 0 0 rgba(255,255,255,1);
+}
+
+input.text:focus,
+input.text_small:focus,
+input.article_title:focus,
+textarea:focus,
+textarea.textarea:focus {background:#fffdd1; border:1px solid #7dbef1;}
+
+select {
+	color:#333;
+	border:1px solid #a7acb2;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	padding:2px;
+}
+
+select:disabled {border:1px solid #afafaf; background:#ececec; color:#989da5;}
+
+/***** Login box *****/
+.login_box input.text {font-size:16px; font-weight:bold; width:311px;}
+
+/***** Right side input/select fields *****/
+.content_list div.formElement input.text {width:300px;}
+
+.content_list div.formElement input.text_small {width:80px;}
+
+.content_list div.formElement textarea.textarea {width:300px; height:80px;}
+
+.content_list div.formElement select.options {width:307px;}
+
+/***** Add new article form *****/
+input.article_title {font-size:16px; font-weight:bold; color:#555; width:99%;}
+
+/***** Left side input/select fields *****/
+#tab_holders div.formElement input.text {width:166px;}
+
+#tab_holders div.formElement select.options {width:174px;}
+
+#tab_holders textarea {width:166px; height:80px;}
+
+#tab_holders div.formElement input.Text {width:160px;}
+
+
+/***** General form layout *****/
+/******************************/
+.form_line {
+	margin-bottom:6px;
+	padding:3px 0px 3px 0px;
+	width:98%;
+	overflow:hidden; /* if used, needs to be hidden because of Opera */
+}
+
+*:first-child+html .form_line {margin-bottom:0px; padding-bottom:6px;}
+
+.formElement {float:left; margin-left:6px; display:inline; z-index:auto;}
+
+.formElement p {margin-top:0;}
+
+.formElement img {vertical-align:top; padding-top:6px; cursor:pointer;}
+
+.form_line label {
+	text-align:right;
+	padding:3px 0px 3px 3px;
+	display:block;
+	float:left;
+	width:38%;
+	font-size:12px;
+	color:#777;
+	font-weight:bold;
+}
+
+/*** Login box ***/
+#login_form_holder .form_line label, 
+#forgot_form_holder .form_line label {text-align:left; font-weight:normal;}
+
+.formElement_right {float:right; margin-left:6px; display:inline; z-index:auto;}
+
+.formElement label {
+	padding:0px 12px 0px 0px;
+	width:auto;
+	text-align:left;
+	float:none;
+	display:inline;
+	font-weight:normal;
+}
+
+/*** Left side forms ***/
+#tab_holders div.form_line {padding-bottom:0px;}
+
+#tab_holders div.formElement {float:left; margin-left:6px; display:inline;}
+
+#tab_holders div.form_line label {
+	font-size:11px;
+	color:#989da5;
+	padding:3px 0px;
+	width:100px;
+	font-weight:normal;
+}
+
+#tab_holders div.formElement label {width:auto; padding:0px 12px 0px 0px;}
+
+/***** Add new article form *****/
+#article_main_edit div.article_abstract_field div.form_line label {width:86px;}
+
+
+/***************** AutoComplete ***************/
+/*********************************************/
+div.autocomplete {
+	position:absolute;
+	width:250px;
+	background-color:white;
+	border:1px solid #888;
+	margin:0px;
+	padding:0px;
+}
+
+div.autocomplete ul {
+	list-style-type:none;
+	margin:0px;
+	padding:0px;
+}
+
+div.autocomplete ul li.selected {background-color:#316ac5; color:#FFF;}
+
+div.autocomplete ul li {
+	list-style-type:none;
+	display:block;
+	margin:0;
+	padding:2px;
+	cursor:pointer;
+	color: #000;
+	font-size:10px;
+}
+
+/***************** Save plus **************/
+/*********************************************/
+ul.save_plus {
+	float:right;
+	width:200px;
+	list-style-type:none;
+	padding:0;
+	margin:0;
+}
+
+li.button {display:block; padding:5px 6px; position:relative;}
+
+li.button a {color:#555; text-decoration:none; font-weight:bold;}
+
+li.button a:hover {color:#3366cc;}
+
+a.toggle_button img {
+	border:none;
+	padding:8px 6px 7px 5px;
+	margin-left:5px;
+	border-left:1px solid #bfbfbf;
+	position:absolute;
+	right:0px;
+	top:0px;
+}
+
+a.toggle_button img:hover, a.toggle_button img.active {background:#bdbdbd;}
+
+ul.save_plus_menu {
+	position:absolute;
+	left:-999em;
+	top:-84px;
+	min-width:186px;
+	background:#fff;
+	border:1px solid #bfbfbf;
+	border-bottom:none;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	-moz-box-shadow:0 -1px 3px 0px rgba(0,0,0,0.30);
+	-webkit-box-shadow:0 0 5px #bcbcbc;
+	box-shadow:0 -1px 3px 0px rgba(0,0,0,0.30);
+	font-size:12px;
+	padding:6px;
+	margin:0;
+	cursor:default;
+	text-align:left;
+	list-style-type:none;
+}
+
+.toggle_menu_hover ul.save_plus_menu {left:-1px; top:-84px; z-index:999;}
+
+ul.save_plus .action_button {display:block; position:relative; z-index:10000;}
+
+/*** Kill backgrounds on submenu ***/
+li:hover ul.save_plus_menu li {background:none;}
+
+li ul.save_plus_menu li a {
+	display:block;
+	padding:4px 6px;
+	border-bottom:1px solid #dedede;
+	font-weight:normal;
+	color:#3366cc;
+}
+
+li ul.save_plus_menu li a:hover {background:#ededed;}
+
+li ul.save_plus_menu li a.last {border-bottom:none;}
+
+/*********** Textboxlist autocomplete *********/
+/*********************************************/
+.autocomplete-input ul.holder {background:#fff; margin:0; border:1px solid #a7acb2; overflow:hidden; height:auto !important; height:1%; zoom:1; padding:4px 5px 0; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px; -webkit-box-shadow:0 1px 0 #fff; -moz-box-shadow:0 1px 0 0 rgba(255,255,255,1); box-shadow:0 1px 0 0 rgba(255,255,255,1);}
+*:first-child+html .autocomplete-input ul.holder {padding-bottom:2px;}
+* html .autocomplete-input ul.holder {padding-bottom:2px;} /* ie7 and below */
+.autocomplete-input ul.holder li {float:left; list-style-type:none; margin:0 5px 4px 0;}
+.autocomplete-input ul.holder li.bit-box, ul.holder li.bit-input input {font:11px "Lucida Grande", "Verdana"; -moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px;}
+.autocomplete-input ul.holder li.bit-box {border:1px solid #CAD8F3; background:#DEE7F8; padding:1px 5px 2px;}
+.autocomplete-input ul.holder li.bit-box-focus {border-color:#598BEC; background:#598BEC; color:#fff;}
+.autocomplete-input ul.holder li.bit-input input {width:150px; margin:0; border:0px transparent; outline:0; padding:3px 0px 2px 0px;} /* no left/right padding here please */
+.autocomplete-input ul.holder li.bit-input input.smallinput {width:20px;}
+.autocomplete-input {overflow:visible; width:99%;}
+.autocomplete-input ul.holder {width:400px;}
+.autocomplete-input  ul.holder li.bit-box {padding-right:15px; position:relative; color:#333;}
+.autocomplete-input  ul.holder li.bit-input {margin:0;}
+.autocomplete-input  ul.holder li.bit-input input.smallinput {width:5px;}
+.autocomplete-input ul.holder li.bit-hover {background:#BBCEF1; border:1px solid #6D95E0;}
+.autocomplete-input ul.holder li.bit-box-focus {border-color:#598BEC; background:#598BEC; color:#fff;}
+.autocomplete-input ul.holder li.bit-box a.closebutton {position:absolute; right:4px; top:5px; display:block; width:7px; height:7px; font-size:1px; background:url(../img/delete_gray.gif);}
+.autocomplete-input ul.holder li.bit-box a.closebutton:hover {background-position:7px;}
+.autocomplete-input ul.holder li.bit-box-focus a.closebutton, ul.holder li.bit-box-focus a.closebutton:hover {background-position:bottom;}
+.autocomplete-input span.category {font-weight:bold;}
+.autocomplete-input .autolist {display:none; position:absolute; width:304px; background:#eee; z-index:3002; max-height:240px; overflow-y:auto; margin-bottom:20px}
+.autocomplete-input .autolist .default {padding:5px 7px; border:1px solid #ccc; border-width:0 1px 1px; color:#333;}
+.autocomplete-input .autolist ul {display:none; margin:0; padding:0;}
+.autocomplete-input .autolist ul li {padding:5px 12px; background:#eee; margin:0; list-style-type:none; border:1px solid #ccc; border-width:0 1px 1px; font:11px "Lucida Grande", "Verdana";}
+.autocomplete-input .autolist ul li em {font-weight:bold; font-style:normal; background:#ccc;}
+.autocomplete-input .autolist ul li.auto-focus {background:#4173CC; color:#fff;}
+.autocomplete-input .autolist ul li.auto-focus em {background:none;}
+.autocomplete-input img.loader {margin:0 0 -2px 10px;}
+#article_main_edit .autocomplete-input ul.holder {width:100%;}
+
+/*** Add new tags modal forms ***/
+.add_tags_modal_contents .add_tags_button {text-align:right;padding:6px 0px;}
+
+.add_tags_modal_contents label {color:#777; display:block; font-weight:bold;}
+
+.add_tags_modal_contents textarea {width:400px; height:100px;}
+
+.add_tags_modal_contents .form_line {width:auto; overflow:hidden;}
+
+.add_tags_modal_contents .form_line label, .autocomplete-input label {text-align:left; float:none;}
+
+.add_tags_modal_contents .formElement {margin-left:0px;}
+
+/***************** User registration form (ajax validations) *******************/
+.validation {padding:2px 0px 2px 18px; margin-top:2px; font-size:11px; font-weight:bold;}
+
+.not_valid {background:url(../img/validation_not_valid.gif) 0 0 no-repeat; color:#f3735d;}
+
+.checking {background:url(../img/validation_info.gif) 0 0 no-repeat; color:#6b99c5;}
+
+.valid {background:url(../img/validation_valid.gif) 0 0 no-repeat; color:#80ca73;}

@@ -1,0 +1,24 @@
+<div>
+	<div class="tab_holders_box_header"><vte:value select="{LNG_ADMIN_COMPLETE_THEMES_AND_TEMPLATE_SET}" /></div>
+	<ul id="ri_main_tabs" class="quick_launch">
+		<li><a href="#theme_list"><vte:value select="{LNG_ADMIN_THEMES}" /></a></li>
+		<li><a href="#template_set_list"><vte:value select="{LNG_ADMIN_TEMPLATE_SETS}" /></a></li>
+	</ul>
+	<div class="separator_gray"><!-- --></div>
+	<div class="tab_holders_box_header"><vte:value select="{LNG_ADMIN_INDIVIDUAL_FRAME_LAYOUTS}" /></div>
+	<ul id="ri1_main_tabs" class="quick_launch">
+		<li><a href="#homepage_layouts"><vte:value select="{LNG_ADMIN_HOMEPAGE_LAYOUTS}" /></a></li>
+		<li><a href="#category_layouts"><vte:value select="{LNG_ADMIN_CATEGORY_LAYOUTS}" /></a></li>
+		<li><a href="#article_layouts"><vte:value select="{LNG_ADMIN_ARTICLE_LAYOUTS}" /></a></li>
+		
+		<li><a href="#topic_layouts"><vte:value select="{LNG_ADMIN_TOPIC_LAYOUTS}" /></a></li>
+		
+		
+		<li><a href="#tag_layouts"><vte:value select="{LNG_ADMIN_TAG_LAYOUTS}" /></a></li>
+		
+		<li><a href="#archive_layouts"><vte:value select="{LNG_ADMIN_ARCHIVE_LAYOUTS}" /></a></li>
+		<li><a href="#search_result_layouts"><vte:value select="{LNG_ADMIN_SEARCH_RESULT_LAYOUTS}" /></a></li>
+	</ul>
+	<div class="separator_gray"><!-- --></div>
+	<div class="form_box_info"><img src="img/icon_info.gif" alt="{LNG_ADMIN_INFO}" title="{LNG_ADMIN_INFO}" /> <vte:value select="{LNG_ADMIN_LAYOUT_MESSAGE_MESSAGE_1_PART_1}" /> <vte:value select="{LNG_ADMIN_LAYOUT_MESSAGE_MESSAGE_1_PART_2}" />.</div>
+</div>

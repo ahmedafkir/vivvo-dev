@@ -1,0 +1,32 @@
+<vte:template>
+	<div class="form_box">
+		<div class="form_box_header">
+			<h3><vte:value select="{LNG_ADMIN_MAINTENANCE_AUTO_BACKUP}" />:</h3>
+			<div class="corner_white_top_left"><div class="corner_white_top_right"><!-- --></div></div>
+			<div class="form_box_info">
+				<vte:value select="{LNG_ADMIN_MAINTENANCE_AUTO_BACKUP_INFO}" />
+			</div>
+			<span class="expand"><vte:value select="{LNG_ADMIN_SHOW_FORM}" /></span>
+		</div>
+		<div class="form_box_body" style="display:none;">
+			<form action="#" onsubmit="return false;">
+				<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+				<input type="hidden" name="TASK_name" value="auto_backup" />
+				<div class="form_line"> 
+					<label><vte:value select="{LNG_ADMIN_MAINTENANCE_EXECUTION_PERIOD}" />:</label>
+					<div class="formElement">
+						<input type="text" name="TASK_time_mask" value="{task[time_mask]}" class="text" />
+						<a href="ajax.php?cron_task=1&amp;task=auto_backup" id="auto_backup_cron_task_modal" class="cron_task_modal"><img src="img/cron_task.gif" alt="{LNG_ADMIN_MAINTENANCE_CRON_TASK}" title="{LNG_ADMIN_MAINTENANCE_CRON_TASK}" /></a>
+					</div>
+				</div>
+				<div class="form_line"> 
+					<label> </label>
+					<div class="formElement">
+						<button class="primary" type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="corner_white_bottom_left"><div class="corner_white_bottom_right"><!-- --></div></div>
+	</div>
+</vte:template>

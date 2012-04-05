@@ -1,0 +1,5 @@
+<ul>
+	<vte:foreach item="link" from="{link_list}">
+		<li id="link_id_{link[id]}" title="{link[href]}"><strong><vte:value select="{link[type]}" />:</strong> <span class="title"><vte:value select="{link[title]}" /></span></li>
+	</vte:foreach>
+</ul>

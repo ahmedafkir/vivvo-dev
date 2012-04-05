@@ -1,0 +1,16 @@
+<div id="install_quick_link">
+	<ul class="quick_launch">
+		<li>
+			<vte:attribute name="class">
+				<vte:if test="{step} != 2">selected</vte:if>
+			</vte:attribute>
+			<span><vte:value select="{LNG_PLUGIN_ADMIN_PREPARING_TO_INSTALL}" /></span>
+		</li>
+		<li>
+			<vte:attribute name="class">
+				<vte:if test="{step} = 2">selected</vte:if>
+			</vte:attribute>
+			<span><vte:value select="{LNG_PLUGIN_ADMIN_FINISH}" /></span>
+		</li>
+	</ul>
+</div>

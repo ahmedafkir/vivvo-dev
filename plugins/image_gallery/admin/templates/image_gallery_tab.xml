@@ -1,0 +1,47 @@
+<div id="image_gallery_tab">
+	<vte:lang src="plugins/image_gallery/admin/lang/" />
+	<div class="article_abstract_field"><vte:value select="{LNG_PLUGIN_IMAGE_GALLERY_ADMIN_INFO}" /></div>
+	<div class="content_list_items">
+		<vte:if test="{article.id}">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/file_picker_includes.xml" />
+			<vte:header type="css" href="{VIVVO_URL}plugins/image_gallery/admin/css/image_gallery.css" />
+			<vte:header type="script" href="{VIVVO_URL}plugins/image_gallery/admin/js/vivvoImageGallery.js" />
+			<div id="image_gallery_list">
+				<div id="image_properties">
+					<div class="form_line"> 
+						<label> </label>
+						<div class="formElement">
+							<a id="need_help_gallery" href="#" class="action_button_link">+ <vte:value select="{LNG_PLUGIN_IMAGE_GALLERY_ADMIN_ADD_NEW_IMAGE}" /></a>
+						</div>
+					</div>
+					<div class="separator_gray"><!-- --></div>
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_IMAGE_GALLERY_ADMIN_IMAGE_TITLE}" id="article_image_gallery_caption" />
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="{LNG_PLUGIN_IMAGE_GALLERY_ADMIN_IMAGE_DESCRIPTION}" id="article_image_gallery_description" />
+	
+					<div class="form_line">
+						<label> </label>
+						<div class="formElement">
+							<button id="article_image_gallery_apply" type="button"><vte:value select="{LNG_PLUGIN_IMAGE_GALLERY_ADMIN_APPLY}" /></button>
+						</div>
+					</div>
+				</div>
+				
+				<div id="image_gallery_holder">
+					<vte:include file="plugins/image_gallery/admin/templates/image_list.xml" search_id = "{article.id}" />
+				</div>
+				<script type="text/javascript">
+					var vig = new vivvoImageGallery('image_holder', {
+						article_id : '<vte:value select="{article.id}" />'
+					});
+				</script>
+			</div>
+			<vte:else>
+				<div class="dump">
+					<span class="warning"><vte:value select="{LNG_PLUGIN_IMAGE_GALLERY_ADMIN_MUST_SAVE_FIRST}" />.</span>
+				</div>
+			</vte:else>
+		</vte:if>
+	</div>
+</div>

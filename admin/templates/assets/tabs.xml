@@ -1,0 +1,136 @@
+<vte:template>
+	<vte:header type="css" href="{VIVVO_URL}{VIVVO_FS_ADMIN_DIR}css/file_picker.css" />
+	<ul id="assets_tab_list" class="tabs">
+		<li><a href="#file_location" class="active" ><span onclick="$('file_upload_location').options[0].selected = true;"><vte:value select="{LNG_FILES_NAVIGATION}" /></span></a></li>
+		<li><a href="#file_search"><span><vte:value select="{LNG_ADMIN_SEARCH}" /></span></a></li>
+		<vte:if test="{current_user.can|'UPLOAD'}">
+			<li><a href="#file_upload"><span><vte:value select="{LNG_FILES_UPLOAD_FILES}" /></span></a></li>
+		</vte:if>
+	</ul>
+	<div class="corner_top_right"><!-- --></div>
+	<div id="tab_holders">
+		<div id="file_location" >
+			<div id="create_new_folder">
+				<label><vte:value select="{LNG_FILES_CREATE_FOLDER}" />:</label>
+				<input type="text" class="text" name="FILE_newdir" id="FILE_newdir" /> <button type="button" onclick="adminList.newDir()"><vte:value select="{LNG_ADMIN_ADD}" /></button>
+			</div>
+			<div class="files_tree">
+				<ul>
+					<li class="selected">
+						<span id="dir_{VIVVO_FS_FILES_DIR}" onclick="adminList.selectDir('{VIVVO_FS_FILES_DIR}');" class="dir selected"><vte:value select="{VIVVO_FS_FILES_DIR|preg_replace:'`/$`',''}" /></span>
+						<vte:box module="box_files">
+							<vte:params>
+								<vte:param name="dir" value="{dir_tree_root}" />
+								<vte:param name="ext" value="dirext" />
+							</vte:params>
+							<vte:template>
+								<ul>
+									<vte:foreach item="file" from="{file_list}">
+										<li>
+											<span id="dir_{dir}{file.filename}/" onclick="adminList.selectDir('{dir}{file.filename}');" class="dir"><vte:value select="{file.filename}" /></span>
+											<span class="rmdir_button" onclick="adminList.deleteDir('{dir}{file.filename}')"><img src="img/delete_orange.gif" style="margin-left:2px" alt="{LNG_FILES_DELETE_FOLDER}" /></span>
+											<vte:load module="box_files" template_string="{template_string}" dir="{dir}{file.filename}/" ext="dirext" />
+										</li>
+									</vte:foreach>
+								</ul>
+							</vte:template>
+						</vte:box>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="file_search" style="display:none;">
+			<form id="file_search_form" name="file_search_form" onsubmit="return false;">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_FILES_SEARCH_FILENAME}" name="search_filename" />
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_checkbox.xml" label="{LNG_FILES_EXACT_NAME}" name="search_exact_name" value="1" checked="1" />
+				<div class="form_line">
+					<label><vte:value select="{LNG_FILES_SEARCH_FOLDER}" />:</label>
+					<div class="formElement">
+						<select class="options" name="search_dir">
+							<option value="{dir_tree_root}"><vte:value select="{dir_tree_root}" /></option>
+							<vte:box module="box_files">
+								<vte:params>
+									<vte:param name="dir" value="{dir_tree_root}" />
+									<vte:param name="ext" value="dirext" />
+								</vte:params>
+								<vte:template>
+									<vte:foreach item="file" from="{file_list}">
+										<option value="{dir}{file.filename}/"><vte:value select="{dir}" /><vte:value select="{file.filename}" /></option>
+										<vte:load module="box_files" template_string="{template_string}" dir="{dir}{file.filename}/" ext="dirext" />
+									</vte:foreach>
+								</vte:template>
+							</vte:box>
+						</select>
+					</div>
+				</div>
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_checkbox.xml" label="{LNG_FILES_SEARCH_SUBFOLDER}" name="search_subfolders" value="1" checked="1" />
+				<div class="form_line">
+					<label><vte:value select="{LNG_FILES_SEARCH_EXTENSION}" />:</label>
+					<div class="formElement">
+						<select class="options" name="search_ext">
+							<option selected="selected" value="">All</option>
+							<vte:foreach item="ext" from="{VIVVO_ALLOWED_EXTENSIONS|explode:','}">
+								<option value="{ext}">.<vte:value select="{ext}" /></option>
+							</vte:foreach>
+						</select>
+					</div>
+				</div>
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_FILES_SEARCH_TAGGED}" name="search_keywords" />
+				<div class="form_line">
+					<label><vte:value select="{LNG_FILES_SEARCH_UPLOAD_WITHIN}" />:</label>
+					<div class="formElement">
+						<select class="options" name="search_date_after">
+							<option value="0" selected="selected"><vte:value select="{LNG_ADMIN_ANY_DATE}" /></option>
+							<option value="1" ><vte:value select="{LNG_ADMIN_YESTRDAY}" /></option>
+							<option value="7" ><vte:value select="{LNG_ADMIN_A_WEEK_AGO}" /></option>
+							<option value="14" ><vte:value select="{LNG_ADMIN_2_WEEKS_AGO}" /></option>
+							<option value="30" ><vte:value select="{LNG_ADMIN_A_MONTH_AGO}" /></option>
+							<option value="90" ><vte:value select="{LNG_ADMIN_3_MONTHS_AGO}" /></option>
+							<option value="180" ><vte:value select="{LNG_ADMIN_6_MONTHS_AGO}" /></option>
+							<option value="365" ><vte:value select="{LNG_ADMIN_A_YEAR_AGO}" /></option>
+						</select>
+					</div>
+				</div>
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_FILES_SEARCH_METADATA}" name="search_info" />
+				<input type="hidden" name="search_tag" value="" />
+				<input type="hidden" name="search_options" value="" />
+				<input type="hidden" name="search_do_advanced" value="1" />
+				<div class="form_line">
+					<label> </label>
+					<div class="formElement">
+					    <button type="submit"><vte:value select="{LNG_ADMIN_SEARCH_NOW}" /></button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<vte:if test="{current_user.can|'UPLOAD'}">
+			<div id="file_upload" style="display:none;">
+				<div id="file_upload_selector">
+					<span id="file_upload_destination"><vte:value select="{LNG_FILES_UPLOAD_DESTINATION}" />: </span>
+					<select id="file_upload_location" style="width:287px;">
+						<option value="{dir_tree_root}/"><vte:value select="{dir_tree_root}" /></option>
+						<vte:box module="box_files">
+							<vte:params>
+								<vte:param name="dir" value="{dir_tree_root}" />
+								<vte:param name="ext" value="dirext" />
+							</vte:params>
+							<vte:template>
+								<vte:foreach item="file" from="{file_list}">
+									<option value="{dir}{file.filename}/"><vte:value select="{dir}" /><vte:value select="{file.filename}" /></option>
+									<vte:load module="box_files" template_string="{template_string}" dir="{dir}{file.filename}/" ext="dirext" />
+								</vte:foreach>
+							</vte:template>
+						</vte:box>
+					</select>
+				</div>
+				<div id="file_upload_actions">
+					<div class="flash_upload"><div id="file_upload_choose"> </div></div>
+					<button id="file_upload_cancel" type="button" class="secondary" disabled="disabled"><vte:value select="{LNG_FILES_UPLOAD_CANCEL}" /></button>
+				</div>
+				<div id="file_upload_progress"> </div>
+			</div>
+		</vte:if>
+	</div>
+	<div class="corner_bottom_right"><!-- --></div>
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/ajax_dump.xml" />
+</vte:template>

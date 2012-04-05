@@ -1,0 +1,15 @@
+<div id="sub_nav_holder">
+	<div id="sub_nav" style="display:none;">
+		<a href="articles.php" id="menu_articles">
+			<span><vte:value select="{LNG_ADMIN_ARTICLES}" /></span>
+		</a>
+		<vte:if test="{VIVVO_COMMENTS_ENABLE}">
+			<vte:if test="{current_user.can|'MODERATE_COMMENTS'}">
+				<a href="comments.php" id="menu_comments">
+					<span><vte:value select="{LNG_ADMIN_COMMENTS}" /></span>
+				</a>
+			</vte:if>
+		</vte:if>
+		<vte:load module="ui_hooks" name="admin_content_subnav" />
+	</div>
+</div>

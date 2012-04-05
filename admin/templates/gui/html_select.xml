@@ -1,0 +1,18 @@
+<div class="form_line"> 
+	<label><vte:value select="{label}" />:</label>
+	<div class="formElement">
+		<select class="options" id="{id}" name="{name}">
+			<vte:foreach item = "opt" from = "{options}">
+				<option value="{opt[value]}">
+					<vte:attribute name="selected"> 
+						<vte:if test="{value} = {opt[value]}">selected</vte:if>
+					</vte:attribute>
+					<vte:value select="{opt[label]}" />
+				</option>
+			</vte:foreach>
+		</select>
+		<vte:if test="{tooltip}">
+			<img class="info_help" src="img/icon_pref_help.gif" title="{tooltip}" />
+		</vte:if>
+	</div>
+</div>

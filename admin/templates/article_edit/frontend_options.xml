@@ -1,0 +1,126 @@
+<vte:template>
+	<img id="modal_close" onclick="Control.Modal.close()" src="{VIVVO_FS_ADMIN_DIR}/img/delete_gray.gif" alt="" />
+	<div>
+		<div class="frontend_opt_title"><vte:value select="{LNG_EDIT_ARTICLE_OPTION}" /></div>
+		<form id="article_edit_form" action="{VIVVO_FS_ADMIN_DIR}ajax.php" method="post" onsubmit="return false;">
+			<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+			<input type="hidden" name="action" value ="article" />
+			<input type="hidden" name="cmd" value="edit" />
+			<input type="hidden" name="ARTICLE_id" value ="{article.id}" />
+			<vte:if test="{current_user.can|'CHANGE_STATUS'}">
+				<div class="form_line"> 
+					<label><vte:value select="{LNG_ADMIN_SET_STATUS}" />:</label>
+					<div class="formElement">
+						<select class="options" name="ARTICLE_status">
+							<vte:if test="{current_user.can_change_status|'1',article.status}">
+								<option value="1">
+									<vte:attribute name="selected">
+										<vte:if test="{article.status} = 1">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_ACTIVE}" />
+								</option>
+							</vte:if>
+							<vte:if test="{current_user.can_change_status|'2',article.status}">
+								<option value="2">
+									<vte:attribute name="selected">
+										<vte:if test="{article.status} = 2">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_HEADLINE}" />
+								</option>
+							</vte:if>
+							<vte:if test="{current_user.can_change_status|'0',article.status}">
+								<option value="0">
+									<vte:attribute name="selected">
+										<vte:if test="{article.status} = 0">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_PENDING}" />
+								</option>
+							</vte:if>
+							<vte:if test="{current_user.can_change_status|'-1',article.status}">
+								<option value="-1">
+									<vte:attribute name="selected">
+										<vte:if test="{article.status} = -1">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_ARCHIVED}" />
+								</option>
+							</vte:if>
+						</select>
+					</div>
+				</div>
+			</vte:if>
+			<vte:if test="{current_user.is|'EDITOR','Categories',article.category_id}">
+				<div class="form_line"> 
+					<label><vte:value select="{LNG_ADMIN_AUTHOR}" />:</label>
+					<div class="formElement">
+						<vte:if test="{article.author}">
+							<input id="ARTICLE_author" type="text" class="text" name="ARTICLE_author" value ="{article.author}" />
+							<vte:else>
+								<input id="ARTICLE_author" type="text" class="text" name="ARTICLE_author" value ="{current_user.get_name}" />
+							</vte:else>
+						</vte:if>
+					</div>
+				</div>
+				<div class="form_line"> 
+					<label> </label>
+					<div class="formElement">
+						<select class="options" name="ARTICLE_user_id" onchange="$('ARTICLE_author').value = $('ARTICLE_user_id_' + this.value).innerHTML.strip();">
+							<vte:box module="box_users">
+							<vte:params>
+								<vte:param name="search_limit" value="1000" />
+								<vte:param name="search_user_type" value="staff" />
+							</vte:params>
+								<vte:template>
+									<vte:foreach item = "user" from = "{user_list}">
+										<option id="ARTICLE_user_id_{user.get_id}" value="{user.get_id}">
+											<vte:attribute name="selected">
+												<vte:if test="{article.user_id}">
+													<vte:if test="{user.get_id} = {article.user_id}">selected</vte:if>
+													<vte:else>
+														<vte:if test="{user.get_id} = {current_user.get_id}">selected</vte:if>
+													</vte:else>
+												</vte:if>
+											</vte:attribute>
+											<vte:value select="{user.get_username}" />											
+										</option>
+									</vte:foreach>
+								</vte:template>
+							</vte:box>
+						</select>
+					</div>
+				</div>
+				<vte:else>
+					<div class="form_line"> 
+						<label><vte:value select="{LNG_ADMIN_AUTHOR}" />:</label>
+						<div class="formElement">
+							<vte:if test="{article.id}">
+								<vte:value select="{article.get_author_name}" />
+								<vte:else>
+									<vte:value select="{current_user.get_name}" />
+								</vte:else>
+							</vte:if>
+						</div>
+					</div>
+				</vte:else>
+			</vte:if>
+				
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_LINK}" name="ARTICLE_link" value="{article.link}" />
+
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_SHOW_COMMENTS}" name="ARTICLE_show_comment" value="{article.show_comment}" />
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_SHOW_RATINGS}" name="ARTICLE_show_poll" value="{article.show_poll}" />
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_PUBLISHING_TO_FEED}" name="ARTICLE_rss_feed" value="{article.rss_feed}" />
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="{LNG_ADMIN_META_KEYWORDS}" name="ARTICLE_keywords" value="{article.keywords}" />
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="{LNG_ADMIN_META_DESCRIPTION}" name="ARTICLE_description" value="{article.description}" />
+			
+			<div class="form_line"> 
+				<label> </label>
+				<div class="formElement">
+					<button type="submit" value ="edit"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+				</div>
+			</div>
+		</form>
+	</div>	
+</vte:template>

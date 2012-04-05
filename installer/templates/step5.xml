@@ -1,0 +1,57 @@
+<vte:template>
+	<div class="content_body">
+		<h3><vte:value select="{LNG_INSTALLER_STEP_5}" /></h3>
+		<form action="index.php?step=6" method="post">
+			<div id="installer_steps_form" class="content_items step_5">
+				<div class="info"><vte:value select="{LNG_INSTALLER_INFO_STEP_5}" /></div>
+				<div class="form_line"> 
+					<label><vte:value select="{LNG_INSTALLER_WEB_SITE_TITLE}" />:</label>
+					<div class="formElement">
+						<input class="text" type="text" name="web_site_title" value="" />
+					</div>
+				</div>
+				<div class="form_line"> 
+					<label><vte:value select="{LNG_INSTALLER_ADMINISTRATOR_EMAIL}" />:</label>
+					<div class="formElement">
+						<input class="text" type="text" name="administrator_email" value="" />
+					</div>
+				</div>
+				<div class="form_line"> 
+					<label><vte:value select="{LNG_INSTALLER_ADMINISTRATOR_USERNAME}" />:</label>
+					<div class="formElement">
+						<input class="text" type="text" name="admin_username" id="admin_username" value="" />
+					</div>
+				</div>
+				<div class="form_line"> 
+					<label><vte:value select="{LNG_INSTALLER_ADMINISTRATOR_PASSWORD}" />:</label>
+					<div class="formElement">
+						<input class="text" type="password" name="admin_password" value="" id="admin_password" onKeyUp="runPassword(this.value, 'admin_password');" />
+					</div>
+				</div>
+				
+				<div class="form_line"> 
+					<label>&nbsp;</label>
+					<div class="formElement pass_strenght">
+						<div style="float:left;"><vte:value select="{LNG_INSTALLER_ADMINISTRATOR_PASSWORD_STRENGHT}" />: </div>
+						<div style="width: 109px; float:left; padding-left: 6px; margin-top: -2px;"> 
+							<div id="admin_password_text" style="font-size: 10px;"> </div>
+							<div id="admin_password_bar" style="font-size: 2px; height: 3px; width: 0px;"> </div> 
+						</div>
+					</div>
+				</div>
+				
+				<div class="form_line"> 
+					<label><vte:value select="{LNG_INSTALLER_ADMINISTRATOR_RETYPE_PASSWORD}" />:</label>
+					<div class="formElement">
+						<input class="text" type="password" name="admin_password_retype" value="" />
+					</div>
+				</div>
+			</div>
+			<div class="content_body_footer">
+				<div class="form_submit_button">
+					<input type="submit" class="button" name="login" value="{LNG_INSTALLER_FINISH}" />
+				</div>
+			</div>
+		</form>
+	</div>
+</vte:template>

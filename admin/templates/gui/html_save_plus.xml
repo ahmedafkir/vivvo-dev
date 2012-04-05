@@ -1,0 +1,30 @@
+<div class="save_plus_container" style="position:static;">
+	<vte:if test="!{save_action}"><vte:variable name="save_action" value="continue" /></vte:if>
+	<input type="hidden" name="save_action" value="{save_action}" />
+	<ul class="save_plus">
+		<li class="button primary">
+			<a href="#{save_action}" class="action_button" onclick="$(this).up('div').down('input').value='{save_action}';{action_handler|str_replace:'%1',save_action}; return false;">
+				<vte:if test="{save_action} = 'add'">
+					<vte:value select="{LNG_ADMIN_SAVE_ADD_NEW}" />
+					<vte:else>
+						<vte:if test="{save_action} = 'return'">
+							<vte:value select="{LNG_ADMIN_SAVE_RETURN_LIST}" />
+							<vte:else>
+								<vte:value select="{LNG_ADMIN_SAVE_CONTINUE_EDIT}" />
+							</vte:else>
+						</vte:if>
+					</vte:else>
+				</vte:if>
+			</a>
+			<span class="action-list-toggler">
+				<a href="#actions" onclick="return false;" class="toggle_button"><img src="img/save_plus_drop_arrow.gif" /></a>
+				<ul class="save_plus_menu">
+					<li><a href="#add" onclick="$(this).up('div').down('input').value='add';{action_handler|str_replace:'%1','add'}; return false;"><vte:value select="{LNG_ADMIN_SAVE_ADD_NEW}" /></a></li>
+					<li><a href="#continue" onclick="$(this).up('div').down('input').value='continue';{action_handler|str_replace:'%1','continue'}; return false;"><vte:value select="{LNG_ADMIN_SAVE_CONTINUE_EDIT}" /></a></li>
+					<li><a href="#return" onclick="$(this).up('div').down('input').value='return';{action_handler|str_replace:'%1','return'}; return false;" class="last"><vte:value select="{LNG_ADMIN_SAVE_RETURN_LIST}" /></a></li>
+				</ul>
+			</span>
+		</li>
+	</ul>
+	<div class="clearer"> </div>
+</div>

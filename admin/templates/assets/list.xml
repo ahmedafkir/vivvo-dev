@@ -1,0 +1,257 @@
+<vte:box module="box_asset_files">
+    <vte:params>
+        <vte:param name="search_dir" value="{search_dir}" />
+        <vte:param name="search_ext" value="{search_ext}" />
+		<vte:param name="search_limit" value="{search_limit}" />
+		<vte:param name="search_sort_by" value="{search_sort_by}" />
+		<vte:param name="search_order" value="{search_order}" />
+        <vte:param name="pg" value="{pg}" />
+		<!-- advanced search params -->
+		<vte:param name="search_do_advanced" value="{search_do_advanced}" />
+		<vte:param name="search_filename" value="{search_filename}" />
+		<vte:param name="search_exact_name" value="{search_exact_name}" />
+		<vte:param name="search_info" value="{search_info}" />
+		<vte:param name="search_keywords" value="{search_keywords}" />
+		<vte:param name="search_date_after" value="{search_date_after}" />
+		<vte:param name="search_subfolders" value="{search_subfolders}" />
+    </vte:params>
+    <vte:template>
+		<vte:header type="script" href="{VIVVO_URL}js/control_modal.js" />
+		<vte:header type="script" href="{VIVVO_URL}js/swfobject.js" />
+		<vte:header type="css" href="{VIVVO_URL}{VIVVO_FS_ADMIN_DIR}css/modal.css" />
+        <div class="content_list">
+            <div class="content_list_header">
+                <span class="context_view">
+					<vte:value select="{LNG_ADMIN_VIEW}" />: <vte:value select="{search_dir}" /> (<vte:value select="{LNG_FILES_TOTAL}" /> <vte:value select="{file_list_object.get_total_number}" /> <vte:value select="{LNG_FILES_WITH}" /> <vte:value select="{file_list_object.get_total_file_size|'M',1,0}" />)
+                </span>
+                <span class="context_help">
+                    <vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />                </span>
+            </div>
+            <div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+            <div class="content_list_body">
+                <div class="content_list_body_header">
+                    <div class="content_list_body_header_line1">
+						<vte:value select="{LNG_ADMIN_SELECT}" />:
+						<span class="action_button" onclick="adminList.selectAll();"><vte:value select="{LNG_ADMIN_ALL}" /></span>
+						<span class="action_button" onclick="adminList.invertSelection();"><vte:value select="{LNG_ADMIN_INVERT}" /></span>
+						<select class="action-select none_selected" disabled="disabled" onchange="adminList.setField(this.value);">
+							<option value="0" selected="selected"><vte:value select="{LNG_ADMIN_SELECT_ACTION}" /></option>
+							<option value="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></option>
+							<optgroup label="{LNG_ADMIN_MOVE_TO}">
+								<option value="{VIVVO_FS_FILES_DIR}"><vte:value select="{VIVVO_FS_FILES_DIR}" /></option>
+								<vte:box module="box_files">
+									<vte:params>
+										<vte:param name="dir" value="{dir_tree_root}" />
+										<vte:param name="ext" value="dirext" />
+									</vte:params>
+									<vte:template>
+										<vte:foreach item="file" from="{file_list}">
+											<vte:if test="{file.filename} != ''">
+												<option value="{dir}{file.filename}/"><vte:value select="{dir}" /><vte:value select="{file.filename}" />/</option>
+												<vte:if test="{file.has_subfolders}">
+													<vte:load module="box_files" template_string="{template_string}" dir="{dir}{file.filename}/" ext="dirext" />
+												</vte:if>
+											</vte:if>
+										</vte:foreach>
+									</vte:template>
+								</vte:box>
+							</optgroup>
+						</select>
+						<span class="action_button" onclick="adminList.scanDir('{search_dir}')"><img src="img/icon_asset_refresh.gif" alt="{LNG_FILES_RESCAN_FOLDER}" title="{LNG_FILES_RESCAN_FOLDER}" /> <vte:value select="{LNG_FILES_RESCAN_FOLDER}" /></span>
+                    </div>
+                    <div class="content_list_body_header_line2">
+						<form id="assets_list_options_form" name="file_list_options_form">
+							<vte:value select="{LNG_ADMIN_SORT_BY}" />
+							<select name="search_sort_by" onchange="adminList.addOrderParams();">
+								<option value="filename.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_order} = 'filename.ascending'">selected</vte:if>
+									</vte:attribute>
+									Filename <vte:value select="{LNG_ADMIN_ASC}" />
+								</option>
+								<option value="filename.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_order} = 'filename.descending'">selected</vte:if>
+									</vte:attribute>
+									Filename <vte:value select="{LNG_ADMIN_DESC}" />
+								</option>
+								<option value="date.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_order} = 'date.ascending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_DATE}" /> <vte:value select="{LNG_ADMIN_ASC}" />
+								</option>
+								<option value="date.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_order} = 'date.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_DATE}" /> <vte:value select="{LNG_ADMIN_DESC}" />
+								</option>
+								<option value="ext.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_order} = 'ext.ascending'">selected</vte:if>
+									</vte:attribute>
+									ext <vte:value select="{LNG_ADMIN_ASC}" />
+								</option>
+								<option value="ext.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_order} = 'ext.descending'">selected</vte:if>
+									</vte:attribute>
+									ext <vte:value select="{LNG_ADMIN_DESC}" />
+								</option>
+								<option value="size.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_order} = 'size.ascending'">selected</vte:if>
+									</vte:attribute>
+									size <vte:value select="{LNG_ADMIN_ASC}" />
+								</option>
+								<option value="size.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_order} = 'size.descending'">selected</vte:if>
+									</vte:attribute>
+									size <vte:value select="{LNG_ADMIN_DESC}" />
+								</option>
+							</select>
+							<vte:value select="{LNG_ADMIN_ITEMS_PER_PAGE}" />:
+							<select name="search_limit" onchange="adminList.addOrderParams();">
+								<option value="10">10</option>
+								<option value="20">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 20">selected</vte:if>
+									</vte:attribute>
+									20
+								</option>
+								<option value="30">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 30">selected</vte:if>
+									</vte:attribute>
+									30
+								</option>
+								<option value="50">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 50">selected</vte:if>
+									</vte:attribute>
+									50
+								</option>
+							</select>
+							<div id="file_search_view">
+								<div id="file_view"><vte:value select="{LNG_ADMIN_FILE_VIEW}" />:
+									<span class="file_view_list"><a href="javascript:void(null);" class="file_view_list" alt="List view" title="List view"> </a></span>
+									<span class="file_view_thumb"><a href="javascript:void(null);" class="file_view_thumb" alt="Thumbnail view" title="Thumbnail view"> </a></span>
+								</div>
+							</div>
+						</form>
+                        <span class="box_pagination">
+							<vte:if test="{file_list}">
+								<vte:load module="box_pagination" list="{file_list_object}" template="{VIVVO_FS_ADMIN_DIR}templates/components/pagination.xml" max_page="5" />
+							</vte:if>
+                        </span>
+                    </div>
+                </div>
+                <div id="file_view_contents" class="content_list_items">
+					<div id="file_list_view">
+						<vte:foreach item="file" from="{file_list}" key="index">
+							<div id="file_{file.get_fullname|md5}" class="file item row_{index|mod:'2'} mime_{file.extension|strtolower}">
+								<div class="item_actions">
+									<a href="javascript:adminList.openModal('{file.get_fullname}')"><img src="img/icon_preview.gif" alt="{LNG_ADMIN_PREVIEW}" title="{LNG_ADMIN_PREVIEW}" /></a>
+									<a href="download.php?force&amp;file={file.get_fullname|urlencode}"><img src="img/icon_download.gif" alt="{LNG_ADMIN_DOWNLOAD}" title="{LNG_ADMIN_DOWNLOAD}" /></a>
+									<img src="img/icon_delete.gif" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" onclick="adminList.deleteItem('FILE_filename', '{file.get_fullname}');" />
+								</div>
+								<div class="item_data">
+									<div class="item_select"><input type="checkbox" value="{file.get_fullname}" onclick="adminList.chekBoxChange('file_{file.get_fullname|md5}');" style="cursor:default;" /></div>
+									<div class="item_line1">
+										<vte:value select="{file.get_filename}" />
+									</div>
+									<div class="item_line2">
+									   <vte:value select="{LNG_FILES_SIZE}" />: <vte:value select="{file.get_smart_size}" />
+										<vte:variable name="keyword_list" value="{file.get_keywords}"/>
+										<vte:if test="{keyword_list}">
+											 - <vte:value select="{LNG_FILES_KEYWORDS}" />: <vte:value select="{keyword_list}" />
+										</vte:if>
+									</div>
+								</div>
+							</div>
+							<vte:else>
+								<div class="info_message"><vte:value select="{LNG_ADMIN_NO_ITEMS_MATCHING_SELECTED_CRITERIA}" /></div>
+							</vte:else>
+						</vte:foreach>
+					</div>
+					<div id="thumb_list_view" style="display:none">
+						<div class="thumb_view_holder">
+							<vte:foreach item="file" from="{file_list}" key="index">
+								<div id="thumb_{file.get_fullname|md5}" class="thumb">
+									<vte:variable name="keyword_list" value="{file.get_keywords}"/>
+									<vte:attribute name="title">
+										<vte:if test="{keyword_list}">
+											<vte:value select="{LNG_FILES_KEYWORDS}" />: <vte:value select="{keyword_list}" />
+										</vte:if>
+									</vte:attribute>
+									<div class="thumb_preview">
+										<div class="img_container">
+											<div class="img_wrapper">
+												<img src="{file.get_thumb_href}" />
+											</div>
+										</div>
+									</div>
+									<div class="thumb_filename"><vte:value select="{file.get_filename}" /></div>
+									<div class="thumb_size"><vte:value select="{LNG_FILES_SIZE}" />: <vte:value select="{file.get_smart_size}" /></div>
+									<div class="thumb_actions">
+										<div class="thumb_select mime_{file.extension|strtolower}">
+											<input type="checkbox" value="{file.get_fullname}" onclick="adminList.chekBoxChange('thumb_{file.get_fullname|md5}');" style="cursor:default;" />
+										</div>
+										<a href="javascript:adminList.openModal('{file.get_fullname}')"><img src="img/icon_preview_small.gif" alt="{LNG_ADMIN_PREVIEW}" title="{LNG_ADMIN_PREVIEW}" /></a>
+										<a href="download.php?force&amp;file={file.get_fullname|urlencode}"><img src="img/icon_download_small.gif" alt="{LNG_ADMIN_DOWNLOAD}" title="{LNG_ADMIN_DOWNLOAD}" /></a>
+										<img src="img/icon_delete_small.gif" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" onclick="adminList.deleteItem('FILE_filename', '{file.get_fullname}');" />
+									</div>
+								</div>
+								<vte:else>
+									<div class="info_message"><vte:value select="{LNG_ADMIN_NO_ITEMS_MATCHING_SELECTED_CRITERIA}" /></div>
+								</vte:else>
+							</vte:foreach>
+							<div class="clearer"> </div>
+						</div>
+					</div>
+                </div>
+                <div class="content_list_body_footer">
+					<vte:value select="{LNG_ADMIN_SELECT}" />:
+					<span class="action_button" onclick="adminList.selectAll();"><vte:value select="{LNG_ADMIN_ALL}" /></span>
+					<span class="action_button" onclick="adminList.invertSelection();"><vte:value select="{LNG_ADMIN_INVERT}" /></span>
+					<select class="action-select none_selected" disabled="disabled" onchange="adminList.setField(this.value);">
+						<option value="0" selected="selected"><vte:value select="{LNG_ADMIN_SELECT_ACTION}" /></option>
+						<option value="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></option>
+						<optgroup label="{LNG_ADMIN_MOVE_TO}">
+							<option value="files/">files/</option>
+							<vte:box module="box_files">
+								<vte:params>
+									<vte:param name="dir" value="{dir_tree_root}" />
+									<vte:param name="ext" value="dirext" />
+								</vte:params>
+								<vte:template>
+									<vte:foreach item="file" from="{file_list}">
+										<vte:if test="{file.filename} != ''">
+											<option value="{dir}{file.filename}/"><vte:value select="{dir}" /><vte:value select="{file.filename}" />/</option>
+											<vte:if test="{file.has_subfolders}">
+												<vte:load module="box_files" template_string="{template_string}" dir="{dir}{file.filename}/" ext="dirext" />
+											</vte:if>
+										</vte:if>
+									</vte:foreach>
+								</vte:template>
+							</vte:box>
+						</optgroup>
+					</select>
+					<span class="action_button" onclick="adminList.scanDir('{search_dir}')"><img src="img/icon_asset_refresh.gif" alt="{LNG_FILES_RESCAN_FOLDER}" title="{LNG_FILES_RESCAN_FOLDER}" /> <vte:value select="{LNG_FILES_RESCAN_FOLDER}" /></span>
+					<span class="box_pagination">
+						<vte:if test="{file_list}">
+							<vte:load module="box_pagination" list="{file_list_object}" template="{VIVVO_FS_ADMIN_DIR}templates/components/pagination.xml" max_page="5" />
+						</vte:if>
+					</span>
+				</div>
+			</div>
+			<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+		</div>
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/ajax_dump.xml" />
+		<script type="text/javascript">
+			window.selected_dir = <vte:value select="{search_dir|json_encode}" />;
+		</script>
+	</vte:template>
+</vte:box>

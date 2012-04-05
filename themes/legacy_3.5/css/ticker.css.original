@@ -1,0 +1,25 @@
+.ticker { 
+	height: 20px; 
+	border-left: 1px solid #c5c5c5;
+	border-right: 1px solid #c5c5c5;
+	border-bottom: 1px solid #c5c5c5;
+	padding: 6px 6px 0px 6px;
+	margin: 0px;
+	background: url(../img/t4_bg1.gif) top left repeat-x;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+.ticker a {color: #0048c0;}
+
+.ticker span.ticker_category {color: #cccccc;}
+
+.ticker span.ticker_category a {color: #4c4c4c;}
+
+.ticker .scroller {
+	height:20px;
+}
+
+.ticker .section {
+	height:20px;
+}

@@ -1,0 +1,53 @@
+<div class="content_body">
+	<h3><vte:value select="{LNG_INSTALLER_STEP_4}" /></h3>
+	<form action="index.php?step=5" method="post">
+		<div id="installer_steps_form" class="content_items step_4">
+			<div class="info"><vte:value select="{LNG_INSTALLER_INFO_STEP_4}" />:</div>
+			<div class="form_line">
+				<label><vte:value select="{LNG_INSTALLER_DATABASE}" />:</label>
+				<div class="formElement">
+					<input class="text" type="text" name="MYSQL_database" value="{MYSQL_DBNAME}" />
+				</div>
+			</div>
+			<div class="form_line">
+				<label><vte:value select="{LNG_INSTALLER_USER}" />:</label>
+				<div class="formElement">
+					<input class="text" type="text" name="MYSQL_user" value="{MYSQL_DBUSER}" />
+				</div>
+			</div>
+			<div class="form_line">
+				<label><vte:value select="{LNG_INSTALLER_PASSWORD}" />:</label>
+				<div class="formElement">
+					<input class="text" type="password" name="MYSQL_password" value="{MYSQL_DBPASS}" />
+				</div>
+			</div>
+			<h4><vte:value select="{LNG_INSTALLER_ADVANCED_OPTIONS}" />:</h4>
+			<div class="advanced_options">
+
+				<div class="form_line">
+					<label><vte:value select="{LNG_INSTALLER_URL}" />:</label>
+					<div class="formElement">
+						<input class="text" type="text" name="URL" value="{VIVVO_URL}" />
+					</div>
+				</div>
+				<div class="form_line">
+					<label><vte:value select="{LNG_INSTALLER_HOST}" />:</label>
+					<div class="formElement">
+						<input class="text" type="text" name="MYSQL_host" value="localhost" />
+					</div>
+				</div>
+				<div class="form_line">
+					<label><vte:value select="{LNG_INSTALLER_TBL_PREFIX}" />:</label>
+					<div class="formElement">
+						<input class="text" type="text" name="MYSQL_prefix" value="{MYSQL_TABLE_PREFIX}" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content_body_footer">
+			<div class="form_submit_button">
+				<input type="submit" class="button" name="login" value="{LNG_INSTALLER_BUTTON_NEXT_STEP}" />
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,286 @@
+<vte:template>
+	<div class="content_list">
+		<div class="content_list_header">
+			<span class="context_view">
+				<vte:value select="{LNG_ADMIN_VIEW}" /> <vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_FORM}" />: <vte:value select="{form.title}" />
+			</span>
+			<span class="context_help">
+				<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />			</span>
+		</div>
+		<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+		<div class="content_list_body">
+			<div class="content_list_body_header">
+				<div class="content_list_body_header_line1">
+					<span class="button_add_new">
+						<img src="img/button_add_plus.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_ADD_FORM}" title="{LNG_PLUGIN_FORM_BUILDER_ADMIN_ADD_FORM}" /> <a onclick="formBuilderObject.loadForm(0);"><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_ADD_FORM}" /></a>
+					</span>
+					<div>&#160;</div>
+				</div>
+				<vte:if test="{form.id}">
+					<div class="content_list_body_header_line2">
+						<vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_INTRO_TEXT}" />
+						<input class="article_title" type="text" value="&lt;vte:load module=&quot;box_form&quot; search_fid=&quot;{form.id}&quot; /&gt;" />
+					</div>
+				</vte:if>
+			</div>
+			<div id="form_builder_list" class="content_list_items">
+
+				<div id="field_properties">
+					<div id="field_properties_name" class="form_line" style="display:none;">
+						<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_PROPERTIES_NAME}" />:</label>
+						<div class="formElement">
+							<input type="text" class="text" name=" " value="" />
+						</div>
+					</div>
+
+					<div id="field_properties_text" class="form_line" style="display:none;">
+						<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_PROPERTIES_TEXT}" />:</label>
+						<div class="formElement">
+							<textarea> </textarea>
+						</div>
+					</div>
+
+					<div id="field_properties_label" class="form_line" style="display:none;">
+						<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_PROPERTIES_LABEL}" />:</label>
+						<div class="formElement">
+							<input type="text" class="text" name=" " value="" />
+						</div>
+					</div>
+
+					<div id="field_properties_required" class="form_line" style="display:none;">
+						<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_PROPERTIES_REQUIRED}" />:</label>
+						<div class="formElement">
+							<label><input type="checkbox" name=" " value="1" checked="checked" /></label>
+						</div>
+					</div>
+
+					<div id="field_properties_size" class="form_line" style="display:none;">
+						<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_PROPERTIES_SIZE}" />:</label>
+						<div class="formElement">
+							<input type="text" class="text" name=" " value="" />
+						</div>
+					</div>
+
+					<div id="field_properties_column_width" class="form_line" style="display:none;">
+						<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_PROPERTIES_COLUMN_WIDTH}" />:</label>
+						<div class="formElement">
+							<input type="text" class="text" name=" " value="" />
+						</div>
+					</div>
+
+					<div id="field_properties_max_size" class="form_line" style="display:none;">
+						<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_PROPERTIES_MAX_SIZE}" />:</label>
+						<div class="formElement">
+							<input type="text" class="text" name=" " value="" />
+						</div>
+					</div>
+
+					<div id="field_properties_rows" class="form_line" style="display:none;">
+						<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_PROPERTIES_ROWS}" />:</label>
+						<div class="formElement">
+							<input type="text" class="text" name=" " value="" />
+						</div>
+					</div>
+					<vte:literal>
+						<div id="field_properties_validation" class="form_line" style="display:none;">
+							<label>Validation:</label>
+							<div class="formElement">
+								<select class="options" name=" ">
+									<option value="" selected="selected">No</option>
+									<option value="[\w\s]*">AlphaNumeric</option>
+									<option value="\d*">Numeric</option>
+									<option value="[-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*@[-a-zA-Z0-9]+(\.[-a-zA-Z0-9]+)*\.[a-zA-Z]{2,6}">Email</option>
+									<option value="reg_exp" >Regexp</option>
+								</select>
+							</div>
+						</div>
+					</vte:literal>
+					<div id="field_properties_reg_exp" class="form_line" style="display:none;">
+						<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_PROPERTIES_REGEXP}" />:</label>
+						<div class="formElement">
+							<input type="text" class="text" name="" value="" />
+						</div>
+					</div>
+
+					<div id="field_properties_description" class="form_line" style="display:none;">
+						<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_PROPERTIES_DESCRIPTION}" />:</label>
+						<div class="formElement">
+							<textarea name=" "> </textarea>
+						</div>
+					</div>
+
+					<div id="field_properties_options" class="form_line" style="display:none;">
+						<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_PROPERTIES_OPTIONS}" />:</label>
+						<div class="formElement">
+							<textarea name=" "> </textarea>
+						</div>
+					</div>
+
+					<div id="field_properties_error_message" class="form_line" style="display:none;">
+						<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_PROPERTIES_ERROR_MESSAGE}" />:</label>
+						<div class="formElement">
+							<input type="text" class="text" name=" " value="" />
+						</div>
+					</div>
+					<div id="field_properties_apply" class="form_line" style="display:none;">
+						<label> </label>
+						<div class="formElement">
+							<button type="submit" id="field_properties_apply_button"><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_APPLY}" /></button>
+						</div>
+					</div>
+				</div>
+				<div id="formHolder">
+					<div id="properties_info_box"><img src="img/icon_info.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_INFO}" /> <vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_PROPERTIES_SHORT_INSTRUCTIONS}" /></div>
+					<vte:foreach from="{form_elements}" item="form_element">
+						<vte:if test="{form_element.type} = 'text'">
+							<div class="form_line type_text">
+								<img class="remove_prop" src="../{PLUGIN_ROOT}admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+								<p><vte:value select="{form_element.label}" /></p>
+							</div>
+						</vte:if>
+						<vte:if test="{form_element.type} = 'heading'">
+							<div class="form_line type_heading">
+								<img class="remove_prop" src="../{PLUGIN_ROOT}admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+								<strong><vte:value select="{form_element.label}" /></strong>
+							</div>
+						</vte:if>
+						<vte:if test="{form_element.type} = 'input'">
+							<div class="form_line type_input" title="{form_element.error_message}">
+								<img class="remove_prop" src="../{PLUGIN_ROOT}admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+								<label>
+									<vte:attribute name="class"><vte:if test="{form_element.required}">required</vte:if></vte:attribute>
+									<vte:value select="{form_element.label}" />
+								</label>
+								<div class="formElement" title="{form_element.reg_exp}">
+									<input type="text" size="{form_element.size}" maxlength="{form_element.max_size}" name="{form_element.name}" value="{form_element.selected}">
+										<vte:attribute name="class"><vte:if test="!{form_element.size}">form_builder_text</vte:if></vte:attribute>
+									</input>
+									<img class="info_help" src="img/icon_pref_help.gif" title="{form_element.description}" />
+								</div>
+							</div>
+						</vte:if>
+						<vte:if test="{form_element.type} = 'file_upload'">
+							<div class="form_line type_file_upload" title="{form_element.error_message}">
+								<img class="remove_prop" src="../{PLUGIN_ROOT}admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+								<label>
+									<vte:attribute name="class"><vte:if test="{form_element.required}">required</vte:if></vte:attribute>
+									<vte:value select="{form_element.label}" />
+								</label>
+								<div class="formElement" title="{form_element.reg_exp}">
+									<input type="file" name="{form_element.name}" value="{form_element.selected}" class="form_builder_file_upload" />
+									<img class="info_help" src="img/icon_pref_help.gif" title="{form_element.description}" />
+								</div>
+							</div>
+						</vte:if>
+						<vte:if test="{form_element.type} = 'textarea'">
+							<div class="form_line type_text_area" title="{form_element.error_message}">
+								<img class="remove_prop" src="../{PLUGIN_ROOT}admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+								<label>
+									<vte:attribute name="class"><vte:if test="{form_element.required}">required</vte:if></vte:attribute>
+									<vte:value select="{form_element.label}" />
+								</label>
+								<div class="formElement" title="{form_element.reg_exp}">
+									<textarea class="form_builder_textarea" cols="{form_element.size}" rows="{form_element.max_size}" name="{form_element.name}"><vte:value select="{form_element.selected}" /></textarea>
+									<img class="info_help" src="img/icon_pref_help.gif" title="{form_element.description}" />
+								</div>
+							</div>
+						</vte:if>
+						<vte:if test="{form_element.type} = 'submit'">
+							<div class="form_line type_submit">
+								<img class="remove_prop" src="../{PLUGIN_ROOT}admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+								<label> </label>
+								<div class="formElement">
+									<input type="submit" name="{form_element.name}" value="{form_element.label}" />
+								</div>
+							</div>
+						</vte:if>
+						<vte:if test="{form_element.type} = 'checkbox'">
+							<div class="form_line type_checkbox" title="{form_element.error_message}">
+								<img class="remove_prop" src="../{PLUGIN_ROOT}admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+								<label>
+									<vte:attribute name="class"><vte:if test="{form_element.required}">required</vte:if></vte:attribute>
+									<vte:value select="{form_element.label}" />
+								</label>
+								<div class="formElement">
+									<label>
+										<input type="checkbox" name="{form_element.name}">
+											<vte:attribute name="checked"><vte:if test="{form_element.selected}">checked</vte:if></vte:attribute>
+										</input>
+										<vte:value select="{form_element.options}" />
+									</label>
+									<img class="info_help" src="img/icon_pref_help.gif" title="{form_element.description}" />
+								</div>
+							</div>
+						</vte:if>
+						<vte:if test="{form_element.type} = 'drop_down'">
+							<div class="form_line type_drop_down" title="{form_element.error_message}">
+								<img class="remove_prop" src="../{PLUGIN_ROOT}admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+								<label>
+									<vte:attribute name="class"><vte:if test="{form_element.required}">required</vte:if></vte:attribute>
+									<vte:value select="{form_element.label}" />
+								</label>
+								<div class="formElement">
+									<select class="form_builder_options" name="{form_element.name}" size="{form_element.size}">
+										<vte:foreach from="{form_element.get_options}" item="option">
+											<option value="{option}">
+												<vte:attribute name="selected"><vte:if test="{option} = {form_element.selected}">selected</vte:if></vte:attribute>
+												<vte:value select="{option}" />
+											</option>
+										</vte:foreach>
+									</select>
+									<img class="info_help" src="img/icon_pref_help.gif" title="{form_element.description}" />
+								</div>
+							</div>
+						</vte:if>
+						<vte:if test="{form_element.type} = 'radio'">
+							<div class="form_line type_radio" title="{form_element.error_message}">
+								<img class="remove_prop" src="../{PLUGIN_ROOT}admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+								<label>
+									<vte:attribute name="class"><vte:if test="{form_element.required}">required</vte:if></vte:attribute>
+									<vte:value select="{form_element.label}" />
+								</label>
+								<div class="formElement">
+									<vte:foreach from="{form_element.get_options}" item="option">
+										<label>
+											<input type="radio" value="{option}"  name="{form_element.name}">
+												<vte:attribute name="checked"><vte:if test="{option} = {form_element.selected}">checked</vte:if></vte:attribute>
+											</input>
+											<vte:value select="{option}" />
+										</label>
+									</vte:foreach>
+									<img class="info_help" src="img/icon_pref_help.gif" title="{form_element.description}" />
+								</div>
+							</div>
+						</vte:if>
+					</vte:foreach>
+				</div>
+			</div>
+			<div class="content_list_body_footer" style="position:static;">
+				<div class="form_submit_button">
+					<vte:if test="{form.id}">
+						<button class="primary edit" id="form_submit" type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+						<vte:else>
+							<button class="primary add" id="form_submit" type="submit"><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_SAVE_FORM}" /></button>
+						</vte:else>
+					</vte:if>
+					<vte:if test="{form.id}">
+						<button class="secondary" id="form_delete" value="{form.id}"><vte:value select="{LNG_ADMIN_DELETE}" /></button>
+					</vte:if>
+				</div>
+			</div>
+		</div>
+		<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+	</div>
+	<vte:if test="{list_output}">
+		<script type="text/javascript">
+			<vte:foreach item = "message" from = "{DUMP_MESSAGES}">
+				adminList.addDump('<vte:value select="{message.get_message|htmlspecialchars}" />','<vte:value select="{message.type}" />');
+			</vte:foreach>
+		</script>
+	</vte:if>
+	<!--
+	<script type="text/javascript">
+		var formBuilderObject = new vivvoSortable('formHolder', 'form_builder_properties');
+	</script>
+	-->
+</vte:template>

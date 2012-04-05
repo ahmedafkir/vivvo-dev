@@ -1,0 +1,66 @@
+<vte:template>
+    <vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/file_picker_includes.xml" />
+	<form action="#" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+		<input type="hidden" name="action" value="vivvoCore" />
+		<input type="hidden" name="cmd" value="preferences" />
+		<div id="general_preferences">
+
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_WEBSITE_TITLE}" name="VIVVO_WEBSITE_TITLE" value="{VIVVO_WEBSITE_TITLE}" tooltip="{LNG_ADMIN_TOOLTIP_WEBSITE_TITLE}"/>
+
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_ADMIN_EMAIL}" name="VIVVO_ADMINISTRATORS_EMAIL" value="{VIVVO_ADMINISTRATORS_EMAIL}" tooltip="{LNG_ADMIN_TOOLTIP_ADMINISTRATOR_EMAIL}"/>
+
+			<div class="form_line">
+				<label><vte:value select="{LNG_ADMIN_DEFAULT_LANGUAGE}" />: </label>
+				<div class="formElement">
+					<select class="options" name="VIVVO_DEFAULT_LANG">
+						<vte:box module="box_files">
+							<vte:params>
+								<vte:param name="dir" value="lang" />
+								<vte:param name="ext" value="php" />
+							</vte:params>
+							<vte:template>
+								<vte:foreach item="file" from="{file_list}">
+									<option value="{file.get_basename}">
+										<vte:attribute name="selected">
+											<vte:if test="{VIVVO_DEFAULT_LANG} = {file.get_basename}">selected</vte:if>
+										</vte:attribute>
+										<vte:value select="{file.get_basename|ucfirst}" />
+									</option>
+								</vte:foreach>
+							</vte:template>
+						</vte:box>
+					</select>
+					<img class="info_help" src="img/icon_pref_help.gif" title="{LNG_ADMIN_TOOLTIP_DEFAULT_LANGUAGE}" />
+				</div>
+			</div>
+
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="{LNG_ADMIN_META_KEYWORDS}" name="VIVVO_GENERAL_META_KEYWORDS" value="{VIVVO_GENERAL_META_KEYWORDS}" tooltip="{LNG_ADMIN_TOOLTIP_META_KEYWORDS}"/>
+
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="{LNG_ADMIN_META_DESCRIPTION}" name="VIVVO_GENERAL_META_DESCRIPTION" value="{VIVVO_GENERAL_META_DESCRIPTION}" tooltip="{LNG_ADMIN_TOOLTIP_META_DESCRIPTION}"/>
+
+            <vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_file_picker.xml" label="{LNG_ADMIN_WEBSITE_LOGO}" name="VIVVO_GENERAL_WEBSITE_LOGO" value="{VIVVO_GENERAL_WEBSITE_LOGO}" input_id="VIVVO_GENERAL_WEBSITE_LOGO_image" link_id="VIVVO_GENERAL_WEBSITE_LOGO_image_choose" options="inputId: 'VIVVO_GENERAL_WEBSITE_LOGO_image', search_ext: 'jpg,png,gif,jpeg', upload: true, relative: true, butonLabel: '{LNG_ADMIN_INSERT_IMAGE}', noneSelected: '{LNG_ADMIN_NO_IMAGE_SELECTED}'"  tooltip="{LNG_ADMIN_TOOLTIP_WEBSITE_LOGO}"/>
+
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_ALLOWED_EXTENSIONS}" name="VIVVO_ALLOWED_EXTENSIONS" value="{VIVVO_ALLOWED_EXTENSIONS}" tooltip="{LNG_ADMIN_TOOLTIP_ALLOWED_TYPES}"/>
+
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_DATA_TIME_FORMAT}" name="VIVVO_DATE_FORMAT" value="{VIVVO_DATE_FORMAT}" tooltip="{LNG_ADMIN_TOOLTIP_DATE_TIME}"/>
+
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_select_timezone_autocomplete.xml" id="time_zone" label="{LNG_ADMIN_TIME_ZONE_FORMAT}" name="VIVVO_GENERAL_TIME_ZONE_FORMAT" value="{VIVVO_GENERAL_TIME_ZONE_FORMAT}" name_value="{VIVVO_GENERAL_TIME_ZONE_FORMAT}" tooltip="{LNG_ADMIN_TOOLTIP_TIME_ZONE}" />
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="{LNG_ADMIN_ALLOWED_IP_ACCESS}" name="VIVVO_ALLOWED_IP_ADDRESSES" value="{VIVVO_ALLOWED_IP_ADDRESSES}" tooltip="{LNG_ADMIN_ALLOWED_IP_ACCESS_INFO}\n\n{LNG_ADMIN_USER_IP_ADDRESS} {current_user.user_ip}"/>
+
+			<div class="separator_gray"><!--  --> </div>
+
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_EXPAND_ADVANCED_OPTIONS}" name="VIVVO_EXPAND_ADVANCED_OPTIONS" value="{VIVVO_EXPAND_ADVANCED_OPTIONS}" tooltip="{LNG_ADMIN_TOOLTIP_EXPAND_ADVANCED_OPTIONS}" />
+
+			<div class="separator_gray"><!--  --> </div>
+
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_CLOSE_SITE}" name="VIVVO_CLOSE_SITE" value="{VIVVO_CLOSE_SITE}" tooltip="{LNG_ADMIN_TOOLTIP_CLOSE_SITE}" />
+
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="{LNG_ADMIN_CLOSE_SITE_REASON}" name="VIVVO_CLOSE_SITE_REASON" value="{VIVVO_CLOSE_SITE_REASON}" tooltip="{LNG_ADMIN_TOOLTIP_CLOSE_SITE_REASON}"/>
+		</div>
+		<div class="content_list_body_footer">
+			<div class="form_submit_button"><button class="primary" type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button></div>
+		</div>
+	</form>
+</vte:template>

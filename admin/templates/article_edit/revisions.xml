@@ -1,0 +1,74 @@
+<div class="form_box">
+	<div class="form_box_body">
+		<vte:if test="{article.get_id}">
+			<vte:else>
+				<div class="form_box_info">
+					<img src="img/icon_info.gif" alt="Info" />
+					<vte:value select="{LNG_ADMIN_REVISIONS_MUST_SAVE_ARTICLE_FIRST}" />
+				</div>
+			</vte:else>
+			<vte:box module="box_article_revisions">
+				<vte:params>
+					<vte:param name="search_article_id" value="{article.get_id}" />
+					<vte:param name="search_limit" value="-1" />
+					<vte:param name="search_sort_by" value="type,version" />
+					<vte:param name="search_order" value="descending" />
+				</vte:params>
+				<vte:template>
+					<vte:if test="{article_revision_list}">
+						<ul class="quick_launch">
+							<vte:foreach from="{article_revision_list}" item="revision">
+								<vte:if test="{revision.get_type} = '0'">
+									<li>
+										<div class="actions_small_left">
+											<a href="{VIVVO_URL}index.php?news={revision.get_article_id}&amp;rev={revision.get_version}" target="_blank" title="{LNG_ADMIN_PREVIEW}"><img src="img/icon_small_preview.gif" alt="{LNG_ADMIN_PREVIEW}" /></a>
+											<img onclick="adminArticle.revertTo({revision.get_version});" src="img/icon_small_revert.gif" alt="{LNG_ADMIN_REVERT}" title="{LNG_ADMIN_REVERT}" />
+										</div>
+										<span class="no_action">
+
+											<vte:value select="{revision.get_creator.get_name}" />,
+											<vte:value select="{revision.get_created_time|pretty_date:'d. M, H:i'}" />
+
+										</span>
+									</li>
+								</vte:if>
+							</vte:foreach>
+						</ul>
+						<div class="separator_gray"><!-- --></div>
+						<ul class="quick_launch">
+							<vte:foreach from="{article_revision_list}" item="revision">
+								<vte:if test="{revision.get_type} = '1'">
+									<li>
+										<div class="actions_small_left">
+											<a href="{VIVVO_URL}index.php?news={revision.get_article_id}&amp;rev={revision.get_version}" target="_blank" title="{LNG_ADMIN_PREVIEW}"><img src="img/icon_small_preview.gif" alt="{LNG_ADMIN_PREVIEW}" /></a>
+											<img onclick="adminArticle.revertTo({revision.get_version});" src="img/icon_small_revert.gif" alt="{LNG_ADMIN_REVERT}" title="{LNG_ADMIN_REVERT}" />
+										</div>
+										<span class="no_action">
+											<vte:value select="{LNG_ADMIN_REVISIONS_AUTO_DRAFT}" /> <vte:value select="{revision.get_created_time|pretty_date}" />
+										</span>
+									</li>
+								</vte:if>
+							</vte:foreach>
+						</ul>
+						<vte:else>
+							<div class="form_box_info">
+								<img src="img/icon_info.gif" alt="{LNG_ADMIN_INFO}" /> <vte:value select="{LNG_ADMIN_NO_REVISIONS}" />
+							</div>
+						</vte:else>
+					</vte:if>
+					<script type="text/javascript">
+						window.articleRevisions = {};
+						<vte:foreach from="{article_revision_list}" item="revision">
+						articleRevisions['<vte:value select="{revision.get_version}" />'] = {
+							title: <vte:value select="{revision.get_title|json_encode}" />,
+							summary: <vte:value select="{revision.get_abstract|json_encode}" />,
+							body: <vte:value select="{revision.get_body|json_encode}" />
+						};
+						</vte:foreach>
+						window.VIVVO_REVISIONS_AUTODRAFT_TIME = <vte:value select="{VIVVO_REVISIONS_AUTODRAFT_TIME|intval}" />;
+					</script>
+				</vte:template>
+			</vte:box>
+		</vte:if>
+	</div>
+</div>

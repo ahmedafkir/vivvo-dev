@@ -1,0 +1,8 @@
+<vte:template>
+	<span class="context_help">
+		<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />	</span>
+	<ul id="preferences_horizontal_tab_list" class="tabs">
+		<li><a href="#modules_preferences"><span><vte:value select="{LNG_ADMIN_MODULES}" /></span></a></li>	
+		<li><a href="#image_preferences"><span><vte:value select="{LNG_ADMIN_IMAGE_SIZE}" /></span></a></li>
+	</ul>
+</vte:template>

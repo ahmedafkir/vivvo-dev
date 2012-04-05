@@ -1,0 +1,134 @@
+<vte:template>
+	<div class="content_list">
+		<div class="content_list_header">
+			<span class="context_view">
+				<vte:value select="{LNG_ADMIN_VIEW}" />: 
+				<vte:if test="{newsletter.id}">
+					<vte:value select="{newsletter.subject}" />
+					<vte:else>
+						<vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_ADD_NEW_NEWSLETTER}" />
+					</vte:else>
+				</vte:if>
+			</span>
+			<span class="context_help">
+				<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />			</span>
+		</div>
+		<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+		<form id="newsletter_form_element" name="newsletter_form_element" method="post" onsubmit="return false" action="" >
+			<input type="hidden" name="action" value="newsletter" />
+			<vte:if test="{newsletter.id}">
+				<input type="hidden" name="PLUGIN_NEWSLETTER_id" id="plugin_newsletter_id" value="{newsletter.id}" />
+				<input type="hidden" name="search_id" value="{newsletter.id}" />
+			</vte:if>
+			<div class="content_list_body">
+				<div class="content_list_body_header">
+					<div class="content_list_body_header_line1">
+						<label><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_TEST_ONLY}" />: </label>
+						<label>
+							<input type="radio" name="PLUGIN_NEWSLETTER_test" value="1">
+								<vte:attribute name="checked"> 
+									<vte:if test="{newsletter.test}">
+										checked
+									</vte:if>
+								</vte:attribute>
+							</input>
+							<vte:value select="{LNG_ADMIN_YES}" />
+						</label>
+						<label>
+							<input type="radio" name="PLUGIN_NEWSLETTER_test" value="0">
+								<vte:attribute name="checked">
+									<vte:if test="!{newsletter.test}">
+										checked
+									</vte:if>
+								</vte:attribute>
+							</input>
+							<vte:value select="{LNG_ADMIN_NO}" /> <img class="info_help" style="cursor:pointer;" src="img/icon_pref_help.gif" title="{LNG_PLUGIN_NEWSLETTER_ADMIN_TEST_INFO}" />
+						</label>
+							
+						<div style=" padding-top: 12px">
+							<label><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_TEST_EMAIL}" />:</label> 
+							<input type="text" class="text" name="PLUGIN_NEWSLETTER_test_email" value="{newsletter.test_email}" style="width: 340px;" />
+						</div>
+					</div>
+				
+					<div class="content_list_body_header_line2">
+						<div id="newsletter_list">
+							<div style=" padding-bottom: 12px">
+								<vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_SUBJECT}" />: <input type="text" class="article_title" name="PLUGIN_NEWSLETTER_subject" value="{newsletter.subject}" />
+							</div>	
+							<textarea style="width: 99%; height: 300px;" name="PLUGIN_NEWSLETTER_body"><vte:value select="{newsletter.body}" /></textarea>
+							
+							<div style=" padding-top: 12px">
+								<label><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_PARSE_BODY}" />:</label>
+								<label>
+									<input type="radio" name="PLUGIN_NEWSLETTER_vte_template" value="1">
+										<vte:attribute name="checked"> 
+											<vte:if test="{newsletter.vte_template}">
+												checked
+											</vte:if>
+										</vte:attribute>
+									</input>
+									<vte:value select="{LNG_ADMIN_YES}" />
+								</label>
+								<label>
+									<input type="radio" name="PLUGIN_NEWSLETTER_vte_template" value="0">
+										<vte:attribute name="checked">
+											<vte:if test="{newsletter.id}">
+												<vte:if test="!{newsletter.vte_template}">
+													checked
+												</vte:if>
+												<vte:else>
+													checked	
+												</vte:else>
+											</vte:if>
+										</vte:attribute>
+									</input>
+									<vte:value select="{LNG_ADMIN_NO}" /> <img class="info_help" style="cursor:pointer;" src="img/icon_pref_help.gif" title="{LNG_PLUGIN_NEWSLETTER_ADMIN_PARSE_BODY_INFO}" />
+								</label>
+							</div>
+							
+							<div class="separator_gray"> </div>
+
+							<label><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_SEND_TO_GROUPS}" />: <img class="info_help" style="cursor:pointer;" src="img/icon_pref_help.gif" title="{LNG_PLUGIN_NEWSLETTER_ADMIN_SEND_TO_GROUPS_INFO}" /></label><br />
+							<select class="options" name="PLUGIN_NEWSLETTER_groups[]" size="7" style="width: 250px;" multiple="multiple">
+								<option value="-1">
+									<vte:attribute name="selected"> 
+										<vte:if test="-1 in {newsletter.groups}">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_SUBSCRIBERS}" />
+								</option>
+								<vte:foreach from="{group_list}" item="group">
+									<option value="{group.id}">
+										<vte:attribute name="selected">
+											<vte:if test="{group.id} in {newsletter.groups}">selected</vte:if>
+										</vte:attribute>
+										<vte:value select="{group.name}" />
+									</option>
+								</vte:foreach>
+								
+							</select>
+						</div>
+					</div>
+					<div id="comment_list_body_footer" class="content_list_body_footer" style="position:static;">
+						<div class="form_submit_button">
+							<button class="primary" type="submit" onClick="adminList.newsletterAction('send');" value ="send"><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_SEND}" /></button>
+							<vte:if test="{newsletter.id}">
+								<button type="submit" id="edit_newsletter" onClick="adminList.newsletterAction('edit');" value ="edit"><vte:value select="{LNG_ADMIN_EDIT}" /></button>
+								<vte:else>
+									<button type="submit" id="save_newsletter" onClick="adminList.newsletterAction('add');" value ="add"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+								</vte:else>
+							</vte:if>
+							<button class="secondary" type="submit" id="delete_newsletter" onClick="adminList.newsletterAction('delete');return false" value ="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+		<script type="text/javascript">
+			<vte:foreach item = "message" from = "{DUMP_MESSAGES}">
+				adminList.addDump('<vte:value select="{message.get_message|htmlspecialchars}" />','<vte:value select="{message.type}" />');
+			</vte:foreach>
+		</script>
+	</div>
+</vte:template>

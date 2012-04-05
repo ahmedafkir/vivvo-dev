@@ -1,0 +1,14 @@
+<div id="maintenance_quick_link">
+	<ul id="maintenance_tabs" class="quick_launch">
+		<li><a id="backup_panel" href="#backups"><vte:value select="{LNG_ADMIN_MAINTENANCE_CREATE_MANAGE_BACKUP}" /></a></li>
+		<li><a id="cron_tasks_panel" href="#cron_tasks"><vte:value select="{LNG_ADMIN_MAINTENANCE_CRON_TASKS}" /></a></li>
+		<li style="display:none;"><a id="manual_tasks_panel" href="#manual_tasks"><vte:value select="{LNG_ADMIN_MAINTENANCE_MANUAL_TASKS}" /></a></li>
+	</ul>
+	<div class="separator_gray"><!-- --></div>
+	<div class="tab_holders_box_header"><vte:value select="{LNG_ADMIN_MAINTENANCE_MANUAL_TASKS}" />:</div>
+	<ul id="maintenance_manual_tasks" class="quick_launch">
+		<li><a id="database_maintenance" href="#manual_tasks"><vte:value select="{LNG_ADMIN_MAINTENANCE_DATABASE_MAINTENANCE}" /></a></li>
+		<li><a id="clean_cache" href="#manual_tasks"><vte:value select="{LNG_ADMIN_MAINTENANCE_CLEAN_CACHE}" /></a></li>
+		<li><a id="relate_articles" href="#manual_tasks"><vte:value select="{LNG_ADMIN_MAINTENANCE_RELATE_ARTICLES}" /></a></li>
+	</ul>
+</div>

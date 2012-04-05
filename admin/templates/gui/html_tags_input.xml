@@ -1,0 +1,29 @@
+<div class="autocomplete-input form_line">
+	<input type="hidden" value="" id="{input_id}" name="{name}" />
+	<label><vte:value select="{label}" /> <img src="img/loading_bar.gif" class="loader" alt="Loading..." style="display:none" /></label>
+	<div class="input-text">
+		<input type="text" value="" />
+	</div>
+	<div class="autolist">
+		<div class="default"><vte:value select="{LNG_ADMIN_START_TYPING_TAG_NAME}" /></div>
+		<ul class="feed">
+			<vte:foreach from="{items}" item="item">
+				<li rel="{item[topic_id]}:{item[tag_id]}" category="{item[topic_name]}">
+					<vte:value select="{item[tag_name]}" />
+				</li>
+			</vte:foreach>
+		</ul>
+	</div>
+	<vte:if test="{tooltip}">
+		<img class="info_help" src="img/icon_pref_help.gif" title="{tooltip}" />
+	</vte:if>
+	<vte:if test="!{noscript}">
+		<script type="text/javascript">
+			<vte:if test="!{feedurl}">
+				<vte:variable name="feedurl" value="article_edit.php?tags_feed" />
+			</vte:if>
+			<vte:variable name="feedurl" value="{feedurl|html_entity_decode}" />
+			textboxlistItems.push({input_id: <vte:value select="{input_id|json_encode}" />, feedurl: <vte:value select="{feedurl|json_encode}" />, category_id: <vte:value select="{topic_id|json_encode}" />, default_category: <vte:value select="{default_topic_name|json_encode}" />});
+		</script>
+	</vte:if>
+</div>

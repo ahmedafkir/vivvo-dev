@@ -1,0 +1,11 @@
+<vte:template>
+	<div id="comments_articles" style="display:none">
+		<vte:if test="{list_output} != true">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_SEARCH_TITLE}" id="article_quick_filter" />
+		</vte:if>
+		<div class="separator_gray"><!-- --></div>
+		<div id="article_list_holder">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/article_list.xml" />
+		</div>
+	</div>
+</vte:template>

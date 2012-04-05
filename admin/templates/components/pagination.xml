@@ -1,0 +1,23 @@
+<vte:template>
+	<span class="pagination_total">
+		<vte:value select="{displaying}" /> <vte:value select="{LNG_ADMIN_OF}" /> <vte:value select="{total_records}" />
+	</span> 
+	<span class="pagination">	
+		<vte:if test="{previous_page_group} != ''">
+			<span class="page_button" onclick="adminList.listUpdate({previous_page_group_number});">&lt;&lt;</span>
+		</vte:if>
+			 
+		<vte:foreach item = "page" from = "{page_list}">
+			<vte:if test="{current_page} != {page[number]}">
+				<span class="page_button" onclick="adminList.listUpdate({page[number]});"><vte:value select="{page[number]}" /></span>
+				<vte:else>
+					<span class="page_active"><vte:value select="{page[number]}" /></span>
+				</vte:else>
+			</vte:if>
+		</vte:foreach>
+			
+		<vte:if test="{next_page_group} != ''">
+			<span class="page_button" onclick="adminList.listUpdate({next_page_group_number});">&gt;&gt;</span>
+		</vte:if>
+	</span>
+</vte:template>

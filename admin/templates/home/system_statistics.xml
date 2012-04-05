@@ -1,0 +1,7 @@
+<ul class="dashboard_info_list">
+	<li class="row_0"><vte:value select="{LNG_ADMIN_STATS_DB_SIZE}" />: <strong><vte:value select="{system_database}" /> MB</strong> (<a id="backup_panel" href="maintenance.php#backups"><vte:value select="{LNG_ADMIN_MAINTENANCE_CREATE_MANAGE_BACKUP}" /></a>)</li>
+	<li><vte:value select="{LNG_ADMIN_STATS_TEMPLATES}" />: <strong><vte:value select="{system_templates}" /></strong> (<strong><vte:value select="{system_templates_size}" /></strong> MB)</li>
+	<li class="row_0"><vte:value select="{LNG_ADMIN_STATS_FILES_UPLOADED}" />: <strong><vte:value select="{system_files}" /></strong> (<strong><vte:value select="{system_files_size}" /></strong> MB)</li>
+	<li><vte:value select="{LNG_ADMIN_STATS_BACKUP}" />: <strong><vte:value select="{system_backup}" /></strong> (<strong><vte:value select="{system_backup_size}" /></strong> MB)</li>
+	<li class="row_0"><vte:value select="{LNG_ADMIN_STATS_CACHE_SIZE}" />: <strong><vte:value select="{system_cache_size}" /></strong> MB</li>
+</ul>

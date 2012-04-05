@@ -1,0 +1,367 @@
+<vte:box module="box_article_list" params = "{content_params}">
+	<vte:template>
+		<vte:if test="{content_params[search_options][search_status]} = '-2'">
+			<vte:variable name="IN_TRASHBIN" value="1" />
+		</vte:if>
+		<div class="content_list">
+			<div class="content_list_header">
+				<span class="context_view">
+					<vte:value select="{LNG_ADMIN_VIEW}" />:
+					<vte:if test="{list_title}">
+						<vte:value select="{list_title}" />
+						<vte:else>
+							<vte:value select="{LNG_ADMIN_ARTICLES}" />
+						</vte:else>
+					</vte:if>
+				</span>
+				<span class="context_help">
+					<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />				</span>
+			</div>
+			<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+			<div class="content_list_body">
+				<div class="content_list_body_header">
+					<div class="content_list_body_header_line1">
+						<vte:if test="{current_user.can|'WRITE'}">
+							<span class="button_add_new">
+								<img src="img/button_add_plus.gif" alt="{LNG_ADMIN_ADD_NEW_ARTICLE}" title="{LNG_ADMIN_ADD_NEW_ARTICLE}" /> <a href="article_edit.php"><vte:value select="{LNG_ADMIN_ADD_NEW_ARTICLE}" /></a>
+							</span>
+						</vte:if>
+						<vte:if test="{current_user.is|'EDITOR'}">
+							<vte:value select="{LNG_ADMIN_SELECT}" />:
+							<span class="action_button" onclick="adminList.selectAll();"><vte:value select="{LNG_ADMIN_ALL}" /></span>
+							<span class="action_button" onclick="adminList.invertSelection();"><vte:value select="{LNG_ADMIN_INVERT}" /></span>
+							<vte:if test="{article_list}">
+								<vte:if test="!{disable_all}">
+									<span class="action_button" onclick="adminList.selectAllMatching('{LNG_ADMIN_SELECTED}: {article_list_object.get_total_count} {LNG_ADMIN_ARTICLES}');">
+										<vte:value select="{LNG_ADMIN_ALL_ARTICLES}" />(<vte:value select="{article_list_object.get_total_count}" />)
+									</span>
+								</vte:if>
+							</vte:if>
+							<select class="action-select none_selected" disabled="disabled" onchange="try&#123;adminList.onListAction(this.value);this.selectedIndex=0;&#125;catch(e)&#123;&#125;">
+								<option value="0" selected="selected"><vte:value select="{LNG_ADMIN_SELECT_ACTION}" /></option>
+                                <vte:if test="{current_user.can_change_status|'_','*'}">
+									<optgroup label="{LNG_ADMIN_SET_STATUS}">
+										<vte:if test="{current_user.can_change_status|'0','*'}">
+											<option value="status.0"><vte:value select="{LNG_ADMIN_PENDING}" /></option>
+										</vte:if>
+										<vte:if test="{current_user.can_change_status|'1','*'}">
+											<option value="status.1"><vte:value select="{LNG_ADMIN_ACTIVE}" /></option>
+										</vte:if>
+										<vte:if test="{current_user.can_change_status|'-1','*'}">
+											<option value="status.-1"><vte:value select="{LNG_ADMIN_ARCHIVED}" /></option>
+										</vte:if>
+									</optgroup>
+								</vte:if>
+								<vte:if test="{IN_TRASHBIN}">
+									<option value="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></option>
+									<vte:else>
+										<vte:if test="{current_user.can|'MANAGE_TAGS'}">
+											<option value="mark-headline"><vte:value select="{LNG_ADMIN_MARK_HEADLINE}" /></option>
+											<option value="apply-tags"><vte:value select="{LNG_ADMIN_APPLY_TAGS}" /></option>
+										</vte:if>
+										<vte:if test="{current_user.can_change_status|'-2','*'}">
+											<option value="status.-2"><vte:value select="{LNG_ADMIN_DELETE}" /></option>
+										</vte:if>
+										<optgroup label="{LNG_ADMIN_MOVE_TO}">
+											<vte:if test="{current_user.is|'WRITE','Categories','0'}">
+												<vte:box module="box_sections">
+													<vte:params>
+														<vte:param name="id" value="0" />
+														<vte:param name="prefix" value="" />
+													</vte:params>
+													<vte:template>
+														<vte:foreach item = "category" from = "{categories}">
+															<vte:if test="!{category.get_redirect}">
+																<option value="category_id.{category.id}"><vte:value select="{prefix}" />- <vte:value select="{category.category_name}" /></option>
+															</vte:if>
+															<vte:if test="{category.subcategories}">
+																<vte:load module="box_sections" id="{category.id}" template_string="{template_string}" prefix="&#160;{prefix}" />
+															</vte:if>
+														</vte:foreach>
+													</vte:template>
+												</vte:box>
+												<vte:else>
+													<vte:box module="box_sections">
+														<vte:params>
+															<vte:param name="search_ids" value="{current_user.get_privilege_object_ids|'WRITE','Categories'}" />
+														</vte:params>
+														<vte:template>
+															<vte:foreach item="category" from="{categories}">
+																<vte:if test="!{category.get_redirect}">
+																	<option value="category_id.{category.id}"><vte:value select="{prefix}" />- <vte:value select="{category.category_name}" /></option>
+																</vte:if>
+															</vte:foreach>
+														</vte:template>
+													</vte:box>
+												</vte:else>
+											</vte:if>
+										</optgroup>
+									</vte:else>
+								</vte:if>
+							</select>
+							<vte:else>
+								<div>&#160;</div>
+							</vte:else>
+						</vte:if>
+					</div>
+					<div class="content_list_body_header_line2">
+						<form id="article_list_options_form" name="article_list_options_form">
+							<span class="box_pagination">
+								<vte:if test="{article_list}">
+									<vte:load module="box_pagination" list="{article_list_object}" template="{VIVVO_FS_ADMIN_DIR}templates/components/pagination.xml" max_page="5" />
+								</vte:if>
+							</span>
+							<vte:value select="{LNG_ADMIN_SORT_BY}" />
+							<select name="search_sort_by" onchange="adminList.addOrderParams();">
+								<option value="order_num.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'order_num.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_DEFAULT_ORDER}" />
+								</option>
+								<option value="created.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'created.ascending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_DATE}" /> <vte:value select="{LNG_ADMIN_ASC}" />
+								</option>
+								<option value="created.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'created.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_DATE}" /> <vte:value select="{LNG_ADMIN_DESC}" />
+								</option>
+								<option value="title.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'title.ascending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_TITLE}" /> <vte:value select="{LNG_ADMIN_ASC}" />
+								</option>
+								<option value="title.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'title.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_TITLE}" /> <vte:value select="{LNG_ADMIN_DESC}" />
+								</option>
+								<option value="author.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'author.ascending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_AUTHOR}" /> <vte:value select="{LNG_ADMIN_ASC}" />
+								</option>
+								<option value="author.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'author.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_AUTHOR}" /> <vte:value select="{LNG_ADMIN_DESC}" />
+								</option>
+							</select>
+							<vte:value select="{LNG_ADMIN_ITEMS_PER_PAGE}" />:
+							<select name="search_limit" onchange="adminList.addOrderParams();">
+								<option value="10">10</option>
+								<option value="20">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 20">selected</vte:if>
+									</vte:attribute>
+									20
+								</option>
+								<option value="30">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 30">selected</vte:if>
+									</vte:attribute>
+									30
+								</option>
+								<option value="50">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 50">selected</vte:if>
+									</vte:attribute>
+									50
+								</option>
+							</select>
+						</form>
+					</div>
+				</div>
+				<div id="article_list" class="content_list_items">
+					<vte:if test="{article_list}">
+						<vte:foreach item="article" from="{article_list}" key="index">
+							<div id="article_order_list_{article.get_id}" class="item row_{index|mod:'2'}">
+								<div class="item_status">
+									<vte:if test="{article.get_status} = -2">
+										<img src="img/icon_status_soft_delete.gif" alt="{LNG_ADMIN_DELETED}" title="{LNG_ADMIN_DELETED}" />
+									</vte:if>
+									<vte:if test="{article.get_status} = -1">
+										<img src="img/icon_status_archived.gif" alt="{LNG_ADMIN_ARCHIVED}" title="{LNG_ADMIN_ARCHIVED}" />
+									</vte:if>
+									<vte:if test="{article.get_status} = 0">
+										<img src="img/icon_status_pending.gif" alt="{LNG_ADMIN_PENDING}" title="{LNG_ADMIN_PENDING}" />
+									</vte:if>
+									<vte:if test="{article.get_status} = 1">
+										<img src="img/icon_status_active.gif" alt="{LNG_ADMIN_ACTIVE}" title="{LNG_ADMIN_ACTIVE}" />
+									</vte:if>
+								</div>
+								<div class="item_actions">
+									<a href="{article.get_absolute_href}" target="_blank"><img src="img/icon_preview.gif" alt="{LNG_ADMIN_PREVIEW}" title="{LNG_ADMIN_PREVIEW}" /></a>
+                                    <vte:if test="{current_user.can_edit_article|article}">
+										<a href="article_edit.php?search_id={article.id}"><img src="img/icon_edit.gif" alt="{LNG_ADMIN_EDIT}" title="{LNG_ADMIN_EDIT}" /></a>
+									</vte:if>
+									<vte:if test="{VIVVO_ANALYTICS_ENABLED}">
+										<img src="img/icon_stats.gif" alt="{LNG_ADMIN_SHOW_STATS}" title="{LNG_ADMIN_SHOW_STATS}" onclick="adminList.showStats({article.get_id})" />
+										<vte:else>
+											<img class="article_info" src="img/icon_info.gif" alt="{LNG_ADMIN_INFO}" title="Comments: {article.get_number_of_comments}\n{LNG_ADMIN_TAGS}: {article.get_number_of_tags}\n{LNG_ADMIN_VIEWS_TOTAL}: {article.get_times_read}\n{LNG_ADMIN_VIEWS_TODAY}: {article.get_today_read}\n{LNG_ADMIN_VOTES_RATINGS}: {article.get_vote_average|2} {LNG_ADMIN_OUT_OF} {article.get_vote_num}\n{LNG_ADMIN_EMAILED_TO_A_FRIEND}: {article.emailed} {LNG_ADMIN_TIMES}" />
+										</vte:else>
+									</vte:if>
+								</div>
+								<div class="item_data">
+									<vte:if test="{current_user.is|'EDITOR'}">
+										<div class="item_select">
+											<input type="checkbox" value="{article.get_id}" onclick="adminList.chekBoxChange('article_order_list_{article.get_id}');" style="cursor:default;" />
+										</div>
+									</vte:if>
+									<div>
+										<vte:attribute name="class">
+											item_line1 <vte:if test="{current_user.is|'EDITOR'}">drag</vte:if>
+										</vte:attribute>
+										<vte:if test="{current_user.can_edit_article|article}">
+											<a href="article_edit.php?search_id={article.id}"><vte:value select="{article.get_title}" /></a>
+											<vte:else>
+												<vte:value select="{article.get_title}" />
+											</vte:else>
+										</vte:if>
+									</div>
+									<div class="item_line2">
+										<a href="articles.php?search_author={article.get_author_name}"><vte:value select="{article.get_author_name}" /></a>
+										<vte:value select="{LNG_ADMIN_ON}" />
+										<vte:value select="{article.created|format_date:'j M Y'}" />
+										<vte:value select="{LNG_ADMIN_IN}" />
+										<a href="articles.php?search_category_id={article.get_category_id}"><vte:value select="{article.get_category_name}" /></a>
+										<vte:value select="{LNG_ADMIN_WITH}" />
+										<vte:if test="{article.get_number_of_comments}">
+											<a href="comments.php?search_article_id={article.get_id}">
+												<vte:value select="{article.get_number_of_comments}" />
+												<vte:value select="{LNG_ADMIN_COMMENTS|strtolower}" />
+											</a>
+											<vte:else>0 <vte:value select="{LNG_ADMIN_COMMENTS|strtolower}" /></vte:else>
+										</vte:if>
+										<vte:value select="{LNG_ADMIN_AND}" />
+										<vte:if test="{current_user.can|'MANAGE_TAGS'}">
+											<a href="#edit-tags" onclick="adminList.editTags({article.get_id}); return false;">
+												<vte:value select="{article.get_number_of_tags}" />
+												<vte:value select="{LNG_ADMIN_TAGS|strtolower}" />
+											</a>
+										</vte:if>
+									</div>
+								</div>
+							</div>
+						</vte:foreach>
+						<vte:else>
+							<div class="info_message"><vte:value select="{LNG_ADMIN_NO_ITEMS_MATCHING_SELECTED_CRITERIA}" /></div>
+						</vte:else>
+					</vte:if>
+				</div>
+				<div class="content_list_body_footer">
+					<vte:if test="{current_user.is|'EDITOR'}">
+						<vte:value select="{LNG_ADMIN_SELECT}" />: <span class="action_button" onclick="adminList.selectAll();"><vte:value select="{LNG_ADMIN_ALL}" /></span> <span class="action_button" onclick="adminList.invertSelection();"><vte:value select="{LNG_ADMIN_INVERT}" /></span>
+						<vte:if test="{article_list}">
+							<vte:if test="!{disable_all}">
+								<span class="action_button" onclick="adminList.selectAllMatching('{LNG_ADMIN_SELECTED}: {article_list_object.get_total_count} {LNG_ADMIN_ARTICLES}');">
+									<vte:value select="{LNG_ADMIN_ALL_ARTICLES}" />(<vte:value select="{article_list_object.get_total_count}" />)
+								</span>
+							</vte:if>
+						</vte:if>
+						<select class="action-select none_selected" disabled="disabled" onchange="try&#123;adminList.onListAction(this.value);this.selectedIndex=0;&#125;catch(e)&#123;&#125;">
+							<option value="0" selected="selected"><vte:value select="{LNG_ADMIN_SELECT_ACTION}" /></option>
+                            <vte:if test="{current_user.can_change_status|'_','*'}">
+								<optgroup label="{LNG_ADMIN_SET_STATUS}">
+									<vte:if test="{current_user.can_change_status|'0','*'}">
+										<option value="status.0"><vte:value select="{LNG_ADMIN_PENDING}" /></option>
+									</vte:if>
+									<vte:if test="{current_user.can_change_status|'1','*'}">
+										<option value="status.1"><vte:value select="{LNG_ADMIN_ACTIVE}" /></option>
+									</vte:if>
+									<vte:if test="{current_user.can_change_status|'-1','*'}">
+										<option value="status.-1"><vte:value select="{LNG_ADMIN_ARCHIVED}" /></option>
+									</vte:if>
+								</optgroup>
+							</vte:if>
+							<vte:if test="{IN_TRASHBIN}">
+								<option value="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></option>
+								<vte:else>
+									<vte:if test="{current_user.can|'MANAGE_TAGS'}">
+										<option value="mark-headline"><vte:value select="{LNG_ADMIN_MARK_HEADLINE}" /></option>
+										<option value="apply-tags"><vte:value select="{LNG_ADMIN_APPLY_TAGS}" /></option>
+									</vte:if>
+									<vte:if test="{current_user.can_change_status|'-2','*'}">
+										<option value="status.-2"><vte:value select="{LNG_ADMIN_DELETE}" /></option>
+									</vte:if>
+									<optgroup label="{LNG_ADMIN_MOVE_TO}">
+										<vte:if test="{current_user.is|'WRITE','Categories','0'}">
+											<vte:box module="box_sections">
+												<vte:params>
+													<vte:param name="id" value="0" />
+													<vte:param name="prefix" value="" />
+												</vte:params>
+												<vte:template>
+													<vte:foreach item = "category" from = "{categories}">
+														<vte:if test="!{category.get_redirect}">
+															<option value="category_id.{category.id}"><vte:value select="{prefix}" />- <vte:value select="{category.category_name}" /></option>
+														</vte:if>
+														<vte:if test="{category.subcategories}">
+															<vte:load module="box_sections" id="{category.id}" template_string="{template_string}" prefix="&#160;{prefix}" />
+														</vte:if>
+													</vte:foreach>
+												</vte:template>
+											</vte:box>
+											<vte:else>
+												<vte:box module="box_sections">
+													<vte:params>
+														<vte:param name="search_ids" value="{current_user.get_privilege_object_ids|'WRITE','Categories'}" />
+													</vte:params>
+													<vte:template>
+														<vte:foreach item="category" from="{categories}">
+															<vte:if test="!{category.get_redirect}">
+																<option value="category_id.{category.id}"><vte:value select="{prefix}" />- <vte:value select="{category.category_name}" /></option>
+															</vte:if>
+														</vte:foreach>
+													</vte:template>
+												</vte:box>
+											</vte:else>
+										</vte:if>
+									</optgroup>
+								</vte:else>
+							</vte:if>
+						</select>
+						<vte:else>
+							<div>&#160;</div>
+						</vte:else>
+					</vte:if>
+					<span class="box_pagination">
+						<vte:if test="{article_list}">
+							<vte:load module="box_pagination" list="{article_list_object}" template="{VIVVO_FS_ADMIN_DIR}templates/components/pagination.xml" max_page="5" />
+						</vte:if>
+					</span>
+				</div>
+			</div>
+			<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+		</div>
+		<vte:if test="{list_output}">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/ajax_dump.xml" />
+		</vte:if>
+		<div id="apply_tags_modal" style="display:none">
+			<div class="add_tags_modal_contents">
+				<img id="modal_close" onclick="Control.Modal.close()" src="img/delete_gray.gif" alt="{LNG_ADMIN_CLOSE}" title="{LNG_ADMIN_CLOSE}" />
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_tags_input.xml" label="{LNG_ADMIN_TAGS}" name="apply_new_tags" noscript="1" />
+				<div class="add_tags_button">
+					<button class="primary" type="button" onclick="adminList.onApplyTags();"><vte:value select="{LNG_ADMIN_APPLY_TAGS}" /></button>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			<vte:if test="{search_tag_id}">adminListOptions.push({search_tag_id: <vte:value select="{search_tag_id|json_encode}" />});</vte:if>
+			<vte:if test="{search_topic_id}">adminListOptions.push({search_topic_id: <vte:value select="{search_topic_id|json_encode}" />});</vte:if>
+			<vte:if test="{search_author}">adminListOptions.push({search_author: <vte:value select="{search_author|json_encode}" />});</vte:if>
+			<vte:if test="{search_user_id}">adminListOptions.push({search_user_id: <vte:value select="{search_user_id|json_encode}" />});</vte:if>
+			<vte:if test="{search_category_id}">adminListOptions.push({search_category_id: <vte:value select="{search_category_id|json_encode}" />});</vte:if>
+			window.default_topic_name = <vte:value select="{default_topic.get_name|json_encode}" />;
+		</script>
+	</vte:template>
+</vte:box>

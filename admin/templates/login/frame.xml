@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<title><vte:value select="{VIVVO_WEBSITE_TITLE}" /> <vte:value select="{LNG_ADMIN_CONTROL_PANEL}" /></title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="{VIVVO_VERSION}" />
+		{$css__}
+		{$scripts__}
+	</head>
+	<body>
+		<div id="container">
+			<div id="header">
+			</div>
+			<div id="login_main">
+			<div style=" width:350px; text-align:left; margin:0 auto">
+				<h2 class="login_center"><vte:value select="{VIVVO_WEBSITE_TITLE}" /> <vte:value select="{LNG_ADMIN_CONTROL_PANEL}" /></h2>
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/dump.xml" />
+				<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+				<div class="login_box">
+					<vte:if test="{VIVVO_USER_SOURCE} = 'vivvo@localhost'">
+						<div id="login_form_holder">
+							<form action="index.php" method="post">
+								<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+								<input type="hidden" name="action" value="login" />
+								<input type="hidden" name="cmd" value="login" />
+								<div class="form_line"> 
+									<label><vte:value select="{LNG_ADMIN_USERNAME}" />:</label>
+									<input type="text" name="LOGIN_username" value="" class="text" />
+								</div>
+								<div class="form_line"> 
+									<label><vte:value select="{LNG_ADMIN_PASSWORD}" />:</label>
+									<input type="password" name="LOGIN_password" value="" class="text" />
+								</div>
+								<div class="form_line"> 
+									<label><vte:value select="{LNG_ADMIN_CHOOSE_LANGUAGE}" />:</label>
+									<select name="admin_lang" style="width:318px;">
+										<vte:box module="box_files">
+											<vte:params>
+												<vte:param name="fs_root" value="{VIVVO_FS_LANG_ROOT}" />
+												<vte:param name="dir" value="lang/admin" />
+												<vte:param name="ext" value="php" />
+											</vte:params>
+											<vte:template>								
+												<vte:foreach item="file" from="{file_list}">
+													<option value="{file.get_basename}"><vte:value select="{file.get_basename|ucfirst}" /></option>
+												</vte:foreach>
+											</vte:template>
+										</vte:box>
+									</select>
+								</div>
+								<div class="form_line"> 
+									<div class="formElement" style="margin-left:0;">
+										<label><input type="checkbox" name="LOGIN_remember" value="1" /> <vte:value select="{LNG_ADMIN_REMEMBER_ME}" /></label>
+									</div>
+								</div>
+								<div class="form_line" style="text-align:right;"> 
+									<button class="primary" type="submit" name="login"><vte:value select="{LNG_ADMIN_LOGIN}" /></button>
+								</div>
+							</form>
+							<div class="separator_gray"><!-- --></div>
+							<div class="login_center"> 
+								<a href="#" onclick="$('login_form_holder').hide();$('forgot_form_holder').show();"><vte:value select="{LNG_ADMIN_FORGOT_YOUR_PASSWORD}" /></a>
+							</div>
+						</div>
+						<div id="forgot_form_holder" style="display:none;">
+							<form action="index.php" method="post">		
+								<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+								<input type="hidden" name="login" value="1" />
+								<input type="hidden" name="action" value="login" />
+								<input type="hidden" name="cmd" value="forgotMail" />					
+								<div class="form_box_info">
+									<vte:value select="{LNG_INFO_FORGOT_PASSWORD_INFO}" />
+								</div>
+								<div class="form_line"> 
+									<label><vte:value select="{LNG_ADMIN_USERNAME}" />:</label>
+									<input type="text" name="LOGIN_username" value="" class="text" />
+								</div>
+								<div class="form_line"> 
+									<label><vte:value select="{LNG_ADMIN_EMAIL}" />:</label>
+									<input type="text" name="LOGIN_email" value="" class="text" />
+								</div>
+								<div class="form_line" style="text-align:right;"> 
+									<button class="primary" type="submit" name="login"><vte:value select="{LNG_ADMIN_SUBMIT}" /></button>
+								</div>
+							</form>
+							<div class="separator_gray"><!-- --></div>
+							<div  class="login_center"> 
+								<a href="#" onclick="$('login_form_holder').show();$('forgot_form_holder').hide();"><vte:value select="{LNG_ADMIN_RETURN_TO_LOGIN}" /></a>
+							</div>
+						</div>
+						<vte:else>
+							<vte:include file="{FOREIGN_LOGIN_TEMPLATE}" />
+						</vte:else>
+					</vte:if>
+				</div>
+				<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+				</div>
+			</div>
+			<div id="footer" style="text-align:center;">
+				<vte:value select="{LNG_ADMIN_VIVVO_FOOTER}" />
+			</div>
+		</div>
+	</body>
+</html>

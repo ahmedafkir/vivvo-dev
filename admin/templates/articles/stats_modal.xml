@@ -1,0 +1,23 @@
+<div class="stats_modal_contents">
+	<img id="modal_close" onclick="Control.Modal.close()" src="img/delete_gray.gif" alt="{LNG_ADMIN_CLOSE}" title="{LNG_ADMIN_CLOSE}" />
+	<div class="article_title_stats"><vte:value select="{LNG_ADMIN_STATS_FOR}" />: <strong><vte:value select="{article.get_title}" /></strong></div>
+	<div class="article_stats_chart">
+		<vte:box module="box_chart">
+			<vte:params>
+				<vte:param name="data_provider" value="google-analytics" />
+				<vte:param name="report" value="article_stats" />
+				<vte:param name="article_id" value="{article.get_id}" />
+				<vte:param name="chart_width" value="100%" />
+				<vte:param name="chart_height" value="92%" />
+			</vte:params>
+		</vte:box>
+	</div>
+	<ul class="article_info_list">
+		<li><vte:value select="{LNG_ADMIN_COMMENTS}" />: <vte:value select="{article.get_number_of_comments}" /></li>
+		<li><vte:value select="{LNG_ADMIN_TAGS}" />: <vte:value select="{article.get_number_of_tags}" /></li>
+		<li><vte:value select="{LNG_ADMIN_VIEWS_TOTAL}" />: <vte:value select="{article.get_times_read}" /></li>
+		<li><vte:value select="{LNG_ADMIN_VIEWS_TODAY}" />: <vte:value select="{article.get_today_read}" /></li>
+		<li><vte:value select="{LNG_ADMIN_VOTES_RATINGS}" />: <vte:value select="{article.get_vote_average|2}" /> <vte:value select="{LNG_ADMIN_OUT_OF}" /> <vte:value select="{article.get_vote_num}" /></li>
+		<li><vte:value select="{LNG_ADMIN_EMAILED_TO_A_FRIEND}" />: <vte:value select="{article.emailed}" /> <vte:value select="{LNG_ADMIN_TIMES}" /></li>
+	</ul>
+</div>

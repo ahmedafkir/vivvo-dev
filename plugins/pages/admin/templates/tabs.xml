@@ -1,0 +1,16 @@
+<vte:template>
+	<script type="text/javascript" src="../js/tiny_mce/tiny_mce.js"> </script>
+	<script type="text/javascript" src="js/tinyMCE_config.php"> </script>
+	<ul id="pages_tab_list" class="tabs">
+		<li><a href="#pages_quick_link" class="active"><span><vte:value select="{LNG_ADMIN_PAGES}" /></span></a></li>
+	</ul>
+	<div class="corner_top_right"><!-- --></div>
+	<div id="tab_holders">
+		<div id="pages_quick_link">
+			<vte:include file="{PLUGIN_ROOT}admin/templates/page_list.xml" />
+		</div>
+		<div class="separator_gray"><!-- --></div>
+		<div class="form_box_info"><img src="img/icon_info.gif" /> <vte:value select="{LNG_ADMIN_PAGES_INFO}" /></div>
+	</div>
+	<div class="corner_bottom_right"><!-- --></div>
+</vte:template>

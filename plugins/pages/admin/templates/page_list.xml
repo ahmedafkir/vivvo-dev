@@ -1,0 +1,19 @@
+<vte:template>
+	<span class="action_button_link" onclick="adminList.goTo('search_pid', 0);">+ <vte:value select="{LNG_ADMIN_ADD_NEW_PAGE}" /></span>
+	<div class="separator_gray"><!-- --></div>
+	<ul id="page_list" class="quick_launch">
+		<vte:box module="box_pages">
+			<vte:template>
+				<vte:foreach item="page" from="{page_list}">
+					<li id="page_order_list_{page.id}">
+						<div class="actions_small_left">
+							<img src="img/icon_small_edit.gif" onclick="adminList.goTo('search_pid', {page.id});" alt="{LNG_ADMIN_EDIT}" title="{LNG_ADMIN_EDIT}" />
+							<img src="img/icon_small_delete.gif" onclick="adminList.deletePage({page.id});" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" />
+						</div>
+						<span><vte:value select="{page.title}" /></span>
+					</li>
+				</vte:foreach>
+			</vte:template>
+		</vte:box>
+	</ul>
+</vte:template>

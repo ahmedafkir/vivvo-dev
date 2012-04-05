@@ -1,0 +1,15 @@
+<vte:template>
+	<div id="comments_quick_link" style="display:none">
+		<ul class="quick_launch">
+			<li><span onclick="adminList.goTo('search_status', '');"><vte:value select="{LNG_ADMIN_ALL}" /></span></li>
+			<li><span onclick="adminList.goTo('search_status', 0);"><vte:value select="{LNG_ADMIN_PENDING}" /></span></li>
+		</ul>
+		<div class="separator_gray"><!-- --></div>
+		<div class="search_filters">
+			<div class="tab_holders_box_header"><img src="img/icon_search.gif" alt="{LNG_ADMIN_SEARCH_FILTERS}" title="{LNG_ADMIN_SEARCH_FILTERS}" /> <vte:value select="{LNG_ADMIN_SEARCH_FILTERS}" /></div>
+			<div id="user_filters_list_holder">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/user_filters_list.xml" />
+			</div>
+		</div>
+	</div>
+</vte:template>

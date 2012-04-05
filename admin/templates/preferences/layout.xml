@@ -1,0 +1,12 @@
+<vte:template>
+	<form action="#" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+		<input type="hidden" name="action" value="vivvoCore" />
+		<input type="hidden" name="cmd" value="preferences" />
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/preferences/modules.xml" />
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/preferences/images.xml" />
+		<div class="content_list_body_footer">
+			<div id="layout_save_button" class="form_submit_button"><button class="primary" type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button></div>
+		</div>
+	</form>
+</vte:template>

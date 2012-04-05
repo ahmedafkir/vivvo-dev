@@ -1,0 +1,26 @@
+<vte:box module="box_tags">
+	<vte:params>
+		<vte:param name="search_limit" value="15" />
+		<vte:param name="search_sort_by" value="rating" />
+		<vte:param name="search_order" value="descending" />
+		<vte:param name="search_starting_with" value="{starting_with}" />
+		<vte:param name="search_tags_group_id" value="0" />
+	</vte:params>
+	<vte:template>
+		<vte:template>
+			<vte:if test="{tag_list}">
+				<ul id="article_tags_list">
+					<vte:foreach item = "tag" from = "{tag_list}">
+						<vte:if test="{tag.name} != ''">
+							<li id="article_tag_{tag.name}" class="article_tag">
+								<span class="action_small"><img onclick="vivvo.admin.utils.deleteItemFromList('article_tag_{tag.name}', 'tag', 'TAG_id', '{tag.get_id}');" src="img/delete_gray.gif" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" /></span>
+								<span style="font-size:{tag.get_fontsize}px;" onclick="adminList.goTo('search_tag', '{tag.name}');"><vte:value select="{tag.name}" /></span>
+							</li>
+						</vte:if>
+					</vte:foreach>
+				</ul>
+				<div class="form_box_info"><vte:value select="{LNG_ADMIN_STATS_TOTAL_OF}" />: <vte:value select="{tags.get_total_count}" /> <vte:value select="{LNG_ADMIN_TAGS}" /></div>
+			</vte:if>
+		</vte:template>
+	</vte:template>
+</vte:box>

@@ -1,0 +1,20 @@
+<vte:template>
+	<ul id="temlpates_tab_list" class="tabs">
+		<vte:if test="{theme}">
+			<li><a href="#templates_css"><span><vte:value select="{LNG_ADMIN_CSS}" /></span></a></li>
+		</vte:if>
+		<vte:if test="{template_set}">
+			<li><a href="#templates_templates"><span><vte:value select="{LNG_ADMIN_TEMPLATES}" /></span></a></li>
+		</vte:if>
+	</ul>
+	<div class="corner_top_right"><!-- --></div>
+	<div id="tab_holders">
+		<vte:if test="{theme}">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/templates/css.xml" />
+		</vte:if>
+		<vte:if test="{template_set}">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/templates/templates.xml" />
+		</vte:if>
+	</div>
+	<div class="corner_bottom_right"><!-- --></div>
+</vte:template>

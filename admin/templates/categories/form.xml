@@ -1,0 +1,246 @@
+<vte:template>
+	<div class="content_list">
+		<div class="content_list_header">
+			<span class="context_view">
+				<vte:if test="{current_category.id}">
+					<vte:value select="{LNG_ADMIN_EDIT_CATEGORY}" />: <vte:value select="{current_category.category_name}" />
+					<vte:else>
+						<vte:value select="{LNG_ADMIN_ADD_NEW_CATEGORY}" />
+					</vte:else>
+				</vte:if>
+			</span>
+			<span class="context_help">
+				<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />			</span>
+		</div>
+		<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+		<div class="content_list_body">
+			<div class="content_list_body_header">
+				<div class="content_list_body_header_line1">
+					<span class="button_add_new">
+						<img src="img/button_add_plus.gif" alt="{LNG_ADMIN_ADD_NEW_CATEGORY}" title="{LNG_ADMIN_ADD_NEW_CATEGORY}" /> <a href="categories.php"><vte:value select="{LNG_ADMIN_ADD_NEW_CATEGORY}" /></a>
+					</span>
+					<div>&#160;</div>
+				</div>
+			</div>
+			<form id="category_edit_form" action="categories.php?search_cid={current_category.id}" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+				<input type="hidden" name="action" value ="category" />
+				<input id="category_cmd" type="hidden" name="cmd" value="" />
+				<vte:if test="{current_category.id}">
+					<input type="hidden" name="CATEGORY_id" value ="{current_category.id}" />
+				</vte:if>
+				<div id="category_form" class="content_list_items">
+
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_CATEGORY_NAME}" name="CATEGORY_category_name" value="{current_category.category_name}" tooltip="{LNG_ADMIN_TOOLTIP_CATEGORY_CATEGORY_NAME}" />
+
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_CATEGORY_SEFRIENDLY}" name="CATEGORY_sefriendly" value="{current_category.sefriendly}" tooltip="{LNG_ADMIN_TOOLTIP_CATEGORY_SE_FRIENDLY}" />
+
+					<vte:if test="!{current_category.id}">
+						<div class="form_line">
+							<label><vte:value select="{LNG_ADMIN_PARENT_CATEGORY}" />:</label>
+							<div class="formElement">
+								<select class="options" name="CATEGORY_parent_cat">
+									<option value="0"><vte:value select="{LNG_ADMIN_ROOT}" /></option>
+									<vte:box module="box_sections">
+										<vte:params>
+											<vte:param name="id" value="0" />
+											<vte:param name="prefix" value="" />
+										</vte:params>
+										<vte:template>
+											<vte:foreach item = "category" from = "{categories}">
+												<vte:if test="{category.category_name} != ''">
+													<option value="{category.id}">
+														<vte:attribute name="selected">
+															<vte:if test="{current_category.parent_cat} = {category.id}">selected</vte:if>
+														</vte:attribute>
+														<vte:value select="{prefix}" />- <vte:value select="{category.category_name}" />
+													</option>
+													<vte:if test="{category.subcategories}">
+															<vte:load module="box_sections" id="{category.id}" template_string="{template_string}" prefix="&#160;{prefix}" />
+													</vte:if>
+												</vte:if>
+											</vte:foreach>
+										</vte:template>
+									</vte:box>
+								</select> <img class="info_help" src="img/icon_pref_help.gif" title="{LNG_ADMIN_TOOLTIP_CATEGORY_PARENT_CATEGORY}" />
+							</div>
+						</div>
+					</vte:if>
+
+
+
+					<div id="category_advanced_options">
+						<vte:attribute name="class">
+							<vte:if test="!{VIVVO_EXPAND_ADVANCED_OPTIONS}">advanced_hide</vte:if>
+						</vte:attribute>
+						<div  class="advanced_switch">
+							<span onclick="$('category_advanced_options').toggleClassName('advanced_hide');"><vte:value select="{LNG_ADMIN_ADVANCED_OPTIONS}" /></span>
+						</div>
+						<div class="advanced_options">
+
+							<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_NUMBER_OF_ARTICLES}" name="CATEGORY_article_num" value="{current_category.article_num}" tooltip="{LNG_ADMIN_TOOLTIP_CATEGORY_NO_OF_ARTICLES}" />
+
+							<div class="form_line">
+								<label><vte:value select="{LNG_ADMIN_CUSTOM_LAYOUT}" />:</label>
+								<div class="formElement">
+									<select class="options" name="CATEGORY_template">
+										<option value="">
+											<vte:attribute name="selected">
+												<vte:if test="!{current_category.template}">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{LNG_ADMIN_USE_SYSTEM_DEFAULT}" />
+										</option>
+										<option value="inherit">
+											<vte:attribute name="selected">
+												<vte:if test="{current_category.template} = 'inherit'">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{LNG_ADMIN_INHERIT}" />
+										</option>
+										<vte:box module="box_files">
+											<vte:params>
+												<vte:param name="dir" value="{VIVVO_TEMPLATE_DIR}category" />
+												<vte:param name="fs_root" value="{VIVVO_FS_TEMPLATE_ROOT}" />
+												<vte:param name="ext" value="tpl" />
+											</vte:params>
+											<vte:template>
+												<vte:foreach item="file" from="{file_list}">
+													<option value="{file.filename}">
+														<vte:attribute name="selected">
+															<vte:if test="{current_category.template} = {file.filename}">selected</vte:if>
+														</vte:attribute>
+														<vte:value select="{file.filename}" />
+													</option>
+												</vte:foreach>
+											</vte:template>
+										</vte:box>
+									</select> <img class="info_help" src="img/icon_pref_help.gif" title="{LNG_ADMIN_TOOLTIP_CATEGORY_CUSTOM_LAYOUT}" />
+								</div>
+							</div>
+							<div class="form_line">
+								<label><vte:value select="{LNG_ADMIN_ARTICLE_CUSTOM_LAYOUT}" />:</label>
+								<div class="formElement">
+									<select class="options" name="CATEGORY_article_template">
+										<option value="">
+											<vte:attribute name="selected">
+												<vte:if test="!{current_category.article_template}">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{LNG_ADMIN_USE_SYSTEM_DEFAULT}" />
+										</option>
+										<option value="inherit">
+											<vte:attribute name="selected">
+												<vte:if test="{current_category.article_template} = 'inherit'">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{LNG_ADMIN_INHERIT}" />
+										</option>
+										<vte:box module="box_files">
+											<vte:params>
+												<vte:param name="fs_root" value="{VIVVO_FS_TEMPLATE_ROOT}" />
+												<vte:param name="dir" value="{VIVVO_TEMPLATE_DIR}article" />
+												<vte:param name="ext" value="tpl" />
+											</vte:params>
+											<vte:template>
+												<vte:foreach item="file" from="{file_list}">
+													<option value="{file.filename}">
+														<vte:attribute name="selected">
+															<vte:if test="{current_category.article_template} = {file.filename}">selected</vte:if>
+														</vte:attribute>
+														<vte:value select="{file.filename}" />
+													</option>
+												</vte:foreach>
+											</vte:template>
+										</vte:box>
+									</select> <img class="info_help" src="img/icon_pref_help.gif" title="{LNG_ADMIN_TOOLTIP_CATEGORY_CUSTOM_ARTICLE_LAYOUT}" />
+								</div>
+							</div>
+							<div class="form_line">
+								<label><vte:value select="{LNG_ADMIN_CUSTOM_THEME}" />:</label>
+								<div class="formElement">
+									<select class="options" name="CATEGORY_css">
+										<option value="">
+											<vte:attribute name="selected">
+												<vte:if test="!{current_category.css}">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{LNG_ADMIN_USE_SYSTEM_DEFAULT}" />
+										</option>
+										<option value="inherit">
+											<vte:attribute name="selected">
+												<vte:if test="{current_category.css} = 'inherit'">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{LNG_ADMIN_INHERIT}" />
+										</option>
+										<vte:box module="box_files">
+											<vte:params>
+												<vte:param name="fs_root" value="{VIVVO_FS_TEMPLATE_ROOT}" />
+												<vte:param name="dir" value="themes/" />
+												<vte:param name="ext" value="dirext" />
+											</vte:params>
+											<vte:template>
+												<vte:foreach item="file" from="{file_list}">
+													<option value="{file.filename}">
+														<vte:attribute name="selected">
+															<vte:if test="{current_category.css} = {file.filename}">selected</vte:if>
+														</vte:attribute>
+														<vte:value select="{file.filename}" />
+													</option>
+												</vte:foreach>
+											</vte:template>
+										</vte:box>
+									</select> <img class="info_help" src="img/icon_pref_help.gif" title="{LNG_ADMIN_TOOLTIP_CATEGORY_CUSTOM_THEME}" />
+								</div>
+							</div>
+							<div class="form_line">
+								<label><vte:value select="{LNG_ADMIN_SHOW_IN_NAVIGATION}" />:</label>
+								<div class="formElement">
+									<label>
+										<input type="radio" name="CATEGORY_view_subcat" value="1">
+											<vte:attribute name="checked">
+												<vte:if test="{current_category.id}">
+													<vte:if test="{current_category.view_subcat}">
+														checked
+													</vte:if>
+													<vte:else>
+														checked
+													</vte:else>
+												</vte:if>
+											</vte:attribute>
+										</input>
+										<vte:value select="{LNG_ADMIN_YES}" />
+									</label>
+									<label>
+										<input type="radio" name="CATEGORY_view_subcat" value="0">
+											<vte:attribute name="checked">
+												<vte:if test="{current_category.id}">
+													<vte:if test="!{current_category.view_subcat}">
+														checked
+													</vte:if>
+												</vte:if>
+											</vte:attribute>
+										</input>
+										<vte:value select="{LNG_ADMIN_NO}" /> <img class="info_help" src="img/icon_pref_help.gif" title="{LNG_ADMIN_TOOLTIP_CATEGORY_SHOW_IN_NAV}" />
+									</label>
+								</div>
+							</div>
+
+							<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_REDIRECT_LINK}" name="CATEGORY_redirect" value="{current_category.redirect}" tooltip="{LNG_ADMIN_TOOLTIP_CATEGORY_REDIRECT_LINK}" />
+
+							<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_file_picker.xml" label="{LNG_ADMIN_ABSTRACT_IMAGE}" name="CATEGORY_image" value="{current_category.image}" input_id="CATEGORY_image" link_id="CATEGORY_image_choose" options="inputId: 'CATEGORY_image', search_ext: 'jpg,png,gif,jpeg', upload: true, relative: true, butonLabel: 'Select image', noneSelected: 'No image selected'"  tooltip="{LNG_ADMIN_TOOLTIP_CATEGORY_DELETE_IMAGE}"/>
+
+						</div>
+					</div>
+				</div>
+				<div class="content_list_body_footer">
+					<div class="form_submit_button">
+						<vte:if test="{current_category.id}">
+							<button onclick="$('category_cmd').value='edit';" type="submit" value ="edit"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+							<button type="submit" onClick="$('category_cmd').value='delete';return confirm ('{LNG_ADMIN_CONFIRM_DELETE}');" class="submit_button_secondary" value ="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></button>
+							<vte:else>
+								<button onclick="$('category_cmd').value='add';" type="submit" value ="add"><vte:value select="{LNG_ADMIN_ADD}" /></button>
+							</vte:else>
+						</vte:if>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+	</div>
+</vte:template>

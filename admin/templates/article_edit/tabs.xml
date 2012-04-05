@@ -1,0 +1,16 @@
+<vte:template>
+	<ul id="articles_tab_list" class="tabs">
+		<li><a href="#article_edit_options"><span><vte:value select="{LNG_ADMIN_PUBLISHING_OPTION}" /></span></a></li>
+		<li><a href="#article_edit_se_friendly"><span><vte:value select="{LNG_ADMIN_SE_FRIENDLY}" /></span></a></li>
+		<li><a href="#article_revisions"><span><vte:value select="{LNG_ADMIN_REVISIONS}" /></span></a></li>
+	</ul>
+	<div class="corner_top_right"><!-- --></div>
+	<div id="tab_holders">
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/article_edit/options.xml" />
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/article_edit/se_friendly.xml" />
+		<div id="article_revisions" style="display:none">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/article_edit/revisions.xml" />
+		</div>
+	</div>
+	<div class="corner_bottom_right"><!-- --></div>
+</vte:template>

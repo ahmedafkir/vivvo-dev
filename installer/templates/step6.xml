@@ -1,0 +1,13 @@
+<vte:template>
+	<div class="content_body">
+		<h3><vte:value select="{LNG_INSTALLER_STEP_6}" /></h3>
+		<div id="installer_steps_form" class="content_items step_6">
+			<div class="info"><vte:value select="{LNG_INSTALLER_THANK_YOU_MESSAGE}" />!</div>
+			<div class="buttons">
+				<a href="../admin/index.php"><img src="img/button_start_admin.gif" alt="{LNG_INSTALLER_VIVVO_ADMIN_CONTROL_PANEL}" title="{LNG_INSTALLER_VIVVO_ADMIN_CONTROL_PANEL}" /></a>
+				<a href="../index.php"><img src="img/button_view_site.gif" alt="{LNG_INSTALLER_VIVVO_VIEW_WEBSITE}" title="{LNG_INSTALLER_VIVVO_VIEW_WEBSITE}" /></a>
+				</div>
+		</div>
+		<div class="content_body_footer"> </div>
+	</div>
+</vte:template>

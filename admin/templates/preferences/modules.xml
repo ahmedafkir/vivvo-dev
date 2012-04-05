@@ -1,0 +1,50 @@
+<vte:template>
+	<div id="modules_preferences" style="display:none;">
+		<div class="form_box_first">
+			<div class="form_box_info">
+				<vte:value select="{LNG_ADMIN_ENABLE_MODULES}" />
+			</div>
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_ENABLE_FRIENDLY_URL}" name="VIVVO_FRIENDY_URL" value="{VIVVO_FRIENDY_URL}" />
+			
+			<div class="form_line"> 
+				<label><vte:value select="{LNG_ADMIN_CHOOSE_URL_FORMAT}" />:</label>
+				<div class="formElement">
+					<select class="options" name="VIVVO_URL_FORMAT">
+						<option value="0">
+							<vte:attribute name="selected">
+								<vte:if test="{VIVVO_URL_FORMAT} = 0">selected</vte:if>
+							</vte:attribute>
+							<vte:value select="{LNG_ADMIN_URL_FORMAT_0}" />
+						</option>
+						<option value="1">
+							<vte:attribute name="selected">
+								<vte:if test="{VIVVO_URL_FORMAT} = 1">selected</vte:if>
+							</vte:attribute>
+							<vte:value select="{LNG_ADMIN_URL_FORMAT_1}" />
+						</option>
+						<option value="2">
+							<vte:attribute name="selected">
+								<vte:if test="{VIVVO_URL_FORMAT} = 2">selected</vte:if>
+							</vte:attribute>
+							<vte:value select="{LNG_ADMIN_URL_FORMAT_2}" />
+						</option>
+					</select>
+				</div>
+			</div>
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_ENABLE_ARCHIVE_VIEW}" name="VIVVO_MODULES_ARCHIVE_VIEW" value="{VIVVO_MODULES_ARCHIVE_VIEW}" />
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_ENABLE_FEED}" name="VIVVO_MODULES_FEED" value="{VIVVO_MODULES_FEED}" />
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_ENABLE_SEARCH}" name="VIVVO_MODULES_SEARCH" value="{VIVVO_MODULES_SEARCH}" />
+						
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_ENABLE_AUTHOR_PAGE}" name="VIVVO_MODULES_FEATURED_AUTHOR_PAGE" value="{VIVVO_MODULES_FEATURED_AUTHOR_PAGE}" />
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_ENABLE_COMMENTS}" name="VIVVO_COMMENTS_ENABLE" value="{VIVVO_COMMENTS_ENABLE}" />
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_ENABLE_PLAINTEXT}" name="VIVVO_MODULES_PLAINTEXT" value="{VIVVO_MODULES_PLAINTEXT}" />
+						
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_EMAIL_ENABLE}" name="VIVVO_EMAIL_ENABLE" value="{VIVVO_EMAIL_ENABLE}" />
+		</div>
+	</div>
+</vte:template>

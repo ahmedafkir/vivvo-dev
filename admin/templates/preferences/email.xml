@@ -1,0 +1,116 @@
+<vte:template>
+	<form action="#" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+		<input type="hidden" name="action" value="vivvoCore" />
+		<input type="hidden" name="cmd" value="preferences" />
+		<div id="email_options" style="display:none;">
+			<div class="form_box_first">
+				<vte:if test="{display_modules}">
+					<div class="form_box_heder">
+						<div class="form_box_info">
+							<vte:value select="{LNG_ADMIN_PREFERENCES_EMAIL_INFO_BOX}" />
+						</div>
+					</div>
+				</vte:if>
+				<div class="form_box_body">
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_EMAIL_SEND_FROM}" name="VIVVO_EMAIL_SEND_FROM" value="{VIVVO_EMAIL_SEND_FROM}" />
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_EMAIL_SEND_CC}" name="VIVVO_EMAIL_SEND_CC" value="{VIVVO_EMAIL_SEND_CC}" />
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_EMAIL_SEND_BCC}" name="VIVVO_EMAIL_SEND_BCC" value="{VIVVO_EMAIL_SEND_BCC}" />
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_EMAIL_FLOOD_CHECK}" name="VIVVO_EMAIL_FLOOD_CHECK" value="{VIVVO_EMAIL_FLOOD_CHECK}" />
+					
+					<div class="form_line"> 
+						<label><vte:value select="{LNG_ADMIN_EMAIL_SMTP_PHP}" />:</label>
+						<div class="formElement">
+							<label>
+								<input type="radio" name="VIVVO_EMAIL_SMTP_PHP" value="1">
+									<vte:attribute name="checked"> 
+										<vte:if test="{VIVVO_EMAIL_SMTP_PHP}">checked</vte:if>
+									</vte:attribute>
+								</input>
+								<vte:value select="{LNG_ADMIN_EMAIL_RADIO_PHP}" />
+							</label>
+							<label>
+								<input type="radio" name="VIVVO_EMAIL_SMTP_PHP" value="0">
+									<vte:attribute name="checked"> 
+										<vte:if test="!{VIVVO_EMAIL_SMTP_PHP}">checked</vte:if>
+									</vte:attribute>
+								</input>
+								<vte:value select="{LNG_ADMIN_EMAIL_RADIO_SMTP}" />
+							</label>
+						</div>
+					</div>
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_EMAIL_SMTP_HOST}" name="VIVVO_EMAIL_SMTP_HOST" value="{VIVVO_EMAIL_SMTP_HOST}" />
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_EMAIL_SMTP_PORT}" name="VIVVO_EMAIL_SMTP_PORT" value="{VIVVO_EMAIL_SMTP_PORT}" />
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_EMAIL_SMTP_USERNAME}" name="VIVVO_EMAIL_SMTP_USERNAME" value="{VIVVO_EMAIL_SMTP_USERNAME}" />
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_EMAIL_SMTP_PASSWORD}" name="VIVVO_EMAIL_SMTP_PASSWORD" value="{VIVVO_EMAIL_SMTP_PASSWORD}" />
+					
+				</div>
+			</div>
+		</div>
+		
+		<div id="register_template" style="display:none;">
+			<div class="form_box_first">
+				<div class="form_box_heder">
+					<div class="form_box_info"> </div>
+				</div>
+				<div class="form_box_body">
+					<div class="form_line"> 
+						<div class="formElement">
+							<strong><vte:value select="{LNG_ADMIN_EMAIL_TEMPLATE_SUBJECT}" />:</strong> <input type="text" class="text" style="width:500px;" name="VIVVO_EMAIL_REGISTER_SUBJECT" value="{VIVVO_EMAIL_REGISTER_SUBJECT}" />
+						</div>
+					</div>
+					<div> 
+						<textarea style="width: 99%; height: 300px;" name="VIVVO_EMAIL_REGISTER_TEMPLATE"><vte:value select="{VIVVO_EMAIL_REGISTER_TEMPLATE}" /></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="email_to_a_friend_template" style="display:none;">
+			<div class="form_box_first">
+				<div class="form_box_heder">
+					<div class="form_box_info"> </div>
+				</div>
+				<div class="form_box_body">
+					<div class="form_line"> 
+						<div class="formElement">
+							<strong><vte:value select="{LNG_ADMIN_EMAIL_TEMPLATE_SUBJECT}" />:</strong> <input type="text" class="text" style="width:500px;" name="VIVVO_EMAIL_TO_A_FRIEND_SUBJECT" value="{VIVVO_EMAIL_TO_A_FRIEND_SUBJECT}" />
+						</div>
+					</div>
+					<div>
+						<textarea style="width: 99%; height: 300px;" name="VIVVO_EMAIL_TO_A_FRIEND_BODY"><vte:value select="{VIVVO_EMAIL_TO_A_FRIEND_BODY}" /></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="forgot_your_password_template" style="display:none;">
+			<div class="form_box_first">
+				<div class="form_box_heder">
+					<div class="form_box_info"> </div>
+				</div>
+				<div class="form_box_body">
+					<div class="form_line"> 
+						<div class="formElement">
+							<strong><vte:value select="{LNG_ADMIN_EMAIL_TEMPLATE_SUBJECT}" />:</strong> <input type="text" class="text" style="width:500px;" name="VIVVO_EMAIL_FORGOT_SUBJECT" value="{VIVVO_EMAIL_FORGOT_SUBJECT}" />
+						</div>
+					</div>
+					<div>
+						<textarea style="width: 99%; height: 300px;" name="VIVVO_EMAIL_FORGOT_BODY"><vte:value select="{VIVVO_EMAIL_FORGOT_BODY}" /></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="content_list_body_footer">
+			<div class="form_submit_button"><button class="primary" type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button></div>
+		</div>
+	</form>
+</vte:template>

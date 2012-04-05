@@ -1,0 +1,9 @@
+<div class="form_line"> 
+	<label><vte:value select="{label}" />:</label>
+	<div class="formElement">
+		<textarea class="textarea" name="{name}" id="{id}"><vte:value select="{value}" /></textarea>
+		<vte:if test="{tooltip}">
+			<img class="info_help" src="img/icon_pref_help.gif" title="{tooltip}" />
+		</vte:if>
+	</div>
+</div>

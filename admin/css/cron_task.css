@@ -1,0 +1,8 @@
+#cron_task {width:460px; height:auto; padding-top:5px;}
+#cron_task p {margin:2px 0px; font-weight:bold; float:left; width:75px;}
+.form_cron_row {width:100%; overflow:hidden;}
+.left_cron_options {float:left; width:155px;}
+.left_cron_options label {display:block; color:#989da5; font-size:11px;}
+.right_cron_options {float:left; width:230px;}
+.right_cron_options select {width:228px;}
+.cron_buttons {text-align:right; padding:6px 0px;}

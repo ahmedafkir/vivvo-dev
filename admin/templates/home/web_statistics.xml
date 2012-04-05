@@ -1,0 +1,7 @@
+<ul class="dashboard_info_list">
+	<li class="row_0"><vte:value select="{LNG_ADMIN_STATS_TOTAL_OF}" /> <strong><vte:value select="{website_categories}" /></strong> <vte:value select="{LNG_ADMIN_STATS_CATEGORIES}" />.</li>
+	<li><vte:value select="{LNG_ADMIN_STATS_TOTAL_OF}" /> <strong><vte:value select="{website_tags}" /></strong> <vte:value select="{LNG_ADMIN_STATS_TAGS}" />.</li>
+	<li class="row_0"><vte:value select="{LNG_ADMIN_STATS_TOTAL_OF}" /> <strong><vte:value select="{website_articles}" /></strong> <vte:value select="{LNG_ADMIN_STATS_ARTICLES_POSTED}" /> (<a href="articles.php?search_status=1&amp;search_do_advanced=true"><vte:value select="{website_articles_active}" /> <vte:value select="{LNG_ADMIN_STATS_ARTICLES_ACTIVE}" /></a>, <a href="articles.php?search_status=0&amp;search_do_advanced=true"><vte:value select="{website_articles_pending}" /> <vte:value select="{LNG_ADMIN_STATS_ARTICLES_PENDING}" /></a>).</li>
+	<li><vte:value select="{LNG_ADMIN_STATS_TOTAL_OF}" /> <strong><vte:value select="{website_articles_view}" /></strong> <vte:value select="{LNG_ADMIN_STATS_ARTICLE_VIEWS}" />.</li>
+	<li class="row_0"><vte:value select="{LNG_ADMIN_STATS_TOTAL_OF}" /> <strong><vte:value select="{website_comments}" /></strong> <vte:value select="{LNG_ADMIN_STATS_COMMENTS_POSTED}" />.</li>
+</ul>

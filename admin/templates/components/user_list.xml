@@ -1,0 +1,13 @@
+<vte:box module="box_users">
+	<vte:params>
+		<vte:param name="search_query" value="{name}" />
+		<vte:param name="search_limit" value="10" />
+	</vte:params>
+	<vte:template>
+		<ul>
+			<vte:foreach item = "user" from = "{user_list}">
+				<li id="user_id_{user.get_id}"><vte:value select="{user.get_name}" /></li>
+			</vte:foreach>
+		</ul>
+	</vte:template>
+</vte:box>

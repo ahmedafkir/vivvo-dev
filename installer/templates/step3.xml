@@ -1,0 +1,18 @@
+<vte:template>
+	<div class="content_body">
+		<h3><vte:value select="{LNG_INSTALLER_STEP_3}" /></h3>
+		<form action="index.php?step=4" method="post">
+			<div id="installer_steps_form" class="content_items step_3">
+				<div class="license">
+					<h2>Enjoy this nice release from ForumScriptz.org.</h2>
+					</div>
+			</div>
+			<div class="content_body_footer">
+				<div class="form_submit_button">
+					<div class="agree"><label><input name="agree" type="checkbox" value="1" /> <vte:value select="{LNG_INSTALLER_I_AGREE}" /></label></div>
+					<input type="submit" class="button" name="login" value="{LNG_INSTALLER_BUTTON_NEXT_STEP}" />
+				</div>
+			</div>
+		</form>
+	</div>
+</vte:template>

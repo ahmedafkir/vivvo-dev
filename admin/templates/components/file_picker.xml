@@ -1,0 +1,158 @@
+<vte:template>
+	<img id="modal_close" onclick="Control.Modal.close()" src="{VIVVO_URL}{VIVVO_FS_ADMIN_DIR}img/delete_gray.gif" alt="{LNG_ADMIN_CLOSE}" title="{LNG_ADMIN_CLOSE}" border="0" />
+	<img id="modal_help" src="{VIVVO_URL}{VIVVO_FS_ADMIN_DIR}img/icon_pref_help.gif" alt="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" title="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" border="0" />	<ul id="file_picker_tabs">
+		<li><a href="#file_picker_holder" class="active"><vte:value select="{LNG_ADMIN_BROWSE_FILES}" /></a></li>
+		<vte:if test="{current_user.can|'UPLOAD'}">
+			<li class="last"><a href="#file_upload_holder"><vte:value select="{LNG_ADMIN_UPLOAD_FILES_FROM_YOUR_COMPUTER}" /></a></li>
+		</vte:if>
+	</ul>
+	<div id="file_picker_holder">
+		<div id="file_picker">
+			<div id="file_location">
+				<ul>
+					<li>
+						<span id="dir_{dir_tree_root}/" class="dir"><vte:value select="{dir_tree_root}" /></span>
+						<vte:box module="box_files">
+							<vte:params>
+								<vte:param name="dir" value="{dir_tree_root}" />
+								<vte:param name="ext" value="dirext" />
+							</vte:params>
+							<vte:template>
+								<ul>
+									<vte:foreach item="file" from="{file_list}">
+										<li>
+											<span id="dir_{dir}{file.filename}/" class="dir"><vte:value select="{file.filename}" /></span>
+											<vte:load module="box_files" template_string="{template_string}" dir="{dir}{file.filename}/" ext="dirext" />
+										</li>
+									</vte:foreach>
+								</ul>
+							</vte:template>
+						</vte:box>
+					</li>
+				</ul>
+			</div>
+			<div id="file_search_view">
+				<div id="file_search"><vte:value select="{LNG_ADMIN_SEARCH}" />: <input type="text" id="filepicker_quick_searchbox" class="text" /> <button type="submit" id="filepickerQuickSearchbtn"><vte:value select="{LNG_ADMIN_SEARCH}" /></button></div>
+				<div id="file_view"><vte:value select="{LNG_ADMIN_FILE_VIEW}" />:
+					<span class="file_view_list"><a href="javascript:void(null);" class="file_view_list" alt="List view" title="List view"> </a></span>
+					<span class="file_view_thumb"><a href="javascript:void(null);" class="file_view_thumb" alt="Thumbnail view" title="Thumbnail view"> </a></span>
+				</div>
+			</div>
+			<vte:box module="box_asset_files">
+				<vte:params>
+					<vte:param name="search_dir" value="{search_dir}" />
+					<vte:param name="search_ext" value="{search_ext}" />
+					<vte:param name="search_limit" value="20" />
+					<vte:param name="search_sort_by" value="name" />
+					<vte:param name="search_order" value="ascending" />
+					<vte:param name="pg" value="{pg}" />
+				</vte:params>
+				<vte:template>
+					<div id="file_view_contents">
+						<div id="file_list">
+							<ul>
+								<vte:foreach item="file" from="{file_list}" key="index">
+									<li id="file_{file.get_fullname}" class="selectable file row_{index|mod:'2'} mime_{file.get_extension|strtolower} _{file.get_dir|preg_replace:'/[^a-z0-9_\-]/i','-'}{file.get_filename|preg_replace:'/[^a-z0-9_\-]/i','-'} id_{file.get_id}" title="&lt;strong&gt;{LNG_ADMIN_FILE_PICKER_ASSET_NAME}:&lt;/strong&gt; {file.get_filename}"><vte:value select="{file.get_filename}" /></li>
+								</vte:foreach>
+							</ul>
+						</div>
+						<div id="thumb_list" style="display:none;">
+							<vte:foreach item="file" from="{file_list}" key="index">
+								<div id="thumb_{file.get_fullname}" class="selectable thumb_container _{file.get_dir|preg_replace:'/[^a-z0-9_\-]/i','-'}{file.get_filename|preg_replace:'/[^a-z0-9_\-]/i','-'}  id_{file.get_id}"  title="&lt;strong&gt;{LNG_ADMIN_FILE_PICKER_ASSET_NAME}:&lt;/strong&gt; {file.get_filename}">
+									<div class="thumb_preview">
+										<div class="img_container">
+											<div class="img_wrapper">
+												<img src="{file.get_thumb_href}" />
+											</div>
+										</div>
+									</div>
+									<div class="thumb_filename"><vte:value select="{file.get_filename}" /></div>
+								</div>
+							</vte:foreach>
+						</div>
+					</div>
+					<vte:box module="box_pagination">
+						<vte:params>
+							<vte:param name="list" value="{file_list_object}" />
+							<vte:param name="max_page" value="5" />
+						</vte:params>
+						<vte:template>
+							<vte:if test="{total_records}">
+								<div id="box_pagination">
+
+									<vte:value select="{LNG_ADMIN_TOTAL}" />:
+
+									<span class="pagination_total">
+										<vte:value select="{total_records}" />
+									</span>
+
+									| <vte:value select="{LNG_ADMIN_DISPLAYING}" />:
+
+									<span class="pagination_total">
+										<vte:value select="{displaying}" />
+									</span>
+
+									<vte:if test="{page_list}">
+										<span class="pagination">
+											<vte:if test="{previous_page_group} != ''">
+												<span class="page_button" id="page_button_{previous_page_group_number}">&lt;</span>
+											</vte:if>
+
+											<vte:foreach item = "page" from = "{page_list}">
+												<vte:if test="{current_page} != {page[number]}">
+													<span class="page_button" id="page_button_{page[number]}"><vte:value select="{page[number]}" /></span>
+													<vte:else>
+														<vte:value select="{page[number]}" />
+													</vte:else>
+												</vte:if>
+											</vte:foreach>
+
+											<vte:if test="{next_page_group} != ''">
+												<span class="page_button" id="page_button_{next_page_group_number}">&gt;</span>
+											</vte:if>
+										</span>
+									</vte:if>
+								</div>
+							</vte:if>
+						</vte:template>
+					</vte:box>
+					<div id="box_actions">
+						<button type="button" id="file_insert"><vte:value select="{LNG_ADMIN_ADD}" /></button> <button class="secondary" type="button" id="picker_close"><vte:value select="{LNG_ADMIN_CANCEL}" /></button>
+					</div>
+				</vte:template>
+			</vte:box>
+		</div>
+	</div>
+
+	<div id="file_upload_holder" style="display:none;">
+		<div id="file_upload">
+			<div id="file_upload_form">
+				<div id="file_upload_selector">
+					<span id="file_upload_destination"><vte:value select="{LNG_ADMIN_UPLOAD_DESTINATION}" />: </span>
+					<select id="file_upload_location" >
+						<option value="files/"><vte:value select="Choose destination" /></option>
+						<option value="{dir_tree_root}/"><vte:value select="{dir_tree_root}" /></option>
+						<vte:box module="box_files">
+							<vte:params>
+								<vte:param name="dir" value="{dir_tree_root}" />
+								<vte:param name="ext" value="dirext" />
+							</vte:params>
+							<vte:template>
+								<vte:foreach item="file" from="{file_list}">
+									<option value="{dir}{file.filename}/"><vte:value select="{dir}" /><vte:value select="{file.filename}" /></option>
+									<vte:load module="box_files" template_string="{template_string}" dir="{dir}{file.filename}/" ext="dirext" />
+								</vte:foreach>
+							</vte:template>
+						</vte:box>
+					</select>
+				</div>
+				<div id="file_upload_actions">
+					<div id="file_upload_choose"> </div>
+					<button class="secondary" id="file_upload_cancel" type="button" disabled="disabled" style="display:none"><vte:value select="{LNG_ADMIN_CANCEL_ALL_UPLOADS}" /></button>
+				</div>
+			</div>
+			<div id="file_upload_progress"> </div>
+		</div>
+	</div>
+
+</vte:template>

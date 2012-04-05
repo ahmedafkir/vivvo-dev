@@ -1,0 +1,83 @@
+<vte:template>
+	<ul id="feed_tab_list" class="tabs">
+		<li><a href="#feed_preferences"><span><vte:value select="{LNG_ADMIN_PREFERENCES}" /></span></a></li>
+	</ul>
+	<div class="corner_top_right"><!-- --></div>
+	<div id="tab_holders">
+		<div id="feed_preferences">
+			<form action="#" method="post">
+				<input type="hidden" name="SECURITY_TOKEN" value="{VIVVO_SECURITY_TOKEN}" />
+				<input type="hidden" name="action" value="feed" />
+				<input type="hidden" name="cmd" value="preferences" />
+				<div class="form_line">
+					<label><vte:value select="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_ARTICLE_OWNER}" /></label>
+					<div class="formElement">
+						<select class="options" name="VIVVO_PLUGIN_FEED_IMPORTER_USER_ID">
+							<vte:box module="box_users">
+							<vte:params>
+								<vte:param name="search_limit" value="1000" />
+								<vte:param name="search_user_type" value="staff" />
+								<vte:param name="search_sort_by" value="username" />
+								<vte:param name="search_order" value="ascending" />
+							</vte:params>
+								<vte:template>
+									<vte:foreach item = "user" from = "{user_list}">
+										<option value="{user.get_id}">
+											<vte:attribute name="selected">
+												<vte:if test="{user.get_id} = {VIVVO_PLUGIN_FEED_IMPORTER_USER_ID}">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{user.get_username}" />
+										</option>
+									</vte:foreach>
+								</vte:template>
+							</vte:box>
+						</select>
+					</div>
+				</div>
+				<div class="form_line">
+					<label><vte:value select="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_DEFAULT_STATUS}" />:</label>
+					<div class="formElement">
+						<label>
+							<input type="radio" name="VIVVO_PLUGIN_FEED_IMPORTER_STATUS" value="1">
+								<vte:attribute name="checked">
+									<vte:if test="{VIVVO_PLUGIN_FEED_IMPORTER_STATUS}">checked</vte:if>
+								</vte:attribute>
+							</input>
+							<vte:value select="{LNG_ADMIN_ACTIVE}" />
+						</label>
+						<label>
+							<input type="radio" name="VIVVO_PLUGIN_FEED_IMPORTER_STATUS" value="0">
+								<vte:attribute name="checked">
+									<vte:if test="!{VIVVO_PLUGIN_FEED_IMPORTER_STATUS}">checked</vte:if>
+								</vte:attribute>
+							</input>
+							<vte:value select="{LNG_ADMIN_PENDING}" />
+						</label>
+					</div>
+				</div>
+
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_SHOW_COMMENTS}" name="VIVVO_PLUGIN_FEED_IMPORTER_SHOW_COMMENT" value="{VIVVO_PLUGIN_FEED_IMPORTER_SHOW_COMMENT}" />
+
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_USE_FEED_LOGO}" name="VIVVO_PLUGIN_FEED_IMPORTER_USE_LOGO" value="{VIVVO_PLUGIN_FEED_IMPORTER_USE_LOGO}" />
+
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_UPDATE_ARTICLES}" name="VIVVO_PLUGIN_FEED_IMPORTER_UPDATE_ARTICLES" value="{VIVVO_PLUGIN_FEED_IMPORTER_UPDATE_ARTICLES}" />
+
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_AUTO_ARCHIVE}" name="VIVVO_PLUGIN_FEED_IMPORTER_AUTO_ARCHIVE" value="{VIVVO_PLUGIN_FEED_IMPORTER_AUTO_ARCHIVE}" style="width: 130px;" sufix="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_DAYS}" />
+
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_AUTO_DELETE}" name="VIVVO_PLUGIN_FEED_IMPORTER_AUTO_DELETE" value="{VIVVO_PLUGIN_FEED_IMPORTER_AUTO_DELETE}" style="width: 130px;" sufix="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_DAYS}" />
+
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_MOVE_TO_TRASH}" name="VIVVO_PLUGIN_FEED_IMPORTER_TRASH" value="{VIVVO_PLUGIN_FEED_IMPORTER_TRASH}" />
+
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_AUTO_EXECUTION_PERIOD}" name="VIVVO_PLUGIN_FEED_IMPORTER_PERIOD" value="{VIVVO_PLUGIN_FEED_IMPORTER_PERIOD}" style="width: 130px;" sufix="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_HOURS}" />
+
+				<div class="form_line">
+					<label> </label>
+					<div class="formElement">
+						<button type="submit"><vte:value select="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_SAVE}" /></button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="corner_bottom_right"><!-- --></div>
+</vte:template>

@@ -1,0 +1,47 @@
+<div class="form_line">
+	<label><vte:value select="{label}" />:</label>
+	<div class="formElement">
+		<select class="options" id="{id}" name="{name}" size="{size}" multiple="multiple">
+			<vte:if test="{show_none}">
+				<option value="">
+					<vte:value select="{LNG_ADMIN_NONE}" />
+				</option>
+			</vte:if>
+			<vte:if test="{show_all}">
+				<option value="0">
+					<vte:attribute name="selected">
+						<vte:if test="0 in {value}">selected</vte:if>
+					</vte:attribute>
+					<vte:value select="{LNG_ADMIN_ALL_CATEGORIES}" />
+				</option>
+			</vte:if>
+			<vte:box module="box_sections">
+				<vte:params>
+					<vte:param name="id" value="0" />
+					<vte:param name="prefix" value="" />
+				</vte:params>
+				<vte:template>
+					<vte:foreach item="category" from="{categories}">
+						<vte:if test="!{category.get_redirect}">
+							<option value="{category.id}">
+								<vte:attribute name="selected">
+									<vte:if test="{category.id} in {value}">selected</vte:if>
+								</vte:attribute>
+								<vte:attribute name="class">
+									<vte:if test="!{category.parent_cat}">root</vte:if>
+								</vte:attribute>
+								<vte:value select="{prefix}" />- <vte:value select="{category.category_name}" />
+							</option>
+						</vte:if>
+						<vte:if test="{category.subcategories}">
+							<vte:load module="box_sections" id="{category.id}" template_string="{template_string}" prefix="&#160;{prefix}" />
+						</vte:if>
+					</vte:foreach>
+				</vte:template>
+			</vte:box>
+		</select>
+		<vte:if test="{tooltip}">
+			<img class="info_help" src="img/icon_pref_help.gif" title="{tooltip}" />
+		</vte:if>
+	</div>
+</div>

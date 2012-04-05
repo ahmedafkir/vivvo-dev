@@ -1,0 +1,1 @@
+<vte:if test="{action}"><vte:value select="{action}" /><vte:else>Fail:<vte:foreach item = "message" from = "{DUMP_MESSAGES}"><vte:value select="{message.get_message|addslashes}" /></vte:foreach></vte:else></vte:if>

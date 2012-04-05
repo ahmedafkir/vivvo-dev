@@ -1,0 +1,11 @@
+<vte:template>
+	<div id="articles_tags" style="display:none">
+		<vte:if test="{list_output} != true">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_SEARCH_TAGS}" id="article_tag_quick_filter" />
+		</vte:if>
+		<div class="separator_gray"><!-- --></div>
+		<div id="article_tag_list_holder">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/tag_list.xml" />
+		</div>
+	</div>
+</vte:template>

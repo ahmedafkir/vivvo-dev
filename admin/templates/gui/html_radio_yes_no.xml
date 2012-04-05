@@ -1,0 +1,24 @@
+<div class="form_line"> 
+	<label><vte:value select="{label}" />:</label>
+	<div class="formElement">
+		<label>
+			<input type="radio" name="{name}" value="1">
+				<vte:attribute name="checked"> 
+					<vte:if test="{value}">checked</vte:if>
+				</vte:attribute>
+			</input>
+			<vte:value select="{LNG_ADMIN_YES}" />
+		</label>
+		<label>
+			<input type="radio" name="{name}" value="0">
+				<vte:attribute name="checked"> 
+					<vte:if test="!{value}">checked</vte:if>
+				</vte:attribute>
+			</input>
+			<vte:value select="{LNG_ADMIN_NO}" />
+		</label>
+		<vte:if test="{tooltip}">
+			<img class="info_help" src="img/icon_pref_help.gif" title="{tooltip}" />
+		</vte:if>
+	</div>
+</div>

@@ -1,0 +1,7 @@
+<ul class="dashboard_info_list">
+	<li class="row_0"><vte:value select="{LNG_ADMIN_STATS_TOTAL}" />: <strong><vte:value select="{total_signups}" /></strong></li>
+	<li><vte:value select="{LNG_ADMIN_SIGNUPS_YESTERDAY}" />: <strong><vte:value select="{yesterday_signups}" /></strong></li>
+	<li class="row_0"><vte:value select="{LNG_ADMIN_SIGNUPS_THIS_WEEK}" />: <strong><vte:value select="{this_week_signups}" /></strong></li>
+	<li><vte:value select="{LNG_ADMIN_SIGNUPS_THIS_MONTH}" />: <strong><vte:value select="{this_month_signups}" /></strong></li>
+	<li class="row_0"><vte:value select="{LNG_ADMIN_SIGNUPS_LAST_MONTH}" />: <strong><vte:value select="{last_month_signups}" /></strong></li>
+</ul>

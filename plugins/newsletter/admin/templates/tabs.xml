@@ -1,0 +1,85 @@
+<vte:template>
+	<ul id="newsletter_tab_list" class="tabs">
+		<li><a href="#newsletter_newsletters"><span><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_QUICK_LINK}" /></span></a></li>
+		<li><a href="#newsletter_subscribers"><span><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_SUBSCRIBERS}" /></span></a></li>
+		<li><a href="#newsletter_preferences"><span><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_PREFERENCES}" /></span></a></li>
+	</ul>
+	<div class="corner_top_right"><!-- --></div>
+	<div id="tab_holders">
+		<div id="newsletter_newsletters">
+			<a href="#" id="new_newsletter_link" class="action_button_link">+ <vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_ADD_NEW_NEWSLETTER}" /></a>
+			<div class="separator_gray"><!-- --></div>
+			<div class="tab_holders_box_header"><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_OLD_NEWSLETTERS}" />:</div>
+			<ul class="quick_launch">
+				<vte:box module="box_newsletter">
+					<vte:template>
+						<vte:foreach item = "newsletter" from = "{newsletter_list}">
+							<li>
+								<div class="actions_small_left">
+									<img id="delete_newsletter_image_{newsletter.id}" src="img/icon_small_delete.gif" alt="{LNG_ADMIN_DELETE}" />
+								</div>
+								<a id="newsletter_quick_link_{newsletter.id}" class="newsletter_quick_link" href="#"><vte:value select="{newsletter.subject}" /></a>
+							</li>
+						</vte:foreach>	
+					</vte:template>
+				</vte:box>
+			</ul>
+			<div class="separator_gray"><!-- --></div>
+			<div class="tab_holders_box_header"><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_IMPORT_EXPORT_CSV}" />:</div>
+			<form action="#" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="action" value="newsletter" />
+				<input type="hidden" name="cmd" value="import" />
+				<div class="form_line">
+					<label style="width:250px; text-align: left; padding-left: 6px;"><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_IMPORT_FILE}" />:</label>
+					<div class="formElement"><input type="file" name="MAILLIST" size="17" /> <button type="submit"><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_IMPORT}" /></button></div>
+				</div>
+			</form>
+			<form action="#" method="post">
+				<input type="hidden" name="action" value="newsletter" />
+				<input type="hidden" name="cmd" value="export" /> 
+				<div class="form_line">
+					<label style="width:250px; text-align: left; padding-left: 6px;"><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_EXPORT_FILE}" />:</label>
+					<div class="formElement"><button type="submit"><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_EXPORT}" /></button></div>
+				</div>
+			</form>
+		</div>
+		<div id="newsletter_subscribers">
+			<ul class="quick_launch">
+				<li><span onclick="adminList.loadSubscribers();"><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_ALL}" /></span></li>
+				<li><span onclick="adminList.loadSubscribers('0');"><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_UNCONFIRMED}" /></span></li>
+				<li><span onclick="adminList.loadSubscribers('1');"><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_CONFIRMED}" /></span></li>
+			</ul>
+		</div>
+		<div id="newsletter_preferences">
+			<form action="" onsubmit="return false" id="preferences_form" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="action" value="newsletter" />
+				<input type="hidden" name="cmd" value="preferences" />
+				
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_NEWSLETTER_ADMIN_PREFERENCES_NO_OF_EMAILS}" name="VIVVO_PLUGIN_NEWSLETTER_NUMBER_OF_MAILS" value="{VIVVO_PLUGIN_NEWSLETTER_NUMBER_OF_MAILS}" />
+				
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_NEWSLETTER_ADMIN_PREFERENCES_SEND_INTERVAL}" name="VIVVO_PLUGIN_NEWSLETTER_PERIOD" value="{VIVVO_PLUGIN_NEWSLETTER_PERIOD}" style="width:110px;" sufix="{LNG_PLUGIN_NEWSLETTER_ADMIN_PREFERENCES_SEND_INTERVAL_TIME}" />
+				
+				<div class="form_line">
+					<label style="width:250px; text-align: left; padding-left: 6px;"><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_PREFERENCES_USUBSCRIBE_MESSAGE}" />:</label>
+					<div class="formElement"><textarea style="width:268px; height:150px;" class="textarea" name="VIVVO_PLUGIN_NEWSLETTER_UNSUBSCRIBE_TEXT"><vte:value select="{VIVVO_PLUGIN_NEWSLETTER_UNSUBSCRIBE_TEXT}" /></textarea></div>
+				</div>
+				
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_NEWSLETTER_ADMIN_PREFERENCES_SUBSCRIBE_SUBJECT}" name="VIVVO_PLUGIN_NEWSLETTER_SUBSCRIBE_SUBJECT" value="{VIVVO_PLUGIN_NEWSLETTER_SUBSCRIBE_SUBJECT}" />
+				
+				<div class="form_line">
+					<div class="formElement"><textarea style="width:268px; height:200px;" class="textarea" name="VIVVO_PLUGIN_NEWSLETTER_SUBSCRIBE_BODY"><vte:value select="{VIVVO_PLUGIN_NEWSLETTER_SUBSCRIBE_BODY}" /></textarea></div>
+				</div>
+				<div class="form_line">
+					<label> </label>
+					<div class="formElement"><button type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button></div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="corner_bottom_right"><!-- --></div>
+	<script type="text/javascript">
+	<vte:foreach item = "message" from = "{DUMP_MESSAGES}">
+		adminList.addDump('<vte:value select="{message.get_message|htmlspecialchars}" />','<vte:value select="{message.type}" />');
+	</vte:foreach>
+	</script>
+</vte:template>

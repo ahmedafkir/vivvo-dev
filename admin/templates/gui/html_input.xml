@@ -1,0 +1,23 @@
+<div class="form_line">
+	<label><vte:value select="{label}" />:</label>
+	<div class="formElement">
+		<vte:if test="{prefix}">
+			<vte:value select="{prefix}" />
+		</vte:if>
+		<vte:if test="!{type}">
+			<vte:variable name="type" value="text" />
+		</vte:if>
+		<vte:if test="{maxlength}">
+			<input type="{type}" class="text" name="{name}" value="{value}" id="{id}" style="{style}" maxlength="{maxlength}" />
+			<vte:else>
+				<input type="{type}" class="text" name="{name}" value="{value}" id="{id}" style="{style}" />
+			</vte:else>
+		</vte:if>
+		<vte:if test="{sufix}">
+			<vte:value select="{sufix}" />
+		</vte:if>
+		<vte:if test="{tooltip}">
+			<img class="info_help" src="img/icon_pref_help.gif" title="{tooltip}" />
+		</vte:if>
+	</div>
+</div>
