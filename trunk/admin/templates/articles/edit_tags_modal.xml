@@ -1,0 +1,7 @@
+<div class="add_tags_modal_contents">
+	<img id="modal_close" onclick="Control.Modal.close()" src="img/delete_gray.gif" alt="{LNG_ADMIN_CLOSE}" title="{LNG_ADMIN_CLOSE}" />
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_tags_input.xml" items="{existing_tags}" label="{LNG_ADMIN_TAGS}" name="edit_article_tags" noscript="1" default_topic_name="{default_topic.get_name}" />
+	<div class="add_tags_button">
+		<button class="primary" type="button" onclick="adminList.onEditTags();"><vte:value select="{LNG_ADMIN_EDIT_TAGS}" /></button>
+	</div>
+</div>

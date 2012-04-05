@@ -1,0 +1,5 @@
+<ul class="dashboard_info_list">
+	<li class="row_0"><vte:value select="{LNG_ADMIN_STATS_TOTAL_OF}" /> <strong><vte:value select="{today_articles_view}" /></strong> <vte:value select="{LNG_ADMIN_STATS_ARTICLE_VIEWS}" />.</li>
+	<li><vte:value select="{LNG_ADMIN_STATS_TOTAL_OF}" /> <strong><vte:value select="{today_comments}" /></strong> <vte:value select="{LNG_ADMIN_STATS_COMMENTS_POSTED}" />.</li>
+	<li class="row_0"><vte:value select="{LNG_ADMIN_STATS_NEW_USERS}" /> <strong><vte:value select="{today_users}" /></strong>.</li>
+</ul>

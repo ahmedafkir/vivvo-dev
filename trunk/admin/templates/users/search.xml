@@ -1,0 +1,51 @@
+<vte:template>
+	<div id="users_search" style="display:none">
+		<form id="users_search_form" name="users_search_form" onsubmit="return false;">
+			<input type="hidden" name="search_options" value="" />
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_SEARCH_USER_NAME}" name="search_query" />
+			
+			<div class="form_line"> 
+				<label><vte:value select="{LNG_ADMIN_SEARCH_STATUS}" />:</label>
+				<div class="formElement">		
+					<select class="options" name="search_activated">
+						<option value="" selected="selected"><vte:value select="{LNG_ADMIN_ALL}" /></option>
+						<option value="1" ><vte:value select="{LNG_ADMIN_ACTIVE}" /></option>
+						<option value="0" ><vte:value select="{LNG_ADMIN_PENDING}" /></option>
+					</select>
+				</div>
+			</div>
+			<div class="form_line"> 
+				<label><vte:value select="{LNG_ADMIN_SEARCH_USERGROUP}" />:</label>
+				<div class="formElement">
+					<select class="options" id="search_user_type" name="search_user_type[]" size="7" multiple="multiple">
+						<option value="" selected="selected"><vte:value select="{LNG_ADMIN_SEARCH_IN_ALL_GROUPS}" /></option>
+						<vte:foreach from="{group_list}" item="group">
+							<option value="{group.id}"><vte:value select="{group.name}" /></option>
+						</vte:foreach>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form_line"> 
+				<label> </label>
+				<div class="formElement">
+					<button type="submit" name="search_do_advanced"><vte:value select="{LNG_ADMIN_SEARCH_NOW}" /></button>
+				</div>
+			</div>
+		</form>
+		<div class="separator_gray"><!-- --></div>
+		<div class="tab_holders_box_header"><img src="img/icon_search.gif" alt="{LNG_ADMIN_SEACRH_FILTERS}" title="{LNG_ADMIN_SEACRH_FILTERS}" /> <vte:value select="{LNG_ADMIN_SEARCH_FILTERS}" /></div>
+		<form id="users_filter_form" name="users_filter_form" onsubmit="return false;">
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_FILTER_NAME}" name="FILTER_name" id="FILTER_name" />
+			
+			<div class="form_line"> 
+				<label> </label>
+				<div class="formElement">
+					<button type="submit"><vte:value select="{LNG_ADMIN_SAVE_FILTER}" /></button>
+				</div>
+			</div>
+		</form>
+	</div>
+</vte:template>

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Vivvo CMS</title>
+<link rel="stylesheet" type="text/css" href="css/installer.css" media="screen"/>
+<script type="text/javascript">
+	function redirect() {
+		var t=setTimeout("goToInstaller()",10000);
+	}
+	function goToInstaller(){
+		window.location = 'index.php';
+	}
+</script>
+</head>
+<body onload="redirect();">
+    <div id="container">
+    <div id="header"> </div>
+        <div id="content">
+            <div class="content_body" style="padding:10px;">
+                <div class="content_items" style="width: auto">
+                    <h3 style="font-size:36px;">Vivvo CMS</h3>
+                    <div style=" font-size: 14px; padding: 4px;">
+                        If you are just starting with Vivvo, you may want to review the <strong>installation guide</strong> posted on the online documentation area, or download <strong>Vivvo System Check</strong> to make sure that your system has what it needs to run Vivvo CMS successfully.
+                        <p>You will be automatically redirected to Installer: Step 1 in ten seconds.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="footer"> </div>
+    </div>
+</body>
+</html>

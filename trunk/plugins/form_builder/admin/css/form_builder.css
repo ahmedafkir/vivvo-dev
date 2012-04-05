@@ -1,0 +1,87 @@
+#form_builder_list {
+	background:#fff url(../../plugins/form_builder/admin/img/options_right_bg.gif) right repeat-y;
+	width:100%;
+	overflow:hidden;
+}
+
+#properties_info_box {padding:6px; margin-bottom: 20px;}
+
+/*** Right side options ***/
+#form_builder_list div#field_properties{
+	float:right;
+	width:270px;
+	padding-top: 12px;
+}
+
+#field_properties input.text {width:150px;}
+
+#field_properties select.options {width:154px;}
+
+#field_properties div.form_line label { width: 95px; font-weight: normal;}
+
+#form_builder_list div#field_properties textarea { width: 150px; height: 60px;}
+
+/*** Left side props ***/
+#form_builder_list div#formHolder {margin-right: 270px;}
+
+/* Hides from IE5-mac \*/
+* html #form_builder_list div#formHolder {height:1%; float:left; margin-right:0;}
+/* End hide from IE5-mac */
+
+#form_builder_list div#formHolder div.form_line {width:100%;}
+
+#form_builder_properties div.draggable {
+	padding:4px 4px 4px 20px;
+	margin-bottom:2px;
+	cursor:move;
+	font-size:11px;
+	color:#989DA5;
+	position:relative !important;
+}
+
+input.form_builder_text {width: 200px;}
+
+textarea.form_builder_textarea {width: 200px;}
+
+select.form_builder_options {width: 204px;}
+
+input.form_builder_file_upload {width: auto;}
+
+/*** background icons for form elements ***/
+#type_text { background: url(../../plugins/form_builder/admin/img/icon_plain_text.gif) 0px 3px no-repeat;}
+
+#type_heading {background: url(../../plugins/form_builder/admin/img/icon_heading.gif) 0px 3px no-repeat;}
+
+#type_submit {background: url(../../plugins/form_builder/admin/img/icon_button.gif) 0px 3px no-repeat;}
+
+#type_input {background: url(../../plugins/form_builder/admin/img/icon_input.gif) 0px 3px no-repeat;}
+
+#type_text_area {background: url(../../plugins/form_builder/admin/img/icon_text_area.gif) 0px 3px no-repeat;}
+
+#type_drop_down {background: url(../../plugins/form_builder/admin/img/icon_drop_down.gif) 0px 3px no-repeat;}
+
+#type_checkbox {background: url(../../plugins/form_builder/admin/img/icon_checkbox.gif) 0px 3px no-repeat;}
+
+#type_radio {background: url(../../plugins/form_builder/admin/img/icon_radio.gif) 0px 3px no-repeat;}
+
+#type_date_time {background: url(../../plugins/form_builder/admin/img/icon_date_time.gif) 0px 3px no-repeat;}
+
+#type_file_upload {background: url(../../plugins/form_builder/admin/img/icon_file_upload.gif) 0px 3px no-repeat;}
+
+#form_builder_list div.type_heading strong, #form_builder_list div.type_text p {margin:0; padding:6px;}
+
+/*** Selected state ***/
+#form_builder_list div.selected {border-top: 1px solid #ECECEC; border-bottom: 1px solid #ECECEC; cursor: move;}
+
+#form_builder_list div.form_line img.remove_prop {display:none;}
+
+#form_builder_list div.selected img.remove_prop {display: block; float: right; cursor: pointer; margin: -3px 0px 0px -3px;}
+
+#form_builder_list div#formHolder div.form_line label {padding-right: 8px;}
+
+#form_builder_list div.form_line label.required { background: url(../../plugins/form_builder/admin/img/icon_required.gif) right 3px no-repeat;}
+
+/*** Actions small ***/
+ul.quick_launch li div.actions_small_left {background:none; float:right; border-left: 1px solid #DEDEDE; cursor: auto; padding: 7px 8px 3px 6px;}
+
+ul.quick_launch li div.actions_small_left img { margin-left: 6px; cursor: pointer;}

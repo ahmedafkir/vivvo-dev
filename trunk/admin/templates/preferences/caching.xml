@@ -1,0 +1,58 @@
+<vte:template>
+	<form action="#" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+		<input type="hidden" name="action" value="vivvoCore" />
+		<input type="hidden" name="cmd" value="preferences" />
+		<div id="cache_preferences">
+			<div class="form_box_first">
+			
+				<div class="form_box_info">
+					<vte:value select="{LNG_ADMIN_CACHE_INFO}" />
+				</div>
+				
+				<div class="form_line"> 
+					<label><vte:value select="{LNG_ADMIN_CACHE_TYPE}" />:</label>
+					<div class="formElement">
+						<select class="options" name="VIVVO_CACHE_ENABLE">
+							<option value="0">
+								<vte:attribute name="selected"> 
+									<vte:if test="{VIVVO_CACHE_ENABLE} = 0">selected</vte:if>
+								</vte:attribute>
+								<vte:value select="{LNG_ADMIN_NO_CACHE}" />
+							</option>
+							<option value="3">
+								<vte:attribute name="selected"> 
+									<vte:if test="{VIVVO_CACHE_ENABLE} = 3">selected</vte:if>
+								</vte:attribute>
+								<vte:value select="{LNG_ADMIN_CACHE_FULL}" />
+							</option>
+							<option value="2">
+								<vte:attribute name="selected"> 
+									<vte:if test="{VIVVO_CACHE_ENABLE} = 2">selected</vte:if>
+								</vte:attribute>
+								<vte:value select="{LNG_ADMIN_CACHE_PARTIAL}" />
+							</option>
+								<option value="1"><vte:attribute name="selected"> 
+									<vte:if test="{VIVVO_CACHE_ENABLE} = 1">selected</vte:if>
+								</vte:attribute>
+								<vte:value select="{LNG_ADMIN_CACHE_FRAGMENT}" />
+							</option>
+						</select>
+						<img class="info_help" src="img/icon_pref_help.gif" alt="{LNG_ADMIN_TOOLTIP_ENABLE_CACHE}" title="{LNG_ADMIN_TOOLTIP_ENABLE_CACHE}" />
+					</div>
+				</div>
+				
+				<div class="form_line"> 
+					<label><vte:value select="{LNG_ADMIN_CACHE_TIME}" />:</label>
+					<div class="formElement">
+						<input type="text" class="text" style="width:120px;" name="VIVVO_CACHE_TIME" value="{VIVVO_CACHE_TIME}" /> <vte:value select="{LNG_ADMIN_CACHE_TIME_SECONDS}" />
+					</div>
+				</div>
+				
+			</div>	
+		</div>
+		<div class="content_list_body_footer">
+			<div class="form_submit_button"><button class="primary" type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button></div>
+		</div>
+	</form>
+</vte:template>

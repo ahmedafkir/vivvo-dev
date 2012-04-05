@@ -1,0 +1,26 @@
+<vte:template>
+	<img id="modal_close" onclick="Control.Modal.close()" src="{VIVVO_FS_ADMIN_DIR}/img/delete_gray.gif" />
+	<div>
+		<div class="frontend_opt_title"><vte:value select="{LNG_EDIT_CATEGORY_OPTION}" /></div>
+		<form id="category_edit_form" action="{VIVVO_FS_ADMIN_DIR}ajax.php" method="post" onsubmit="return false;">
+			<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+			<input type="hidden" name="action" value ="category" />
+			<input id="category_cmd" type="hidden" name="cmd" value="edit" />
+			<input type="hidden" name="CATEGORY_id" value ="{current_category.id}" />
+			<input type="hidden" name="CATEGORY_sefriendly" value="{current_category.sefriendly}" />
+
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_NUMBER_OF_ARTICLES}" name="CATEGORY_article_num" value="{current_category.article_num}" tooltip="{LNG_ADMIN_TOOLTIP_CATEGORY_NO_OF_ARTICLES}" />
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_select_category_file.xml" label="{LNG_ADMIN_CUSTOM_LAYOUT}" name="CATEGORY_template" fs_root="{VIVVO_FS_TEMPLATE_ROOT}" dir="{VIVVO_TEMPLATE_DIR}category/" ext="tpl" value="{current_category.template}" tooltip="{LNG_ADMIN_TOOLTIP_CATEGORY_CUSTOM_LAYOUT}" />
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_select_category_file.xml" label="{LNG_ADMIN_ARTICLE_CUSTOM_LAYOUT}" name="CATEGORY_article_template" fs_root="{VIVVO_FS_TEMPLATE_ROOT}" dir="{VIVVO_TEMPLATE_DIR}article/" ext="tpl" value="{current_category.article_template}" tooltip="{LNG_ADMIN_TOOLTIP_CATEGORY_CUSTOM_ARTICLE_LAYOUT}" />
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_select_category_file.xml" label="{LNG_ADMIN_CUSTOM_THEME}" name="CATEGORY_css" fs_root="{VIVVO_FS_TEMPLATE_ROOT}" dir="themes/" ext="dirext" value="{current_category.css}" tooltip="{LNG_ADMIN_TOOLTIP_CATEGORY_CUSTOM_THEME}" />
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_SHOW_IN_NAVIGATION}" name="CATEGORY_view_subcat" value="{current_category.view_subcat}" />
+
+			<div class="form_line">
+				<label> </label>
+				<div class="formElement">
+					<button type="submit" value ="edit"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+				</div>
+			</div>
+		</form>
+	</div>
+</vte:template>

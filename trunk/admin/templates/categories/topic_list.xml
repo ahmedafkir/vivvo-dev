@@ -1,0 +1,33 @@
+<vte:box module="box_tags_groups">
+	<vte:params>
+		<vte:param name="pg" value="{pg}" />
+		<vte:param name="search_sort_by" value="name" />
+		<vte:param name="search_order" value="ascending" />
+	</vte:params>
+	<vte:template>
+		<span onclick="adminTopics.addNewTopic(); return false;" class="action_button_link">+ <vte:value select="{LNG_ADMIN_ADD_NEW_TOPIC}" /></span>
+		<div class="separator_gray"></div>
+		<ul class="quick_launch">
+			<vte:foreach from="{topics_list}" item="topic">
+				<li>
+					<div class="actions_small_left">
+						<img onclick="adminTopics.editTopic({topic.get_id});" src="img/icon_small_edit.gif" alt="{LNG_ADMIN_EDIT}" title="{LNG_ADMIN_EDIT}" />
+						<vte:if test="{topic.get_id} &lt; 100">
+							<img src="img/icon_small_lock.gif" alt="{LNG_ADMIN_LOCKED}" title="{LNG_ADMIN_LOCKED}" />
+							<vte:else>
+								<img onclick="adminTopics.deleteTopic({topic.get_id});" src="img/icon_small_delete.gif" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" />
+							</vte:else>
+						</vte:if>
+					</div>
+					<span onclick="adminTopics.loadTopicTags({topic.get_id})" title="{LNG_ADMIN_TOPICS_VIEW_TAGS}">
+						<vte:value select="{topic.get_name}" />
+					</span>
+				</li>
+			</vte:foreach>
+		</ul>
+		<vte:if test="{topics_list}">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/categories/pagination.xml" list="{topics}" max_page="5" onclick="adminTopics.gotoTopicPage($pg)" />
+		</vte:if>
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/ajax_dump.xml" />
+	</vte:template>
+</vte:box>

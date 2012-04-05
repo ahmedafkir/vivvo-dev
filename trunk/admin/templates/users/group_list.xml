@@ -1,0 +1,28 @@
+<ul id="group_list" class="quick_launch">
+	<vte:foreach from="{group_list}" item="group">
+		<li>
+			<div class="actions_small_left">
+				<vte:if test="{VIVVO_USER_SOURCE} = 'vivvo@localhost'">
+					<vte:if test="!{group.allow_edit}">
+						<img src="img/icon_small_lock.gif" alt="{LNG_ADMIN_LOCKED}" title="{LNG_ADMIN_LOCKED}" />
+						<vte:else>
+							<img onclick="adminList.loadGroupEdit({group.id});" src="img/icon_small_edit.gif" alt="{LNG_ADMIN_EDIT}" title="{LNG_ADMIN_EDIT}" />
+						</vte:else>
+					</vte:if>
+					<vte:else>
+						<img onclick="adminList.loadGroupEdit({group.id});" src="img/icon_small_edit.gif" alt="{LNG_ADMIN_EDIT}" title="{LNG_ADMIN_EDIT}" />
+					</vte:else>
+				</vte:if>	
+				<vte:if test="{VIVVO_USER_SOURCE} = 'vivvo@localhost'">
+					<vte:if test="!{group.allow_delete}">
+						<img src="img/icon_small_lock.gif" alt="{LNG_ADMIN_LOCKED}" title="{LNG_ADMIN_LOCKED}" />
+						<vte:else>
+							<img src="img/icon_small_delete.gif" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" onclick="adminList.deleteGroup({group.id});" />
+						</vte:else>
+					</vte:if>
+				</vte:if>
+			</div>
+			<span onclick="adminList.goTo('search_user_type', {group.id});"><vte:value select="{group.name}" /></span>
+		</li>	
+	</vte:foreach>
+</ul>

@@ -1,0 +1,28 @@
+<vte:template>
+Congratulations! Vivvo CMS software has been successfully installed.<br /><br />
+You can access your Administration Area (Control Panel) at the following URL:<br /><br />
+<a href="{VIVVO_URL}{VIVVO_FS_ADMIN_DIR}"><vte:value select="{VIVVO_URL}" /><vte:value select="{VIVVO_FS_ADMIN_DIR }" /></a><br />
+Username:  <vte:value select="{VIVVO_ADMIN_USERNAME}" /><br />
+Password:  <vte:value select="{VIVVO_ADMIN_PASSWORD}" /><br /><br />
+Note that you can edit all your user data at any time. You can also change your password or your e-mail address from Administration -> User Management.<br /><br />
+<strong>IMPORTANT!</strong> We strongly recommend you remove Vivvo CMS installation folder from your web directory to prevent unauthorized access to Vivvo source code.<br /><br />
+As a general guideline, we suggest taking the following steps to get the most out of our technical support resources:<br /><br />
+<em>User Guides and Resources</em>
+<ul>
+<li>If you\'re looking for help on using Vivvo CMS please read the Vivvo CMS User Manual</li>
+<li>For assistance on using Vivvo modules, bridges or any other plug-in, you should read Vivvo CMS Plugin Manual</li>
+<li>Need an answer fast? Browse our Knowledge base for articles on a broad range of topics.</li>
+<li>For taking advantage on free plug-ins, templates and widgets, check out the Vivvo Resource Center - your window to a variety of resources that showcase Vivvo’s features and enhancements.</li>
+</ul>
+<em>Developer Documentation</em>
+<ul>
+<li>Vivvo CMS Developer Documentation is the ultimate resource center for Vivvo Framework, Vivvo Template Engine (VTE), plugin development reference manual and other issues of importance to those involved with Vivvo CMS development and deployment of custom websites.</li>
+</ul>
+<em>Community Support</em>
+<ul>
+<li>Our Support Forums allow users to exchange valuable information with other users and developers on general technical issues and product-specific topics.</li>
+</ul>
+<br /><br />
+You can get help at any time, day and night, from our technical support engineers and customer care representatives simply by writing to support@vivvo.net <br /><br /><br />
+Thanks again for purchasing and using Vivvo CMS!
+</vte:template>

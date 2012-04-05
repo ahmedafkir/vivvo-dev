@@ -1,0 +1,19 @@
+#asset_file_preview_holder {width:300px; color:#777;}
+#asset_file_preview_holder #asset_preview {text-align:center;}
+#asset_file_preview_holder #asset_file_info ul {list-style-type:none; padding:0; margin:0;}
+#asset_file_preview_holder #asset_file_info ul li {padding:4px 0px;}
+#asset_file_preview_holder #asset_file_info ul li span {font-weight:bold; width:80px; float:left;}
+#asset_file_form .form_line label {text-align:left; width:73px;}
+#asset_file_form .formElement input.text {width:190px;}
+#asset_file_form .formElement textarea.textarea {width:190px; height:90px;}
+.flash_upload {float:left;}
+#assets_list_options_form #file_search_view {background:none; float:none; width:auto; position:absolute; top:0px; left:320px;}
+#thumb_list_view {width:100%; overflow:hidden;}
+.thumb_view_holder {padding:10px 10px 0 10px;}
+.thumb {border:1px solid #989da5; float:left; display:inline; width:130px; overflow:hidden; margin:0 8px 8px 0;}
+.img_wrapper {text-align:center; padding:5px; height:75px; overflow:hidden;}
+.thumb_filename {color:#333; font-size:11px; text-align:center; width:104px; height:14px; padding:0 10px; overflow:hidden;}
+.thumb_size {text-align:center; font-size:11px;}
+.thumb_actions {border-top:1px solid #989da5; background:#fff url(../img/thumb_actions_bg.gif) bottom repeat-x; padding:3px 8px; text-align:right;}
+.thumb_actions img {padding:3px 0px 0px 3px; cursor:pointer;}
+.thumb_select {background-repeat:no-repeat; padding-left:18px; float:left;}

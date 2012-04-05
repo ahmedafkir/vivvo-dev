@@ -1,0 +1,62 @@
+<vte:template>
+	<div id="comments_search" style="display:none">
+		<form id="comments_search_form" name="comments_search_form" onsubmit="return false;">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_KEYWORDS}" name="search_description" />
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_NAME}" name="search_author" />
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_EMAIL}" name="search_email" />
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_IP}" name="search_ip" />
+			
+			<div class="form_line"> 
+				<label><vte:value select="{LNG_ADMIN_DATE}" />:</label>
+				<div class="formElement">		
+					<select class="options" name="search_search_date">
+						<option value="0" selected="selected"><vte:value select="{LNG_ADMIN_ANY_DATE}" /></option>
+						<option value="1" ><vte:value select="{LNG_ADMIN_YESTRDAY}" /></option>
+						<option value="7" ><vte:value select="{LNG_ADMIN_A_WEEK_AGO}" /></option>
+						<option value="14" ><vte:value select="{LNG_ADMIN_2_WEEKS_AGO}" /></option>
+						<option value="30" ><vte:value select="{LNG_ADMIN_A_MONTH_AGO}" /></option>
+						<option value="90" ><vte:value select="{LNG_ADMIN_3_MONTHS_AGO}" /></option>
+						<option value="180" ><vte:value select="{LNG_ADMIN_6_MONTHS_AGO}" /></option>
+						<option value="365" ><vte:value select="{LNG_ADMIN_A_YEAR_AGO}" /></option>
+					</select>
+				</div>
+			</div>
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_checkbox.xml" label="{LNG_ADMIN_AND_OLDER}" name="search_before_after" value="1" checked="1" />
+			
+			<div class="form_line"> 
+				<label><vte:value select="{LNG_ADMIN_SEARCH_STATUS}" />:</label>
+				<div class="formElement">		
+					<select class="options" name="search_status">
+						<option value="" selected="selected"><vte:value select="{LNG_ADMIN_ALL}" /></option>
+						<option value="0" ><vte:value select="{LNG_ADMIN_PENDING}" /></option>
+						<option value="1" ><vte:value select="{LNG_ADMIN_ACTIVE}" /></option>
+					</select>
+				</div>
+			</div>
+			<input type="hidden" name="search_article_id" value="" />
+			<div class="form_line"> 
+				<label> </label>
+				<div class="formElement">
+					<button type="submit" name="search_do_advanced"><vte:value select="{LNG_ADMIN_SEARCH_NOW}" /></button>
+				</div>
+			</div>
+		</form>
+		<div class="separator_gray"><!-- --></div>
+		<div class="tab_holders_box_header"><img src="img/icon_search.gif" alt="{LNG_ADMIN_SEARCH_FILTERS}" title="{LNG_ADMIN_SEARCH_FILTERS}" /> <vte:value select="{LNG_ADMIN_SEARCH_FILTERS}" /></div>
+		<form id="comments_filter_form" name="comments_filter_form" onsubmit="return false;">
+			
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_FILTER_NAME}" name="FILTER_name" id="FILTER_name" />
+
+			<div class="form_line"> 
+				<label> </label>
+				<div class="formElement">
+					<button type="submit"><vte:value select="{LNG_ADMIN_SAVE_FILTER}" /></button>
+				</div>
+			</div>
+		</form>
+	</div>
+</vte:template>

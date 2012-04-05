@@ -1,0 +1,44 @@
+<vte:template>
+	<form action="#" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+		<input type="hidden" name="action" value="vivvoCore" />
+		<input type="hidden" name="cmd" value="preferences" />
+		<div id="comments_preferences" style="display:none;">
+			<div class="form_box_first">
+				<vte:if test="{display_modules}">
+					<div class="form_box_heder">
+						<div class="form_box_info">
+							<vte:value select="{LNG_ADMIN_PREFERENCES_COMMENTS_INFO_BOX}" />
+						</div>
+					</div>
+				</vte:if>
+				<div class="form_box_body">
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_NUMBER_OF_COMMENTS_PER_PAGE}" name="VIVVO_COMMENTS_NUM_PER_PAGE" value="{VIVVO_COMMENTS_NUM_PER_PAGE}" />
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_two_radios.xml" label="{LNG_ADMIN_COMMENTS_ORDER}" name="VIVVO_COMMENTS_ORDER" value="{VIVVO_COMMENTS_ORDER}" text_1="{LNG_ADMIN_COMMENTS_ORDER_OLDER}" value_1="ascending" text_2="{LNG_ADMIN_COMMENTS_ORDER_NEWER}" value_2="descending" />
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_ENABLE_BBCODE_COMMENTS}" name="VIVVO_COMMENTS_ENABLE_BBCODE" value="{VIVVO_COMMENTS_ENABLE_BBCODE}" />
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_ENABLE_THREADED_COMMENTS}" name="VIVVO_COMMENTS_ENABLE_THREADED" value="{VIVVO_COMMENTS_ENABLE_THREADED}" />
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_COMMENT_ENABLE_GRAVATAR}" name="VIVVO_COMMENTS_ENABLE_GRAVATAR" value="{VIVVO_COMMENTS_ENABLE_GRAVATAR}" />
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_REPORT_INAPPROPRIATE_COMMENTS}" name="VIVVO_COMMENTS_REPORT_INAPPROPRIATE" value="{VIVVO_COMMENTS_REPORT_INAPPROPRIATE}" />
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_FLOOD_PROTECTION}" name="VIVVO_COMMENTS_FLOOD_PROTECTION" value="{VIVVO_COMMENTS_FLOOD_PROTECTION}" />
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_CAPTCHA_FOR_COMMENTS}" name="VIVVO_COMMENTS_CAPTHA" value="{VIVVO_COMMENTS_CAPTHA}" />
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="{LNG_ADMIN_BAD_WORDS}" name="VIVVO_COMMENTS_BAD_WORDS" value="{VIVVO_COMMENTS_BAD_WORDS}" />
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="{LNG_ADMIN_IP_FILTER}" name="VIVVO_COMMENTS_IP_FITER" value="{VIVVO_COMMENTS_IP_FITER}" />
+				</div>
+			</div>
+			<vte:if test="!{display_modules}">
+				<div class="form_line">
+					<label> </label>
+					<div class="formElement">
+						<button type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+					</div>
+				</div>
+			</vte:if>
+		</div>
+		<vte:if test="{display_modules}">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/preferences/modules/comments.xml" />
+			<div class="content_list_body_footer">
+				<div class="form_submit_button"><button class="primary" type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button></div>
+			</div>
+		</vte:if>
+	</form>
+</vte:template>

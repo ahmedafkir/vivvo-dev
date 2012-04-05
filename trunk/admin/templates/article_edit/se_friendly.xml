@@ -1,0 +1,15 @@
+<vte:template>
+	<div id="article_edit_se_friendly" style="display:none">
+		<div class="form_box">
+			<div class="form_box_body">
+			
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_SEARCH_ENGINE_FRIENDLY_NAME}" name="ARTICLE_sefriendly" value="{article.sefriendly}" style="width:136px;" sufix=".html"/>
+				
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="{LNG_ADMIN_META_KEYWORDS}" name="ARTICLE_keywords" value="{article.keywords}" />
+				
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="{LNG_ADMIN_META_DESCRIPTION}" name="ARTICLE_description" value="{article.description}" />
+				
+			</div>
+		</div>
+	</div>
+</vte:template>

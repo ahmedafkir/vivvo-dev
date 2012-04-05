@@ -1,0 +1,47 @@
+<div id="multiple_attachments_tab">
+	<vte:lang src="plugins/multiple_attachments/admin/lang/" />
+	<div class="article_abstract_field"><vte:value select="{LNG_INFO_PLUGIN_MULTIPLE_ATTACHMENTS_INFO}" /></div>
+	<div class="content_list_items">
+		<vte:if test="{article.id}">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/file_picker_includes.xml" />
+			<vte:header type="css" href="{VIVVO_URL}plugins/multiple_attachments/admin/css/multiple_attachments.css" />
+			<vte:header type="script" href="{VIVVO_URL}plugins/multiple_attachments/admin/js/vivvoMultipleAttachments.js" />
+			<div id="multiple_attachments_list" >
+				<div id="attachment_properties">
+					<div class="form_line"> 
+						<label> </label>
+						<div class="formElement">
+							<a id="need_help_attachmens" href="#" class="action_button_link">+ <vte:value select="{LNG_INFO_PLUGIN_MULTIPLE_ATTACHMENTS_ADD_NEW}" /></a>
+						</div>
+					</div>
+					<div class="separator_gray"><!-- --></div>
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="Attachment title" id="article_multiple_attachments_caption" />
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="Description" id="article_multiple_attachments_description" />
+					
+					<div class="form_line">
+						<label> </label>
+						<div class="formElement">
+							<button id="article_multiple_attachments_apply" type="button"><vte:value select="{LNG_INFO_PLUGIN_MULTIPLE_ATTACHMENTS_APPLY}" /></button>
+						</div>
+					</div>
+				</div>
+				
+				<div id="multiple_attachments_holder">
+					<vte:include file="plugins/multiple_attachments/admin/templates/attachment_list.xml" search_id = "{article.id}" />
+				</div>
+				<script type="text/javascript">
+					var vattlist = new vivvoMultipleAttachments('attachment_holder', {
+						article_id : '<vte:value select="{article.id}" />'
+					});
+				</script>
+			</div>
+			<vte:else>
+				<div class="dump">
+					<span class="warning"><vte:value select="{LNG_INFO_PLUGIN_MULTIPLE_ATTACHMENTS_SAVE_FIRST}" /></span>
+				</div>
+			</vte:else>
+		</vte:if>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+<vte:template>
+	<vte:header type="script" href="{VIVVO_URL}js/swfupload/swfupload.js" />
+	<vte:header type="script" href="{VIVVO_URL}js/swfupload/swfupload_queue.js" />
+	<vte:header type="script" href="{VIVVO_URL}js/swfupload/fileprogress.js" />
+	<vte:header type="script" href="{VIVVO_URL}js/control_modal.js" />
+	<vte:header type="script" href="{VIVVO_URL}js/tooltips.js" />
+	<vte:header type="script" href="{VIVVO_URL}{VIVVO_FS_ADMIN_DIR}js/file_upload.js" />
+	<vte:header type="script" href="{VIVVO_URL}{VIVVO_FS_ADMIN_DIR}js/file_picker.js" />
+	<vte:header type="css" href="{VIVVO_URL}{VIVVO_FS_ADMIN_DIR}css/modal.css" />
+	<vte:header type="css" href="{VIVVO_URL}{VIVVO_FS_ADMIN_DIR}css/file_picker.css" />
+</vte:template>

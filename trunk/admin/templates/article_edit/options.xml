@@ -1,0 +1,237 @@
+<vte:template>
+	<div id="article_edit_options" style="display:none">
+		<div class="form_box">
+			<div class="form_box_body">
+				<vte:if test="{current_user.can|'CHANGE_STATUS'}">
+					<div class="form_line">
+						<label><vte:value select="{LNG_ADMIN_SET_STATUS}" />:</label>
+						<div class="formElement">
+							<select class="options" name="ARTICLE_status">
+								<vte:if test="{current_user.can_change_status|'1',article.status}">
+									<option value="1">
+										<vte:attribute name="selected">
+											<vte:if test="{article.status} = 1">selected</vte:if>
+										</vte:attribute>
+										<vte:value select="{LNG_ADMIN_ACTIVE}" />
+									</option>
+								</vte:if>
+								<vte:if test="{current_user.can_change_status|'0',article.status}">
+									<option value="0">
+										<vte:attribute name="selected">
+											<vte:if test="{article.status} = 0">selected</vte:if>
+										</vte:attribute>
+										<vte:value select="{LNG_ADMIN_PENDING}" />
+									</option>
+								</vte:if>
+								<vte:if test="{current_user.can_change_status|'-1',article.status}">
+									<option value="-1">
+										<vte:attribute name="selected">
+											<vte:if test="{article.status} = -1">selected</vte:if>
+										</vte:attribute>
+										<vte:value select="{LNG_ADMIN_ARCHIVED}" />
+									</option>
+								</vte:if>
+							</select>
+						</div>
+					</div>
+				</vte:if>
+				<div class="form_line">
+					<label><vte:value select="{LNG_ADMIN_CATEGORY}" />:</label>
+					<div class="formElement">
+						<select class="options" name="ARTICLE_category_id">
+							<vte:box module="box_sections">
+								<vte:params>
+									<vte:param name="id" value="0" />
+									<vte:param name="prefix" value="" />
+								</vte:params>
+								<vte:template>
+									<vte:foreach item="category" from="{categories}">
+										<vte:if test="{category.category_name} != ''">
+											<vte:if test="!{category.get_redirect}">
+												<vte:if test="{current_user.can|'WRITE','Categories',category.id}">
+													<option value="{category.id}">
+														<vte:attribute name="selected">
+															<vte:if test="{article.category_id} = {category.id}">selected</vte:if>
+														</vte:attribute>
+														<vte:attribute name="class">
+															<vte:if test="!{category.parent_cat}">root</vte:if>
+														</vte:attribute>
+														<vte:value select="{prefix}" />- <vte:value select="{category.category_name}" />
+													</option>
+												</vte:if>
+											</vte:if>
+											<vte:if test="{category.subcategories}">
+                                                <vte:load module="box_sections" id="{category.id}" template_string="{template_string}" prefix="&#160;{prefix}" />
+                                            </vte:if>
+										</vte:if>
+									</vte:foreach>
+								</vte:template>
+							</vte:box>
+						</select>
+					</div>
+				</div>
+				<vte:if test="{current_user.is|'EDITOR','Categories',article.category_id}">
+					<div class="form_line">
+						<label><vte:value select="{LNG_ADMIN_AUTHOR}" />:</label>
+						<div class="formElement">
+							<vte:if test="{article.author}">
+								<input id="ARTICLE_author" type="text" class="text" name="ARTICLE_author" value ="{article.author}" />
+								<vte:else>
+									<input id="ARTICLE_author" type="text" class="text" name="ARTICLE_author" value ="{current_user.get_name}" />
+								</vte:else>
+							</vte:if>
+						</div>
+					</div>
+					<div class="form_line">
+						<label> </label>
+						<div class="formElement">
+							<select class="options" name="ARTICLE_user_id" onchange="$('ARTICLE_author').value = $('ARTICLE_user_id_' + this.value).innerHTML.strip();">
+								<vte:box module="box_users">
+								<vte:params>
+									<vte:param name="search_limit" value="1000" />
+									<vte:param name="search_user_type" value="staff" />
+								</vte:params>
+									<vte:template>
+										<vte:foreach item = "user" from = "{user_list}">
+											<option id="ARTICLE_user_id_{user.get_id}" value="{user.get_id}">
+												<vte:attribute name="selected">
+													<vte:if test="{article.user_id}">
+														<vte:if test="{user.get_id} = {article.user_id}">selected</vte:if>
+														<vte:else>
+															<vte:if test="{user.get_id} = {current_user.get_id}">selected</vte:if>
+														</vte:else>
+													</vte:if>
+												</vte:attribute>
+												<vte:value select="{user.get_username}" />
+											</option>
+										</vte:foreach>
+									</vte:template>
+								</vte:box>
+							</select>
+						</div>
+					</div>
+					<vte:else>
+						<div class="form_line">
+							<label><vte:value select="{LNG_ADMIN_AUTHOR}" />:</label>
+							<div class="formElement">
+								<vte:if test="{article.id}">
+									<vte:value select="{article.get_author_name}" />
+									<vte:else>
+										<vte:value select="{current_user.get_name}" />
+									</vte:else>
+								</vte:if>
+							</div>
+						</div>
+					</vte:else>
+				</vte:if>
+
+				<div id="article_edit_advanced_options">
+					<vte:attribute name="class">
+						<vte:if test="!{VIVVO_EXPAND_ADVANCED_OPTIONS}">advanced_hide</vte:if>
+					</vte:attribute>
+					<div  class="advanced_switch">
+						<span onclick="$('article_edit_advanced_options').toggleClassName('advanced_hide');"><vte:value select="{LNG_ADMIN_ADVANCED_OPTIONS}" /></span>
+					</div>
+					<div class="advanced_options">
+						<div class="form_line">
+							<label><vte:value select="{LNG_ADMIN_PUBLISHING_DATE}" />:</label>
+							<div class="formElement">
+								<input id="created_show" type="text" class="text" style=" width:148px;" name="created_show" onchange="$('ARTICLE_created').value= this.calendar_date_select.selected_date.getTime() / 1000;" />
+								<script type="text/javascript">
+									<vte:if test="{article.created}">
+										var dateFromMS = new Date(<vte:value select="{article.created|strtotime}" /> * 1000);
+										<vte:else>
+											var dateFromMS = new Date(<vte:value select="{current_time|strtotime}" /> * 1000);
+										</vte:else>
+									</vte:if>
+									$('created_show').value = dateFromMS.toFormattedString(true);
+								</script>
+								<vte:literal>
+									<img id="ARTICLE_created_link" style="border:0px none ; cursor:pointer;" src="img/calendar.gif" onclick="new CalendarDateSelect('created_show', {time:true, year_range:10, buttons: false} );" alt="" />
+								</vte:literal>
+								<input id="ARTICLE_created" type="hidden" name="ARTICLE_created">
+									<vte:attribute name="value">
+										<vte:if test="{article.created}">
+											<vte:value select="{article.created|strtotime}" />
+											<vte:else>
+												<vte:value select="{current_time|strtotime}" />
+											</vte:else>
+										</vte:if>
+									</vte:attribute>
+								</input>
+							</div>
+						</div>
+
+						<div class="form_line">
+							<label><vte:value select="{LNG_ADMIN_SHOW_COMMENTS}" />:</label>
+							<div class="formElement">
+								<label>
+									<input type="radio" value="1" name="ARTICLE_show_comment">
+										<vte:attribute name="checked">
+											<vte:if test="{article.show_comment} = 1">checked</vte:if>
+											<vte:if test="!{article.id}">checked</vte:if>
+										</vte:attribute>
+									</input>
+									<vte:value select="{LNG_ADMIN_YES}" />
+								</label>
+								<label>
+									<input type="radio" value="0" name="ARTICLE_show_comment">
+										<vte:attribute name="checked">
+											<vte:if test="{article.show_comment} = 0">checked</vte:if>
+										</vte:attribute>
+									</input>
+									<vte:value select="{LNG_ADMIN_NO}" />
+								</label>
+							</div>
+						</div>
+						<div class="form_line">
+							<label><vte:value select="{LNG_ADMIN_SHOW_RATINGS}" />:</label>
+							<div class="formElement">
+								<label>
+									<input type="radio" value="1" name="ARTICLE_show_poll">
+										<vte:attribute name="checked">
+											<vte:if test="{article.show_poll} = 1">checked</vte:if>
+											<vte:if test="!{article.id}"><vte:if test="{VIVVO_ARTICLE_SHOW_RATING}">checked</vte:if></vte:if>
+										</vte:attribute>
+									</input>
+									<vte:value select="{LNG_ADMIN_YES}" />
+								</label>
+								<label>
+									<input type="radio" value="0" name="ARTICLE_show_poll">
+										<vte:attribute name="checked">
+											<vte:if test="{article.show_poll} = 0">checked</vte:if>
+											<vte:if test="!{article.id}"><vte:if test="!{VIVVO_ARTICLE_SHOW_RATING}">checked</vte:if></vte:if>
+										</vte:attribute>
+									</input>
+									<vte:value select="{LNG_ADMIN_NO}" />
+								</label>
+							</div>
+						</div>
+						<div class="form_line">
+							<label><vte:value select="{LNG_ADMIN_PUBLISHING_TO_FEED}" /></label>
+							<div class="formElement">
+								<label>
+									<input type="radio" value="1" name="ARTICLE_rss_feed">
+										<vte:attribute name="checked">
+											<vte:if test="{article.rss_feed} = 1">checked</vte:if>
+											<vte:if test="!{article.id}">checked</vte:if>
+										</vte:attribute>
+									</input>
+									<vte:value select="{LNG_ADMIN_YES}" />
+								</label>
+								<label>
+									<input type="radio" value="0" name="ARTICLE_rss_feed">
+										<vte:attribute name="checked">
+											<vte:if test="{article.rss_feed} = 0">checked</vte:if>
+										</vte:attribute>
+									</input>
+									<vte:value select="{LNG_ADMIN_NO}" />
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</vte:template>

@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<title><vte:value select="{LNG_ADMIN_VIVVO_TITLE}" /></title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="{VIVVO_VERSION}" />
+		{$css__}
+		{$scripts__}
+		<script type="text/javascript" src="js/lang.php"> </script>
+		<script type="text/javascript" src="../js/codepress/codepress.js"> </script>
+		<script type="text/javascript">
+			vivvo.user.id='<vte:value select="{current_user.get_id}" />';
+			vivvo.token = '<vte:value select="{VIVVO_SECURITY_TOKEN}" />';
+		</script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="main">
+				<form id="template_edit_form" action="templates.php" method="post" onsubmit="return false;">
+					<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+					<input type="hidden" name="action" value="file" />
+					<input id="template_cmd" type="hidden" name="cmd" value="" />
+					<input type="hidden" name="FILE_dir" value="{file.dir}" />
+					<input type="hidden" name="FILE_extension" value="{file.extension}" />
+					<input type="hidden" name="FILE_filename" value="{file.dir}{file.filename}" />
+					<input id="FILE_content" type="hidden" value="" name="FILE_content" />
+					<div class="content_list_items" style="margin-top:0px;">
+						<div style="background:#FFF; padding:4px; border-bottom:1px solid #989DA5;"><strong><vte:value select="{LNG_ADMIN_EDITING}" />: <vte:value select="{file.dir}" /><vte:value select="{file.filename}" /></strong></div>
+						<textarea id="FILE_content_textarea" class="codepress vte linenumbers-on" style="width:894px; height:450px;"><vte:value select="{file.get_html_content}" /></textarea>
+					</div>
+					<div class="content_list_body_footer">
+						<vte:if test="{file.writeable} != 0">
+							<button class="primary" onclick="$('template_cmd').value='save';" type="submit" value="save"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+							<vte:else>
+								<vte:value select="{LNG_ADMIN_FILE_IS_NOT_WRITEBLE}" />
+							</vte:else>
+						</vte:if>
+					</div>
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/dump.xml" />
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

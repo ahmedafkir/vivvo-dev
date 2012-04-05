@@ -1,0 +1,60 @@
+<div id="system_header">
+	<div id="logo">
+		<img src="img/logo.png" alt="{LNG_ADMIN_VIVVO_TITLE}" />
+		<div class="edition_info"><a href="{VIVVO_URL}" target="_blank" title="{LNG_ADMIN_VIEW_LIVE_SITE}"><vte:value select="{LNG_ADMIN_VIEW_LIVE_SITE}" /></a></div>
+	</div>
+	<vte:if test="{current_user.is_admin}">
+		<div id="system_links">
+			<span id="debug"> </span>
+			<div class="user_info">
+				<vte:value select="{LNG_ADMIN_WELCOME}" />: <span class="user"><a href="user_edit.php?search_id={current_user.get_id}" alt="{LNG_ADMIN_EDIT_ACCOUNT}" title="{LNG_ADMIN_EDIT_ACCOUNT}"><vte:value select="{current_user.get_name}" /></a></span>
+			</div>
+			<a href="{current_user.get_admin_logout_url}" class="logout" title="{LNG_ADMIN_LOGOUT}"><span><vte:value select="{LNG_ADMIN_LOGOUT}" /></span></a>
+			<div class="tools">
+				<ul>
+					<li class="tools_button">
+						<a href="#"><span><vte:value select="{LNG_ADMIN_TOOLS}" /></span></a>
+						<ul class="tools_submenu">
+							<li><a href="preferences.php"><vte:value select="{LNG_ADMIN_PREFERENCES}" /></a></li>
+							<li><a href="maintenance.php"><vte:value select="{LNG_ADMIN_MAINTENANCE}" /></a></li>
+							<li><a href="plugins.php" class="last"><vte:value select="{LNG_ADMIN_PLUGINS}" /></a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<vte:else>
+			<div id="system_links">
+				<span id="debug"> </span>
+				<div class="user_info">
+					<vte:value select="{LNG_ADMIN_WELCOME}" />: <span class="user"><a href="user_edit.php" alt="{LNG_ADMIN_EDIT_ACCOUNT}" title="{LNG_ADMIN_EDIT_ACCOUNT}"><vte:value select="{current_user.get_name}" /></a></span>
+				</div>
+				<a href="{current_user.get_admin_logout_url}" class="logout" title="{LNG_ADMIN_LOGOUT}"><span><vte:value select="{LNG_ADMIN_LOGOUT}" /></span></a>
+				<vte:if test="{current_user.can|'MANAGE_PLUGIN'}">
+					<div class="tools">
+						<ul>
+							<li class="tools_button">
+								<a href="#"><span><vte:value select="{LNG_ADMIN_TOOLS}" /></span></a>
+								<ul class="tools_submenu">
+									<vte:if test="{current_user.can|'MANAGE_PLUGIN'}">
+										<li><a href="plugins.php"><vte:value select="{LNG_ADMIN_PLUGINS}" /></a></li>
+									</vte:if>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</vte:if>
+			</div>
+		</vte:else>
+	</vte:if>
+	<script type="text/javascript">
+		vivvo.user.id = <vte:value select="{current_user.get_id|json_encode}" />;
+		vivvo.user.setPrivileges(<vte:value select="{current_user.get_json_privileges|json_encode}" />);
+		vivvo.token = <vte:value select="{VIVVO_SECURITY_TOKEN|json_encode}" />;
+		vivvo.fs_admin_dir = <vte:value select="{VIVVO_FS_ADMIN_DIR|json_encode}" />;
+		vivvo.url = <vte:value select="{VIVVO_URL|json_encode}" />;
+		vivvo.allowed_extensions = <vte:value select="{VIVVO_ALLOWED_EXTENSIONS|json_encode}" />;
+		vivvo.cookie_prefix = <vte:value select="{VIVVO_COOKIE_PREFIX|json_encode}" />;
+	</script>
+	<br style="clear:both;" />
+</div>

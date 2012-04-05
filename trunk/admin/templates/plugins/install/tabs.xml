@@ -1,0 +1,10 @@
+<vte:template>
+	<ul id="install_tab_list" class="tabs">
+		<li><a href="#install_quick_link" class="active"><span><vte:value select="{PLUG_IN_NAME}" /></span></a></li>
+	</ul>
+	<div class="corner_top_right"><!-- --></div>
+	<div id="tab_holders">
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/plugins/install/quick_link.xml" />
+	</div>
+	<div class="corner_bottom_right"><!-- --></div>
+</vte:template>

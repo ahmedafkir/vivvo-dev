@@ -1,0 +1,69 @@
+<vte:template>
+	<form id="form_builder_preferences_form" method="post" enctype="multipart/form-data" onsubmit="return false;">
+		<vte:if test="{form.id}">
+			<input id="form_id" type="hidden" name="PLUGIN_FORM_BUILDER_id" value="{form.id}" />
+		</vte:if>
+		
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_FORM_BUILDER_ADMIN_TITLE}" name="PLUGIN_FORM_BUILDER_title" value="{form.title}" id="PLUGIN_FORM_BUILDER_title" />
+		
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_FORM_BUILDER_ADMIN_FORM_PAGE}" name="PLUGIN_FORM_BUILDER_url" value="{form.url}" />
+		
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_FORM_BUILDER_ADMIN_EMAIL}" name="PLUGIN_FORM_BUILDER_email" value="{form.email}" />
+		
+		<div class="form_line"> 
+			<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_FORM_STATUS}" />:</label>
+			<div class="formElement">
+				<label>
+					<input name="PLUGIN_FORM_BUILDER_status" type="radio" value="1">
+						<vte:attribute name="checked"> 
+							<vte:if test="{form.status}">checked</vte:if>
+						</vte:attribute>
+					</input>
+					<vte:value select="{LNG_ADMIN_ACTIVE}" />
+				</label>
+				<label>
+					<input name="PLUGIN_FORM_BUILDER_status" type="radio" value="0">
+						<vte:attribute name="checked"> 
+							<vte:if test="!{form.status}">checked</vte:if>
+						</vte:attribute>
+					</input>
+					<vte:value select="{LNG_ADMIN_PENDING}" />
+				</label>
+			</div>
+		</div>
+		
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="{LNG_PLUGIN_FORM_BUILDER_ADMIN_THANK_YOU_MESSAGE}" name="PLUGIN_FORM_BUILDER_message" value="{form.message}" />
+		
+		<div class="form_line" style="display:none;"> 
+			<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_USER_ONLY}" />:</label>
+			<div class="formElement">
+				<label>
+					<input name="PLUGIN_FORM_BUILDER_user_status" type="radio" value="1">
+						<vte:attribute name="checked"> 
+							<vte:if test="{form.user_status}">checked</vte:if>
+						</vte:attribute>
+					</input>
+
+					<vte:value select="{LNG_ADMIN_YES}" />
+				</label>
+				<label>
+					<input name="PLUGIN_FORM_BUILDER_user_status" type="radio" value="0">
+						<vte:attribute name="checked"> 
+							<vte:if test="!{form.user_status}">checked</vte:if>
+						</vte:attribute>
+					</input>
+					<vte:value select="{LNG_ADMIN_NO}" />
+				</label>
+			</div>
+		</div>
+		
+	
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_FORM_BUILDER_ADMIN_THANK_YOU_URL}" name="PLUGIN_FORM_BUILDER_message_url" value="{form.message_url}" />
+		
+		<div style="display:none">	
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="Form action" name="PLUGIN_FORM_BUILDER_action" value="{form.action}" />
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="Form submit command" name="PLUGIN_FORM_BUILDER_cmd" value="{form.cmd}" />
+		</div>
+		
+	</form>
+</vte:template>

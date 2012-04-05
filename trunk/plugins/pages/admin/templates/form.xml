@@ -1,0 +1,82 @@
+<vte:template>
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/file_picker_includes.xml" />
+	<div class="content_list">
+		<div class="content_list_header">
+			<span class="context_view">
+				<vte:if test="{page.id}">
+					<vte:value select="{LNG_ADMIN_EDIT_PAGE}" />
+					<vte:else>
+						<vte:value select="{LNG_ADMIN_ADD_PAGE}" />
+					</vte:else>
+				</vte:if>
+			</span>
+			<span class="context_help">
+				<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />			</span>
+		</div>
+		<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+		<form id="page_form_element" action="plugins.php?plugin=pages&amp;search_pid={page.id}" method="post">
+			<input type="hidden" name="SECURITY_TOKEN" value="{VIVVO_SECURITY_TOKEN}" />
+			<input type="hidden" name="action" value ="page" />
+                <vte:if test="{page.id}">
+	                <input id="page_cmd" type="hidden" name="cmd" value="edit" />
+                    <vte:else>
+                        <input id="page_cmd" type="hidden" name="cmd" value="add" />
+                    </vte:else>
+                </vte:if>            
+			<div class="content_list_body">
+				<div class="content_list_body_header">
+					<div class="content_list_body_header_line1">
+						<vte:value select="{LNG_ADMIN_TITLE}" />: <input type="text" class="article_title" name="PAGE_title" value="{page.title}" />
+					</div>
+					<div class="content_list_body_header_line2">
+						<div class="form_line">
+							<label><vte:value select="{LNG_ADMIN_CUSTOM_LAYOUT}" />:</label>
+							<div class="formElement">
+								<select class="options" name="PAGE_template">
+									<option value="">
+										<vte:attribute name="selected">
+											<vte:if test="!{page.template}">selected</vte:if>
+										</vte:attribute>
+										<vte:value select="{LNG_ADMIN_USE_SYSTEM_DEFAULT}" />
+									</option>
+									<vte:box module="box_files">
+										<vte:params>
+											<vte:param name="fs_root" value="{VIVVO_FS_TEMPLATE_ROOT}" />
+											<vte:param name="dir" value="{VIVVO_TEMPLATE_DIR}frame" />
+											<vte:param name="ext" value="tpl" />
+										</vte:params>
+										<vte:template>
+											<vte:foreach item="file" from="{file_list}">
+												<option value="{file.filename}">
+													<vte:attribute name="selected">
+														<vte:if test="{page.template} = {file.filename}">selected</vte:if>
+													</vte:attribute>
+													<vte:value select="{file.filename}" />
+												</option>
+											</vte:foreach>
+										</vte:template>
+									</vte:box>
+								</select>
+							</div>
+						</div>
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="URL" name="PAGE_sefriendly" value="{page.sefriendly}" sufix=" .html"/>
+					</div>
+				</div>
+				<div id="page_form" class="content_list_items"><textarea id="page_body" name="PAGE_body" style="width:100%;height:400px; padding:0; margin:0; border:0;"><vte:value select="{page.body}" /></textarea></div>
+				<div class="content_list_body_footer" style="position:static;">
+					<div class="form_submit_button">
+						<vte:if test="{page.id}">
+							<input type="hidden" name="PAGE_id" value ="{page.id}" />
+							<button class="primary" onclick="$('page_cmd').value='edit';" type="submit" value="edit"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+							<button class="secondary" type="button" onClick="adminList.deletePage({page.id});" value="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></button>
+							<vte:else>
+								<button class="primary" onclick="$('page_cmd').value='add';" type="submit" value="add"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+							</vte:else>
+						</vte:if>
+					</div>
+				</div>
+			</div>
+		</form>
+		<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+	</div>
+</vte:template>

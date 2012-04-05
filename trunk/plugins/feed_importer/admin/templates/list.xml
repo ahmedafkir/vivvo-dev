@@ -1,0 +1,166 @@
+<vte:template>
+	<div class="content_list">
+		<div class="content_list_header">
+			<span class="context_view">
+				<vte:value select="{LNG_ADMIN_VIEW}" />: <vte:value select="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_FEED_IMPORTER}" />
+			</span>
+			<span class="context_help">
+				<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />			</span>
+		</div>
+		<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+		<div class="content_list_body">
+			<div class="content_list_body_header">
+				<div class="content_list_body_header_line1">
+					<div style="float:left;padding-top:3px"><span class="action_button" onclick="feedList.forceImport();"><img src="img/icon_asset_refresh.gif" alt="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_FORCE_IMPORT}" title="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_FORCE_IMPORT}" /> <vte:value select="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_FORCE_IMPORT}" /></span></div>
+					<span class="button_add_new">
+						<img src="img/button_add_plus.gif" alt="{LNG_PLUGIN_FEED_ADD_NEW}" title="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_ADD_NEW}" /> <a onclick="feedList.addNewAnswer();"><vte:value select="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_ADD_NEW}" /></a>
+					</span>
+					<div>&#160;</div>
+				</div>
+			</div>
+			<form id="feed_form" name="feed_form" action="{CURRENT_ADMIN_VIEW_FILE}" method="post">
+				<input type="hidden" name="SECURITY_TOKEN" value="{VIVVO_SECURITY_TOKEN}" />
+				<input type="hidden" name="action" value="feed" />
+				<input type="hidden" name="cmd" value="edit" />
+				<div class="content_list_body_header">
+				</div>
+				<div id="feed_list" class="content_list_items">
+					<div id="filelist_loading_sign" style="display:none"></div>
+					<vte:foreach item = "feed" from = "{feed_list}" key="index">
+						<div class="item row_{index|mod:'2'}" style="zoom:1;">
+							<div class="item_status">
+								<img src="{feed.get_favicon}" width="16" height="16" />
+							</div>
+							<div class="item_actions"><img src="img/icon_edit.gif" alt="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_EDIT_FEED}" title="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_EDIT_FEED}" onclick="feedList.editMode(this);" /> <img src="img/icon_delete.gif" alt="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_DELETE_FEED}" title="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_DELETE_FEED}" onclick="Element.up(this,'.item').remove();$('comment_list_body_footer').style.position='static';$('comment_list_body_footer').style.position='relative';" /></div>
+							<div class="item_data">
+								<div class="item_line1">
+									<span><vte:value select="{feed.get_category_name}" />: <vte:value select="{feed.get_count}" /> <vte:value select="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_FEEDS}" /></span>
+								</div>
+								<div class="item_line2">
+									<vte:value select="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_AUTHOR}" />: <vte:value select="{feed.author}" /> | <vte:value select="{feed.feed}" />
+								</div>
+							</div>
+							<div class="feed_input edit_form" style="display:none;">
+								<div class="form_line">
+									<label><vte:value select="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_CATEGORY}" /></label>
+									<div class="formElement">
+										<select name="PLUGIN_FEED_feed[{feed.id}][category_id]" class="feed_input options" style="display:none;">
+											<vte:box module="box_sections">
+												<vte:params>
+													<vte:param name="id" value="0" />
+													<vte:param name="prefix" value="" />
+												</vte:params>
+												<vte:template>
+													<vte:foreach item = "category" from = "{categories}">
+														<vte:if test="{category.category_name} != ''">
+															<option value="{category.id}">
+																<vte:attribute name="selected">
+																	<vte:if test="{feed.category_id} = {category.id}">selected</vte:if>
+																</vte:attribute>
+																<vte:value select="{prefix}" />- <vte:value select="{category.category_name}" />
+															</option>
+															<vte:if test="{category.subcategories}">
+																	<vte:load module="box_sections" id="{category.id}" template_string="{template_string}" prefix="&#160;{prefix}" />
+															</vte:if>
+														</vte:if>
+													</vte:foreach>
+												</vte:template>
+											</vte:box>
+										</select>
+									</div>
+								</div>
+
+								<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_FEED_URL}" name="PLUGIN_FEED_feed[{feed.id}][feed]" value="{feed.feed}" />
+
+								<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_AUTHOR}" name="PLUGIN_FEED_feed[{feed.id}][author]" value="{feed.author}" />
+
+							</div>
+						</div>
+						<vte:else>
+							<div class="item row_0 edit_form">
+								<div class="item_data">
+									<div class="item_actions"><img src="img/icon_delete.gif" alt="Delete" onclick="Element.up(this, '.item').remove();$('comment_list_body_footer').style.position='static';$('comment_list_body_footer').style.position='relative';" /></div>
+									<div class="item_line1">
+										<div class="form_line">
+											<label><vte:value select="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_CATEGORY}" />:</label>
+											<div class="formElement">
+												<select id="category_tree" class="options" name="PLUGIN_FEED_new_feed[0][category_id]">
+													<vte:box module="box_sections">
+														<vte:params>
+															<vte:param name="id" value="0" />
+															<vte:param name="prefix" value="" />
+														</vte:params>
+														<vte:template>
+															<vte:foreach item = "category" from = "{categories}">
+																<vte:if test="{category.category_name} != ''">
+																	<option value="{category.id}"><vte:value select="{prefix}" />- <vte:value select="{category.category_name}" /></option>
+																	<vte:if test="{category.subcategories}">
+																			<vte:load module="box_sections" id="{category.id}" template_string="{template_string}" prefix="&#160;{prefix}" />
+																	</vte:if>
+																</vte:if>
+															</vte:foreach>
+														</vte:template>
+													</vte:box>
+												</select>
+											</div>
+										</div>
+
+										<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_FEED_URL}" name="PLUGIN_FEED_new_feed[0][feed]" />
+
+										<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_AUTHOR}" name="PLUGIN_FEED_new_feed[0][author]" />
+									</div>
+								</div>
+							</div>
+						</vte:else>
+					</vte:foreach>
+				</div>
+				<div  id="comment_list_body_footer" class="content_list_body_footer">
+					<div class="form_submit_button">
+						<button class="primary" type="submit"><vte:value select="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_SAVE}" /></button>
+					</div>
+				</div>
+			</form>
+			<div id="new_feed_template" style="display:none;">
+				<div class="item row_0 edit_form">
+					<div class="item_data">
+						<div class="item_actions"><img src="img/icon_delete.gif" alt="Delete" onclick="Element.up(this, '.item').remove();$('comment_list_body_footer').style.position='static';$('comment_list_body_footer').style.position='relative';" /></div>
+						<div class="item_line1">
+							<div class="form_line">
+								<label><vte:value select="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_CATEGORY}" />:</label>
+								<div class="formElement">
+									<select id="category_tree" class="options" name="PLUGIN_FEED_new_feed[][category_id]">
+										<vte:box module="box_sections">
+											<vte:params>
+												<vte:param name="id" value="0" />
+												<vte:param name="prefix" value="" />
+											</vte:params>
+											<vte:template>
+												<vte:foreach item = "category" from = "{categories}">
+													<vte:if test="{category.category_name} != ''">
+														<option value="{category.id}"><vte:value select="{prefix}" />- <vte:value select="{category.category_name}" /></option>
+														<vte:if test="{category.subcategories}">
+																<vte:load module="box_sections" id="{category.id}" template_string="{template_string}" prefix="&#160;{prefix}" />
+														</vte:if>
+													</vte:if>
+												</vte:foreach>
+											</vte:template>
+										</vte:box>
+									</select>
+								</div>
+							</div>
+
+							<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_FEED_URL}" name="PLUGIN_FEED_new_feed[][feed]" />
+							<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_FEED_IMPORTER_ADMIN_AUTHOR}" name="PLUGIN_FEED_new_feed[][author]" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+	</div>
+	<script type="text/javascript">
+		window.feed_importer_lang = {
+			LNG_INFO_PLUGIN_FEED_FORCE_IMPORT_RESULTS: <vte:value select="{LNG_INFO_PLUGIN_FEED_FORCE_IMPORT_RESULTS|json_encode}" />
+		};
+	</script>
+</vte:template>

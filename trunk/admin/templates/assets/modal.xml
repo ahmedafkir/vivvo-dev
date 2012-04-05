@@ -1,0 +1,42 @@
+<vte:template>
+	<img id="modal_close" onclick="Control.Modal.close()" src="img/delete_gray.gif" alt="{LNG_ADMIN_CLOSE}" title="{LNG_ADMIN_CLOSE}" />
+	<div id="asset_file_preview_holder">
+		<div id="asset_preview" rel="{VIVVO_URL}files.php?file={file.get_fullname|preg_replace:'/^files\//',''}">
+			<vte:attribute name="class">
+				<vte:if test="{file.get_extension|strtolower} in 'flv,avi,mpeg,mp4,mpg'">video</vte:if>
+			</vte:attribute>
+			<vte:if test="{file.extension|strtolower} in 'jpg,gif,png,jpeg'">
+				<img src="{file.get_thumb_href}" alt="{LNG_ADMIN_PREVIEW}" title="{LNG_ADMIN_PREVIEW}" />
+			</vte:if>
+		</div>
+		<div class="separator_gray"><!-- --></div>
+		<div id="asset_file_info">
+			<ul>
+				<li><span><vte:value select="{LNG_FILES_NAME}" />:</span><vte:value select="{file.get_filename}" /></li>
+				<li><span><vte:value select="{LNG_FILES_LOCATION}" />:</span><vte:value select="{file.get_dir}" /></li>
+				<li><span><vte:value select="{LNG_FILES_SIZE}" />:</span><vte:value select="{file.get_smart_size}" />
+				<vte:if test="{file.extension|strtolower} in 'jpg,gif,png,jpeg'">
+				(<vte:value select="{file.get_width}" /> x <vte:value select="{file.get_height}" /> px)
+				</vte:if>
+				</li>
+				<li><span><vte:value select="{LNG_FILES_DATE}" />:</span><vte:value select="{file.get_time|'n/j/Y g:i a T'}" /></li>
+			</ul>
+		</div>
+		<div class="separator_gray"><!-- --></div>
+		<div id="asset_file_form">
+			<form id="file_properties_form" method="post" name="file_properties_form" action="assets.php" onsubmit="this.search_dir.value=adminList.selected_dir;">
+				<input type="hidden" name="ASSET_id" value="{file.get_id}" />
+				<input type="hidden" name="action" value="asset" />
+				<input type="hidden" name="cmd" value="edit" />
+				<input type="hidden" name="search_dir" value="{search_dir}" />
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_FILES_NAME}" name="ASSET_filename" value="{file.get_filename|preg_replace:'`\.[^\.]+$`',''}" tooltip="{LNG_FILES_TOOLTIP_NAME}" />
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_FILES_KEYWORDS}" name="ASSET_keywords" value="{file.get_keywords}" tooltip="{LNG_FILES_TOOLTIP_KEYWORDS}"  />
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="{LNG_FILES_METADATA}" name="ASSET_info" value="{file.get_info}" tooltip="{LNG_FILES_TOOLTIP_METADATA}"  />
+				<div class="form_line">
+					<label> </label>
+					<div class="form_element"><button type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button></div>
+				</div>
+			</form>
+		</div>
+	</div>
+</vte:template>

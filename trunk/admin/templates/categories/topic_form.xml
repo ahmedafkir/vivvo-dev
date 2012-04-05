@@ -1,0 +1,144 @@
+<div class="content_list">
+	<div class="content_list_header">
+		<span class="context_view">
+			<vte:if test="{topic.get_id} gte 0">
+				<vte:value select="{LNG_ADMIN_EDIT_TOPIC}" />: <vte:value select="{topic.get_name}" />
+				<vte:else>
+					<vte:value select="{LNG_ADMIN_ADD_NEW_TOPIC}" />
+				</vte:else>
+			</vte:if>
+		</span>
+		<span class="context_help">
+			<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />		</span>
+	</div>
+	<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+	<div class="content_list_body">
+		<div class="content_list_body_header">
+			<div class="content_list_body_header_line1">
+				<div class="button_add_new">
+					<ul>
+						<li>
+							<a href="#" class="add_plus"><vte:value select="{LNG_ADMIN_ADD_NEW}" /></a><img class="add_plus_arrow" src="img/button_add_arrow.gif" alt="{LNG_ADMIN_ADD_NEW}" title="{LNG_ADMIN_ADD_NEW}" />
+							<ul class="tools_submenu">
+								<li><a href="categories.php"><vte:value select="{LNG_ADMIN_ADD_NEW_CATEGORY}" /></a></li>
+								<li><a href="#new-link" onclick="adminCategories.addNewLink(); return false;"><vte:value select="{LNG_ADMIN_ADD_NEW_LINK}" /></a></li>
+								<li><a href="#new-topic" onclick="adminTopics.addNewTopic(); return false;" class="last"><vte:value select="{LNG_ADMIN_ADD_NEW_TOPIC}" /></a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<form id="topic_form" action="categories.php?topic_form&amp;search_id={topic.get_id}" method="post">
+			<input type="hidden" name="SECURITY_TOKEN" value="{VIVVO_SECURITY_TOKEN}" />
+			<input type="hidden" name="action" value="tag" />
+			<input id="input_pg" type="hidden" name="pg" value="{pg}" />
+			<vte:if test="{topic.get_id} gte 0">
+				<input type="hidden" name="TAG_GROUP_id" value="{topic.get_id}" />
+				<input type="hidden" name="cmd" value="editGroup" />
+				<script type="text/javascript">adminTopics.editing_topic_id = <vte:value select="{topic.get_id}" /></script>
+				<vte:else>
+					<input type="hidden" name="cmd" value="addGroup" />
+				</vte:else>
+			</vte:if>
+			<div id="category_form" class="content_list_items">
+				<vte:include label="Topic name" name="TAG_GROUP_name" value="{topic.get_name}" tooltip="{LNG_ADMIN_TOOLTIP_TOPIC_NAME}" file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" />
+				<div id="topic_advanced_options">
+					<vte:attribute name="class">
+						<vte:if test="!{VIVVO_EXPAND_ADVANCED_OPTIONS}">advanced_hide</vte:if>
+					</vte:attribute>
+					<div class="advanced_switch">
+						<span onclick="$('topic_advanced_options').toggleClassName('advanced_hide');"><vte:value select="{LNG_ADMIN_ADVANCED_OPTIONS}" /></span>
+					</div>
+					<div class="advanced_options">
+						<vte:include label="{LNG_ADMIN_TOPIC_URL}" name="TAG_GROUP_url" value="{topic.get_url}" tooltip="{LNG_ADMIN_TOOLTIP_TOPIC_URL}" file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" />
+						<div class="form_line">
+							<label><vte:value select="{LNG_ADMIN_TOPIC_CUSTOM_LAYOUT}" />:</label>
+							<div class="formElement">
+								<select class="options" name="TAG_GROUP_template">
+									<option value="">
+										<vte:attribute name="selected">
+											<vte:if test="!{topic.get_template}">selected</vte:if>
+										</vte:attribute>
+										<vte:value select="{LNG_ADMIN_USE_SYSTEM_DEFAULT}" />
+									</option>
+									<vte:box module="box_files">
+										<vte:params>
+											<vte:param name="dir" value="{VIVVO_TEMPLATE_DIR}topic" />
+											<vte:param name="fs_root" value="{VIVVO_FS_TEMPLATE_ROOT}" />
+											<vte:param name="ext" value="tpl" />
+										</vte:params>
+										<vte:template>
+											<vte:foreach item="file" from="{file_list}">
+												<option value="{file.filename}">
+													<vte:attribute name="selected">
+														<vte:if test="{topic.get_template} = {file.filename}">selected</vte:if>
+													</vte:attribute>
+													<vte:value select="{file.filename}" />
+												</option>
+											</vte:foreach>
+										</vte:template>
+									</vte:box>
+								</select> <img class="info_help" src="img/icon_pref_help.gif" title="{LNG_ADMIN_TOOLTIP_TOPIC_CUSTOM_LAYOUT}" />
+							</div>
+						</div>
+						<div class="form_line">
+							<label><vte:value select="{LNG_ADMIN_LABEL_CUSTOM_LAYOUT}" />:</label>
+							<div class="formElement">
+								<select class="options" name="TAG_GROUP_tag_template">
+									<option value="">
+										<vte:attribute name="selected">
+											<vte:if test="!{topic.get_tag_template}">selected</vte:if>
+										</vte:attribute>
+										<vte:value select="{LNG_ADMIN_USE_SYSTEM_DEFAULT}" />
+									</option>
+									<vte:box module="box_files">
+										<vte:params>
+											<vte:param name="dir" value="{VIVVO_TEMPLATE_DIR}label" />
+											<vte:param name="fs_root" value="{VIVVO_FS_TEMPLATE_ROOT}" />
+											<vte:param name="ext" value="tpl" />
+										</vte:params>
+										<vte:template>
+											<vte:foreach item="file" from="{file_list}">
+												<option value="{file.filename}">
+													<vte:attribute name="selected">
+														<vte:if test="{topic.get_tag_template} = {file.filename}">selected</vte:if>
+													</vte:attribute>
+													<vte:value select="{file.filename}" />
+												</option>
+											</vte:foreach>
+										</vte:template>
+									</vte:box>
+								</select> <img class="info_help" src="img/icon_pref_help.gif" title="{LNG_ADMIN_TOOLTIP_LABEL_CUSTOM_LAYOUT}" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form_box">
+				<div class="form_box_header"><h3><!-- --></h3></div>
+				<div class="corner_white_top_left"><div class="corner_white_top_right"><!-- --></div></div>
+					<div class="form_box_body">
+						<vte:include label="{LNG_ADMIN_ADD_TAGS}" name="TAG_GROUP_new_tags" value="{topic.get_new_tags}" tooltip="{LNG_ADMIN_TOOLTIP_ADD_TAGS}." file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" />
+					</div>
+				<div class="corner_white_bottom_left"><div class="corner_white_bottom_right"><!-- --></div></div>
+			</div>
+			<div class="content_list_body_footer">
+				<div class="form_submit_button">
+					<vte:if test="{topic.get_id}">
+						<button class="primary" type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+						<vte:if test="{topic.get_id} in '0,1'">
+							<vte:else>
+								<button class="secondary" type="button" onclick="adminTopics.deleteTopic({topic.get_id});adminTopics.addNewTopic();"><vte:value select="{LNG_ADMIN_DELETE}" /></button>
+							</vte:else>
+						</vte:if>
+						<vte:else>
+							<button class="primary" type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+						</vte:else>
+					</vte:if>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+</div>

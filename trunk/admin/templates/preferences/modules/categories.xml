@@ -1,0 +1,38 @@
+<vte:template>
+	<div id="categories_modules" style="display:none;">
+		<div class="form_box">
+			<div class="form_box_header">
+				<h3><vte:value select="{LNG_ADMIN_SECTION_NAVIGATION}" />:</h3>
+				<div class="corner_white_top_left"><div class="corner_white_top_right"><!-- --></div></div>
+				<div class="form_box_info">
+					<vte:value select="{LNG_ADMIN_SECTION_NAVIGATION_INFO_BOX}" />
+				</div>
+				<span class="expand"><vte:value select="{LNG_ADMIN_SHOW_FORM}" /></span>
+			</div>
+			<div class="form_box_body" style="display:none;">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_DISPLAY_DHTML}" name="VIVVO_MODULES_DHTML_SECTIONS" value="{VIVVO_MODULES_DHTML_SECTIONS}" />
+				
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_DISPLAY_BOX_SECTION}" name="VIVVO_MODULES_SECTIONS" value="{VIVVO_MODULES_SECTIONS}" />
+			</div>
+			<div class="corner_white_bottom_left"><div class="corner_white_bottom_right"><!-- --></div></div>
+		</div>
+		<div class="form_box">
+			<div class="form_box_header">
+				<h3><vte:value select="{LNG_ADMIN_ARTICLE_LIST_MORE_NEWS}" />: </h3>
+				<div class="corner_white_top_left"><div class="corner_white_top_right"><!-- --></div></div>
+				<div class="form_box_info">
+					<vte:value select="{LNG_ADMIN_ARTICLE_LIST_MORE_NEWS_INFO_BOX}" />
+				</div>
+				<span class="expand"><vte:value select="{LNG_ADMIN_SHOW_FORM}" /></span>
+			</div>
+			<div class="form_box_body" style="display:none;">
+			
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_multiple_select_category.xml" label="{LNG_ADMIN_CATEGORIES_FOR_MORE_NEWS}" name="VIVVO_MODULES_MORE_NEWS_CATEGORIES[]" value="{VIVVO_MODULES_MORE_NEWS_CATEGORIES}" id="search_cid_more_news" size="13" show_all="1" />
+			
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_NUMBER_OF_ARTICLES_PER_CATEGORY}" name="VIVVO_MODULES_MORE_NEWS_ARTICLE_NUMBER" value="{VIVVO_MODULES_MORE_NEWS_ARTICLE_NUMBER}" />
+				
+			</div>
+			<div class="corner_white_bottom_left"><div class="corner_white_bottom_right"><!-- --></div></div>
+		</div>
+	</div>
+</vte:template>

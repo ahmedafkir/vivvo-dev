@@ -1,0 +1,8 @@
+<IfModule !mod_rewrite.c>
+order deny,allow
+deny from all
+</IfModule>
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^(.*)$ ../../../thumbnail.php?file=$1&size=article_large [L]
+</IfModule>

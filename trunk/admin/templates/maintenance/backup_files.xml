@@ -1,0 +1,60 @@
+<vte:template>
+	<vte:box module="box_files">
+		<vte:params>
+			<vte:param name="dir" value="backup" />
+			<vte:param name="ext" value="sql" />
+		</vte:params>
+		<vte:template>
+			<vte:foreach item="file" from="{file_list}" key="index">
+				<div class="item row_{index|mod:'2'}">
+					<div class="item_status">
+						<img src="img/icon_database_sql.gif" alt="{LNG_ADMIN_DATABASE}" title="{LNG_ADMIN_DATABASE}" />
+					</div>
+					<div class="item_actions">
+						<a href="download.php?file=backup/{file.get_basename}.{file.extension}" title="{LNG_ADMIN_DATABASE_DOWNLOAD}">
+							<img src="img/icon_database_download.gif" alt="{LNG_ADMIN_DATABASE_DOWNLOAD}" title="{LNG_ADMIN_DATABASE_DOWNLOAD}" />
+						</a>
+						<img src="img/icon_database_restore.gif" onclick="$('report_window').src = 'db_maintence.php?restore&amp;file={file.get_basename}.{file.extension}';" alt="{LNG_ADMIN_DATABASE_RESTORE}" title="{LNG_ADMIN_DATABASE_RESTORE}" />
+						<img src="img/icon_delete.gif" onclick="if(confirm(vivvo.admin.lang.get('LNG_ADMIN_CONFIRM_DELETE')))$('report_window').src = 'db_maintence.php?delete&amp;file={file.get_basename}.{file.extension}';" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" />
+					</div>
+					<div class="item_data">
+						<div class="item_line1">
+							<vte:value select="{file.get_basename}" />.<vte:value select="{file.extension}" />
+						</div>
+						<div class="item_line2">
+							<vte:value select="{file.get_size|'M'}" /> <vte:value select="{LNG_ADMIN_MEGABYTE}" />, <vte:value select="{file.get_datetime|format_date}" />
+						</div>
+					</div>
+				</div>
+			</vte:foreach>
+		</vte:template>
+	</vte:box>
+	<vte:box module="box_files">
+		<vte:params>
+			<vte:param name="dir" value="backup" />
+			<vte:param name="ext" value="gz" />
+		</vte:params>
+		<vte:template>
+			<vte:foreach item="file" from="{file_list}" key="index">
+				<div class="item row_{index|mod:'2'}">
+					<div class="item_status">
+						<img src="img/icon_database.gif" alt="{LNG_ADMIN_DATABASE}" title="{LNG_ADMIN_DATABASE}" />
+					</div>
+					<div class="item_actions">
+						<a href="download.php?file=backup/{file.get_basename}.{file.extension}" title="{LNG_ADMIN_DATABASE_DOWNLOAD}"><img src="img/icon_database_download.gif" alt="{LNG_ADMIN_DATABASE_DOWNLOAD}" title="{LNG_ADMIN_DATABASE_DOWNLOAD}" /></a>
+						<img src="img/icon_database_restore.gif" onclick="$('report_window').src = 'db_maintence.php?restore&amp;file={file.get_basename}.{file.extension}';" alt="{LNG_ADMIN_DATABASE_RESTORE}" title="{LNG_ADMIN_DATABASE_RESTORE}" />
+						<img src="img/icon_delete.gif" onclick="if(confirm(vivvo.admin.lang.get('LNG_ADMIN_CONFIRM_DELETE')))$('report_window').src = 'db_maintence.php?delete&amp;file={file.get_basename}.{file.extension}';" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" />
+					</div>
+					<div class="item_data">
+						<div class="item_line1">
+							<vte:value select="{file.get_basename}" />.<vte:value select="{file.extension}" />
+						</div>
+						<div class="item_line2">
+							<vte:value select="{LNG_ADMIN_SIZE}" />: <vte:value select="{file.get_size|'M'}" /> <vte:value select="{LNG_ADMIN_MEGABYTE}" />, <vte:value select="{file.get_datetime|format_date}" />
+						</div>
+					</div>
+				</div>
+			</vte:foreach>
+		</vte:template>
+	</vte:box>
+</vte:template>

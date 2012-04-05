@@ -1,0 +1,22 @@
+<vte:template>
+	<div class="content_list">
+		<div class="content_list_header">
+			<span class="context_view">
+				<vte:value select="{LNG_ADMIN_TEMPLATES_CSS}" /> <vte:value select="{LNG_ADMIN_EDIT}" />
+			</span>
+			<span class="context_help">
+				<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />			</span>
+		</div>
+		<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+		<div class="content_list_body">
+			<div class="content_list_body_header"><!-- --></div>
+			<div class="content_list_items">
+				<div class="info_message">
+					<vte:value select="{LNG_ADMIN_TEMPLATE_INFO_MESSAGE}" />
+				</div>
+			</div>
+			<div class="content_list_body_footer"><!-- --></div>
+		</div>
+		<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+	</div>
+</vte:template>

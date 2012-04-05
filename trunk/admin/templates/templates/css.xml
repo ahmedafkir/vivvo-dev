@@ -1,0 +1,48 @@
+<vte:template>
+	<div id="templates_css" style="display:none;height:498px;overflow:auto;">
+		<vte:box module="box_files">
+			<vte:params>
+				<vte:param name="fs_root" value="{VIVVO_FS_THEME_ROOT}" />
+				<vte:param name="dir" value="themes/{theme_dir}" />
+				<vte:param name="ext" value="dirext" />
+			</vte:params>
+			<vte:template>
+				<ul id="{dir}" style="padding:0;margin:0;">
+					<vte:foreach item="file" from="{file_list}">
+						<li>
+							<div>
+								<span class="tree_indent"> </span>
+								<span class="collapse" onclick="$(this).up().next('ul').toggle(); $(this).toggleClassName('expand');"><vte:value select="{file.filename}" /></span>
+							</div>
+							<vte:load module="box_files" template_string="{template_string}" dir="{dir}{file.filename}/" ext="dirext" fs_root="{VIVVO_FS_THEME_ROOT}" />
+						</li>
+					</vte:foreach>
+					<vte:box module="box_files">
+						<vte:params>
+							<vte:param name="fs_root" value="{VIVVO_FS_THEME_ROOT}" />
+							<vte:param name="dir" value="{dir}" />
+							<vte:param name="ext" value="css" />
+						</vte:params>
+						<vte:template>
+							<vte:foreach item="file" from="{file_list}">
+								<li>
+									<div>
+										<span class="tree_indent"> </span>
+										<span id="{file.filename}" onclick="adminTemplate.listUpdate($(this).up('ul').id, this.id);">
+											<vte:attribute name="class">
+												<vte:if test="{file.changed} = 0">file_original</vte:if>
+												<vte:if test="{file.changed} = -1">file_no_backup</vte:if>
+												<vte:if test="{file.changed} = 1">file_changed</vte:if>
+											</vte:attribute>
+											<vte:value select="{file.filename}" />
+										</span>
+									</div>
+								</li>
+							</vte:foreach>
+						</vte:template>
+					</vte:box>
+				</ul>
+			</vte:template>
+		</vte:box>
+	</div>
+</vte:template>

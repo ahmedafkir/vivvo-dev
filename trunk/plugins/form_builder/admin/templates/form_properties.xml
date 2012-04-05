@@ -1,0 +1,90 @@
+<vte:template>
+	<div id="form_builder_properties">
+		<div id="type_text" class="draggable"><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_PLAIN_TEXT}" /></div>
+		<div id="type_heading" class="draggable"><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_HEADING}" /></div>
+		<div id="type_submit" class="draggable"><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_BUTTON}" /></div>
+		<div id="type_input" class="draggable"><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_TEXTBOX}" /></div>
+		<div id="type_text_area" class="draggable"><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_TEXTAREA}" /></div>
+		<div id="type_drop_down" class="draggable"><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_DROPDOWN}" /></div>
+		<div id="type_checkbox" class="draggable"><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_CHECKBOX}" /></div>
+		<div id="type_radio" class="draggable"><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_RADIOBUTTON}" /></div>
+		<div id="type_date_time" class="draggable" style="display:none;"><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_DATA_TIME}" /></div>
+		<div id="type_file_upload" class="draggable"><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_FILE_UPLOAD}" /></div>
+	</div>
+
+	<div id="form_builder_templates" style="display:none;">
+		<div id="template_text" class="form_line type_text">
+			<img class="remove_prop" src="../plugins/form_builder/admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+			<p><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_TYPE_YOUR_TEXT_HERE}" /></p>
+		</div>
+		<div id="template_heading" class="form_line type_heading">
+			<img class="remove_prop" src="../plugins/form_builder/admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+			<strong><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_HEADING}" /></strong>
+		</div>
+		<div id="template_submit" class="form_line type_submit">
+			<img class="remove_prop" src="../plugins/form_builder/admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+			<label> </label>
+			<div class="formElement">
+				<input type="submit" value="{LNG_ADMIN_SAVE}" />
+			</div>
+		</div>
+		<div id="template_input" class="form_line type_input">
+			<img class="remove_prop" src="../plugins/form_builder/admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+			<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_TEXTBOX}" /></label>
+			<div class="formElement">
+				<input class="form_builder_text" type="text" value="" /> <img class="info_help" src="img/icon_pref_help.gif" title="{LNG_PLUGIN_FORM_BUILDER_ADMIN_TEXTBOX_DESCRIPTION}" />
+			</div>
+		</div>
+		<div id="template_text_area" class="form_line type_text_area">
+			<img class="remove_prop" src="../plugins/form_builder/admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+			<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_TEXTAREA}" /></label>
+			<div class="formElement">
+				<textarea class="form_builder_textarea"> </textarea> <img class="info_help" src="img/icon_pref_help.gif" title="{LNG_PLUGIN_FORM_BUILDER_ADMIN_TEXTAREA_DESCRIPTION}" />
+			</div>
+		</div>
+		<div id="template_drop_down" class="form_line type_drop_down">
+			<img class="remove_prop" src="../plugins/form_builder/admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+			<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_DROPDOWN}" /></label>
+			<div class="formElement">
+				<select class="form_builder_options">
+					<option><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_OPTION_1}" /></option>
+					<option><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_OPTION_2}" /></option>
+					<option><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_OPTION_3}" /></option>
+				</select> <img class="info_help" src="img/icon_pref_help.gif" title="{LNG_PLUGIN_FORM_BUILDER_ADMIN_DROPDOWN_DESCRIPTION}" />
+			</div>
+		</div>
+		<div id="template_checkbox" class="form_line type_checkbox">
+			<img class="remove_prop" src="../plugins/form_builder/admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+			<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_CHECKBOX}" /></label>
+			<div class="formElement">
+				<label><input type="checkbox" /> <vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_CHECK_ME}" /></label> <img class="info_help" src="img/icon_pref_help.gif" title="{LNG_PLUGIN_FORM_BUILDER_ADMIN_CHECKBOX_DESCRIPTION}" />
+			</div>
+		</div>
+		<div id="template_radio" class="form_line type_radio">
+			<img class="remove_prop" src="../plugins/form_builder/admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+			<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_RADIOBUTTON}" /></label>
+			<div class="formElement">
+				<label><input type="radio" value="Check me 1" /> <vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_CHECK_ME_1}" /></label>
+				<label><input type="radio" value="Check me 2" /> <vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_CHECK_ME_2}" /></label>
+				<img class="info_help" src="img/icon_pref_help.gif" title="{LNG_PLUGIN_FORM_BUILDER_ADMIN_RADIOBUTTON_DESCRIPTION}" />
+			</div>
+		</div>
+		<div id="template_date_time" class="form_line type_date_time">
+			<img class="remove_prop" src="../plugins/form_builder/admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+			<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_DATA_TIME}" /></label>
+			<div class="formElement">
+				<input type="text" value="" />
+				<vte:literal>
+					<img id="ARTICLE_created_link" style="border: 0px none ; cursor: pointer;" src="img/calendar.gif" onclick="new CalendarDateSelect(Element.previous(this,'input'), {time:true, year_range:10, buttons: false} );" alt="Calendar"/>
+				</vte:literal>
+			</div>
+		</div>
+		<div id="template_file_upload" class="form_line type_file_upload">
+			<img class="remove_prop" src="../plugins/form_builder/admin/img/icon_remove.gif" alt="{LNG_PLUGIN_FORM_BUILDER_ADMIN_REMOVE}" />
+			<label><vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_FILE_UPLOAD}" /></label>
+			<div class="formElement">
+				<input class="form_builder_file_upload" type="file" value="" /> <img class="info_help" src="img/icon_pref_help.gif" title="{LNG_PLUGIN_FORM_BUILDER_ADMIN_FILE_UPLOAD_DESCRIPTION}" />
+			</div>
+		</div>
+	</div>
+</vte:template>

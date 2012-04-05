@@ -1,0 +1,84 @@
+<div id="{list_id}" class="content_list" style="display:none;">
+	<div class="content_list_header">
+		<span class="context_view"><vte:value select="{LNG_ADMIN_VIEW}" />: <vte:value select="{list_title}" /></span>
+		<span class="context_help">
+			<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />		</span>
+	</div>
+	<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+
+	<div id="{list_id}_local" class="content_list_body">
+		<div class="content_list_body_header">
+			<div class="content_list_body_header_line1">
+				<vte:value select="{LNG_ADMIN_A_LIBRARY_OF}" /> <strong><vte:value select="{list_title}" /></strong> <vte:value select="{LNG_ADMIN_CURRENTLY_INSTALLED_ON_SYSTEM}" />. <vte:value select="{LNG_ADMIN_TO_SELECT_THE_ACTIVE}" /> <vte:value select="{list_title|strtolower}" /> <vte:value select="{LNG_ADMIN_FOR_YOUR_SITE}" />.
+				<span class="item_actions">
+
+				</span>
+			</div>
+			<div class="content_list_body_header_line2">
+				<strong>
+					<vte:value select="{LNG_ADMIN_APPLIES_TO}" />:
+				</strong>
+				<select id="{list_id}_category_select" name="{list_id}_category_select" list_dir="{list_dir}" class="options category_select">
+					<option value="0" selected="selected"><vte:value select="{LNG_ADMIN_DEFAULT}" /></option>
+					<vte:box module="box_sections">
+						<vte:params>
+							<vte:param name="id" value="0" />
+							<vte:param name="prefix" value="" />
+						</vte:params>
+						<vte:template>
+							<vte:foreach item="category" from="{categories}">
+								<vte:if test="!{category.get_redirect}">
+									<option value="{category.id}" template="{category.get_template}" css="{category.get_css}" article_template="{category.get_article_template}"><vte:value select="{prefix}" />- <vte:value select="{category.category_name}" /></option>
+								</vte:if>
+								<vte:if test="{category.subcategories}">
+									<vte:load module="box_sections" id="{category.id}" template_string="{template_string}" prefix="&#160;{prefix}" />
+								</vte:if>
+							</vte:foreach>
+						</vte:template>
+					</vte:box>
+				</select><img class="info_help" src="img/icon_pref_help.gif" alt="{LNG_ADMIN_SELECT_THE_CATEGORY_FROM_THE_MENU}" title="{LNG_ADMIN_SELECT_THE_CATEGORY_FROM_THE_MENU}" />
+			</div>
+		</div>
+		<div class="content_list_items layouts_items">
+			<vte:box module="box_files">
+				<vte:params>
+					<vte:param name="fs_root" value="{VIVVO_FS_TEMPLATE_ROOT}" />
+					<vte:param name="dir" value="{list_dir}" />
+					<vte:param name="ext" value="{list_ext}" />
+				</vte:params>
+				<vte:template>
+					<vte:foreach item="file" from="{file_list}" key="index">
+						<div id="{list_dir}{file.filename}">
+							<vte:attribute name="class">
+								<vte:if test="{list_default} = {file.filename}">selected</vte:if> item row_<vte:value select="{index|mod:'2'}" />
+							</vte:attribute>
+							<div class="image_holder">
+								<img src="{VIVVO_URL}{file.dir}{file.filename}.gif" alt="" />
+							</div>
+							<div class="item_actions">
+								<span class="file_select"><img src="img/icon_activate.gif" alt="{LNG_ADMIN_ACTIVATE}" title="{LNG_ADMIN_ACTIVATE}" /></span>
+								<vte:if test="{file.extension} = 'tpl'">
+									<div>
+										<a class="modal_edit" href="templates.php?editor=1&amp;dir={file.dir}&amp;file={file.filename}"><img src="img/icon_edit.gif" alt="{LNG_ADMIN_EDIT}" title="{LNG_ADMIN_EDIT}" /></a>
+									</div>
+									<vte:else>
+										<div>
+											<a href="templates.php?theme={file.filename}"><img src="img/icon_edit.gif" alt="{LNG_ADMIN_EDIT}" title="{LNG_ADMIN_EDIT}" /></a>
+										</div>
+									</vte:else>
+								</vte:if>
+							</div>
+							<div class="item_data">
+								<div class="item_line1">
+									<vte:value select="{file.filename}" /> <span class="active_label">(active)</span>
+								</div>
+							</div>
+						</div>
+					</vte:foreach>
+				</vte:template>
+			</vte:box>
+		</div>
+	</div>
+
+	<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+</div>

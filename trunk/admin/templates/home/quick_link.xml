@@ -1,0 +1,16 @@
+<div id="home_quick_link">
+	<ul class="quick_launch">
+		<vte:if test="{current_user.can|'WRITE'}">
+			<li><strong><a href="article_edit.php">+ <vte:value select="{LNG_ADMIN_ADD_NEW_ARTICLE}" /></a></strong></li>
+		</vte:if>
+		<vte:if test="{current_user.is_admin}">
+			<li><a href="articles.php?search_status=0&amp;search_do_advanced=true"><vte:value select="{LNG_ADMIN_REVIEW_PENDING_ARTICLES}" /> <strong>(<vte:value select="{website_articles_pending}" />)</strong></a></li>
+		</vte:if>
+		<vte:if test="{current_user.can|'MODERATE_COMMENTS'}">
+			<li><a href="comments.php?search_status=0"><vte:value select="{LNG_ADMIN_APPROVE_NEW_COMMENTS}" /> <strong>(<vte:value select="{pending_comments}" />)</strong></a></li>
+		</vte:if>
+		<vte:if test="{current_user.is_admin}">
+			<li><a href="users.php?search_activated=0"><vte:value select="{LNG_ADMIN_VIEW_INACTIVE_MEMBERS}" /> <strong>(<vte:value select="{pending_users}" />)</strong></a></li>
+		</vte:if>
+	</ul>
+</div>

@@ -1,0 +1,82 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0; padding: 0;
+	width:100%;
+	background:#ffffff none repeat scroll 0% 50%;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	line-height:1.5;
+	margin:0pt;
+	padding:0pt;		
+}
+
+#header { display: none;}
+
+#footer { display:none;}
+
+#container {
+	background:#FFFFFF;
+	clear:both;
+	margin:auto;
+} 
+
+#dynamic_box_left { display: none;}
+
+#dynamic_box_right { display: none;}
+
+#dynamic_box_center div#box_comments { display: none;}
+
+#dynamic_box_center div.box_breadcrumb { display: none;}
+
+#dynamic_box_center div.font_size { display: none;}
+
+#admin_menu {display:none;}
+
+#article_holder { padding: 6px;}
+
+#article_body {font-size: 90%;} 
+
+#article_body div.image { float: left; border: 1px solid black; padding: 6px; margin: 6px;}
+
+#article_body div.image span.image_caption { font-size: 80%; font-family: Arial, Helvetica, sans-serif;}
+
+#article_holder div.article_metadata { margin-bottom: 12px; border-bottom: 1px solid black;}
+
+#article_holder div.article_metadata span.metadata_time {float: right;}
+
+#article_holder div.content_attachment {display: none;}
+
+#article_holder div#box_social_bookmarks {display: none;}
+
+#box_video_headline_container {display: none;}
+
+/************************* Article styles (from Tiny MCE) ************************************/
+
+.quote_right { 
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 80%;
+	float: right; 
+	margin: 6px; 
+	display: inline; 
+	width: 200px; 
+	height: auto;
+	border: 1px solid black;
+	padding: 6px;
+}
+
+.quote_left { 
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 80%;
+	float: left; 
+	margin: 6px; 
+	display: inline; 
+	width: 200px; 
+	height: auto;
+	border: 1px solid black;
+	padding: 6px;
+}
+
+.right_image { float: right; margin: 6px; display: inline;}
+
+.left_image { float: left; margin: 6px; display: inline;}
+

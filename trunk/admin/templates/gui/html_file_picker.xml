@@ -1,0 +1,19 @@
+<div class="form_line">
+	<label><vte:value select="{label}" />:</label>
+	<div class="formElement">
+		<span class="picker_browse_files">
+			<input type="text" class="text" id="{input_id}" name="{name}" value ="{value}" style="{style}" />
+			<a id="{link_id}" href="#" onclick="return false;"><img src="img/browse_files.gif" alt="{LNG_ADMIN_BROWSE_FILES}" title="{LNG_ADMIN_BROWSE_FILES}" /></a>
+		</span>
+		<vte:if test="{tooltip}">
+			<img class="info_help" src="img/icon_pref_help.gif" title="{tooltip}" />
+		</vte:if>
+	</div>
+	<script type="text/javascript">
+		new vivvo.controls.filePicker('<vte:value select="{link_id}" />',
+			{
+				<vte:value select="{options}" />
+			}
+		);
+	</script>
+</div>

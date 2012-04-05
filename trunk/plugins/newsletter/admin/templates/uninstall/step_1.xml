@@ -1,0 +1,21 @@
+<vte:template>
+	<div class="content_list">
+		<div class="content_list_header">
+			<span class="context_view">
+				<vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_UNINSTALL_PLUG_IN_NEWSLETTER}" />	
+			</span>
+			<span class="context_help">
+				<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />			</span>
+		</div>
+		<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+		<div class="content_list_body">			
+			<div class="content_list_body_header">
+				<vte:include file="{PLUGIN_ROOT}description.html" parse="off"/>
+			</div>
+			<div class="content_list_items">
+				<a href="plugins.php?plugin=newsletter&amp;uninstall&amp;step=2"><vte:value select="{LNG_PLUGIN_NEWSLETTER_ADMIN_CLIK_HERE_TO_UNINSTALL}" /></a>
+			</div>
+		</div>
+		<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+	</div>
+</vte:template>

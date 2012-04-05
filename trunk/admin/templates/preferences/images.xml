@@ -1,0 +1,51 @@
+<vte:template>		
+	<div id="image_preferences" style="display:none;">
+		<div class="form_box_first">
+			<div class="form_box_info">
+				<vte:value select="{LNG_ADMIN_CHOOSE_IMAGE_SIZE}" />
+			</div>
+			
+			<div class="form_line"> 
+				<label><vte:value select="{LNG_ADMIN_LARGE_IMAGE}" />:</label>
+				<div class="formElement">
+					<input type="text" class="text_small" name="VIVVO_ARTICLE_LARGE_IMAGE_WIDTH" value="{VIVVO_ARTICLE_LARGE_IMAGE_WIDTH}" /> <vte:value select="{LNG_ADMIN_PX}" /> <vte:value select="{LNG_ADMIN_WIDTH}" /> <input type="text" class="text_small"  name="VIVVO_ARTICLE_LARGE_IMAGE_HEIGHT" value="{VIVVO_ARTICLE_LARGE_IMAGE_HEIGHT}" /> <vte:value select="{LNG_ADMIN_PX}" /> <vte:value select="{LNG_ADMIN_HEIGHT}" />
+				</div>
+			</div>
+			
+			<div class="form_line"> 
+				<label><vte:value select="{LNG_ADMIN_MEDIUM_IMAGE}" />:</label>
+				<div class="formElement">
+					<input type="text" class="text_small" name="VIVVO_ARTICLE_MEDIUM_IMAGE_WIDTH" value="{VIVVO_ARTICLE_MEDIUM_IMAGE_WIDTH}" /> <vte:value select="{LNG_ADMIN_PX}" /> <vte:value select="{LNG_ADMIN_WIDTH}" /> <input type="text" class="text_small" name="VIVVO_ARTICLE_MEDIUM_IMAGE_HEIGHT" value="{VIVVO_ARTICLE_MEDIUM_IMAGE_HEIGHT}" /> <vte:value select="{LNG_ADMIN_PX}" /> <vte:value select="{LNG_ADMIN_HEIGHT}" />
+				</div>
+			</div>
+			
+			<div class="form_line"> 
+				<label><vte:value select="{LNG_ADMIN_SMALL_IMAGE}" />:</label>
+				<div class="formElement">
+					<input type="text" class="text_small" name="VIVVO_ARTICLE_SMALL_IMAGE_WIDTH" value="{VIVVO_ARTICLE_SMALL_IMAGE_WIDTH}" /> <vte:value select="{LNG_ADMIN_PX}" /> <vte:value select="{LNG_ADMIN_WIDTH}" /> <input type="text" class="text_small" name="VIVVO_ARTICLE_SMALL_IMAGE_HEIGHT" value="{VIVVO_ARTICLE_SMALL_IMAGE_HEIGHT}" /> <vte:value select="{LNG_ADMIN_PX}" /> <vte:value select="{LNG_ADMIN_HEIGHT}" />
+				</div>
+			</div>
+			
+			<div class="form_line"> 
+				<label><vte:value select="{LNG_ADMIN_SUMMARY_LARGE_IMAGE}" />:</label>
+				<div class="formElement">
+					<input type="text" class="text_small" name="VIVVO_SUMMARY_LARGE_IMAGE_WIDTH" value="{VIVVO_SUMMARY_LARGE_IMAGE_WIDTH}" /> <vte:value select="{LNG_ADMIN_PX}" /> <vte:value select="{LNG_ADMIN_WIDTH}" /> <input type="text" class="text_small" name="VIVVO_SUMMARY_LARGE_IMAGE_HEIGHT" value="{VIVVO_SUMMARY_LARGE_IMAGE_HEIGHT}" /> <vte:value select="{LNG_ADMIN_PX}" /> <vte:value select="{LNG_ADMIN_HEIGHT}" />
+				</div>
+			</div>
+			
+			<div class="form_line"> 
+				<label><vte:value select="{LNG_ADMIN_SUMMARY_MEDIUM_IMAGE}" />:</label>
+				<div class="formElement">
+					<input type="text" class="text_small" name="VIVVO_SUMMARY_MEDIUM_IMAGE_WIDTH" value="{VIVVO_SUMMARY_MEDIUM_IMAGE_WIDTH}" /> <vte:value select="{LNG_ADMIN_PX}" /> <vte:value select="{LNG_ADMIN_WIDTH}" /> <input type="text" class="text_small" name="VIVVO_SUMMARY_MEDIUM_IMAGE_HEIGHT" value="{VIVVO_SUMMARY_MEDIUM_IMAGE_HEIGHT}" /> <vte:value select="{LNG_ADMIN_PX}" /> <vte:value select="{LNG_ADMIN_HEIGHT}" />
+				</div>
+			</div>
+			
+			<div class="form_line"> 
+				<label><vte:value select="{LNG_ADMIN_SUMMARY_SMALL_IMAGE}" />:</label>
+				<div class="formElement">
+					<input type="text" class="text_small" name="VIVVO_SUMMARY_SMALL_IMAGE_WIDTH" value="{VIVVO_SUMMARY_SMALL_IMAGE_WIDTH}" /> <vte:value select="{LNG_ADMIN_PX}" /> <vte:value select="{LNG_ADMIN_WIDTH}" /> <input type="text" class="text_small" name="VIVVO_SUMMARY_SMALL_IMAGE_HEIGHT" value="{VIVVO_SUMMARY_SMALL_IMAGE_HEIGHT}" /> <vte:value select="{LNG_ADMIN_PX}" /> <vte:value select="{LNG_ADMIN_HEIGHT}" />
+				</div>
+			</div>
+		</div>
+	</div>
+</vte:template>

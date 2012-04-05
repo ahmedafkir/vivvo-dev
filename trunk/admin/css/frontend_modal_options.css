@@ -1,0 +1,125 @@
+#admin_menu_holder {z-index: 999;}
+
+#admin_menu {
+	height: 31px;
+	overflow: hidden; 
+	text-align:center;
+	background: #EEEEEE url(../../../admin/img/menu_bg.gif) bottom repeat-x;
+	border-bottom:1px solid #BEBEBE;
+	color:#555555;
+	font-weight:bold;
+}
+
+#admin_menu a { 
+	text-decoration: none;
+	line-height:31px; 
+	padding: 8px 10px 8px 8px; 
+	color:#555555; 
+	background:url(../../../admin/img/separator_vertical.gif) right repeat-y;
+}
+
+#admin_menu a:hover {background: url(../../../admin/img/menu_active_bg.gif) right no-repeat;}
+
+.frontend_opt_title {
+	background: url(../../../admin/img/separator_horizontal.gif) bottom repeat-x; 
+	padding: 0px 6px 8px 6px; 
+	text-align:center; 
+	margin-bottom: 6px; 
+	font-weight: bold;
+	font-size: 13px; 
+}
+
+#admin_menu_close {
+	float:left; 
+	line-height:31px; 
+	padding-left: 10px; 
+	cursor: pointer; 
+	color:#CA0405;
+}
+
+/*** Dump Messages ***/
+#admin_menu_holder div#admin_dump {line-height:31px; background: #EEEEEE url(../../../admin/img/menu_bg.gif) bottom repeat-x;}
+
+#admin_menu_holder div#admin_dump span.info {padding: 1px 0px 2px 22px; background: url(../img/validation_info.gif) 0 0 no-repeat; color:#6b99c5;}
+
+#admin_menu_holder div#admin_dump span.error {padding: 1px 0px 2px 22px; background: url(../img/validation_not_valid.gif) 0 0 no-repeat; color:#F3735D;}
+
+/******* FORMS *********/
+#modal_container form { 
+	padding: 0px;
+	margin: 0px;
+}
+
+#modal_container textarea  {font-family: Arial, Helvetica, sans-serif; font-size: 12px;}
+
+#modal_container .form_line {
+	margin-bottom: 6px;
+	padding: 3px 0px 3px 0px;
+	width: 98%;
+	overflow: hidden; /* if used, needs to be hidden because of Opera */
+}
+
+*:first-child+html #modal_container .form_line {margin-bottom: 0px; padding-bottom: 6px;}
+
+#modal_container input.submit_button, #modal_container button { 
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 14px; 
+	font-weight: bold; 
+	color: #555555;
+}
+
+#modal_container .formElement {float: left; margin-left: 6px; display: inline; z-index: auto;}
+
+#modal_container .formElement p { margin-top: 0;}
+
+#modal_container .formElement img {display:none;}
+
+#modal_container .form_line label {
+	text-align: right;
+	padding: 3px 0px 3px 3px;
+	display: block; 
+	float: left;
+	width: 47%;
+	font-size: 12px;
+	color: #777777;
+	font-weight: bold;
+}
+
+#modal_container .formElement label {
+	padding: 0px 12px 0px 0px;
+	width: auto;
+	text-align: left;
+	float: none;
+	display: inline;
+	font-weight: normal;
+}
+
+#modal_container div.formElement input.text { width: 246px;}
+
+#modal_container div.formElement input.text_small { width: 80px;}
+
+#modal_container div.formElement textarea.textarea { width: 246px; height: 80px;}
+
+#modal_container div.formElement select.options { width: 250px;}
+
+/******** ITEMS ***********/
+#modal_container div.item { border-bottom: 1px solid #989DA5;}
+
+/* Hides from IE5-mac \*/
+* html #modal_container div.item {height: 1%;}
+/* End hide from IE5-mac */
+
+#modal_container .item_actions {float:right;}
+
+#modal_container .item_actions img { cursor: pointer;}
+
+#modal_container .item_data {margin: 0px 50px 0px 5px;}
+
+#modal_container  div.item_line1 { font-weight: bold; color: #555555; margin-right: 25px;}
+
+#modal_container  div.item_line2 { font-size: 10px; color: #989DA5; padding-left: 0px;}
+
+#modal_container .row_0 { background: #F6F6F6;}
+
+.frontend_comment_list {height: 465px; overflow: auto;}
+

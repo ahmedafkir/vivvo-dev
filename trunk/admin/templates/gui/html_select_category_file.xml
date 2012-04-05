@@ -1,0 +1,39 @@
+<div class="form_line"> 
+	<label><vte:value select="{label}" />:</label>
+	<div class="formElement">
+		<select class="options" name="{name}">
+			<option value="">
+				<vte:attribute name="selected"> 
+					<vte:if test="!{value}">selected</vte:if>
+				</vte:attribute>
+				<vte:value select="{LNG_ADMIN_USE_SYSTEM_DEFAULT}" />
+			</option>
+			<option value="inherit">
+				<vte:attribute name="selected"> 
+					<vte:if test="{value} = 'inherit'">selected</vte:if>
+				</vte:attribute>
+				<vte:value select="{LNG_ADMIN_INHERIT}" />
+			</option>
+			<vte:box module="box_files">
+				<vte:params>
+					<vte:param name="dir" value="{dir}" />
+					<vte:param name="fs_root" value="{fs_root}" />
+					<vte:param name="ext" value="{ext}" />
+				</vte:params>
+				<vte:template>								
+					<vte:foreach item="file" from="{file_list}">
+						<option value="{file.filename}">
+							<vte:attribute name="selected"> 
+								<vte:if test="{value} = {file.filename}">selected</vte:if>
+							</vte:attribute>
+							<vte:value select="{file.filename}" />
+						</option>
+					</vte:foreach>
+				</vte:template>
+			</vte:box>
+		</select>
+		<vte:if test="{tooltip}">
+			<img class="info_help" src="img/icon_pref_help.gif" title="{tooltip}" />
+		</vte:if>
+	</div>
+</div>

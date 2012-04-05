@@ -1,0 +1,355 @@
+<vte:template>
+	<div class="content_list">
+		<div class="content_list_header">
+			<span class="context_view">
+				<vte:if test="{group.id}">
+					<vte:value select="{LNG_ADMIN_EDIT_GROUP}" />: <vte:value select="{group.name}" /> <span class="content_id">(id: <vte:value select="{group.id}" />)</span>
+					<vte:else>
+						<vte:value select="{LNG_ADMIN_ADD_GROUP}" />
+					</vte:else>
+				</vte:if>
+			</span>
+			<span class="context_help">
+				<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />			</span>
+			<ul id="group_main_tabs" class="tabs tabs_grey" style="display:none">
+				<vte:if test="!{group.id}">
+					<li>
+						<a href="#group_add_intro"><span><vte:value select="{LNG_ADMIN_WIZARD_INTRO}" /></span></a>
+					</li>
+				</vte:if>
+				<li>
+					<a href="#group_main_edit"><span><vte:value select="{LNG_ADMIN_PRIVILEGIES}" /></span></a>
+				</li>
+				<li>
+					<a href="#group_workflow_edit"><span><vte:value select="{LNG_ADMIN_WORKFLOW}" /></span></a>
+				</li>
+				<li>
+					<a href="#group_frontend_edit"><span><vte:value select="{LNG_ADMIN_FRONT_END}" /></span></a>
+				</li>
+				<li>
+					<a href="#group_plugin_edit"><span><vte:value select="{LNG_ADMIN_PLUGINS}" /></span></a>
+				</li>
+			</ul>
+		</div>
+		<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+		<div class="content_list_body">
+			<div class="content_list_body_header">
+				<vte:value select="{LNG_ADMIN_WIZARD_INFO_1}" />
+			</div>
+			<form id="group_privileges" action="#" onsubmit="return false;">
+				<div class="content_list_items">
+					<vte:if test="!{group.id}">
+						<div id="group_add_intro" style="display:none;">
+							<div class="wizard_steps">
+								<span class="active"><vte:value select="{LNG_ADMIN_WIZARD_STEP_1_SHORT}" /></span>
+								<span><vte:value select="{LNG_ADMIN_WIZARD_STEP_2}" /></span>
+								<span><vte:value select="{LNG_ADMIN_WIZARD_STEP_3}" /></span>
+								<span><vte:value select="{LNG_ADMIN_WIZARD_STEP_4}" /></span>
+								<span><vte:value select="{LNG_ADMIN_WIZARD_STEP_5}" /></span>
+							</div>
+							<div class="form_box_info">
+								<strong><vte:value select="{LNG_ADMIN_WIZARD_STEP_1}" /></strong>
+								<br />
+								<vte:value select="{LNG_ADMIN_WIZARD_INFO_2}" />
+							</div>
+							<div class="form_line">
+								<label><vte:value select="{LNG_ADMIN_SELECT_ONE_FROM_DROP_DOWN_LIST}" /></label>
+								<div class="formElement">
+									<select id="wizard_method">
+										<option value=""><vte:value select="{LNG_ADMIN_SELECT_METHOD}" /></option>
+										<optgroup label="{LNG_ADMIN_DUPLICATE}">
+											<option value="duplicate.editor"><vte:value select="{LNG_USER_GROUP_1}" /></option>
+											<option value="duplicate.writer"><vte:value select="{LNG_USER_GROUP_0}" /></option>
+											<option value="duplicate.trustedWriter"><vte:value select="{LNG_USER_GROUP_3}" /></option>
+											<option value="duplicate.member"><vte:value select="{LNG_USER_GROUP_4}" /></option>
+											<option value="duplicate.premiumMember"><vte:value select="{LNG_USER_GROUP_5}" /></option>
+										</optgroup>
+										<optgroup label="{LNG_ADMIN_START_FROM}">
+											<option value="apply.editor"><vte:value select="{LNG_USER_GROUP_1}" /></option>
+											<option value="apply.writer"><vte:value select="{LNG_USER_GROUP_0}" /></option>
+											<option value="apply.trustedWriter"><vte:value select="{LNG_USER_GROUP_3}" /></option>
+											<option value="apply.member"><vte:value select="{LNG_USER_GROUP_4}" /></option>
+											<option value="apply.premiumMember"><vte:value select="{LNG_USER_GROUP_5}" /></option>
+										</optgroup>
+										<option value="continue"><vte:value select="{LNG_ADMIN_START_FROM_SCRATCH}" /></option>
+									</select>
+								</div>
+							</div>
+							<div class="form_line">
+								<label> </label>
+								<div class="formElement">
+									<button type="button" onclick="adminList.wizardFirstStep()"><vte:value select="{LNG_ADMIN_NEXT}" /></button>
+								</div>
+							</div>
+						</div>
+					</vte:if>
+
+					<div id="group_main_edit" style="display:none;">
+						<div class="wizard_steps">
+							<span><vte:value select="{LNG_ADMIN_WIZARD_STEP_1_SHORT}" /></span>
+							<span class="active"><vte:value select="{LNG_ADMIN_WIZARD_STEP_2}" /></span>
+							<span onclick="adminList.groupWizard.setActiveTab('group_workflow_edit')"><vte:value select="{LNG_ADMIN_WIZARD_STEP_3}" /></span>
+							<span onclick="adminList.groupWizard.setActiveTab('group_frontend_edit')"><vte:value select="{LNG_ADMIN_WIZARD_STEP_4}" /></span>
+							<span onclick="adminList.groupWizard.setActiveTab('group_plugin_edit')"><vte:value select="{LNG_ADMIN_WIZARD_STEP_5}" /></span>
+						</div>
+						<div class="form_box_info">
+							<strong><vte:value select="{LNG_ADMIN_WIZARD_STEP_2}" /></strong>
+							<br />
+							<vte:value select="{LNG_ADMIN_WIZARD_INFO_3}" />
+						</div>
+
+						<input type="hidden" id="GROUP_id" value="{group.id}" />
+
+						<vte:if test="{VIVVO_USER_SOURCE} = 'vivvo@localhost'">
+							<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_GROUP_NAME}" id="GROUP_name" name="" value="{group.name}" />
+						</vte:if>
+
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_multiple_select_category.xml" label="{LNG_ADMIN_READ}" id="priv_read" name="" size="5"  show_all="1" value="{group.group_privileges[READ][Categories]}" show_none="1" />
+
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_multiple_select_category.xml" label="{LNG_ADMIN_WRITE}" id="priv_write" name="" size="5"  show_all="1" value="{group.group_privileges[WRITE][Categories]}" show_none="1" />
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_multiple_select_category.xml" label="{LNG_ADMIN_EDITOR}" id="priv_editor" name="" size="5"  show_all="1" value="{group.group_privileges[EDITOR][Categories]}" show_none="1" />
+
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_MANAGE_TAGS}" name="MANAGE_TAGS" value="{group.group_privileges[MANAGE_TAGS]}" tooltip="{LNG_ADMIN_USER_GROUP_TOOLTIP_MANAGE_TAGS}"  />
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_MANAGE_TRASHBIN}" name="MANAGE_TRASHBIN" value="{group.group_privileges[MANAGE_TRASHBIN]}" tooltip="{LNG_ADMIN_USER_GROUP_TOOLTIP_TRASHBIN}" />
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_MODERATE_COMMENT}" name="MODERATE_COMMENTS" value="{group.group_privileges[MODERATE_COMMENTS]}" tooltip="{LNG_ADMIN_USER_GROUP_TOOLTIP_1}" />
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_ACCESS_ADMIN}" name="ACCESS_ADMIN" value="{group.group_privileges[ACCESS_ADMIN]}" tooltip="{LNG_ADMIN_USER_GROUP_TOOLTIP_2}" />
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_MANAGE_FILES}" name="MANAGE_FILES" value="{group.group_privileges[MANAGE_FILES]}" tooltip="{LNG_ADMIN_USER_GROUP_TOOLTIP_4}" />
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_UPLOAD}" name="UPLOAD" value="{group.group_privileges[UPLOAD]}" tooltip="{LNG_ADMIN_USER_GROUP_TOOLTIP_3}" />
+
+						<vte:load module="ui_hooks" name="admin_user_groups_form" />
+
+						<div class="form_line">
+							<label> </label>
+							<div class="formElement">
+								<vte:if test="!{group.id}">
+									<button class="secondary" type="button" onclick="adminList.groupWizard.previous()"><vte:value select="{LNG_ADMIN_PREVIOUS}" /></button>
+								</vte:if>
+								<button type="button" onclick="adminList.groupWizard.next()"><vte:value select="{LNG_ADMIN_NEXT}" /></button>
+							</div>
+						</div>
+					</div>
+
+					<div id="group_workflow_edit" style="display:none;">
+						<div class="wizard_steps">
+							<span><vte:value select="{LNG_ADMIN_WIZARD_STEP_1_SHORT}" /></span>
+							<span onclick="adminList.groupWizard.setActiveTab('group_main_edit')"><vte:value select="{LNG_ADMIN_WIZARD_STEP_2}" /></span>
+							<span class="active"><vte:value select="{LNG_ADMIN_WIZARD_STEP_3}" /></span>
+							<span onclick="adminList.groupWizard.setActiveTab('group_frontend_edit')"><vte:value select="{LNG_ADMIN_WIZARD_STEP_4}" /></span>
+							<span onclick="adminList.groupWizard.setActiveTab('group_plugin_edit')"><vte:value select="{LNG_ADMIN_WIZARD_STEP_5}" /></span>
+						</div>
+						<div class="form_box_info">
+							<strong><vte:value select="{LNG_ADMIN_WIZARD_STEP_3}" /></strong>
+							<br />
+							<vte:value select="{LNG_ADMIN_WIZARD_INFO_4}" />
+						</div>
+						<div class="form_line">
+							<label><vte:value select="{LNG_ADMIN_DEFINE_RULE}" />:</label>
+							<div class="formElement">
+								<div style="width:360px; text-align:right;">
+									<span id="group_workflow_add" class="action_button_link">+ <vte:value select="{LNG_ADMIN_ADD_NEW_RULE}" /></span>
+								</div>
+							</div>
+						</div>
+						<vte:foreach from="{group.group_privileges[CHANGE_STATUS]}" item="status" key="index">
+							<div class="form_line change_status">
+								<label> </label>
+								<div class="formElement">
+									<span style="vertical-align:top; padding:0px 6px;"><vte:value select="{LNG_ADMIN_FROM}" />:</span>
+									<select class="options" size="4" multiple="multiple" style="width:140px;">
+										<option value="*">
+											<vte:attribute name="selected">
+												<vte:if test="'*' in {status[from]}">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{LNG_ADMIN_ALL}" />
+										</option>
+										<option value="0">
+											<vte:attribute name="selected">
+												<vte:if test="0 in {status[from]}">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{LNG_ADMIN_PENDING}" />
+										</option>
+										<option value="1">
+											<vte:attribute name="selected">
+												<vte:if test="1 in {status[from]}">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{LNG_ADMIN_ACTIVE}" />
+										</option>
+										<option value="-1">
+											<vte:attribute name="selected">
+												<vte:if test="-1 in {status[from]}">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{LNG_ADMIN_ARCHIVED}" />
+										</option>
+									</select>
+
+									<span style="vertical-align:top; padding:0px 6px;">To:</span>
+									<select class="options" size="4" multiple="multiple" style="width:140px;">
+										<option value="*">
+											<vte:attribute name="selected">
+												<vte:if test="'*' in {status[to]}">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{LNG_ADMIN_ALL}" />
+										</option>
+										<option value="0">
+											<vte:attribute name="selected">
+												<vte:if test="0 in {status[to]}">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{LNG_ADMIN_PENDING}" />
+										</option>
+										<option value="1">
+											<vte:attribute name="selected">
+												<vte:if test="1 in {status[to]}">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{LNG_ADMIN_ACTIVE}" />
+										</option>
+										<option value="-1">
+											<vte:attribute name="selected">
+												<vte:if test="-1 in {status[to]}">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{LNG_ADMIN_ARCHIVED}" />
+										</option>
+									</select>
+									<span class="remove_workflow"><img src="img/delete_orange.gif" title="{LNG_ADMIN_REMOVE}" alt="{LNG_ADMIN_REMOVE}" /></span>
+								</div>
+							</div>
+							<vte:else>
+								<div class="form_line change_status">
+									<label> </label>
+									<div class="formElement">
+										<span style="vertical-align:top; padding:0px 6px;"><vte:value select="{LNG_ADMIN_FROM}" />:</span>
+										<select class="options" size="4" multiple="multiple" style="width:140px;">
+											<option value="*"><vte:value select="{LNG_ADMIN_ALL}" /></option>
+											<option value="0"><vte:value select="{LNG_ADMIN_PENDING}" /></option>
+											<option value="1"><vte:value select="{LNG_ADMIN_ACTIVE}" /></option>
+											<option value="-1"><vte:value select="{LNG_ADMIN_ARCHIVED}" /></option>
+										</select>
+										<span style="vertical-align:top; padding:0px 6px;"><vte:value select="{LNG_ADMIN_TO}" />:</span>
+										<select class="options" size="4" multiple="multiple" style="width:140px;">
+											<option value="*"><vte:value select="{LNG_ADMIN_ALL}" /></option>
+											<option value="0"><vte:value select="{LNG_ADMIN_PENDING}" /></option>
+											<option value="1"><vte:value select="{LNG_ADMIN_ACTIVE}" /></option>
+											<option value="-1"><vte:value select="{LNG_ADMIN_ARCHIVED}" /></option>
+										</select>
+										<span class="remove_workflow"><img src="img/delete_orange.gif" title="{LNG_ADMIN_REMOVE}" alt="{LNG_ADMIN_REMOVE}" /></span>
+									</div>
+								</div>
+							</vte:else>
+						</vte:foreach>
+						<div class="form_line">
+							<label> </label>
+							<div class="formElement">
+								<button class="secondary" type="button" onclick="adminList.groupWizard.previous()"><vte:value select="{LNG_ADMIN_PREVIOUS}" /></button>
+								<button type="button" onclick="adminList.groupWizard.next()"><vte:value select="{LNG_ADMIN_NEXT}" /></button>
+							</div>
+						</div>
+					</div>
+
+					<div id="group_frontend_edit" style="display:none;">
+						<div class="wizard_steps">
+							<span><vte:value select="{LNG_ADMIN_WIZARD_STEP_1_SHORT}" /></span>
+							<span onclick="adminList.groupWizard.setActiveTab('group_main_edit')"><vte:value select="{LNG_ADMIN_WIZARD_STEP_2}" /></span>
+							<span onclick="adminList.groupWizard.setActiveTab('group_workflow_edit')"><vte:value select="{LNG_ADMIN_WIZARD_STEP_3}" /></span>
+							<span class="active"><vte:value select="{LNG_ADMIN_WIZARD_STEP_4}" /></span>
+							<span onclick="adminList.groupWizard.setActiveTab('group_plugin_edit')"><vte:value select="{LNG_ADMIN_WIZARD_STEP_5}" /></span>
+						</div>
+						<div class="form_box_info">
+							<strong><vte:value select="{LNG_ADMIN_WIZARD_STEP_4}" /></strong>
+							<br />
+							<vte:value select="{LNG_ADMIN_WIZARD_INFO_5}" />
+						</div>
+						<div class="form_line">
+							<label><vte:value select="{LNG_ADMIN_ARTICLE_COMMENT}" />:</label>
+							<div class="formElement">
+								<label>
+									<input type="radio" name="ARTICLE_COMMENT" value="1">
+										<vte:attribute name="checked">
+											<vte:if test="{group.group_privileges[ARTICLE_COMMENT]} = '1'">checked</vte:if>
+										</vte:attribute>
+									</input>
+									<vte:value select="{LNG_ADMIN_YES}" />
+								</label>
+								<label>
+									<input type="radio" name="ARTICLE_COMMENT" value="2">
+										<vte:attribute name="checked">
+											<vte:if test="{group.group_privileges[ARTICLE_COMMENT]} = '2'">checked</vte:if>
+										</vte:attribute>
+									</input>
+									<vte:value select="{LNG_ADMIN_APPROVAL_REQUIRED}" />
+								</label>
+								<label>
+									<input type="radio" name="ARTICLE_COMMENT" value="0">
+										<vte:attribute name="checked">
+											<vte:if test="{group.group_privileges[ARTICLE_COMMENT]} = '0'">checked</vte:if>
+										</vte:attribute>
+									</input>
+									<vte:value select="{LNG_ADMIN_NO}" />
+								</label>
+							</div>
+						</div>
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_ARTICLE_VOTE}" name="ARTICLE_VOTE" value="{group.group_privileges[ARTICLE_VOTE]}" />
+						<div class="form_line">
+							<label> </label>
+							<div class="formElement">
+								<button class="secondary" type="button" onclick="adminList.groupWizard.previous()"><vte:value select="{LNG_ADMIN_PREVIOUS}" /></button>
+								<button type="button" onclick="adminList.groupWizard.next()"><vte:value select="{LNG_ADMIN_NEXT}" /></button>
+							</div>
+						</div>
+					</div>
+
+					<div id="group_plugin_edit" style="display:none;">
+						<div class="wizard_steps">
+							<span><vte:value select="{LNG_ADMIN_WIZARD_STEP_1_SHORT}" /></span>
+							<span onclick="adminList.groupWizard.setActiveTab('group_main_edit')"><vte:value select="{LNG_ADMIN_WIZARD_STEP_2}" /></span>
+							<span onclick="adminList.groupWizard.setActiveTab('group_workflow_edit')"><vte:value select="{LNG_ADMIN_WIZARD_STEP_3}" /></span>
+							<span onclick="adminList.groupWizard.setActiveTab('group_frontend_edit')"><vte:value select="{LNG_ADMIN_WIZARD_STEP_4}" /></span>
+							<span class="active"><vte:value select="{LNG_ADMIN_WIZARD_STEP_5}" /></span>
+						</div>
+						<div class="form_box_info">
+							<strong><vte:value select="{LNG_ADMIN_WIZARD_STEP_5}" /></strong>
+							<br />
+						<vte:value select="{LNG_ADMIN_WIZARD_INFO_6}" />
+						</div>
+						<div class="form_line">
+							<label><vte:value select="{LNG_ADMIN_MANAGE_PLUGINS}" />:</label>
+							<div class="formElement">
+								<select class="options" name="MANAGE_PLUGIN" size="10" multiple="multiple">
+									<option value="">
+										<vte:value select="{LNG_ADMIN_NONE}" />
+									</option>
+									<option value="0">
+										<vte:attribute name="selected">
+											<vte:if test="{group.can|'MANAGE_PLUGIN','all'}">selected</vte:if>
+										</vte:attribute>
+										<vte:value select="{LNG_ADMIN_ALL_PLUGINS}" />
+									</option>
+									<vte:foreach item = "plugin" from = "{plugins}">
+										<option value="{plugin[href]}">
+											<vte:attribute name="selected">
+												<vte:if test="{group.can|'MANAGE_PLUGIN',plugin[href]}">selected</vte:if>
+											</vte:attribute>
+											<vte:value select="{plugin[name]}" />
+										</option>
+									</vte:foreach>
+								</select>
+							</div>
+						</div>
+						<div class="form_line">
+							<label> </label>
+							<div class="formElement">
+								<button class="secondary" type="button" onclick="adminList.groupWizard.previous()"><vte:value select="{LNG_ADMIN_PREVIOUS}" /></button>
+								<vte:if test="{group.id}">
+									<button class="primary" type="submit" value ="edit"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+									<vte:else>
+										<button class="primary" type="submit" value ="add"><vte:value select="{LNG_ADMIN_ADD}" /></button>
+									</vte:else>
+								</vte:if>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content_list_body_footer"><!-- --></div>
+			</form>
+		</div>
+		<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+	</div>
+</vte:template>

@@ -1,0 +1,7 @@
+Options All -Indexes
+ErrorDocument 404 /404.php
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^check/mod_rewrite/$ index.php [L]
+</IfModule>

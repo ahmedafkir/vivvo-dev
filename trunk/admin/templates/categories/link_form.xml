@@ -1,0 +1,70 @@
+<div class="content_list">
+	<div class="content_list_header">
+		<span class="context_view">
+			<vte:if test="{current_category.id}">
+				<vte:value select="{LNG_ADMIN_EDIT_LINK}" />: <vte:value select="{current_category.category_name}" />
+				<vte:else>
+					<vte:value select="{LNG_ADMIN_ADD_NEW_LINK}" />
+				</vte:else>
+			</vte:if>
+		</span>
+		<span class="context_help">
+			<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />		</span>
+	</div>
+	<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+	<div class="content_list_body">
+		<div class="content_list_body_header">
+			<div class="content_list_body_header_line1">
+				<div class="button_add_new">
+					<ul>
+						<li>
+							<a href="#" class="add_plus"><vte:value select="{LNG_ADMIN_ADD_NEW}" /></a><img class="add_plus_arrow" src="img/button_add_arrow.gif" alt="{LNG_ADMIN_ADD_NEW}" title="{LNG_ADMIN_ADD_NEW}" />
+							<ul class="tools_submenu">
+								<li><a href="categories.php"><vte:value select="{LNG_ADMIN_ADD_NEW_CATEGORY}" /></a></li>
+								<li><a href="#new-link" onclick="adminCategories.addNewLink(); return false;"><vte:value select="{LNG_ADMIN_ADD_NEW_LINK}" /></a></li>
+								<li><a href="#new-topic" onclick="adminTopics.addNewTopic(); return false;" class="last"><vte:value select="{LNG_ADMIN_ADD_NEW_TOPIC}" /></a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div>&#160;</div>
+			</div>
+		</div>
+		<form id="category_edit_form" action="categories.php?link_form&amp;search_id={current_category.id}" method="post">
+			<input type="hidden" name="SECURITY_TOKEN" value="{VIVVO_SECURITY_TOKEN}" />
+			<input type="hidden" name="action" value="category" />
+			<input type="hidden" name="CATEGORY_form" value="link" />
+			<input id="category_cmd" type="hidden" name="cmd" value="" />
+			<vte:if test="{current_category.id}">
+				<input type="hidden" name="CATEGORY_id" value="{current_category.id}" />
+			</vte:if>
+			<div id="category_form" class="content_list_items">
+				<div class="form_box_info">
+					<vte:if test="!{current_category.id}">
+						<img src="img/icon_info.gif" alt="{LNG_ADMIN_INFO}" /> <vte:value select="{LNG_ADMIN_ADD_NEW_LINK_INFO}" />
+					</vte:if>
+				</div>
+				<div class="form_line">
+					<label><vte:value select="{LNG_ADMIN_LINK_URL}" />:</label>
+					<div class="formElement">
+						<input class="text" type="text" id="CATEGORY_redirect" name="CATEGORY_redirect" value="{current_category.redirect}" /> <img class="info_help" src="img/icon_pref_help.gif" title="{LNG_ADMIN_LINK_URL_INFO}" />
+						<div id="autocomplete_choices" class="autocomplete"> </div>
+					</div>
+				</div>
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" id="CATEGORY_name" label="{LNG_ADMIN_LINK_NAME}" name="CATEGORY_category_name" value="{current_category.category_name}" tooltip="{LNG_ADMIN_TOOLTIP_CATEGORY_CATEGORY_NAME}" />
+			</div>
+			<div class="content_list_body_footer">
+				<div class="form_submit_button">
+					<vte:if test="{current_category.id}">
+						<button class="primary" onclick="$('category_cmd').value='edit';" type="submit" value ="edit"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+						<button class="secondary" type="submit" onclick="$('category_cmd').value='delete';return confirm('{LNG_ADMIN_CONFIRM_DELETE}');" value="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></button>
+						<vte:else>
+							<button class="primary" onclick="$('category_cmd').value='add';" type="submit" value ="add"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+						</vte:else>
+					</vte:if>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+</div>

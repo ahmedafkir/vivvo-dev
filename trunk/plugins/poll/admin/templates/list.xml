@@ -1,0 +1,129 @@
+<vte:template>
+	<div class="content_list">
+		<div class="content_list_header">
+			<span class="context_view">
+				<vte:if test="{poll.id}">
+					<vte:value select="{LNG_PLUGIN_POLL_ADMIN_POLL}" />: <vte:value select="{poll.name}" />
+					<vte:else>
+						<vte:value select="{LNG_PLUGIN_POLL_ADMIN_ADD_NEW_POLL}" />
+					</vte:else>
+				</vte:if>
+			</span>
+			<span class="context_help">
+				<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />			</span>
+		</div>
+		<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+		<div class="content_list_body">
+			
+			<form id="poll_form" name="poll_form" action="plugins.php?plugin=poll&amp;search_pid={poll.id}" method="post">
+				<input type="hidden" name="action" value="poll" />
+				<vte:if test="{poll.id}">
+					<input type="hidden" name="search_pid" value="{poll.id}" />
+					<input type="hidden" name="PLUGIN_POLL_id" value="{poll.id}" />
+					<input type="hidden" name="cmd" value="edit" />
+					<vte:else>
+						<input type="hidden" name="cmd" value="add" />
+					</vte:else>
+				</vte:if>
+				<div class="content_list_body_header">
+					<vte:if test="{poll.id}">
+						<div class="content_list_body_header_line1">	
+							<span class="item_actions">
+								<vte:if test="{poll.status}">
+									<img onclick="adminList.deactivatePoll({poll.id});" src="{VIVVO_URL}{PLUGIN_ROOT}admin/img/deactivate.gif" alt="{LNG_PLUGIN_POLL_ADMIN_DEACTIVATE_POLL}" title="{LNG_PLUGIN_POLL_ADMIN_DEACTIVATE_POLL}" />
+									<vte:else>
+										<img onclick="adminList.activatePoll({poll.id});" src="{VIVVO_URL}{PLUGIN_ROOT}admin/img/activate.gif" alt="{LNG_PLUGIN_POLL_ADMIN_ACTIVATE_POLL}" title="{LNG_PLUGIN_POLL_ADMIN_ACTIVATE_POLL}" />
+									</vte:else>	
+								</vte:if>
+								<img onclick="adminList.editMode();" src="img/icon_edit.gif" alt="{LNG_PLUGIN_POLL_ADMIN_EDIT_POLL}" title="{LNG_PLUGIN_POLL_ADMIN_EDIT_POLL}" /> <img src="img/icon_delete.gif" alt="{LNG_PLUGIN_POLL_ADMIN_DELETE_POLL}" title="{LNG_PLUGIN_POLL_ADMIN_DELETE_POLL}" onclick="adminList.deleteItem('PLUGIN_POLL_id',{poll.id});" />
+							</span>
+							<vte:if test="{poll.status}">
+								<img src="{VIVVO_URL}{PLUGIN_ROOT}admin/img/active.gif" alt="{LNG_PLUGIN_POLL_ADMIN_ACTIVE}" title="{LNG_PLUGIN_POLL_ACTIVE}" />
+								<vte:else>
+									<img src="{VIVVO_URL}{PLUGIN_ROOT}admin/img/inactive.gif" alt="{LNG_PLUGIN_POLL_ADMIN_INACTIVE}" title="{LNG_PLUGIN_POLL_ADMIN_INACTIVE}" />
+								</vte:else>	
+							</vte:if>
+							<strong><vte:value select="{poll.question}" /></strong>
+						</div>
+					</vte:if>
+				</div>
+				<vte:if test="{poll.status}">
+					<div class="content_list_body_header_line2">
+						<vte:value select="CODE" />: <input type="text" class="article_title" onclick="select();" name="" value="&lt;vte:include file=&quot;&#123;VIVVO_TEMPLATE_DIR&#125;box/plugin_poll.tpl&quot; search_pid=&quot;{poll.id}&quot; /&gt;" />
+					</div>
+				</vte:if>
+				<div id="poll_answer_list" class="content_list_items">
+					<vte:attribute name="style"><vte:if test="!{answer_list}">display:none;</vte:if></vte:attribute>
+					<vte:foreach item = "answer" from = "{answer_list}" key="index">
+						<div class="item row_{index|mod:'2'}" style="zoom:1;">
+							<div class="item_data">
+								<div class="item_line1">
+									<span class="poll_answer_title"><vte:value select="{answer.answer}" /></span>	
+								</div>
+								<div class="item_line2" style="padding-left:0px;">
+									<img src="{VIVVO_URL}{PLUGIN_ROOT}admin/img/poll_bar.gif" style="width:{answer.get_percent|5}px;height:12px;" />
+									<vte:value select="{answer.get_percent}" /><vte:value select="{LNG_PLUGIN_POLL_ADMIN_PERCENT}" /> (<vte:value select="{answer.vote}" /> <vte:value select="{LNG_PLUGIN_POLL_ADMIN_VOTES}" />)
+								</div>
+							</div>
+						</div>
+					</vte:foreach>
+				</div>
+				<div id="poll_answer_list_form" class="content_list_items">
+					<vte:attribute name="style"><vte:if test="{answer_list}">display:none;</vte:if></vte:attribute>
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_POLL_ADMIN_NAME}" name="PLUGIN_POLL_name" value="{poll.name}" />
+					
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_PLUGIN_POLL_ADMIN_QUESTION}" name="PLUGIN_POLL_question" value="{poll.question}" />
+					
+					<div class="form_line"> 
+						<label><vte:value select="{LNG_PLUGIN_POLL_ADMIN_ANSWERS}" />:</label>
+						<div class="formElement">
+							<div style="width:300px; text-align:right;">
+								<span onclick="adminList.addNewAnswer();" class="action_button_link"><vte:value select="{LNG_PLUGIN_POLL_ADMIN_ADD_NEW_ANSWER}}" /></span>
+							</div>
+						</div>
+					</div>
+
+					<vte:foreach item = "answer" from = "{answer_list}" key="index">
+						<div id="old_poll_answer_{answer.id}" class="form_line poll_answer_input"> 
+							<label> </label>
+							<div class="formElement">
+								<input name="PLUGIN_POLL_answer[{answer.id}]" class="poll_answer_input text" type="text" value="{answer.answer}" /> 
+								<img id="old_poll_answer_{answer.id}_img" src="img/delete_orange.gif" alt="{LNG_PLUGIN_POLL_ADMIN_DELETE_ANSWER}" title="{LNG_PLUGIN_POLL_ADMIN_DELETE_ANSWER}" onclick="adminList.removeAnswer(this);" style="cursor:pointer;" />
+							</div>
+						</div>
+					</vte:foreach>
+				</div>
+
+				<vte:if test="{poll.id}">
+					<div id="comment_list_body_footer" class="content_list_body_footer" style="display:none;">
+						<div class="form_submit_button">
+							<button class="primary" type="submit"><vte:value select="{LNG_PLUGIN_POLL_ADMIN_SAVE}" /></button>
+						</div>
+					</div>
+					<vte:else>
+						<div id="comment_list_body_footer" class="content_list_body_footer">
+							<div class="form_submit_button">
+								<button class="primary" type="submit"><vte:value select="{LNG_PLUGIN_POLL_ADMIN_SAVE}" /></button>
+							</div>
+						</div>
+					</vte:else>
+				</vte:if>
+	
+			</form>
+			<div id="new_question_template" style="display:none;">
+				<div class="form_line poll_answer_input"> 
+					<label> </label>
+					<div class="formElement">
+						<input name="PLUGIN_POLL_new_answer[]" class="text" type="text" value="" /> 
+						<img src="img/delete_orange.gif" alt="{LNG_PLUGIN_POLL_ADMIN_DELETE_ANSWER}" title="{LNG_PLUGIN_POLL_ADMIN_DELETE_ANSWER}" onclick="adminList.removeAnswer(this);" style="cursor:pointer;" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+	</div>
+	<vte:if test="{list_output}">
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/ajax_dump.xml" />
+	</vte:if>
+</vte:template>

@@ -1,0 +1,10 @@
+<vte:if test="{DUMP_MESSAGES}">
+	<vte:if test="!{DUMP_RENDERED}">
+		<vte:variable name="DUMP_RENDERED" value="1" global="1" />
+		<script type="text/javascript">
+			<vte:foreach item="message" from="{DUMP_MESSAGES}">
+				vivvo.admin.utils.addDump(<vte:value select="{message.get_message|json_encode}" />,<vte:value select="{message.type|json_encode}" />,<vte:value select="{message.get_error_code|json_encode}" />,<vte:value select="{message.additional_info|json_encode}" />);
+			</vte:foreach>
+		</script>
+	</vte:if>
+</vte:if>

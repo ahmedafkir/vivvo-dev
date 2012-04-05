@@ -1,0 +1,14 @@
+<div id="plugins_list">
+	<ul class="quick_launch">
+		<vte:foreach item = "plugin" from = "{plugins}">
+			<vte:if test="{current_user.can|'MANAGE_PLUGIN',plugin[href]}">
+				<li>
+					<div class="actions_small_left">
+						<img id="plugin_pin_{plugin[href]}" src="img/icon_small_pin_add.gif" alt="{LNG_ADMIN_PIN_UNPIN_TO_MYQUICKNAV_LAUNCH_BAR}" title="{LNG_ADMIN_PIN_UNPIN_TO_MYQUICKNAV_LAUNCH_BAR}" onclick="adminPlugins.toggleMenuItem('{plugin[href]}','{plugin[name]}')" />
+					</div>
+					<a href="plugins.php?plugin={plugin[href]}"><vte:value select="{plugin[name]}" /></a>
+				</li>
+			</vte:if>
+		</vte:foreach>
+	</ul>
+</div>

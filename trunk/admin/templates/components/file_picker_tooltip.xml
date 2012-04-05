@@ -1,0 +1,13 @@
+<vte:if test="{file}">
+	<strong><vte:value select="{LNG_ADMIN_FILE_PICKER_ASSET_NAME}" />:</strong> <vte:value select="{file.get_filename}" /><br />
+	<strong><vte:value select="{LNG_ADMIN_FILE_PICKER_ASSET_SIZE}" />:</strong> <vte:value select="{file.get_smart_size}" />
+	<vte:if test="{file.extension|strtolower} in 'jpg,gif,png,jpeg'">
+	(<vte:value select="{file.get_width}" /> px <vte:value select="{file.get_height}" /> px)
+	</vte:if>
+	<br />
+	<strong><vte:value select="{LNG_ADMIN_FILE_PICKER_ASSET_DATE}" />:</strong> <vte:value select="{file.get_time|'n/j/Y g:i a T'}" /><br />
+	<vte:if test="{file.get_keywords}">
+		<strong><vte:value select="{LNG_ADMIN_FILE_PICKER_ASSET_KEYWORDS}" />:</strong> <br />
+		<vte:value select="{file.get_keywords}" />
+	</vte:if>
+</vte:if>

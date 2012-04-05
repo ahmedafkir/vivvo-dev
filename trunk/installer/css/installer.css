@@ -1,0 +1,260 @@
+body {margin:12px 0px; padding:0; border:0; text-align:center; font-family:Arial, Helvetica, sans-serif; font-size:12px;}
+
+#container {width:640px; margin:0px auto; text-align:left;}
+
+#header {padding:8px 12px 0px 0px; background:#ececec url(../img/corners_top.gif) top no-repeat; text-align:right;}
+
+#header a {color: #3366CC; text-decoration: none;}
+
+#content {width:640px; height:428px; background:#ececec url(../img/logo.gif) bottom left no-repeat;}
+
+#dynamic_box_left {margin:0 -1px 0 0; float:left; width:180px; position:relative; z-index:999;}
+
+#dynamic_box_center {float:left; width:460px;}
+
+#content_footer {clear:both;}
+
+#footer {clear:both; height:36px; text-align:right; background:#ececec url(../img/corners_bottom.gif) top no-repeat;}
+
+.dump {margin:12px 0px; text-align:center; font-size:14px; color:#444;}
+
+.dump_header { padding:4px 0px; background:#fffacd url(../img/dump_corners_top.gif) top no-repeat;}
+
+.dump_message { padding:6px 0px; background:#fffacd url(../img/dump_content.gif) repeat-y;}
+
+.dump_footer { padding:5px 0px; background:#fffacd url(../img/dump_corners_bottom.gif) top no-repeat;}
+
+
+/*** Left side steps ***/
+
+#dynamic_box_left ul.steps {
+	margin:0;
+	padding:43px 0px 0px 16px;
+	list-style:none;
+}
+
+#dynamic_box_left ul.steps li {
+	padding:10px 0px 10px 15px;
+	color:#999;
+	/*background: url(../img/bullet_inactive.gif) 8px 12px no-repeat;*/
+}
+
+#dynamic_box_left ul.steps li.selected {
+	/*background: url(../img/bullet_active.gif) 8px 12px no-repeat;*/
+	font-weight:bold;
+	background:#f9f9f9;
+	color:#666;
+	border-top:1px solid #b1b5ba;
+	border-bottom:1px solid #b1b5ba;
+	border-left:1px solid #b1b5ba;
+	-moz-border-radius:5px 0px 0px 5px;
+	-webkit-border-radius:5px 0px 0px 5px;
+}
+
+/*** Right side steps ***/
+
+
+/*** All Steps ***/
+form {padding:0; margin:0;}
+
+.content_body div.info {
+	color:#777; 
+	padding-bottom:5px;
+}
+
+.content_body h3 { 
+	margin:0; 
+	padding:8px 0px; 
+	font-size:16px; 
+	color:#666;
+	text-shadow:0px 1px 0px rgba(255,255,255,0.8);
+}
+
+.content_items { 
+	width:420px; 
+	height:326px;
+	padding:10px; 
+	background-color: #f9f9f9; 
+	border:1px solid #b1b5ba;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+}
+
+.content_body_footer {width:443px;}
+
+/*** Form elements ***/
+.content_body_footer div.form_submit_button {text-align:right; padding:12px 0px 6px 0px}
+
+.button, button {
+	font-family:Arial, Helvetica, sans-serif;
+	background:#fff url(../img/button_blend.png) repeat-x;
+	padding:3px 4px;
+	margin:0;
+	color:#444;
+	font-weight:normal;
+	border:1px solid #bfbfbf;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	text-shadow:0 1px 1px rgba(255, 255, 255, 0.8);
+	-webkit-box-shadow:0 1px 0 #fff;
+	-moz-box-shadow:0 1px 1px 0 rgba(255,255,255,1);
+	overflow:visible;
+	font-size:12px;
+}
+
+.button:hover, button:hover {background-color:#eee; color:#3366cc;}
+
+.content_items div.form_line {
+	width:410px;
+	overflow:hidden; 
+	margin-bottom:8px;
+}
+
+input.text,
+input.text_small,
+input.article_title,
+textarea,
+textarea.textarea {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	border:1px solid #a7acb2;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	padding:3px;
+	color:#333;
+	-webkit-box-shadow:0 1px 0 #fff;
+	-moz-box-shadow:0 1px 0 0 rgba(255,255,255,1);
+}
+
+input.text:focus,
+input.text_small:focus,
+input.article_title:focus,
+textarea:focus,
+textarea.textarea:focus {background:#fffdd1;}
+
+select {
+	color:#333;
+	border:1px solid #a7acb2;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	padding:2px;
+}
+
+/*** Step 1 ***/
+
+.content_items div.form_line div.lang .options {width:300px;}
+
+/*** Step 2 ***/
+.requirements_block {width:410px; overflow:hidden; margin-bottom:6px;}
+
+.requirements_cell {width:205px; float:left}
+
+.requirements_cell h4 {
+	margin:0px 6px 6px 0px; 
+	padding-bottom: 3px; 
+	color:#777; 
+	border-bottom:1px solid #b1b5ba;
+}
+
+.step_2 div.form_line {width:100%;}
+
+.step_2 div.form_line label {
+	width:100px; 
+	float:left; 
+	font-weight:bold; 
+	color:#777;
+}
+
+.content_items div.form_line .files {
+	width:292px; 
+	height:120px; 
+	overflow:scroll; 
+	background-color:#fff; 
+	border:1px solid #7f9db9; 
+	padding:6px;
+	color:#444;
+}
+
+.content_body_footer span.fix_files { 
+	font-weight:bold; 
+	font-size:14px; 
+	color:#777;
+}
+
+.step_2 div.formElement img {vertical-align:middle;}
+ 
+.available {color:#66cc33;}
+
+.unavailable {color:#ff0000;}
+
+.unavailable_r {color:#ff9c00;}
+
+.unknown {color:#989da5;}
+
+/*** Step 3 ***/
+.step_3 div.form_line {margin-bottom:26px;}
+
+.step_3 div.form_line label {
+	width:80px; 
+	float:left; 
+	font-weight:bold; 
+	color:#777;
+	padding-top:4px;
+}
+
+.step_3 input.text {width:320px; font-size:16px; font-weight:bold;}
+
+.content_items div.license {
+	width:396px; 
+	height:260px; 
+	overflow:scroll; 
+	background-color:#fff; 
+	border:1px solid #a7acb2;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	padding:6px;
+	color:#444;
+}
+
+.form_submit_button div.agree {float:left; color:#777; font-weight:bold;}
+
+/*** Step 4 ***/
+.step_4 div.form_line label {
+	width:186px; 
+	float:left; 
+	font-weight:bold; 
+	color:#777;
+}
+
+.step_4 input.text {width:215px;}
+
+.step_4 h4 {margin:24px 0 0 0; color:#777;}
+
+.step_4 div.advanced_options {
+	padding:12px 6px 6px 6px; 
+	margin-top:6px; 
+	background-color:#fff; 
+	border:1px solid #b1b5ba;
+}
+
+.step_4 div.advanced_options div.form_line label {font-size:11px; width:184px;}
+
+.step_4 div.advanced_options input.text {width:206px;}
+
+/*** Step 5 ***/
+.step_5 div.form_line label {
+	width:195px; 
+	float:left; 
+	font-weight:bold; 
+	color:#777;
+}
+
+.step_5 input.text {width:206px;}
+
+.step_5 .pass_strenght {font-size:11px; color:#777;}
+
+/*** Step 6 ***/
+.step_6 div.buttons {margin-top:24px; text-align:center;}
+
+.step_6 a img {border:none; padding-right:4px;}
+

@@ -1,0 +1,31 @@
+<vte:box module="box_pagination">
+	<vte:params>
+		<vte:param name="list" value="{list}" />
+		<vte:param name="max_page" value="{max_page}" />
+	</vte:params>
+	<vte:template>
+		<span class="box_pagination">
+			<vte:if test="{total_records} &gt; 0">
+				<span class="pagination_total">
+					<vte:value select="{displaying}" /> <vte:value select="{LNG_ADMIN_OF}" /> <vte:value select="{total_records}" />
+				</span>
+				<span class="pagination">
+					<vte:if test="{previous_page_group} != ''">
+						<span class="page_button" onclick="{onclick|str_replace:'$pg',previous_page_group_number}">&lt;&lt;</span>
+					</vte:if>
+					<vte:foreach from="{page_list}" item="page">
+						<vte:if test="{current_page} != {page[number]}">
+							<span class="page_button" onclick="{onclick|str_replace:'$pg',page[number]}"><vte:value select="{page[number]}" /></span>
+							<vte:else>
+								<span class="page_active"><vte:value select="{page[number]}" /></span>
+							</vte:else>
+						</vte:if>
+					</vte:foreach>
+					<vte:if test="{next_page_group} != ''">
+						<span class="page_button" onclick="{onclick|str_replace:'$pg',next_page_group_number}">&gt;&gt;</span>
+					</vte:if>
+				</span>
+			</vte:if>
+		</span>
+	</vte:template>
+</vte:box>

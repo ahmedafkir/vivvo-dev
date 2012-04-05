@@ -1,0 +1,16 @@
+<vte:template>
+	<div id="other_modules" style="display:none;">
+		<vte:box module="box_files">
+			<vte:params>
+				<vte:param name="fs_root" value="{VIVVO_FS_INSTALL_ROOT}" />
+				<vte:param name="dir" value="{VIVVO_FS_ADMIN_DIR}templates/preferences/modules/other" />
+				<vte:param name="ext" value="xml" />
+			</vte:params>
+			<vte:template>
+				<vte:foreach item="file" from="{file_list}">
+					<vte:include file="{dir}{file.filename}" />
+				</vte:foreach>
+			</vte:template>
+		</vte:box>
+	</div>
+</vte:template>

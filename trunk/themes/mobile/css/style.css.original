@@ -1,0 +1,201 @@
+body {margin:0.2em; padding:0; border:0; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:1em; background:#fff;}
+
+#container {width:100%; margin:0px auto; text-align:left; background-color:#fff;}
+
+#dynamic_box_center {float:left;}
+
+#content_footer {clear: both;}
+
+#footer {clear: both;}
+
+#layout_default div#dynamic_box_center {width:100%;}
+
+#main_news_box {float:left;}
+
+.main_news_box_row {width:100%; overflow:hidden;}
+
+.main_news_category {margin:0.5em;}
+
+.category_news_category {float:left; display:inline; width:261px; margin:6px;}
+
+#content {background:#fff; padding:0.3em;}
+
+.clearer {clear:both;}
+
+/*** Global anchor styles ***/
+a, a:link, a:visited {color:#004276; text-decoration:none; outline:none;}
+
+a:hover {color:#ca0002; text-decoration:none;}
+
+a img {border:none;}
+
+/*** Global list styles ***/
+ul {padding:0; margin:0;}
+
+ul li {list-style-type:none;}
+
+/*** Global heading styles ***/
+h1, h2, h3, h4 {margin:0;}
+
+h1 {font-size:1.3em; font-weight:normal;}
+
+h2, h3 {font-size:1.1em; padding-bottom:0.1em;}
+
+/*** Global box styles ***/
+.box .box_title {font-size:1.3em; font-weight:normal;}
+
+/***** Headlines *****/
+.headline {margin-bottom:0.5em;}
+
+.box_headline {padding:0.5em; border:0.1em solid #bebebe; background-color:#eee;}
+
+.box_headline h1 {padding:0.1em 0;}
+
+.headline_article_holder {width:100%; overflow:hidden;}
+
+.headline_image {float:left; margin-right:0.3em;}
+
+.headline_body {padding:0.5em;}
+
+.headline_link {text-align:right; font-weight:bold;}
+
+/*************** HEADER STYLES *************************************************************************************************************************/
+/******************************************************************************************************************************************************/
+.header_image {margin-bottom:0.05em; background:#464646;}
+
+.box_pages {border:0.1em solid #b8b8b8; padding:0.5em; background:#cfcfcf;}
+
+.box_pages li {display:inline;}
+
+.box_pages a {padding:0.1em 0.2em;}
+
+.box_pages a:link, .box_pages a:visited {color:#464646; text-decoration:none;}
+
+.box_pages a:hover {text-decoration:underline;}
+
+/***** Search box *****/
+.search {padding:0.2em; background:#eee; text-align:right;}
+
+.search button {border:none; font-size:1em; font-weight:normal; color:#fff; background:#d72e2c;}
+
+/*************** CONTENT STYLES ************************************************************************************************************************/
+/******************************************************************************************************************************************************/
+#box_center_holder {padding:0 0.5em;}
+
+#box_center_holder h1 {font-size:2em; padding-bottom:0.3em; margin-bottom:1em; border-bottom:0.2em solid #000;}
+
+#box_center_holder div.category_headline {width:100%; overflow:hidden;}
+
+#box_center_holder div.category_headline h2 a {font-size:1.3em; font-weight:normal;}
+
+#box_center_holder div.category_headline div.image {float:left; margin:0 0.5em 0.5em 0.5em;}
+
+div.article_link {display: inline; padding-left: 0.3em;}
+
+.image {float:left; margin:0.1em 0.2em 0.1em 0.1em;}
+
+.short_holder {width:100%; overflow:hidden;}
+
+.short {margin-bottom:0.2em; padding:0.2em; border-bottom:0.1em solid #eee;}
+
+/*** Main news styles ***/
+#category_news_box div.box_title {margin-bottom:0.5em;}
+
+/*** Category links ***/
+#category_news_box div.box_title h4, #category_news_box div.box_title h4 a {font-size:1.1em; background:#eee; padding:0.1em; margin-bottom:0.1em;}
+
+/*** Subcategory links ***/
+#category_news_box div.box_title span {color:#000; font-size:0.9em; padding:0 0.1em; }
+
+#category_news_box div.box_body ul {padding:0 0.5em;}
+
+#category_news_box div.box_body ul li {border-bottom:0.1em solid #eee; padding:0.1em 0;}
+
+#category_news_box div.box_body ul li a {display:block; padding:0.2em; font-size:0.9em;}
+
+/*** Category page ***/
+#category_holder div.subcategory_list div.box_body {padding:0.5em;}
+
+#category_holder div.short {margin-bottom:1em; padding-bottom:1em;}
+
+/*** Article styles ***/
+.box_breadcrumb {padding:0.5em 0; color:#666; border-bottom:0.1em solid #eee;}
+
+.box_breadcrumb a {padding-right:0.2em;}
+
+#article_holder h1 {font-size: 2em; padding:0.7em 0 0.3em 0; margin-bottom:0.1em; border-bottom:0.2em solid #000;}
+
+#article_holder div.article_metadata { padding:0 0 1.3em 0; margin-bottom:0.3em; border-bottom:0.1em solid #eee;}
+
+#article_holder div.article_metadata span.metadata_time {font-size: 0.9em; color:#666; float:right;}
+
+#article_holder div.font_size {font-size:0.9em; text-align:right; margin-bottom:1em;}
+
+#article_holder div.font_size img {vertical-align:bottom; padding-left:0.2em;}
+
+#article_holder div.image {float:left; margin-right:0.5em;}
+
+#article_holder div.image span.image_caption {font-size:0.9em; line-height:normal;}
+
+#article_holder div#article_body {line-height:1.6em; width:100%; overflow:hidden; margin-bottom:1em;}
+
+#article_holder div#article_body h1, 
+#article_holder div#article_body h2, 
+#article_holder div#article_body h3, 
+#article_holder div#article_body h4, 
+#article_holder div#article_body h5, 
+#article_holder div#article_body h6 {font-family:Arial, Helvetica, sans-serif;}
+
+#article_holder div.content_attachment {padding:0.5em; text-align:right; font-size:0.9em;}
+
+#article_holder div.content_attachment img {vertical-align:bottom;}
+
+/*** Article social bookmarks ***/
+#box_social_bookmarks {color:#666; padding:0.1em 0.5em; margin:0.5em 0 1em 0; border-bottom:0.1em solid #eee; border-top:0.1em solid #eee;}
+
+#box_social_bookmarks img {vertical-align:middle;}
+
+/*** Pagination ***/
+#box_pagination {padding:0.5em; margin:0.5em 0; background:#eee; color:#666;}
+
+#box_pagination span.pagination {float:right; font-weight:bold;}
+
+#box_pagination span.pagination a {font-weight:normal;}
+
+#box_pagination span.pagination_total {color:#ca0002;}
+
+/*************** FOOTER STYLES *************************************************************************************************************************/
+/******************************************************************************************************************************************************/
+.footer {text-align:center; padding:0.5em 0; margin-bottom:0.9em; color:#c6c6c6; background:#656565;}
+
+.footer a {color:#c6c6c6;}
+
+.footer ul {text-transform:uppercase; padding:0.5em 0 0.5em 0; margin:0;}
+
+.footer li {display:inline; padding:0 0.2em;}
+
+/*************** FORMS STYLES *************************************************************************************************************************/
+/******************************************************************************************************************************************************/
+form {padding:0px; margin:0px;}
+
+textarea {border:1px solid #7f9db9;}
+
+.form_line {margin-bottom:6px; padding-bottom:6px; width: 100%; overflow:hidden;}
+
+input.text {border:1px solid #7f9db9;}
+
+select.options {border:1px solid #7f9db9;}
+
+input.submit_button, button {font-family:Arial, Helvetica, sans-serif; font-size:12px;}
+
+.formElement p {margin-top:0;}
+
+#dynamic_box_right .form_line div.submit {text-align:right;}
+
+#dynamic_box_right .form_line div.submit a {float:left; padding-top:3px;}
+
+#dynamic_box_center div.form_line label {text-align:right; padding:3px 0px 3px 3px; display:block; float:left; width:30%; font-size:12px; color:#666;}
+
+#dynamic_box_center div.formElement {float:left; margin-left:6px; display:inline; z-index:auto;}
+
+#dynamic_box_center div.formElement label {padding:0px; width:auto; text-align:left; float:none; display:block; font-weight:normal;}

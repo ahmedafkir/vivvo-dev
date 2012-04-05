@@ -1,0 +1,9 @@
+<vte:template>
+	<span class="context_help">
+		<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />	</span>
+	<ul id="preferences_horizontal_tab_list" class="tabs">
+		<li><a href="#articles_preferences"><span><vte:value select="{LNG_ADMIN_ARTICLE}" /></span></a></li>
+		<li><a href="#articles_revisions"><span><vte:value select="{LNG_ADMIN_REVISIONS}" /></span></a></li>
+		<li><a href="#articles_modules"><span><vte:value select="{LNG_ADMIN_PAGE_ELEMENTS}" /></span></a></li>
+	</ul>
+</vte:template>

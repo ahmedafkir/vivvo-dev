@@ -1,0 +1,84 @@
+<vte:template>
+	<div class="content_list">
+		<div class="content_list_header">
+			<span class="context_view">
+				<vte:if test="{file.filename}">
+					<vte:value select="{LNG_ADMIN_EDITING}" />: <vte:value select="{file.dir}" /><vte:value select="{file.filename}" /> 
+					<vte:else>
+						<vte:value select="{LNG_ADMIN_ADD_ARTICLE}" />
+					</vte:else>
+				</vte:if>
+			</span>
+			<span class="context_help">
+				<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />			</span>
+		</div>
+		<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+		<div class="content_list_body">
+			<form id="template_edit_form" action="templates.php" method="post" onsubmit="return false;">
+				<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+				<div class="content_list_body_header">
+					<div class="content_list_body_header_line1">
+						<input type="hidden" name="action" value="file" />
+						<input id="template_cmd" type="hidden" name="cmd" value="" />
+						<input type="hidden" name="FILE_dir" value="{file.dir}" />
+						<input type="hidden" name="FILE_extension" value="{file.extension}" />
+						<input type="hidden" name="FILE_filename" value="{file.dir}{file.filename}" />
+						<vte:value select="{LNG_ADMIN_DUPLICATE_THIS_FILE}" />: <input type="text" class="text" name="FILE_new_filename" /> .<vte:value select="{file.extension}" /> 
+						<button class="primary" onclick="$('template_cmd').value='duplicate';" type="submit" value="duplicate" style="margin-left:12px;"><vte:value select="{LNG_ADMIN_DUPLICATE}" /></button>
+					</div>
+					<div class="content_list_body_header_line2">
+						<vte:if test="{file.changed} = 0">
+							<div class="file_edit_message">
+								<vte:value select="{LNG_ADMIN_ORIGINAL_TEMPLATE_FILE}" />
+								<vte:if test="{file.writeable} = 0">
+									<span class="important"><vte:value select="{LNG_ADMIN_FILE_IS_NOT_WRITEBLE}" /></span>
+								</vte:if>
+							</div>
+						</vte:if>
+						<vte:if test="{file.changed} = -1">
+							<div class="file_edit_message">
+								<img src="img/icon_alert.gif" alt="Alert" /> <vte:value select="{LNG_ADMIN_NO_BACKUP_FOR_THIS_FILE}" />
+								<vte:if test="{file.writeable} = 0">
+									<span class="important"><vte:value select="{LNG_ADMIN_FILE_IS_NOT_WRITEBLE}" /></span>
+								</vte:if>
+							</div>
+						</vte:if>
+						<vte:if test="{file.changed} = 1">
+							<div class="file_edit_message">
+								<img src="img/icon_alert.gif" alt="Alert" /> <vte:value select="{LNG_ADMIN_TEMPLATE_FILE_HAS_BEEN_CHANGED}" />
+								<vte:if test="{file.writeable} = 0">
+									<span class="important"><vte:value select="{LNG_ADMIN_FILE_IS_NOT_WRITEBLE}" /></span>
+								</vte:if>
+							</div>
+						</vte:if>
+					</div>
+				</div>
+				<div class="content_list_items">
+					<input id="FILE_content" type="hidden" value="" name="FILE_content" />
+					<vte:if test="{file.extension} = 'css'">
+						<textarea id="FILE_content_textarea" class="codepress css linenumbers-on" style="width:99%; height:400px;"><vte:value select="{file.get_html_content}" /></textarea>
+						<vte:else>
+							<textarea id="FILE_content_textarea" class="codepress vte linenumbers-on" style="width:99%; height:400px;"><vte:value select="{file.get_html_content}" /></textarea>
+						</vte:else>
+					</vte:if>
+				</div>
+				<div class="content_list_body_footer">
+					<div class="form_submit_button">
+						<vte:if test="{file.writeable} != 0">
+							<button class="primary" onclick="$('template_cmd').value='save';" type="submit" value="save"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+						</vte:if>
+						<vte:if test="{file.writeable} != 0">
+							<vte:if test="{file.changed} != -1">						
+								<button class="secondary" onclick="$('template_cmd').value='revert';" type="submit" value="revert"><vte:value select="{LNG_ADMIN_REVERT}" /></button>
+								<vte:else>
+									<button class="secondary" type="submit" onClick="$('template_cmd').value='delete';return confirm ('{LNG_ADMIN_CONFIRM_DELETE}');" value="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></button>
+								</vte:else>
+							</vte:if>
+						</vte:if>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+	</div>
+</vte:template>

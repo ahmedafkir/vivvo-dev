@@ -1,0 +1,45 @@
+<div class="box_home">
+	<h2><vte:value select="{LNG_ADMIN_MODERATE_COMMENT}" /></h2>
+    <vte:box module="box_comments" params="{comments_params}">
+        <vte:params>
+            <vte:param name="search_status" value="0" />
+			<vte:param name="search_limit" value="10" />
+        </vte:params>
+        <vte:template>
+            <div id="comments_list" class="content_list_items">
+                <vte:if test="{comment_list}">
+                    <vte:foreach item="comment" from="{comment_list}" key="index">
+                        <div id="moderate_comment_list_{comment.get_id}" class="item row_{index|mod:'2'}">
+                            <div class="item_actions">
+								<img src="img/icon_info.gif" class="comment_info" alt="{LNG_ADMIN_INFO}" title="{LNG_ADMIN_ON}: {comment.create_dt|format_date:'M j Y'}\nIP: {comment.get_ip}\nemail: {comment.get_email}" />
+							</div>
+                            <div class="item_data">
+                                <div class="item_select">
+                                    <input type="checkbox" value="{comment.get_id}" onclick="adminDashboard.commentsSelect($('moderate_comment_list_{comment.get_id}'), $(this));" />
+                                </div>
+                                <div class="item_line1">
+                                    <vte:value select="{comment.get_summary}" />
+                                </div>
+                                <div class="item_line2">
+                                    <a href="comments.php?search_author_name={comment.get_author_name|urlencode}"><vte:value select="{comment.get_author_name}" /></a>
+                                    <vte:value select="{LNG_ADMIN_ON}" />
+                                    <a href="comments.php?search_article_id={comment.get_article_id}"><vte:value select="{comment.get_article_title}" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </vte:foreach>
+                    <vte:else>
+                        <div class="info_message"><vte:value select="{LNG_ADMIN_NO_ITEMS_MATCHING_SELECTED_CRITERIA}" /></div>
+                    </vte:else>
+                </vte:if>
+            </div>
+			<div class="dashboard_actions_bottom">
+				<button class="secondary" onclick="adminDashboard.commentsSelectAll();"><vte:value select="{LNG_ADMIN_SELECT_ALL}" /></button>
+				<button onclick="adminDashboard.commentsApprove();"><vte:value select="{LNG_ADMIN_APPROVE}" /></button>
+			</div>
+        </vte:template>
+    </vte:box>
+	<vte:if test="{via_xhr}">
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/ajax_dump.xml" />
+	</vte:if>
+</div>

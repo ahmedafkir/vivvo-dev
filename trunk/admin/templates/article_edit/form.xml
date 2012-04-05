@@ -1,0 +1,68 @@
+<div class="content_list">
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/file_picker_includes.xml" />
+	<div class="content_list_header tabs_header">
+		<vte:if test="!{article_tabs}">
+			<span class="context_view">
+				<vte:if test="{article.id}">
+					<vte:value select="{LNG_ADMIN_EDIT_ARTICLE}" />
+					<vte:else>
+						<vte:value select="{LNG_ADMIN_ADD_NEW_ARTICLE}" />
+					</vte:else>
+				</vte:if>
+			</span>
+		</vte:if>
+		<span class="context_help">
+			<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />		</span>
+		<vte:if test="{article_tabs}">
+			<ul id="article_main_tabs" class="tabs">
+				<li>
+					<a href="#article_main_edit">
+						<span><vte:if test="{article.id}"><vte:value select="{LNG_ADMIN_EDIT_ARTICLE}" /><vte:else><vte:value select="{LNG_ADMIN_ADD_NEW_ARTICLE}" /></vte:else></vte:if></span>
+					</a>
+				</li>
+				<vte:foreach from="{article_tabs}" item="tab">
+					<li><a href="#{tab[id]}"><span><vte:value select="{tab[name]}" /></span></a></li>
+				</vte:foreach>
+			</ul>
+		</vte:if>
+	</div>
+	<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+	<div class="content_list_body">
+		<div class="content_list_body_header">
+			<div class="content_list_body_header_line1">
+				<vte:value select="{LNG_ADMIN_TITLE}" />: <input type="text" class="article_title" id="ARTICLE_title" name="ARTICLE_title" value="{article.title}" />
+			</div>
+		</div>
+		<div id="article_main_edit">
+			<div class="article_abstract_field">
+				<vte:value select="{LNG_ADMIN_ABSTRACT}" />: <textarea name="ARTICLE_abstract" id="ARTICLE_abstract" style="width:99%;height:60px;"><vte:value select="{article.abstract}" /></textarea>
+				<div class="article_abstract_field">
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_file_picker.xml" label="{LNG_ADMIN_ABSTRACT_IMAGE}" name="ARTICLE_image" value="{article.get_image}" input_id="ARTICLE_image" link_id="abstract_image_choose" options="inputId: 'ARTICLE_image', search_ext: 'jpg,png,gif,jpeg', upload: true, relative: true, butonLabel: '{LNG_ADMIN_INSERT_IMAGE}', noneSelected: '{LNG_ADMIN_NO_IMAGE_SELECTED}'" tooltip="{LNG_ADMIN_TOOLTIP_ARTICLE_DELETE_IMAGE}"/>
+					<div class="form_line">
+						<label><vte:value select="{LNG_ADMIN_ABSTRACT_IMAGE_CAPTION}" />:</label>
+						<div class="formElement">
+							<input type="text" class="text" name="ARTICLE_image_caption" value="{article.image_caption}" style="width: 540px;" />
+						</div>
+					</div>
+					<vte:load module="ui_hooks" name="admin_article_form_before_body" />
+				</div>
+			</div>
+			<div id="article_form" class="content_list_items">
+				<textarea id="article_body" name="ARTICLE_body" style="width:100%;height:400px; padding:0; margin:0; border:0;"><vte:value select="{article.body}" /></textarea>
+			</div>
+			<vte:load module="ui_hooks" name="admin_article_form_after_body" />
+			<vte:if test="{current_user.can|'MANAGE_TAGS'}">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_tags_input.xml" label="{LNG_ADMIN_TAGS}" name="ARTICLE_tags" items="{article.get_applied_tags}" input_id="ARTICLE_tags" default_topic_name="Keywords" />
+			</vte:if>
+		</div>
+		<vte:if test="{article_tabs}">
+			<vte:foreach from="{article_tabs}" item="tab">
+				<vte:include file="{tab[template]}" />
+			</vte:foreach>
+		</vte:if>
+		<div class="content_list_body_footer">
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_save_plus.xml" action_handler="adminArticle.submit('%1')" />
+		</div>
+	</div>
+	<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+</div>

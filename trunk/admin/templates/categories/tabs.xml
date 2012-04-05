@@ -1,0 +1,32 @@
+<vte:template>
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/file_picker_includes.xml" />
+	<ul id="categories_tab_list" class="tabs">
+		<li>
+			<a href="#categories_tree">
+				<vte:attribute name="class">
+					<vte:if test="{selected_tab} = 'categories_tree'">active</vte:if>
+				</vte:attribute>
+				<span><vte:value select="{LNG_ADMIN_SITE_STRUCTURE}" /></span>
+			</a>
+		</li>
+		<li>
+			<a href="#topics">
+				<vte:attribute name="class">
+					<vte:if test="{selected_tab} = 'topics'">active</vte:if>
+				</vte:attribute>
+				<span><vte:value select="{LNG_ADMIN_TOPICS}" /></span>
+			</a>
+		</li>
+	</ul>
+	<div class="corner_top_right"><!-- --></div>
+	<div id="tab_holders">
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/categories/tree.xml" />
+		<div id="topics">
+			<vte:attribute name="style">
+				<vte:if test="{selected_tab} != 'topics'">display:none</vte:if>
+			</vte:attribute>
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/categories/topic_list.xml" />
+		</div>
+	</div>
+	<div class="corner_bottom_right"><!-- --></div>
+</vte:template>

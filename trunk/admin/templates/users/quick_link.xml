@@ -1,0 +1,26 @@
+<vte:template>
+	<div id="users_quick_link" style="display:none">
+		<vte:if test="{VIVVO_USER_SOURCE} = 'vivvo@localhost'">
+			<a href="user_edit.php" class="action_button_link">+ <vte:value select="{LNG_ADMIN_ADD_NEW_USER}" /></a><br />
+		</vte:if>
+		<div class="separator_gray"><!-- --></div>
+		<ul class="quick_launch">
+			<li><span onclick="adminList.goTo('search_user_type', '');"><vte:value select="{LNG_ADMIN_ALL}" /></span></li>
+			<li><span onclick="adminList.goTo('search_user_type', 'staff');"><vte:value select="{LNG_ADMIN_STAFF}" /></span></li>
+			<li><span onclick="adminList.goTo('search_user_type', 'members');"><vte:value select="{LNG_ADMIN_MEMBERS}" /></span></li>
+		</ul>
+		<br />
+		<vte:if test="{VIVVO_USER_SOURCE} = 'vivvo@localhost'">
+			<span class="action_button_link" onclick="adminList.loadGroupEdit(0);">+ <vte:value select="{LNG_ADMIN_ADD_NEW_GROUP}" /></span>
+			<div class="separator_gray"><!-- --></div>
+		</vte:if>
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/users/group_list.xml" />
+		<div class="separator_gray"><!-- --></div>
+		<div class="search_filters">
+			<div class="tab_holders_box_header"><img src="img/icon_search.gif" alt="{LNG_ADMIN_SEARCH_FILTERS}" /> <vte:value select="{LNG_ADMIN_SEARCH_FILTERS}" /></div>
+			<div id="user_filters_list_holder">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/user_filters_list.xml" />
+			</div>
+		</div>
+	</div>
+</vte:template>

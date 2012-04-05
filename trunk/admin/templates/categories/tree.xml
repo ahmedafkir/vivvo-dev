@@ -1,0 +1,43 @@
+<div id="categories_tree">
+	<vte:attribute name="style">
+		<vte:if test="{selected_tab} != 'categories_tree'">display:none</vte:if>
+	</vte:attribute>
+	<ul id="category_tree_0">
+		<vte:box module="box_sections">
+			<vte:params>
+				<vte:param name="id" value="0" />
+				<vte:param name="prefix" value="0" />
+			</vte:params>
+			<vte:template>
+				<vte:foreach item = "category" from = "{categories}">
+					<vte:if test="{category.category_name} != ''">
+						<li>
+							<div id="category_dz_{category.id}">
+								<span class="tree_indent">
+								</span>
+								<span id="category_dd_{category.id}">
+									<vte:attribute name="class">
+										draggable <vte:if test="{category.get_redirect}">link<vte:else>info</vte:else></vte:if> <vte:if test="{category.view_subcat} = 0">hidden</vte:if>
+									</vte:attribute>
+									<vte:attribute name="title">
+										<vte:if test="!{category.get_redirect}">
+											<vte:value select="{category.get_article_count}" /> <vte:value select="{LNG_ADMIN_STATS_ARTICLES_POSTED}" />
+										</vte:if>
+									</vte:attribute>
+									<vte:value select="{category.category_name}" />
+								</span>
+							</div>
+							<ul id="category_tree_{category.id}">
+								<vte:if test="{category.subcategories}">
+									<vte:load module="box_sections" id="{category.id}" template_string="{template_string}" />
+								</vte:if>
+							</ul>
+						</li>
+					</vte:if>
+				</vte:foreach>
+			</vte:template>
+		</vte:box>
+	</ul>
+	<div class="separator_gray"><!-- --></div>
+	<div class="form_box_info"><img src="img/icon_info.gif" alt="{LNG_ADMIN_INFO}" /><vte:value select="{LNG_ADMIN_CATEGORY_TREE_MESSAGE}" /></div>
+</div>

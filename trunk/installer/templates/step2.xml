@@ -1,0 +1,117 @@
+<vte:template>
+	<div class="content_body">
+		<h3><vte:value select="{LNG_INSTALLER_STEP_2}" /></h3>
+		<div id="installer_steps_form" class="content_items step_2">
+			<div class="info"><vte:value select="{LNG_INSTALLER_INFO_STEP_2}" /></div>
+			<div class="requirements_block">
+			
+				<div class="requirements_cell">
+					<h4><vte:value select="{LNG_INSTALLER_REQUIRED}" />:</h4>
+					<div class="form_line"> 
+						<label><vte:value select="{LNG_INSTALLER_PHP}" />:</label>
+						<div class="formElement">
+							<vte:if test="{php_check} = 0"><img src="icon_failed.gif" alt="{LNG_INSTALLER_INVALID}" title="{LNG_INSTALLER_INVALID}" /> <span class="unavailable"><vte:value select="{php_version}" /></span></vte:if>
+							<vte:if test="{php_check} = 1"><img src="icon_passed.gif" alt="{LNG_INSTALLER_OK}" title="{LNG_INSTALLER_OK}" /> <span class="available"><vte:value select="{php_version}" /></span></vte:if>
+						</div>
+					</div>
+					<div class="form_line"> 
+						<label><vte:value select="{LNG_INSTALLER_MYSQL_VERSION}" />:</label>
+						<div class="formElement">
+							<!-- <img src="icon_passed.gif" alt="{LNG_INSTALLER_OK}" title="{LNG_INSTALLER_OK}" /> <span class="available"><vte:value select="{mysql_version}" /></span> -->
+							<vte:if test="{mysql_check} = 0"><img src="icon_failed.gif" alt="{LNG_INSTALLER_INVALID}" title="{LNG_INSTALLER_INVALID}" /> <span class="unavailable"><vte:value select="{mysql_version}" /></span></vte:if>
+							<vte:if test="{mysql_check} = 1"><img src="icon_passed.gif" alt="{LNG_INSTALLER_OK}" title="{LNG_INSTALLER_OK}" /> <span class="available"><vte:value select="{mysql_version}" /></span></vte:if>
+						</div>
+					</div>
+					<div class="form_line"> 
+						<label><vte:value select="{LNG_INSTALLER_GD}" />:</label>
+						<div class="formElement">
+							<vte:if test="{gd_check} = 0"><img src="icon_failed.gif" alt="{LNG_INSTALLER_INVALID}" title="{LNG_INSTALLER_INVALID}" /> <span class="unavailable"><vte:value select="{LNG_INSTALLER_INVALID}" /></span></vte:if>
+							<vte:if test="{gd_check} = 1"><img src="icon_passed.gif" alt="{LNG_INSTALLER_OK}" title="{LNG_INSTALLER_OK}" /> <span class="available"><vte:value select="{LNG_INSTALLER_OK}" /></span></vte:if>
+						</div>
+					</div>
+					<div class="form_line"> 
+						<label><vte:value select="{LNG_INSTALLER_REMOTE_COMUNICATION}" />:</label>
+						<div class="formElement">
+							<vte:if test="{remote_comunication} = 0"><img src="icon_failed.gif" alt="{LNG_INSTALLER_INVALID}" title="{LNG_INSTALLER_INVALID}" /> <span class="unavailable"><vte:value select="{LNG_INSTALLER_INVALID}" /></span></vte:if>
+							<vte:if test="{remote_comunication} = 1"><img src="icon_passed.gif" alt="{LNG_INSTALLER_OK}" title="{LNG_INSTALLER_OK}" /> <span class="available"><vte:value select="{LNG_INSTALLER_OK}" /></span></vte:if>
+						</div>
+					</div>
+				</div>
+				
+				<div class="requirements_cell">
+					<h4><vte:value select="{LNG_INSTALLER_OPTIONAL}" />:</h4>
+					<div class="form_line"> 
+						<label><vte:value select="{LNG_INSTALLER_MOD_REWRITE}" />:</label>
+						<div class="formElement">
+							<vte:if test="{mod_rw_check} = 0"><img src="icon_failed_r.gif" alt="{LNG_INSTALLER_INVALID}" title="{LNG_INSTALLER_INVALID}" /> <span class="unavailable_r"><vte:value select="{LNG_INSTALLER_INVALID}" /></span></vte:if>
+							<vte:if test="{mod_rw_check} = 1"><img src="icon_passed.gif" alt="{LNG_INSTALLER_OK}" title="{LNG_INSTALLER_OK}" /> <span class="available"><vte:value select="{LNG_INSTALLER_OK}" /></span></vte:if>
+							<vte:if test="{mod_rw_check} = 2"><img src="icon_unknown.gif" alt="{LNG_INSTALLER_UNKNOWN}" title="{LNG_INSTALLER_UNKNOWN}" /> <span class="unknown"><vte:value select="{LNG_INSTALLER_UNKNOWN}" /></span></vte:if>
+						</div>
+					</div>
+					<div class="form_line"> 
+						<label><vte:value select="{LNG_INSTALLER_ZLIB_EXTENSION}" />:</label>
+						<div class="formElement">
+							<vte:if test="{zlib_check} = 0"><img src="icon_failed_r.gif" alt="{LNG_INSTALLER_DISABLED}" title="{LNG_INSTALLER_DISABLED}" /> <span class="unavailable_r"><vte:value select="{LNG_INSTALLER_INVALID}" /></span></vte:if>
+							<vte:if test="{zlib_check} = 1"><img src="icon_passed.gif" alt="{LNG_INSTALLER_ENABLED}" title="{LNG_INSTALLER_ENABLED}" /> <span class="available"><vte:value select="{LNG_INSTALLER_OK}" /></span></vte:if>
+						</div>
+					</div>
+					
+					<div class="form_line"> 
+						<label><vte:value select="{LNG_INSTALLER_SENDMAIL}" />:</label>
+						<div class="formElement">
+							<vte:if test="{mail_check} = 0"><img src="icon_failed_r.gif" alt="{LNG_INSTALLER_INVALID}" title="{LNG_INSTALLER_INVALID}" /> <span class="unavailable_r"><vte:value select="{LNG_INSTALLER_INVALID}" /></span></vte:if>
+							<vte:if test="{mail_check} = 1"><img src="icon_passed.gif" alt="{LNG_INSTALLER_OK}" title="{LNG_INSTALLER_OK}" /> <span class="available"><vte:value select="{LNG_INSTALLER_OK}" /></span></vte:if>
+						</div>
+					</div>
+					
+					
+					<div class="form_line"> 
+						<label><vte:value select="{LNG_INSTALLER_CREATE_FILE}" />:</label>
+						<div class="formElement">
+							<vte:if test="{file_created} = 0"><img src="icon_failed_r.gif" alt="{LNG_INSTALLER_INVALID}" title="{LNG_INSTALLER_INVALID}" /> <span class="unavailable_r"><vte:value select="{LNG_INSTALLER_INVALID}" /></span></vte:if>
+							<vte:if test="{file_created} = 1"><img src="icon_passed.gif" alt="{LNG_INSTALLER_OK}" title="{LNG_INSTALLER_OK}" /> <span class="available"><vte:value select="{LNG_INSTALLER_OK}" /></span></vte:if>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			
+			<div class="form_line"> 
+				<label><vte:value select="{LNG_INSTALLER_FILES}" />:</label>
+					<div class="formElement">
+					<vte:if test="{file_check} = 1"><img src="icon_passed.gif" alt="{LNG_INSTALLER_OK}" title="{LNG_INSTALLER_OK}" /></vte:if>
+					<vte:if test="{file_check} = 0">
+						<div class="formElement files">
+							<div class="info"><vte:value select="{LNG_INSTALLER_FILES_CHANGE_PERMISSION}" />:</div>
+							<vte:foreach from="{file_fix}" item="file">
+								<vte:value select="{file}" /> <br/>
+							</vte:foreach>
+						</div>
+					</vte:if>
+				</div>
+			</div>
+		</div>
+		<div class="content_body_footer">
+			<div class="form_submit_button">
+				<vte:if test="{php_check} = 1">
+					<vte:if test="{gd_check} = 1">
+						<vte:if test="{file_created} = 1">
+							<vte:if test="{file_check} = 1">
+								<form action="index.php?step=3" method="post">
+									<input type="submit" class="button" name="login" value="{LNG_INSTALLER_BUTTON_NEXT_STEP}" />
+								</form>
+								<vte:else>
+									<span class="fix_files"><vte:value select="{LNG_INSTALLER_FIX_FILES_FIRST}" /></span>
+								</vte:else>
+							</vte:if>
+							<vte:else>
+								<vte:value select="{LNG_INSTALLER_CREATE_FILE_ERROR_MESSAGE}" />
+							</vte:else>
+						</vte:if>
+					</vte:if>
+				</vte:if>
+			</div>
+		</div>
+	</div>
+</vte:template>

@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title><vte:value select="{VIVVO_WEBSITE_TITLE}" /> <vte:value select="{LNG_ADMIN_CONTROL_PANEL}" /></title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="{VIVVO_VERSION}" />
+		{$css__}
+		{$scripts__}
+		<script type="text/javascript" src="js/lang.php"> </script>
+		<script type="text/javascript" src="../js/tiny_mce/tiny_mce_src.js"> </script>
+		<script type="text/javascript" src="js/tinyMCE_config.php"> </script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="header">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/header.xml" />
+				<div id="menu_container">
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/menu.xml" />
+				</div>
+			</div>
+			<div id="main">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/dump.xml" />
+				<vte:if test="{current_user.is_admin}">
+					<vte:if test="{SUHOSIN_SESSION_ENCRYPT_ENABLED}">
+						<div class="dump"><span class="warning"><vte:value select="{LNG_ADMIN_SUHOSIN_SESSION_ENCRYPTION_ENABLED}" /></span></div>
+					</vte:if>
+					<vte:if test="{CACHE_FOLDER_NOT_WRITABLE}">
+						<div class="dump"><span class="warning"><vte:value select="{LNG_ADMIN_CACHE_FOLDER_NOT_WRITABLE}" /></span></div>
+					</vte:if>
+					<vte:if test="{INSTALLER_DIR_PRESENT}">
+						<div class="dump"><span class="warning"><vte:value select="{LNG_ADMIN_INSTALLER_WARNING}" /></span></div>
+					</vte:if>
+				</vte:if>
+				<form id="article_form" action="article_edit.php?search_id={article.id}" method="post">
+					<input type="hidden" name="SECURITY_TOKEN" value="{VIVVO_SECURITY_TOKEN}" />
+					<input type="hidden" name="action" value="article" />
+					<vte:if test="{article.id}">
+						<input type="hidden" name="cmd" value="edit" />
+						<input type="hidden" id="ARTICLE_id" name="ARTICLE_id" value="{article.id}" />
+						<vte:else>
+							<input type="hidden" name="cmd" value="add" />
+						</vte:else>
+					</vte:if>
+					<div id="navigation">
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/article_edit/tabs.xml" />
+					</div>
+					<div id="content">
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/article_edit/form.xml" />
+					</div>
+				</form>
+			</div>
+			<div id="footer">
+				<vte:value select="{LNG_ADMIN_VIVVO_FOOTER}" />
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,218 @@
+<vte:template>
+	<img id="modal_close" onclick="Control.Modal.close()" src="img/delete_gray.gif" alt="{LNG_ADMIN_CLOSE}" title="{LNG_ADMIN_CLOSE}" />
+	<div id="cron_task">
+		<form id="cron_task_time_editor">
+			<div class="form_cron_row">
+				<p><vte:value select="{LNG_ADMIN_MINUTES}" />:</p>
+				<div class="left_cron_options"> 
+					<label><input name="minute_select_predefiend" value="*" type="radio" /> <vte:value select="{LNG_ADMIN_EVERY_MINUTE}" /></label>
+					<label><input name="minute_select_predefiend" value="*/2" type="radio" /> <vte:value select="{LNG_ADMIN_EVERY_OTHER_MINUTE}" /></label>
+					<label><input name="minute_select_predefiend" value="*/5" type="radio" /> <vte:value select="{LNG_ADMIN_EVERY_FIVE_MINUTES}" /></label>
+					<label><input name="minute_select_predefiend" value="*/10" type="radio" /> <vte:value select="{LNG_ADMIN_EVERY_TEN_MINUTES}" /></label>
+					<label><input name="minute_select_predefiend" value="*/15" type="radio" /> <vte:value select="{LNG_ADMIN_EVERY_FIFTEEN_MINUTES}" /></label>
+					<label><input name="minute_select_predefiend" value="" type="radio" /> <vte:value select="{LNG_ADMIN_SELECT_MANUALLY}" /></label>
+				</div>
+				<div class="right_cron_options"> 
+					<select id="minute_select" multiple="multiple" size="7">
+						<option value="0"> 0</option>
+						<option value="1"> 1</option>
+						<option value="2"> 2</option>
+						<option value="3"> 3</option>
+						<option value="4"> 4</option>
+						<option value="5"> 5</option>
+						<option value="6"> 6</option>
+						<option value="7"> 7</option>
+										
+						<option value="8"> 8</option>
+						<option value="9"> 9</option>
+						<option value="10"> 10</option>
+						<option value="11"> 11</option>
+						<option value="12"> 12</option>
+						<option value="13"> 13</option>
+						<option value="14"> 14</option>
+						<option value="15"> 15</option>
+						<option value="16"> 16</option>
+														  
+						<option value="17"> 17</option>
+						<option value="18"> 18</option>
+						<option value="19"> 19</option>
+						<option value="20"> 20</option>
+						<option value="21"> 21</option>
+						<option value="22"> 22</option>
+						<option value="23"> 23</option>
+						<option value="24"> 24</option>
+						<option value="25"> 25</option>
+																			
+						<option value="26"> 26</option>
+						<option value="27"> 27</option>
+						<option value="28"> 28</option>
+						<option value="29"> 29</option>
+						<option value="30"> 30</option>
+						<option value="31"> 31</option>
+						<option value="32"> 32</option>
+						<option value="33"> 33</option>
+						<option value="34"> 34</option>
+																							  
+						<option value="35"> 35</option>
+						<option value="36"> 36</option>
+						<option value="37"> 37</option>
+						<option value="38"> 38</option>
+						<option value="39"> 39</option>
+						<option value="40"> 40</option>
+						<option value="41"> 41</option>
+						<option value="42"> 42</option>
+						<option value="43"> 43</option>
+																												
+						<option value="44"> 44</option>
+						<option value="45"> 45</option>
+						<option value="46"> 46</option>
+						<option value="47"> 47</option>
+						<option value="48"> 48</option>
+						<option value="49"> 49</option>
+						<option value="50"> 50</option>
+						<option value="51"> 51</option>
+						<option value="52"> 52</option>
+																																  
+						<option value="53"> 53</option>
+						<option value="54"> 54</option>
+						<option value="55"> 55</option>
+						<option value="56"> 56</option>
+						<option value="57"> 57</option>
+						<option value="58"> 58</option>
+						<option value="59"> 59</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="separator_gray"><!-- --></div>
+			<div class="form_cron_row">
+				<p><vte:value select="{LNG_ADMIN_HOURS}" />:</p>
+				<div class="left_cron_options"> 
+					<label><input name="hour_select_predefiend" type="radio" value="*" /> <vte:value select="{LNG_ADMIN_EVERY_HOUR}" /></label>
+					<label><input name="hour_select_predefiend" type="radio" value="*/2" /> <vte:value select="{LNG_ADMIN_OTHER_HOUR}" /></label>
+					<label><input name="hour_select_predefiend" type="radio" value="*/4" /> <vte:value select="{LNG_ADMIN_FOUR_HOURS}" /></label>
+					<label><input name="hour_select_predefiend" type="radio" value="*/6" /> <vte:value select="{LNG_ADMIN_SIX_HOURS}" /></label>
+					<label><input name="hour_select_predefiend" type="radio" value="" /> <vte:value select="{LNG_ADMIN_SELECT_MANUALLY}" /></label>
+				</div>
+				<div class="right_cron_options"> 
+					<select id="hour_select" multiple="multiple" size="5">
+						<option value="0"> 0 = 12 AM/Midnight</option>
+						<option value="1"> 1 = 1 AM</option>
+						<option value="2"> 2 = 2 AM</option>
+						<option value="3"> 3 = 3 AM</option>
+						<option value="4"> 4 = 4 AM</option>
+						<option value="5"> 5 = 5 AM</option>
+						<option value="6"> 6 = 6 AM</option>
+						<option value="7"> 7 = 7 AM</option>
+						<option value="8"> 8 = 8 AM</option>
+						<option value="9"> 9 = 9 AM</option>
+						<option value="10"> 10 = 10 AM</option>
+						<option value="11"> 11 = 11 AM</option>
+						<option value="12"> 12 = 12 PM/Noon</option>
+						<option value="13"> 13 = 1 PM</option>
+						<option value="14"> 14 = 2 PM</option>
+						<option value="15"> 15 = 3 PM</option>
+						<option value="16"> 16 = 4 PM</option>
+						<option value="17"> 17 = 5 PM</option>
+						<option value="18"> 18 = 6 PM</option>
+						<option value="19"> 19 = 7 PM</option>
+						<option value="20"> 20 = 8 PM</option>
+						<option value="21"> 21 = 9 PM</option>
+						<option value="22"> 22 = 10 PM</option>
+						<option value="23"> 23 = 11 PM</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="separator_gray"><!-- --></div>
+			<div class="form_cron_row">
+				<p><vte:value select="{LNG_ADMIN_DAYS}" />:</p>
+				<div class="left_cron_options"> 
+					<label><input name="day_select_predefiend" type="radio" value="*" /> <vte:value select="{LNG_ADMIN_EVERY_DAY}" /></label>
+					<label><input name="day_select_predefiend" type="radio" value="" /> <vte:value select="{LNG_ADMIN_SELECT_MANUALLY}" /></label>
+				</div>
+				<div class="right_cron_options"> 
+					<select id="day_select" multiple="multiple" size="5">
+						<option value="1"> 1</option>
+						<option value="2"> 2</option>
+						<option value="3"> 3</option>
+						<option value="4"> 4</option>
+						<option value="5"> 5</option>
+						<option value="6"> 6</option>
+						<option value="7"> 7</option>
+						<option value="8"> 8</option>
+						<option value="9"> 9</option>
+						<option value="10"> 10</option>
+						<option value="11"> 11</option>
+						<option value="12"> 12</option>
+						<option value="13"> 13</option>
+						<option value="14"> 14</option>
+						<option value="15"> 15</option>
+						<option value="16"> 16</option>
+						<option value="17"> 17</option>
+						<option value="18"> 18</option>
+						<option value="19"> 19</option>
+						<option value="20"> 20</option>
+						<option value="21"> 21</option>
+						<option value="22"> 22</option>
+						<option value="23"> 23</option>
+						<option value="24"> 24</option>
+						<option value="25"> 25</option>
+						<option value="26"> 26</option>
+						<option value="27"> 27</option>
+						<option value="28"> 28</option>
+						<option value="29"> 29</option>
+						<option value="30"> 30</option>
+						<option value="31"> 31</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="separator_gray"><!-- --></div>
+			<div class="form_cron_row">
+				<p><vte:value select="{LNG_ADMIN_WEEKDAYS}" />:</p>
+				<div class="left_cron_options"> 
+					<label><input name="dow_select_predefiend" type="radio" value="*" /> <vte:value select="{LNG_ADMIN_EVERY_WEEK_DAY}" /></label>
+					<label><input name="dow_select_predefiend" type="radio" value="" /> <vte:value select="{LNG_ADMIN_SELECT_MANUALLY}" /></label>
+				</div>
+				<div class="right_cron_options"> 
+					<select id="dow_select" multiple="multiple" size="4">
+						<option value="0"> <vte:value select="{LNG_ADMIN_SUNDAY}" /></option>
+						<option value="1"> <vte:value select="{LNG_ADMIN_MONDAY}" /></option>
+						<option value="2"> <vte:value select="{LNG_ADMIN_TUESDAY}" /></option>
+						<option value="3"> <vte:value select="{LNG_ADMIN_WEDNESDAY}" /></option>
+						<option value="4"> <vte:value select="{LNG_ADMIN_THURSDAY}" /></option>
+						<option value="5"> <vte:value select="{LNG_ADMIN_FRIDAY}" /></option>
+						<option value="6"> <vte:value select="{LNG_ADMIN_SATURDAY}" /></option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="separator_gray"><!-- --></div>
+			<div class="form_cron_row">
+				<p><vte:value select="{LNG_ADMIN_MONTHS}" />:</p>
+				<div class="left_cron_options"> 
+					<label><input name="month_select_predefiend" type="radio" value="*" /> <vte:value select="{LNG_ADMIN_EVERY_MONTH}" /></label>
+					<label><input name="month_select_predefiend" type="radio" value="" /> <vte:value select="{LNG_ADMIN_SELECT_MANUALLY}" /></label>
+				</div>
+				<div class="right_cron_options"> 
+					<select id="month_select" multiple="multiple" size="4">
+						<option value="1"> <vte:value select="{LNG_ADMIN_JANUARY}" /></option>
+						<option value="2"> <vte:value select="{LNG_ADMIN_FEBRUARY}" /></option>
+						<option value="3"> <vte:value select="{LNG_ADMIN_MARCH}" /></option>
+						<option value="4"> <vte:value select="{LNG_ADMIN_APRIL}" /></option>
+						<option value="5"> <vte:value select="{LNG_ADMIN_MAY}" /></option>
+						<option value="6"> <vte:value select="{LNG_ADMIN_JUNE}" /></option>
+						<option value="7"> <vte:value select="{LNG_ADMIN_JULY}" /></option>
+						<option value="8"> <vte:value select="{LNG_ADMIN_AUGUST}" /></option>
+						<option value="9"> <vte:value select="{LNG_ADMIN_SEPTEMBER}" /></option>
+						<option value="10"> <vte:value select="{LNG_ADMIN_OCTOBER}" /></option>
+						<option value="11"> <vte:value select="{LNG_ADMIN_NOVEMBER}" /></option>
+						<option value="12"> <vte:value select="{LNG_ADMIN_DECEMBER}" /></option>
+					</select>
+				</div>
+			</div>
+			<div class="cron_buttons"><button class="primary" id="cron_task_save" type="button"><vte:value select="{LNG_ADMIN_SAVE}" /></button></div>
+		</form>
+	</div>
+</vte:template>

@@ -1,0 +1,15 @@
+<div id="image_holder">
+	<vte:box module="box_article_images">
+		<vte:params>
+			<vte:param name="search_id" value="{search_id}" />
+		</vte:params>
+		<vte:template>
+			<vte:foreach item="image" from="{image_list}" key="index">
+				<span id="article_image_gallery_{image.id}" class="image_sortable" title="{image.description}" style="width:{VIVVO_SUMMARY_MEDIUM_IMAGE_WIDTH}px; height:{VIVVO_SUMMARY_MEDIUM_IMAGE_WIDTH}px; line-height: {VIVVO_SUMMARY_MEDIUM_IMAGE_WIDTH}px;">
+					<span class="image_delete"><img src="img/icon_delete.gif" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" /></span>
+					<img src="../thumbnail.php?file={image.real_path}&amp;size=summary_medium"  title="{image.title}" alt="{image.title}" />
+				</span>
+			</vte:foreach>
+		</vte:template>
+	</vte:box>
+</div>

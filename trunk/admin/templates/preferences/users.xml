@@ -1,0 +1,77 @@
+<form action="" method="post">
+	<input type="hidden" name="SECURITY_TOKEN" value ="{VIVVO_SECURITY_TOKEN}" />
+	<input type="hidden" name="action" value="vivvoCore" />
+	<input type="hidden" name="cmd" value="preferences" />
+	<div id="users_registration">
+		<div class="form_box_first">
+			<vte:if test="{display_modules}">
+				<div class="form_box_heder">
+					<div class="form_box_info">
+						<vte:value select="{LNG_ADMIN_USERS_CHOOSE_DEFAULT_OPTION}" />
+					</div>
+				</div>
+			</vte:if>
+			<div class="form_box_body">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_ALLOW_NEW_MEMBERS_TO_REGISTER}" name="VIVVO_MODULES_USERS" value="{VIVVO_MODULES_USERS}" />
+				<div class="form_line">
+					<label><vte:value select="{LNG_ADMIN_CHOOSE_GROUP_FOR_MEMBERS}" />:</label>
+					<div class="formElement">
+						<select class="options" name="VIVVO_GROUP_DEFAULT_MEMBER">
+							<vte:foreach from="{group_list}" item="group">
+								<option value="{group.id}">
+									<vte:attribute name="selected">
+										<vte:if test="{VIVVO_GROUP_DEFAULT_MEMBER} = {group.id}">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{group.name}" />
+								</option>
+							</vte:foreach>
+						</select>
+					</div>
+				</div>
+                <vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_DISPLAY_REGISTATION_CAPTCHA}" name="VIVVO_REGISTRATION_CAPTCHA" value="{VIVVO_REGISTRATION_CAPTCHA}" />
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_DISPLAY_TERMS_OF_SERVICE}" name="VIVVO_TOS" value="{VIVVO_TOS}" />
+				<div class="separator_gray"><!-- --></div>
+				<div>
+					<label><strong><vte:value select="{LNG_ADMIN_TERMS_OF_SERVICE}" /></strong></label>
+					<textarea style="width: 99%; height: 300px;" name="VIVVO_TOS_CONTENT"><vte:value select="{VIVVO_TOS_CONTENT}" /></textarea>
+				</div>
+			</div>
+		</div>
+		<vte:if test="!{display_modules}">
+			<div class="form_line">
+				<label> </label>
+				<div class="formElement">
+					<input type="submit" value="{LNG_ADMIN_SAVE}" />
+				</div>
+			</div>
+		</vte:if>
+	</div>
+	<div id="users_modules">
+		<div class="form_box_first">
+			<div class="form_box_info">
+				<vte:value select="{LNG_ADMIN_DISPLAY_AUTHOR_INFO_BOX}" />
+			</div>
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_radio_yes_no.xml" label="{LNG_ADMIN_SHOW_FEATURED_AUTHOR_BOX}" name="VIVVO_MODULES_FEATURED_AUTHOR" value="{VIVVO_MODULES_FEATURED_AUTHOR}" />
+			<div class="form_line">
+				<label><vte:value select="{LNG_ADMIN_CHOOSE_GROUPS}" />:</label>
+				<div class="formElement">
+					<select class="options" name="VIVVO_MODULES_FEATURED_AUTHOR_GROUPS[]" size="10" multiple="multiple">
+						<vte:foreach from="{group_list}" item="group">
+							<option value="{group.id}">
+								<vte:attribute name="selected">
+									<vte:if test="{group.id} in {VIVVO_MODULES_FEATURED_AUTHOR_GROUPS}">selected</vte:if>
+								</vte:attribute>
+								<vte:value select="{group.name}" />
+							</option>
+						</vte:foreach>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	<vte:if test="{display_modules}">
+		<div class="content_list_body_footer">
+			<div class="form_submit_button"><button class="primary" type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button></div>
+		</div>
+	</vte:if>
+</form>

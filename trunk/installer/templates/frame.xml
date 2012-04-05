@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<title>Vivvo CMS <vte:value select="{VIVVO_VERSION}" /> Installer</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="Vivvo 4.1" />
+		<link rel="stylesheet" type="text/css" href="css/installer.css" media="screen"/>
+		<script type="text/javascript" src="{VIVVO_URL}js/framework/prototype.js"> </script>
+		<script type="text/javascript" src="{VIVVO_URL}js/control_tabs.js"> </script>
+		<script type="text/javascript" src="{VIVVO_URL}installer/js/pwd_strength.js"> </script>
+	</head>
+	<body>
+		<div id="container">
+		
+			<div class="dump">
+				<div class="dump_header"> </div>
+				<vte:attribute name="style">
+					<vte:if test="!{DUMP_MESSAGES}">display:none;</vte:if>
+				</vte:attribute>
+				<vte:foreach item = "message" from = "{DUMP_MESSAGES}">
+					<div class="dump_message"><vte:value select="{message.get_message}" />
+						<vte:if test="{message.additional_info} != ''">
+							: <vte:value select="{message.additional_info}" />
+						</vte:if>
+					</div>
+				</vte:foreach>
+				<div class="dump_footer"> </div>
+			</div>
+			
+			<div id="content">
+				<div id="dynamic_box_left">
+					<ul class="steps">
+						<li>
+							<vte:attribute name="class">
+								<vte:if test="{step} = 1">selected</vte:if>
+							</vte:attribute>
+							<span><vte:value select="{LNG_INSTALLER_CHOOSE_LANGUAGE}" /></span>
+						</li>
+						<li>
+							<vte:attribute name="class">
+								<vte:if test="{step} = 2">selected</vte:if>
+							</vte:attribute>
+							<span><vte:value select="{LNG_INSTALLER_REQUIREMENTS}" /></span>
+						</li>
+						<li>
+							<vte:attribute name="class">
+								<vte:if test="{step} = 3">selected</vte:if>
+							</vte:attribute>
+							<span><vte:value select="{LNG_INSTALLER_LICENSE}" /></span>
+						</li>
+						<li>
+							<vte:attribute name="class">
+								<vte:if test="{step} = 4">selected</vte:if>
+							</vte:attribute>
+							<span><vte:value select="{LNG_INSTALLER_DATABASE_CONFIGURATION}" /></span>
+						</li>
+						<li>
+							<vte:attribute name="class">
+								<vte:if test="{step} = 5">selected</vte:if>
+							</vte:attribute>
+							<span><vte:value select="{LNG_INSTALLER_DEFAULT_OPTIONS}" /></span>
+						</li>
+						<li>
+							<vte:attribute name="class">
+								<vte:if test="{step} = 6">selected</vte:if>
+							</vte:attribute>
+							<span><vte:value select="{LNG_INSTALLER_FINISH}" /></span>
+						</li>
+					</ul>
+				</div>		
+				<div id="dynamic_box_center">
+					<vte:include file="installer/templates/step{step}.xml" />
+				</div>
+			</div>
+			<div id="footer">
+				<vte:value select="{LNG_ADMIN_VIVVO_FOOTER}" />
+			</div>
+		</div>
+	</body>
+</html>

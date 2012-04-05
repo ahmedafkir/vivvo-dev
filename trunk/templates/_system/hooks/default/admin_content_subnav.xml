@@ -1,0 +1,3 @@
+<vte:template>
+	<a href="{href}" id="{id}"><span><vte:value select="{title}" /></span></a>
+</vte:template>

@@ -1,0 +1,49 @@
+<vte:template>
+	<div id="main_nav">
+		<div class="navigation">
+			<a href="index.php" id="menu_dashboard" class="first">
+				<span><vte:value select="{LNG_ADMIN_DASHBOARD}" /></span>
+			</a>
+
+			<a id="menu_content">
+				<span><vte:value select="{LNG_ADMIN_CONTENT}" /> <img src="img/main_nav_drop_arrow.gif" alt="drop" /></span>
+			</a>
+
+			<vte:if test="{current_user.is_admin}">
+				<a href="categories.php" id="menu_categories">
+					<span><vte:value select="{LNG_ADMIN_CATEGORIES}" /></span>
+				</a>
+			</vte:if>
+
+			<vte:if test="{current_user.can|'MANAGE_FILES'}">
+				<a href="assets.php" id="menu_assets">
+					<span><vte:value select="{LNG_ADMIN_FILES}" /></span>
+				</a>
+			</vte:if>
+
+			<vte:if test="{current_user.is_admin}">
+				<a href="users.php" id="menu_users">
+					<span><vte:value select="{LNG_ADMIN_USERS}" /></span>
+				</a>
+			</vte:if>
+
+			<vte:if test="{current_user.is_admin}">
+				<a href="layouts.php" id="menu_layouts">
+					<span><vte:value select="{LNG_ADMIN_LAYOUT}" /></span>
+				</a>
+			</vte:if>
+
+			<vte:load module="ui_hooks" name="admin_main_nav" />
+
+			<vte:if test="!{current_user.is_admin}">
+				<vte:if test="{VIVVO_USER_SOURCE} = 'vivvo@localhost'">
+					<a href="user_edit.php" id="menu_users"><span><vte:value select="{LNG_ADMIN_MY_PROFILE}" /></span></a>
+				</vte:if>
+			</vte:if>
+		</div>
+	</div>
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/menu_secondary.xml" />
+	<vte:if test="{IN_PLUGIN_PAGE}">
+		<script type="text/javascript">vivvo.mainNav.select('plugin_<vte:value select="{IN_PLUGIN_PAGE}" />');</script>
+	</vte:if>
+</vte:template>

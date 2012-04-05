@@ -1,0 +1,113 @@
+<div class="content_list">
+	<div class="content_list_header">
+		<span class="context_view">
+			<vte:value select="{LNG_ADMIN_DASHBOARD}" />
+		</span>
+	</div>
+	<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+	<div class="content_list_body">
+		<div id="home_page_dashboard" class="dashboard_box_holder">
+			<vte:if test="{VIVVO_ANALYTICS_ENABLED}">
+				<div class="box_home data_loaded">
+					<div class="dashboard_charts_left" style="height:350px; position:relative;">
+						<h2><vte:value select="{LNG_ADMIN_ARTICLE_STATISTICS}" /></h2>
+						<vte:box module="box_chart">
+							<vte:params>
+								<vte:param name="data_provider" value="google-analytics" />
+								<vte:param name="report" value="article_overall_stats" />
+								<vte:param name="chart_width" value="100%" />
+								<vte:param name="chart_height" value="92%" />
+							</vte:params>
+						</vte:box>
+					</div>
+					
+					<div class="dashboard_charts_right">
+						<h2><vte:value select="{LNG_ADMIN_YESTERDAY_TOP_STORIES}" /></h2>
+						<vte:box module="box_analytics">
+							<vte:params>
+								<vte:param name="date_from" value="yesterday 00:00" />
+								<vte:param name="date_to" value="today 00:00" />
+								<vte:param name="report" value="top_article_views" />
+								<vte:param name="limit" value="10" />
+							</vte:params>
+							<vte:template>
+								<vte:if test="{report}">
+									<div class="top_ten round">
+									<ol>
+										<vte:foreach from="{report}" item="row" key="index">
+											<li class="item row_{index|mod:'2'}"><p><a href="{row[article].get_absolute_href}" title="{row[views]} {LNG_ADMIN_VIEWS}" class="info_help"><vte:value select="{row[article].get_title}" /></a></p></li>
+										</vte:foreach>
+									</ol>
+									</div>
+									<vte:else>
+										<vte:value select="{LNG_ADMIN_STATISTICS_NO_DATA}" />
+									</vte:else>
+								</vte:if>
+							</vte:template>
+						</vte:box>
+					</div>
+				</div>
+				<vte:else>
+					<div class="box_home no_data">
+						<h2><vte:value select="{LNG_ADMIN_STATISTICS_NO_DATA_SETUP}" /></h2> 
+						<p><a href="preferences.php?analytics" class="button primary"><vte:value select="{LNG_ADMIN_STATISTICS_DATA_SETUP}" /></a></p>
+					</div>
+				</vte:else>	
+			</vte:if>
+			<div class="dashboard_section_left">
+				<ul class="dashboard_boxes">
+					<li>
+						<div class="box_home">
+							<h2 class="box_title"><vte:value select="{LNG_ADMIN_STATS_AND_LOGS}" /></h2>
+							<div class="dashboard_tabs_holder">
+								<ul id="dashboard_statistics_tabs" class="tabs">
+									<li><a class="first" href="#today_stats"><span><vte:value select="{LNG_ADMIN_TODAY_STATS}" /></span></a></li>
+									<li><a href="#website_stats"><span><vte:value select="{LNG_ADMIN_WEBSITE_STATS}" /></span></a></li>
+									<li><a href="#system_stats"><span><vte:value select="{LNG_ADMIN_SYSTEM_STATS}" /></span></a></li>
+									<li><a href="#signup_stats"><span><vte:value select="{LNG_ADMIN_SIGNUP_STATS}" /></span></a></li>
+									<li><a class="last" href="#activity_log"><span><vte:value select="{LNG_ADMIN_ACTIVITY_LOG}" /></span></a></li>
+								</ul>
+							</div>
+							<div id="today_stats"><vte:value select="{today_statistics}" /></div>
+							<div id="website_stats"><vte:value select="{web_statistics}" /></div>
+							<div id="system_stats"><vte:value select="{system_statistics}" /></div>
+							<div id="signup_stats"><vte:value select="{signup_statistics}" /></div>
+							<div id="activity_log"><vte:include file="{VIVVO_FS_ADMIN_DIR}templates/home/activity_log.xml" /></div>
+							<script type="text/javascript">
+								new Control.Tabs('dashboard_statistics_tabs');
+							</script>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="dashboard_section_right">
+				<ul class="dashboard_boxes">
+					<li id="moderate_comments_holder">
+						<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/home/moderate_comments.xml" />
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="content_list_body_footer" style="clear:both; padding-top:0px;">
+			<vte:if test="{current_user.is_admin}">
+				<div class="box_home product_info">
+					<vte:if test="{VIVVO_VERSION} != {feed.get_description}">
+									<img src="img/icon_info.gif" class="info" alt="{LNG_ADMIN_INFO}" />
+									<strong><vte:value select="{LNG_ADMIN_UP_TO_DATE}" />: <vte:value select="{LNG_ADMIN_VIVVO_TITLE}" /> <vte:value select="{VIVVO_VERSION}" /> <vte:value select="{VIVVO_EDITION_LABEL}" /> <vte:value select="{LNG_ADMIN_EDITION}" /> <vte:value select="{LNG_ADMIN_BUILD}" /> <vte:value select="{VIVVO_CODE_REVISION}" />.</strong>
+									
+									<vte:else>
+										<img src="img/icon_warning.gif" class="info" alt="{LNG_ADMIN_INFO}" />
+										<strong><vte:value select="{LNG_ADMIN_RUNNING}" />: <vte:value select="{LNG_ADMIN_VIVVO_TITLE}" /> <vte:value select="{VIVVO_VERSION}" /> <vte:value select="{VIVVO_EDITION_LABEL}" /> <vte:value select="{LNG_ADMIN_EDITION}" /> <vte:value select="{LNG_ADMIN_BUILD}" /> <vte:value select="{VIVVO_CODE_REVISION}" />.</strong>
+										<span class="latest_version_info"><vte:value select="{feed.get_title}" /></span>
+										<a class="button secondary" href="{feed.get_permalink}" target="_blank"><vte:value select="{LNG_ADMIN_CLIK_HERE_TO_DOWNLOAD}" /></a>
+									</vte:else>
+								</vte:if>
+							</vte:foreach>
+						</vte:template>
+					</vte:box>
+				</div>
+			</vte:if>
+		</div>
+	</div>
+	<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+</div>

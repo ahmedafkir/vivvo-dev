@@ -1,0 +1,21 @@
+<vte:template>
+	<span class="action_button_link" onclick="formBuilderObject.loadForm(0);">+ <vte:value select="{LNG_PLUGIN_FORM_BUILDER_ADMIN_ADD_FORM}" /></span>
+	<div class="separator_gray"><!-- --></div>
+	<ul class="quick_launch">
+		<vte:box module="box_form">
+			<vte:params>
+				<vte:param name="list" value="1" />
+			</vte:params>
+			<vte:template>
+				<vte:foreach from="{form_list}" item="form">
+					<li>
+						<div class="actions_small_left">
+							<img onclick="formBuilderObject.deleteForm({form.id});" src="img/icon_small_delete.gif" alt="{LNG_ADMIN_DELETE}" />
+						</div>
+						<span onclick="formBuilderObject.loadForm({form.id});"><vte:value select="{form.title}" /></span>
+					</li>
+				</vte:foreach>
+			</vte:template>
+		</vte:box>
+	</ul>
+</vte:template>

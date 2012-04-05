@@ -1,0 +1,35 @@
+<div class="box_home" style="height:auto;">
+	<h2><vte:value select="{LNG_ADMIN_QUICK_POST}" /></h2>
+	<form id="quick_post_form" method="post" onsubmit="adminDashboard.quickPost(); return false;" action="article_edit.php">
+		<input type="hidden" name="ref" value="quick_post" />
+		<div class="form_line">
+			<vte:value select="{LNG_ADMIN_CATEGORY}" />:
+			<select name="ARTICLE_category_id">
+				<vte:box module="box_sections">
+					<vte:params>
+						<vte:param name="id" value="0" />
+						<vte:param name="prefix" value="" />
+					</vte:params>
+					<vte:template>
+						<vte:foreach item="category" from="{categories}">
+							<vte:if test="{category.category_name} != ''">
+								<option value="{category.id}"><vte:value select="{prefix}" />- <vte:value select="{category.category_name}" /></option>
+								<vte:if test="{category.subcategories}">
+									<vte:load module="box_sections" id="{category.id}" template_string="{template_string}" prefix="&#160;{prefix}" />
+								</vte:if>
+							</vte:if>
+						</vte:foreach>
+					</vte:template>
+				</vte:box>
+			</select>
+		</div>
+		<vte:value select="{LNG_ADMIN_TITLE}" />:
+		<input type="text" class="text" name="ARTICLE_title" id="quick_post_ARTICLE_title" />
+		<vte:value select="{LNG_ADMIN_BODY}" />:
+		<textarea class="body" name="ARTICLE_body" id="quick_post_ARTICLE_body"> </textarea>
+		<div class="submit_button">
+			<button class="primary" type="submit"><vte:value select="{LNG_ADMIN_PUBLISH}" /></button>
+			<button class="secondary" onclick="adminDashboard.quickPostGoAdvanced();" type="button"><vte:value select="{LNG_ADMIN_GO_ADVANCED}" /></button>
+		</div>
+	</form>
+</div>

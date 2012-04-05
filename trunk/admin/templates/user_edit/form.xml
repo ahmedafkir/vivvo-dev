@@ -1,0 +1,79 @@
+<div class="content_list">
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/file_picker_includes.xml" />
+	<div class="content_list_header">
+		<span class="context_view">
+			<vte:if test="{user.get_id}">
+				<vte:value select="{LNG_ADMIN_EDIT_USER}" />: <vte:value select="{user.username}" />
+				<vte:else>
+					<vte:value select="{LNG_ADMIN_ADD_USER}" />
+				</vte:else>
+			</vte:if>
+		</span>
+		<span class="context_help">
+			<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />		</span>
+	</div>
+	<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+	<div class="content_list_body">
+		<div class="content_list_body_header"> </div>
+		<div id="user_form" class="content_list_items">
+			<h3 class="content_section_title"><vte:value select="{LNG_ADMIN_GENERAL_INFO}" />:</h3>
+			<div class="form_line">
+				<label><vte:value select="{LNG_ADMIN_USERNAME}" />:</label>
+				<div class="formElement">
+					<vte:if test="{user.get_id}">
+						<span><vte:value select="{user.username}" /></span>
+						<vte:else>
+							<input type="text" class="text" id="USER_username" name="USER_username" value="{user.username}" />
+							<div id="username_info"> </div>
+						</vte:else>
+					</vte:if>
+				</div>
+			</div>
+			<div class="form_line">
+				<label><vte:value select="{LNG_ADMIN_PASSWORD}" />:</label>
+				<div class="formElement">
+					<input type="password" class="text" name="USER_password" id="USER_password" value="" />
+					<div id="password_info"> </div>
+				</div>
+			</div>
+			<div class="form_line">
+				<label><vte:value select="{LNG_ADMIN_RETYPE_PASSWORD}" />:</label>
+				<div class="formElement">
+					<input type="password" class="text" name="USER_retype_password" id="USER_retype_password" value="" />
+					<div id="password_retype_info"> </div>
+				</div>
+			</div>
+			<div class="form_line">
+				<label><vte:value select="{LNG_ADMIN_EMAIL}" />:</label>
+				<div class="formElement">
+					<input type="text" class="text" id="USER_email_address" name="USER_email_address" value="{user.email_address}" />
+					<div id="email_info"> </div>
+				</div>
+			</div>
+			<h3 class="content_section_title"><vte:value select="{LNG_ADMIN_ADDITIONAL_INFO}" />:</h3>
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_FIRST_NAME}" name="USER_first_name" value="{user.first_name}" />
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_input.xml" label="{LNG_ADMIN_LAST_NAME}" name="USER_last_name" value="{user.last_name}" />
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_file_picker.xml" label="{LNG_ADMIN_PICTURE}" name="USER_picture" value="{user.picture}" input_id="USER_picture" link_id="USER_picture_choose" options="inputId: 'USER_picture', search_ext: 'jpg,png,gif,jpeg', upload: true, relative: true, butonLabel: '{LNG_ADMIN_INSERT_IMAGE}', noneSelected: '{LNG_ADMIN_NO_IMAGE_SELECTED}'" tooltip="{LNG_ADMIN_TOOLTIP_USER_DELETE_IMAGE}"/>
+			<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_textarea.xml" label="{LNG_ADMIN_SHORT_BIO}" name="USER_bio" value="{user.bio}" />
+			<div class="form_line">
+				<label><vte:value select="{LNG_ADMIN_WEBSITE}" />:</label>
+				<div class="formElement">
+					http:// <input type="text" class="text" id="USER_www" name="USER_www" value="{user.www}" style="width: 270px;" />
+					<div id="www_info"> </div>
+				</div>
+			</div>
+		</div>
+		<div class="content_list_body_footer">
+			<vte:if test="{current_user.is_admin}">
+				<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/gui/html_save_plus.xml" action_handler="vivvo.admin.userEdit.submit('%1')" />
+				<vte:else>
+					<div class="form_submit_button">
+						<input type="hidden" name="save_action" value="continue" />
+						<button class="primary" type="submit"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+					</div>
+				</vte:else>
+			</vte:if>
+		</div>
+	</div>
+	<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+</div>

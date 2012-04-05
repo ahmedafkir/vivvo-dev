@@ -1,0 +1,174 @@
+<vte:box module="box_comments" params="{comments_params}">
+	<vte:template>
+		<div class="content_list">
+			<div class="content_list_header">
+				<span class="context_view">
+					<vte:value select="{LNG_ADMIN_VIEW}" />: <vte:value select="{LNG_ADMIN_COMMENTS}" />
+				</span>
+				<span class="context_help">
+					<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />				</span>
+			</div>
+			<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+			<div class="content_list_body">
+				<div class="content_list_body_header">
+					<div class="content_list_body_header_line1">
+						<vte:value select="{LNG_ADMIN_SELECT}" />: <span class="action_button" onclick="adminList.selectAll();"><vte:value select="{LNG_ADMIN_ALL}" /></span> <span class="action_button" onclick="adminList.invertSelection();"><vte:value select="{LNG_ADMIN_INVERT}" /></span>
+						<vte:if test="{comment_list}">
+							<span class="action_button" onclick="adminList.selectAllMatching('{LNG_ADMIN_SELECTED}: {comment_list_object.get_total_count} {LNG_ADMIN_COMMENTS}');">
+								<vte:value select="{LNG_ADMIN_ALL_COMMENTS}" />(<vte:value select="{comment_list_object.get_total_count}" />)
+							</span>
+						</vte:if>
+						<select class="action-select none_selected" disabled="disabled" onchange="adminList.setField(this.value);">
+							<option value="" selected="selected"><vte:value select="{LNG_ADMIN_SELECT_ACTION}" /></option>
+							<optgroup label="Set status...">
+								<option value="status.1"><vte:value select="{LNG_ADMIN_ACTIVE}" /></option>
+								<option value="status.0"><vte:value select="{LNG_ADMIN_PENDING}" /></option>
+							</optgroup>
+							<option value="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></option>
+						</select>
+					</div>
+					<div class="content_list_body_header_line2">
+						<form id="comments_list_options_form" name="comments_list_options_form">
+							<span class="box_pagination">
+								<vte:if test="{comment_list}">
+									<vte:load module="box_pagination" list="{comment_list_object}" template="{VIVVO_FS_ADMIN_DIR}templates/components/pagination.xml" max_page="5" />
+								</vte:if>
+							</span>
+							<vte:value select="{LNG_ADMIN_SORT_BY}" />:
+							<select name="search_sort_by" onchange="adminList.addOrderParams();">
+								<option value="id.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'id.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_DEFAULT_ORDER}" />
+								</option>
+								<option value="create_dt.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'create_dt.ascending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_DATE}" /> <vte:value select="{LNG_ADMIN_ASC}" />
+								</option>
+								<option value="create_dt.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'create_dt.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_DATE}" /> <vte:value select="{LNG_ADMIN_DESC}" />
+								</option>
+								<option value="ip.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'ip.ascending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_IP}" /> <vte:value select="{LNG_ADMIN_ASC}" />
+								</option>
+								<option value="ip.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'ip.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_IP}" /> <vte:value select="{LNG_ADMIN_DESC}" />
+								</option>
+								<option value="author.ascending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'author.ascending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_AUTHOR}" /> <vte:value select="{LNG_ADMIN_ASC}" />
+								</option>
+								<option value="author.descending">
+									<vte:attribute name="selected">
+										<vte:if test="{search_sort_by} = 'author.descending'">selected</vte:if>
+									</vte:attribute>
+									<vte:value select="{LNG_ADMIN_AUTHOR}" /> <vte:value select="{LNG_ADMIN_DESC}" />
+								</option>
+							</select>
+							<vte:value select="{LNG_ADMIN_ITEMS_PER_PAGE}" />:
+							<select name="search_limit" onchange="adminList.addOrderParams();">
+								<option value="10">10</option>
+								<option value="20">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 20">selected</vte:if>
+									</vte:attribute>
+									20
+								</option>
+								<option value="30">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 30">selected</vte:if>
+									</vte:attribute>
+									30
+								</option>
+								<option value="50">
+									<vte:attribute name="selected">
+										<vte:if test="{search_limit} = 50">selected</vte:if>
+									</vte:attribute>
+									50
+								</option>
+							</select>
+						</form>
+					</div>
+				</div>
+				<div id="comments_list" class="content_list_items">
+					<vte:if test="{comment_list}">
+						<vte:foreach item = "comment" from = "{comment_list}" key="index">
+							<div id="comment_list_{comment.get_id}" class="item row_{index|mod:'2'}">
+								<div class="item_status">
+									<vte:if test="{comment.get_status} != 0">
+										<img src="img/icon_status_active.gif" alt="{LNG_ADMIN_ACTIVE}" title="{LNG_ADMIN_ACTIVE}" />
+										<vte:else>
+											<img src="img/icon_status_pending.gif" alt="{LNG_ADMIN_PENDING}" title="{LNG_ADMIN_PENDING}" />
+										</vte:else>
+									</vte:if>
+								</div>
+								<div class="item_actions"><img src="img/icon_edit.gif" alt="{LNG_ADMIN_EDIT}" title="{LNG_ADMIN_EDIT}" onclick="$('comment_edit_form_{comment.get_id}').toggle();$('comment_list_body_footer').style.position='static';$('comment_list_body_footer').style.position='relative';" /> <img src="img/icon_info.gif" class="comment_info" alt="{LNG_ADMIN_INFO}" title="{LNG_ADMIN_ON}: {comment.create_dt|format_date:'M j Y'}\nIP: {comment.get_ip}\nemail: {comment.get_email}" /> <img src="img/icon_delete.gif" alt="{LNG_ADMIN_DELETE}" title="{LNG_ADMIN_DELETE}" onclick="adminList.deleteItem('COMMENT_id',{comment.id});" /></div>
+								<div class="item_data">
+									<div class="item_select">
+										<input type="checkbox" value="{comment.get_id}" onclick="adminList.chekBoxChange('comment_list_{comment.get_id}');" />
+									</div>
+									<div class="item_line1">
+										<vte:value select="{comment.get_summary|strip_tags}" />
+									</div>
+									<div class="item_line2">
+										<a href="comments.php?search_author_name={comment.get_author_name|urlencode}"><vte:value select="{comment.get_author_name}" /></a>
+										<vte:value select="{LNG_ADMIN_ON}" />
+										<a href="comments.php?search_article_id={comment.get_article_id}"><vte:value select="{comment.get_article_title}" /></a>
+									</div>
+								</div>
+								<div id="comment_edit_form_{comment.get_id}" class="edit_form" style="display:none;">
+									<textarea id="COMMENT_description_{comment.id}" name="COMMENT_description_{comment.id}" style="width:99%; height: 100px;"><vte:value select="{comment.get_body}" /></textarea>
+									<button type="submit" onclick="adminList.commentEdit({comment.id});"><vte:value select="{LNG_ADMIN_SAVE}" /></button>
+								</div>
+							</div>
+						</vte:foreach>
+						<vte:else>
+							<div class="info_message"><vte:value select="{LNG_ADMIN_NO_ITEMS_MATCHING_SELECTED_CRITERIA}" /></div>
+						</vte:else>
+					</vte:if>
+				</div>
+				<div id="comment_list_body_footer" class="content_list_body_footer">
+					<vte:value select="{LNG_ADMIN_SELECT}" />: <span class="action_button" onclick="adminList.selectAll();"><vte:value select="{LNG_ADMIN_ALL}" /></span> <span class="action_button" onclick="adminList.invertSelection();"><vte:value select="{LNG_ADMIN_INVERT}" /></span>
+					<vte:if test="{comment_list}">
+						<span class="action_button" onclick="adminList.selectAllMatching('{LNG_ADMIN_SELECTED}: {comment_list_object.get_total_count} {LNG_ADMIN_COMMENTS}');">
+							<vte:value select="{LNG_ADMIN_ALL_COMMENTS}" />(<vte:value select="{comment_list_object.get_total_count}" />)
+						</span>
+					</vte:if>
+					<select class="action-select none_selected" disabled="disabled" onchange="adminList.setField(this.value);">
+						<option value="" selected="selected"><vte:value select="{LNG_ADMIN_SELECT_ACTION}" /></option>
+						<optgroup label="{LNG_ADMIN_SET_STATUS}">
+							<option value="status.1"><vte:value select="{LNG_ADMIN_ACTIVE}" /></option>
+							<option value="status.0"><vte:value select="{LNG_ADMIN_PENDING}" /></option>
+						</optgroup>
+						<option value="delete"><vte:value select="{LNG_ADMIN_DELETE}" /></option>
+					</select>
+					<span class="box_pagination">
+						<vte:if test="{comment_list}">
+							<vte:load module="box_pagination" list="{comment_list_object}" template="{VIVVO_FS_ADMIN_DIR}templates/components/pagination.xml" max_page="5" />
+						</vte:if>
+					</span>
+				</div>
+			</div>
+			<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+		</div>
+		<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/ajax_dump.xml" />
+		<script type="text/javascript">
+			<vte:if test="{search_author_name}">adminListOptions.push({search_author_name: <vte:value select="{search_author_name|json_encode}" />});</vte:if>
+			<vte:if test="{search_article_id}">adminListOptions.push({search_article_id: <vte:value select="{search_article_id|json_encode}" />});</vte:if>
+		</script>
+	</vte:template>
+</vte:box>

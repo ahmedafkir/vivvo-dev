@@ -1,0 +1,24 @@
+<vte:template>
+	<ul id="polls_tab_list" class="tabs">
+		<li><a class="active" href="#poll_quick_link"><span><vte:value select="{LNG_PLUGIN_POLL_ADMIN_LIST_OF_POLLS}" /></span></a></li>
+	</ul>
+	<div class="corner_top_right"><!-- --></div>
+	<div id="tab_holders">
+		<div id="poll_quick_link">
+			<span class="action_button_link" onclick="adminList.goTo('search_pid', 0);">+ <vte:value select="{LNG_PLUGIN_POLL_ADMIN_ADD_NEW_POLL}" /></span>
+			<div class="separator_gray"> </div>
+			<vte:box module="box_poll_list">
+				<vte:template>
+					<vte:if test="{poll_list}">
+						<ul class="quick_launch">
+							<vte:foreach item="poll" from="{poll_list}">
+								<li><div class="actions_small_left"><img src="img/icon_small_edit.gif" onclick="adminList.goToAndEdit('search_pid', {poll.id});" alt="{LNG_ADMIN_EDIT}" /> <img src="img/icon_small_delete.gif" onclick="adminList.deleteItem('PLUGIN_POLL_id',{poll.id});" alt="{LNG_ADMIN_DELETE}" /></div><span onclick="adminList.goTo('search_pid', {poll.id});"><vte:value select="{poll.name}" /></span></li>			
+							</vte:foreach>
+						</ul>
+					</vte:if>
+				</vte:template>
+			</vte:box>
+		</div>
+	</div>
+	<div class="corner_bottom_right"><!-- --></div>
+</vte:template>

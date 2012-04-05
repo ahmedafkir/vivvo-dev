@@ -1,0 +1,7 @@
+<vte:template>
+	<ul>
+		<vte:foreach item = "tz" from = "{timezone}">
+			<li><vte:value select="{tz}" /></li>
+		</vte:foreach>
+	</ul>
+</vte:template>

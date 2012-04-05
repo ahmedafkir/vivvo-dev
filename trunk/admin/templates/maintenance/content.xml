@@ -1,0 +1,79 @@
+<vte:template>
+	<vte:header type="css" href="{VIVVO_URL}{VIVVO_FS_ADMIN_DIR}css/assets.css" />
+	<vte:header type="css" href="{VIVVO_URL}{VIVVO_FS_ADMIN_DIR}css/file_picker.css" />
+	<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/components/cron_task_includes.xml" />
+	<div class="content_list">
+		<div class="content_list_header">
+			<span class="context_view">
+				<vte:value select="{LNG_ADMIN_DASHBOARD}" />
+			</span>
+			<span class="context_help">
+				<vte:value select="{LNG_ADMIN_NEED_HELP_ON_THIS_TOPIC}" />			</span>
+		</div>
+		<div class="corner_top_left"><div class="corner_top_right"><!-- --></div></div>
+
+
+		<div id="backups" class="content_list_body" style="display:block;">
+			<div class="content_list_body_header">
+				<vte:value select="{LNG_ADMIN_MAINTENANCE_CREATE_BACKUP}" />:
+				<div class="separator_gray"><!-- --></div>
+				<div class="dashboard_top_left"><div class="dashboard_top_right"><!-- --></div></div>
+				<div class="dashboard_important_updates">
+					<div class="iframe_holder round">
+						<iframe id="report_window" width="100%" height="200px" frameborder="0" marginheight="4" marginwidth="4"> </iframe>
+					</div>
+					<div class="content_list_body_footer"><div class="form_submit_button"><button class="primary" id="create_backup"><vte:value select="{LNG_ADMIN_MAINTENANCE_CREATE_BACKUP}" /></button></div></div>
+				</div>
+				<div class="dashboard_bottom_left"><div class="dashboard_bottom_right"><!-- --></div></div>
+			</div>
+
+			<div id="home_page_dashboard" class="dashboard_box_holder">
+				<vte:value select="{LNG_ADMIN_MAINTENANCE_MANAGE_BACKUPS}" />:
+				<div class="separator_gray"><!-- --></div>
+				<div id="backup_files" class="content_list_items">
+					<vte:include file="{VIVVO_FS_ADMIN_DIR}templates/maintenance/backup_files.xml" />
+				</div>
+				<div class="separator_gray"><!-- --></div>
+				
+                <div id="backup_upload">
+					<div class="dashboard_top_left"><div class="dashboard_top_right"><!-- --></div></div>
+					<div class="dashboard_important_updates">
+						<div id="file_upload_actions">
+							<div class="flash_upload"><div id="file_upload_choose"> </div></div>
+							<button id="file_upload_cancel" type="button" class="secondary" disabled="disabled"><vte:value select="{LNG_FILES_UPLOAD_CANCEL}" /></button>
+						</div>
+						<div id="file_upload_progress" style="height:115px;"> </div>
+					</div>
+					<div class="dashboard_bottom_left"><div class="dashboard_bottom_right"><!-- --></div></div>
+                </div>
+			</div>
+
+			<div class="content_list_body_footer" style="clear:both;"> </div>
+		</div>
+
+		<div id="cron_tasks" class="content_list_body" style="display:none;">
+			<div class="dashboard_box_holder">
+				<vte:foreach from="{cron_task}" item="task">
+					<vte:include file="{task[template]}" />
+				</vte:foreach>
+			</div>
+			<div class="content_list_body_footer" style="clear:both;">
+
+			</div>
+		</div>
+
+		<div id="manual_tasks" class="content_list_body" style="display:none;">
+			<div class="content_list_body_header">
+				<div class="dashboard_top_left"><div class="dashboard_top_right"><!-- --></div></div>
+				<div class="dashboard_important_updates">
+					<div class="iframe_holder round">
+						<iframe id="manual_tasks_window" width="100%" height="300px" frameborder="0" marginheight="4" marginwidth="4"> </iframe>
+					</div>
+				</div>
+				<div class="dashboard_bottom_left"><div class="dashboard_bottom_right"><!-- --></div></div>
+			</div>
+			<div class="content_list_body_footer" style="clear:both;"> </div>
+		</div>
+		<div class="corner_bottom_left"><div class="corner_bottom_right"><!-- --></div></div>
+	</div>
+</vte:template>
