@@ -42,11 +42,11 @@ require_once VIVVO_FS_FRAMEWORK . 'vivvo_hooks.php';
  * Constant
  */
 
-define('VIVVO_VERSION', "v4.7");
+define('VIVVO_VERSION', "v1.0");
 define('VIVVO_CODE_NAME', "MARTYR");
 define('VIVVO_CODE_REVISION', "6084");
 define('VIVVO_LICESE_TOKEN', "d6ae32fa49c9a2812d0d3b0ebe70f44a");
-define('VIVVO_PRODUCT_COPYRIGHT', "© 2012 Spoonlabs d.o.o.");
+define('VIVVO_PRODUCT_COPYRIGHT', "© 2012 ECMS-ASIA Inc.");
 
 define('VIVVO_HEADER_MERGE_JS', false);
 define('VIVVO_HEADER_COMPRESS_JS', false);
