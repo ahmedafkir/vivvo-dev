@@ -21,7 +21,7 @@ defined('VIVVO_FS_FILES_DIR') or define('VIVVO_FS_FILES_DIR', 'files/');
 try {
     define('SYSTEM_DEFAULT_TIMEZONE', date_default_timezone_get());
 }catch (Exception $e) {
-    define('SYSTEM_DEFAULT_TIMEZONE', 'GMT');
+    define('SYSTEM_DEFAULT_TIMEZONE', 'GMT+7');
 }
 
 /**
@@ -478,7 +478,7 @@ if (isset($_POST['installer_lang'])){
 if (isset($_COOKIE['installer_lang'])){
 	$installer_lang->load_lang($_COOKIE['installer_lang'], 'installer/lang/', 'installer');
 } else {
-	$installer_lang->load_lang($_COOKIE['installer_lang'] = 'english', 'installer/lang/', 'installer');
+	$installer_lang->load_lang($_COOKIE['installer_lang'] = 'vietnamese', 'installer/lang/', 'installer');
 }
 
 define('VIVVO_INSTALLER_LANG', $_COOKIE['installer_lang']);
