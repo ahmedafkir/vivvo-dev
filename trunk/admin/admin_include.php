@@ -76,8 +76,8 @@
 	} elseif (!empty($_SESSION['vivvo']['admin_lang'])) {
 		$admin_lang->load_lang($_SESSION['vivvo']['admin_lang'], 'lang/admin/', 'admin');
 	} else {
-		$admin_lang->load_lang('english', 'lang/admin/', 'admin');
-		$_SESSION['vivvo']['admin_lang'] = 'english';
+		$admin_lang->load_lang('vietnamese', 'lang/admin/', 'admin');
+		$_SESSION['vivvo']['admin_lang'] = 'vietnamese';
 	}
 	define('VIVVO_ADMIN_LANG', $_SESSION['vivvo']['admin_lang']);
 	$url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
