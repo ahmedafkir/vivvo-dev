@@ -1723,7 +1723,7 @@ require VIVVO_FS_INSTALL_ROOT . 'lib/vivvo/framework/vivvo_ga.php';
 
 		/**
 		 * Loads language strings from file into global scope.
-		 * Default language is "english"
+		 * Default language is "vietnamese"
 		 *
 		 * @param string   (optional) Language name
 		 * @param string   (optional) Directory for language file
@@ -1735,19 +1735,19 @@ require VIVVO_FS_INSTALL_ROOT . 'lib/vivvo/framework/vivvo_ga.php';
 			if (is_array($this->_lang_stack)) {
 				global $lang;
 
-				if ($lang_name == '') $lang_name = 'english';
+				if ($lang_name == '') $lang_name = 'vietnamese';
 				if ($dir == '') $dir = 'lang/';
 
 				if (file_exists(VIVVO_FS_LANG_ROOT . $dir . $lang_name . '.php')){
 					$lang_file = VIVVO_FS_LANG_ROOT . $dir . $lang_name . '.php';
-					if ($lang_name != 'english')
-						$default_lang = VIVVO_FS_LANG_ROOT . $dir . 'english.php'; //use english as default
+					if ($lang_name != 'vietnamese')
+						$default_lang = VIVVO_FS_LANG_ROOT . $dir . 'vietnamese.php'; //use english as default
 				} elseif (file_exists(VIVVO_FS_PLUGIN_ROOT . $dir . $lang_name . '.php')) {
 					$lang_file = VIVVO_FS_PLUGIN_ROOT . $dir . $lang_name . '.php';
-					if ($lang_name != 'english')
-						$default_lang = VIVVO_FS_PLUGIN_ROOT . $dir . 'english.php';
+					if ($lang_name != 'vietnamese')
+						$default_lang = VIVVO_FS_PLUGIN_ROOT . $dir . 'vietnamese.php';
 				}
-				else $lang_file = VIVVO_FS_LANG_ROOT . $dir . 'english.php';
+				else $lang_file = VIVVO_FS_LANG_ROOT . $dir . 'vietnamese.php';
 
 				if (isset($default_lang) and file_exists($default_lang) ) { //include default language, as fallback
 					include($default_lang);
@@ -1765,7 +1765,7 @@ require VIVVO_FS_INSTALL_ROOT . 'lib/vivvo/framework/vivvo_ga.php';
 		 * Class constructor sets site manager instance and loads language file.
 		 *
 		 * @param vivvo_lite_site reference
-		 * @param string  (optional) Language name, default is "english"
+		 * @param string  (optional) Language name, default is "vietnamese"
 		 * @param string  (optional) Directory where language file lives
 		 * @return void
 		 *
@@ -1779,7 +1779,7 @@ require VIVVO_FS_INSTALL_ROOT . 'lib/vivvo/framework/vivvo_ga.php';
 		/**
 		 * Creates new instance of vivvo_lang.
 		 *
-		 * @param string  (optional) Language name, default is "english"
+		 * @param string  (optional) Language name, default is "vietnamese"
 		 * @param string  (optional) Directory where language file lives
 		 * @return void
 		 */
