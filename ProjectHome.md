@@ -1,0 +1,1 @@
+Phiên bản tiếng Việt, bản nulled
